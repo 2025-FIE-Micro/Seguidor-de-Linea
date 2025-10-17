@@ -1,2 +1,2 @@
 # Seguidor-de-Linea
-Proyecto final - Tecnicas Digitales 2 (2025)
+(EN PROGRESO) Proyecto final - Tecnicas Digitales 2 (2025)
