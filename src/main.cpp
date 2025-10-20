@@ -4,7 +4,6 @@
 #include "drv8833.hpp"
 #include "buzzer.hpp"
 
-
 // "Funcion" para debuggear sin tener que comentar los Prints o partes de codigo.
 #ifdef DEBUG
     // Hacemos lo que esta dentro
@@ -35,39 +34,64 @@ Drv8833 motorDer;   Drv8833 motorIzq;
 // ============================
 // CONFIGURACIÓN SENSORES QTR
 // ============================
+//const uint8_t[]){14, 27, 33, 32, 35, 34, 39, 36} ERROR EN WIFI CON ADC2
+const uint8_t S8 = 14;
+const uint8_t S7 = 27;
+const uint8_t S6 = 33;
+const uint8_t S5 = 32;
+const uint8_t S4 = 35;
+const uint8_t S3 = 34;
+const uint8_t S2 = 39;
+const uint8_t S1 = 36;
+
 QTRSensors qtr;
 const uint8_t SensorCount = 8;
 uint16_t sensorValues[SensorCount];
 
 uint16_t position;
+
 enum Linea { BLANCA, NEGRA };
-Linea linea_competencia = NEGRA;   // CAMBIAR BLANCA o NEGRA de acorde a la linea
+Linea linea_competencia = BLANCA;   // CAMBIAR BLANCA o NEGRA de acorde a la linea
+
+
+// ============================
+// VELOCIDADES  - PORCENTAJE DE PWM (0-100%)
+// ============================
+uint8_t baseSpeed = 60;          // Velocidad base - deber tener Rango entre 50% (semidetenido) y Maximo
+const uint8_t maxSpeed  = 80;   // Límite de velocidad
+
+int16_t motorSpeedIzq = baseSpeed;
+int16_t motorSpeedDer = baseSpeed; 
 
 
 // ============================
 // CONTROL PID - METODO Ziegler-Nichols
 // ============================
+
+//TODO seleccionar corredor en el .ini
 const float Ku = 0.05;   // Valor de K que genera oscilación sostenida (BUSCARLO)
-// Ejemplo: N. Condor Ku = 0.05;
+// Ejemplos:
+//  N. Condor   = 0.05  (max + en y  )  velocidad base de 90 max en 100
+//  Argentum    = 0.05     (max + en 0.1 s y 0.4 s)
+//  Diego       = 0.5     
+
+const float Tu = 0.0;   // Período de oscilaciones [seg]      (MEDIRLO)
+//Ejemplo:
+//  N. Condor =     1.445
+//  ARGENTUM  =     1       (TO-DO: MEDIR)
+//  Diego       =   1       (TO-DO: MEDIR)
 
 // "Funcion" para encontrar NZ (Constantes K) o usar la Ku y Tu obtenidas 
 #ifdef TEST_PID
     const float Kp = Ku;
     const float Ki = 0;
     const float Kd = 0;
-
-    // Desactivamos la bocina
-    #define debTestPid(x)
+    #define debTestPid(x)       // Desactivamos la bocina
 #else
-    const float Tu = 1.50;   // Período de oscilaciones [seg]               (MEDIRLO)
-    //Ejemplo:  N. Condor Tu = 1.50;
-
     const float Kp = 0.6 * Ku;
     const float Ki = 2 * Kp / Tu;
     const float Kd = Kp * Tu / 8;
-
-    // Activamos la bocina
-    #define debTestPid(x) x
+    #define debTestPid(x) x         // Activamos la bocina
 #endif
 
 uint16_t setpoint = 3500;
@@ -76,16 +100,6 @@ uint16_t zonaMuerta = 350; // 3500 +- 350
 float  lastError = 0;   // Error previo         -   control D
 float  integral = 0;    // Acumulador           -   control I
 uint32_t lastTime = 0;  // Millis previo (mS)   -   delta Tiempo
-
-
-// ============================
-// VELOCIDADES  - PORCENTAJE DE PWM (0-100%)
-// ============================
-uint8_t baseSpeed = 90;          // Velocidad base - deber tener Rango entre 50% (semidetenido) y Maximo
-const uint8_t maxSpeed  = 100;   // Límite de velocidad
-
-int16_t motorSpeedIzq = baseSpeed;
-int16_t motorSpeedDer = baseSpeed; 
 
 
 // =================================
@@ -227,7 +241,9 @@ void setup() {
 
     // Configuración sensores
     qtr.setTypeAnalog();
-    qtr.setSensorPins((const uint8_t[]){14, 27, 33, 32, 35, 34, 39, 36}, SensorCount);
+    //const uint8_t[]){14, 27, 33, 32, 35, 34, 39, 36} ERROR EN WIFI CON 14 Y 27
+    const uint8_t sensorPins[SensorCount] = {S8, S7, S6, S5, S4, S3, S2, S1};
+    qtr.setSensorPins(sensorPins, SensorCount);
 
     // Configuración pines
     pinMode(ledMotores, OUTPUT);
