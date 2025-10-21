@@ -4,7 +4,6 @@
 #include "drv8833.hpp"
 #include "buzzer.hpp"
 
-// "Funcion" para debuggear sin tener que comentar los Prints o partes de codigo.
 #ifdef DEBUG
     // Hacemos lo que esta dentro
     #define deb(x) x
@@ -32,17 +31,11 @@ Drv8833 motorDer;   Drv8833 motorIzq;
 
 
 // ============================
-// CONFIGURACIÓN SENSORES QTR
+// CONFIGURACIÓN SENSORES QTR & LINEA
 // ============================
 //const uint8_t[]){14, 27, 33, 32, 35, 34, 39, 36} ERROR EN WIFI CON ADC2
-const uint8_t S8 = 14;
-const uint8_t S7 = 27;
-const uint8_t S6 = 33;
-const uint8_t S5 = 32;
-const uint8_t S4 = 35;
-const uint8_t S3 = 34;
-const uint8_t S2 = 39;
-const uint8_t S1 = 36;
+const uint8_t S8 = 14;  const uint8_t S7 = 27;  const uint8_t S6 = 33;  const uint8_t S5 = 32;
+const uint8_t S4 = 35;  const uint8_t S3 = 34;  const uint8_t S2 = 39;  const uint8_t S1 = 36;
 
 QTRSensors qtr;
 const uint8_t SensorCount = 8;
@@ -50,38 +43,49 @@ uint16_t sensorValues[SensorCount];
 
 uint16_t position;
 
+/*
 enum Linea { BLANCA, NEGRA };
 Linea linea_competencia = BLANCA;   // CAMBIAR BLANCA o NEGRA de acorde a la linea
+*/
 
+#ifndef LINEA
+  #define LINEA BLANCA
+#endif
+ 
 
 // ============================
 // VELOCIDADES  - PORCENTAJE DE PWM (0-100%)
 // ============================
-uint8_t baseSpeed = 60;          // Velocidad base - deber tener Rango entre 50% (semidetenido) y Maximo
-const uint8_t maxSpeed  = 80;   // Límite de velocidad
+uint8_t baseSpeed = 90;          // Velocidad base - deber tener Rango entre 50% (semidetenido) y Maximo
+const uint8_t maxSpeed  = 100;   // Límite de velocidad (80 ANIBAL)
 
 int16_t motorSpeedIzq = baseSpeed;
 int16_t motorSpeedDer = baseSpeed; 
 
 
+// ===================================
+// SELECCION DE CORREDOR - CAMBIAR EN PLATFORMIO.INI
+// ===================================
+#if defined(NIGHTFALL)
+  const float Ku = 0.05;
+  const float Tu = 1.445;
+
+#elif defined(ARGENTUM)
+  const float Ku = 0.05;
+  const float Tu = 1.100;
+
+#elif defined(DIEGO)
+  const float Ku = 0.5;
+  const float Tu = 1.0;
+
+#else
+  #error "Corredor no definido correctamente. Use NIGHTFALL, ARGENTUM o DIEGO."
+#endif
+
+
 // ============================
 // CONTROL PID - METODO Ziegler-Nichols
 // ============================
-
-//TODO seleccionar corredor en el .ini
-const float Ku = 0.05;   // Valor de K que genera oscilación sostenida (BUSCARLO)
-// Ejemplos:
-//  N. Condor   = 0.05  (max + en y  )  velocidad base de 90 max en 100
-//  Argentum    = 0.05     (max + en 0.1 s y 0.4 s)
-//  Diego       = 0.5     
-
-const float Tu = 0.0;   // Período de oscilaciones [seg]      (MEDIRLO)
-//Ejemplo:
-//  N. Condor =     1.445
-//  ARGENTUM  =     1       (TO-DO: MEDIR)
-//  Diego       =   1       (TO-DO: MEDIR)
-
-// "Funcion" para encontrar NZ (Constantes K) o usar la Ku y Tu obtenidas 
 #ifdef TEST_PID
     const float Kp = Ku;
     const float Ki = 0;
@@ -124,8 +128,16 @@ const uint8_t BTN_STOP = 22;
 // INTERRUPCIONES
 // ============================
 volatile bool RUN = false;
-void IRAM_ATTR handleRun()  {RUN = true;}
-void IRAM_ATTR handleStop() {RUN = false;}
+
+void IRAM_ATTR handleRun() {
+    RUN = true;
+    deb(Serial.printf("MODO CORREDOR");)
+}
+
+void IRAM_ATTR handleStop() {
+    RUN = false;
+    deb(Serial.printf("MODO PARADO");)
+}
 
 
 // ============================
@@ -159,8 +171,7 @@ void calibrarSensores() {
 // ============================
 // FUNCION MOVER MOTORES
 // ============================
-void moverMotores(int16_t motorSpeedIzq, int16_t motorSpeedDer)
-{
+void moverMotores(int16_t motorSpeedIzq, int16_t motorSpeedDer) {
     deb(Serial.printf("MotorIzq=%d\n", motorSpeedIzq);)
     deb(Serial.printf("MotorDer=%d\n", motorSpeedDer);)
 
@@ -177,8 +188,7 @@ void moverMotores(int16_t motorSpeedIzq, int16_t motorSpeedDer)
 // ============================
 // FUNCION CALCULO DE PID
 // ============================
-float calculo_pid(uint16_t pos, uint32_t now)
-{
+float calculo_pid(uint16_t pos, uint32_t now) {
     // Calcular deltaTime
     float  deltaTime = (now - lastTime) / 1000.0; // Convertir a segundos
     deb(Serial.printf("deltaTime=%.6f\n", deltaTime);)
@@ -207,8 +217,7 @@ float calculo_pid(uint16_t pos, uint32_t now)
 // ============================
 // FUNCION CONTROL MOTORES - Zona muerta o Pid
 // ============================
-void controlMotores(float correcion)
-{
+void controlMotores(float correcion) {
     // En Zona muerta dejo de acumular y solo acelero
     if (abs(position - setpoint) < zonaMuerta) {
         motorSpeedIzq++;    // aumento las velocidades lentamente
@@ -227,11 +236,20 @@ void controlMotores(float correcion)
     motorSpeedDer = constrain(motorSpeedDer, -maxSpeed, maxSpeed);
 }
 
+
 // ============================
 // SETUP
 // ============================
 void setup() {
     deb(Serial.begin(115200);)
+
+    #if defined(NIGHTFALL)
+        deb(Serial.println("\n ---- Nightfall ----\n"));
+    #elif defined(ARGENTUM)
+        deb(Serial.println("\n ---- Argentum  ----\n"));
+    #elif defined(DIEGO)
+        deb(Serial.println("\n ----   Diego   ----\n"));
+    #endif
 
     debTestPid(buzzer.begin();)         // 2 kHz y 8 bits
 
@@ -241,7 +259,6 @@ void setup() {
 
     // Configuración sensores
     qtr.setTypeAnalog();
-    //const uint8_t[]){14, 27, 33, 32, 35, 34, 39, 36} ERROR EN WIFI CON 14 Y 27
     const uint8_t sensorPins[SensorCount] = {S8, S7, S6, S5, S4, S3, S2, S1};
     qtr.setSensorPins(sensorPins, SensorCount);
 
@@ -275,11 +292,20 @@ void loop() {
     digitalWrite(ledMotores, HIGH);
     
     // Obtener el tiempo actual
-    uint32_t now = millis();
-    
+    // uint32_t now = millis();
+    uint32_t now = micros();
     // Leer posición de línea (0 = extremo izquierda, 7000 = extremo derecha)
+    /*
     if (linea_competencia == BLANCA)    position = qtr.readLineWhite(sensorValues);
     if (linea_competencia == NEGRA)     position = qtr.readLineBlack(sensorValues);
+    */
+    #if     LINEA == BLANCA
+        position = qtr.readLineWhite(sensorValues);
+    #elif   LINEA == NEGRA
+        position = qtr.readLineBlack(sensorValues);
+    #else
+        #error "Linea no definida correctamente. Use BLANCA o NEGRA"   
+    #endif
     
     deb(Serial.printf("Posicion=%d\n", position);)  
 
