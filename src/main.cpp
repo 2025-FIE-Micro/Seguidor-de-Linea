@@ -12,6 +12,90 @@
     #define deb(x)
 #endif
 
+
+// ===================================
+// SELECCION DE CORREDOR - CAMBIAR EN PLATFORMIO.INI
+// ===================================
+#define NIGHTFALL 1
+#define ARGENTUM  2
+#define DIEGO     3
+
+#ifndef CORREDOR
+  #error "Debe definir CORREDOR en platformio.ini (ej: -D CORREDOR=NIGHTFALL)"
+#endif
+
+// Selección de parametros segun corredor
+#if (CORREDOR == NIGHTFALL)
+    #define USAR_MICROS   1         // Cambiar a 0 para millis()
+    uint8_t baseSpeed = 95;         // Velocidad base PORCENTAJE DE PWM (0-100%)
+    const float Ku = 0.1;
+    const float Tu = 0.9;
+#elif (CORREDOR == ARGENTUM)
+    #define USAR_MICROS   0         // Cambiar a 0 para millis()
+    uint8_t baseSpeed = 85;         // Velocidad base PORCENTAJE DE PWM (0-100%)
+    const float Ku = 0.05;
+    const float Tu = 1.100;
+#elif (CORREDOR == DIEGO)
+    #define USAR_MICROS   0         // Cambiar a 0 para millis()
+    uint8_t baseSpeed = 90;         // Velocidad base PORCENTAJE DE PWM (0-100%)
+    const float Ku = 0.049;
+    const float Tu = 0.72;
+#else
+  #error "Valor de CORREDOR inválido. Use NIGHTFALL, ARGENTUM o DIEGO."
+#endif
+
+
+// =================================
+// CONFIGURACIÓN DE TIEMPOS
+// =================================
+#if USAR_MICROS
+  #define tiempoActual() micros()
+  const float TIME_DIVISOR = 1000000.0; // microsegundos → segundos
+#else
+  #define tiempoActual() millis()
+  const float TIME_DIVISOR = 1000.0;    // milisegundos → segundos
+#endif
+
+
+// ============================
+// VELOCIDADES  - PORCENTAJE DE PWM (0-100%)
+// ============================
+const uint8_t maxSpeed  = 100;   // Límite de velocidad
+int32_t motorSpeedIzq = baseSpeed;
+int32_t motorSpeedDer = baseSpeed; 
+
+
+// ============================
+// CONTROL PID - METODO Ziegler-Nichols
+// ============================
+#ifdef TEST_PID
+    const float Kp = Ku;
+    const float Ki = 0;
+    const float Kd = 0;
+    #define debTestPid(x)       // Desactivamos la bocina
+#else
+    const float Kp = 0.6 * Ku;
+    const float Ki = 2 * Kp / Tu;
+    const float Kd = Kp * Tu / 8;
+    #define debTestPid(x) x         // Activamos la bocina
+#endif
+
+uint16_t setpoint = 3500;
+uint16_t zonaMuerta = 200; // 3500 +- 200
+
+float  lastError = 0;   // Error previo         -   control D
+float  integral = 0;    // Acumulador           -   control I
+uint32_t lastTime = 0;  // Millis previo        -   delta Tiempo
+
+
+// =================================
+// CONFIGURACIÓN DE BUZZER
+// =================================
+debTestPid(
+    const uint8_t BuzzerPwm = 2; // Canal PWM 1
+    Buzzer buzzer(17, BuzzerPwm);
+)
+
 // ============================
 // CONFIGURACIÓN DE MOTORES
 // ============================ 
@@ -33,7 +117,6 @@ Drv8833 motorDer;   Drv8833 motorIzq;
 // ============================
 // CONFIGURACIÓN SENSORES QTR & LINEA
 // ============================
-//const uint8_t[]){14, 27, 33, 32, 35, 34, 39, 36} ERROR EN WIFI CON ADC2
 const uint8_t S8 = 14;  const uint8_t S7 = 27;  const uint8_t S6 = 33;  const uint8_t S5 = 32;
 const uint8_t S4 = 35;  const uint8_t S3 = 34;  const uint8_t S2 = 39;  const uint8_t S1 = 36;
 
@@ -43,76 +126,9 @@ uint16_t sensorValues[SensorCount];
 
 uint16_t position;
 
-/*
 enum Linea { BLANCA, NEGRA };
 Linea linea_competencia = BLANCA;   // CAMBIAR BLANCA o NEGRA de acorde a la linea
-*/
 
-#ifndef LINEA
-  #define LINEA BLANCA
-#endif
- 
-
-// ============================
-// VELOCIDADES  - PORCENTAJE DE PWM (0-100%)
-// ============================
-uint8_t baseSpeed = 90;          // Velocidad base - deber tener Rango entre 50% (semidetenido) y Maximo
-const uint8_t maxSpeed  = 100;   // Límite de velocidad (80 ANIBAL)
-
-int16_t motorSpeedIzq = baseSpeed;
-int16_t motorSpeedDer = baseSpeed; 
-
-
-// ===================================
-// SELECCION DE CORREDOR - CAMBIAR EN PLATFORMIO.INI
-// ===================================
-#if defined(NIGHTFALL)
-  const float Ku = 0.05;
-  const float Tu = 1.445;
-
-#elif defined(ARGENTUM)
-  const float Ku = 0.05;
-  const float Tu = 1.100;
-
-#elif defined(DIEGO)
-  const float Ku = 0.5;
-  const float Tu = 1.0;
-
-#else
-  #error "Corredor no definido correctamente. Use NIGHTFALL, ARGENTUM o DIEGO."
-#endif
-
-
-// ============================
-// CONTROL PID - METODO Ziegler-Nichols
-// ============================
-#ifdef TEST_PID
-    const float Kp = Ku;
-    const float Ki = 0;
-    const float Kd = 0;
-    #define debTestPid(x)       // Desactivamos la bocina
-#else
-    const float Kp = 0.6 * Ku;
-    const float Ki = 2 * Kp / Tu;
-    const float Kd = Kp * Tu / 8;
-    #define debTestPid(x) x         // Activamos la bocina
-#endif
-
-uint16_t setpoint = 3500;
-uint16_t zonaMuerta = 350; // 3500 +- 350
-
-float  lastError = 0;   // Error previo         -   control D
-float  integral = 0;    // Acumulador           -   control I
-uint32_t lastTime = 0;  // Millis previo (mS)   -   delta Tiempo
-
-
-// =================================
-// CONFIGURACIÓN DE BUZZER
-// =================================
-debTestPid(
-    const uint8_t BuzzerPwm = 2; // Canal PWM 1
-    Buzzer buzzer(17, BuzzerPwm);
-)
 
 
 // ============================
@@ -128,16 +144,8 @@ const uint8_t BTN_STOP = 22;
 // INTERRUPCIONES
 // ============================
 volatile bool RUN = false;
-
-void IRAM_ATTR handleRun() {
-    RUN = true;
-    deb(Serial.printf("MODO CORREDOR");)
-}
-
-void IRAM_ATTR handleStop() {
-    RUN = false;
-    deb(Serial.printf("MODO PARADO");)
-}
+void IRAM_ATTR handleRun()  {    RUN = true;    }
+void IRAM_ATTR handleStop() {    RUN = false;   }
 
 
 // ============================
@@ -190,7 +198,7 @@ void moverMotores(int16_t motorSpeedIzq, int16_t motorSpeedDer) {
 // ============================
 float calculo_pid(uint16_t pos, uint32_t now) {
     // Calcular deltaTime
-    float  deltaTime = (now - lastTime) / 1000.0; // Convertir a segundos
+    float  deltaTime = (now - lastTime) / TIME_DIVISOR; // Convertir a segundos
     deb(Serial.printf("deltaTime=%.6f\n", deltaTime);)
 
     // Calcular el error
@@ -241,16 +249,7 @@ void controlMotores(float correcion) {
 // SETUP
 // ============================
 void setup() {
-    deb(Serial.begin(115200);)
-
-    #if defined(NIGHTFALL)
-        deb(Serial.println("\n ---- Nightfall ----\n"));
-    #elif defined(ARGENTUM)
-        deb(Serial.println("\n ---- Argentum  ----\n"));
-    #elif defined(DIEGO)
-        deb(Serial.println("\n ----   Diego   ----\n"));
-    #endif
-
+    deb(Serial.begin(115200);)   
     debTestPid(buzzer.begin();)         // 2 kHz y 8 bits
 
     // Configuración motores
@@ -292,23 +291,15 @@ void loop() {
     digitalWrite(ledMotores, HIGH);
     
     // Obtener el tiempo actual
-    // uint32_t now = millis();
-    uint32_t now = micros();
-    // Leer posición de línea (0 = extremo izquierda, 7000 = extremo derecha)
-    /*
+    uint32_t now = tiempoActual();
+
+    // Leer posición de línea (0 = extremo izquierda, 7000 = extremo derecha)    
     if (linea_competencia == BLANCA)    position = qtr.readLineWhite(sensorValues);
     if (linea_competencia == NEGRA)     position = qtr.readLineBlack(sensorValues);
-    */
-    #if     LINEA == BLANCA
-        position = qtr.readLineWhite(sensorValues);
-    #elif   LINEA == NEGRA
-        position = qtr.readLineBlack(sensorValues);
-    #else
-        #error "Linea no definida correctamente. Use BLANCA o NEGRA"   
-    #endif
-    
+   
     deb(Serial.printf("Posicion=%d\n", position);)  
 
+    // calculo la correccion para los motores segun la posicion y el tiempo actual
     float correcion = calculo_pid(position, now);
  
     // Control de motores
