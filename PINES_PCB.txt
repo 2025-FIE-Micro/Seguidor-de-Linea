@@ -19,11 +19,9 @@ IN1_M2 → GPIO21 (PWM)
 IN2_M2 → GPIO18 (PWM)
 SLEEP_M2 → GPIO23
 
-Botones, buzzer, LED (abajo/derecha)
-SW1 → GPIO22 (entrada con pull-down)
-SW2 → GPIO19 (entrada con pull-down)
+Botones, buzzer, LED (abajo/derecha), SENSOR_IR
+SW1 → GPIO22    (entrada con pull-down)
+SW2 → GPIO19    (entrada con pull-down)
 BUZZER → GPIO17 (PWM con LEDC)
-LED → GPIO13 (salida)
-
-	
-
+LED → GPIO13    (salida)
+IR → GPIO04     (entrada con pull-up externo)
