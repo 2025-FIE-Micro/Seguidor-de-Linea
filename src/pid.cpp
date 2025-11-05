@@ -6,9 +6,9 @@
 // ============================
 // FUNCION CALCULO DE PID
 // ============================
-float calculo_pid(uint16_t pos, uint32_t now) {
+float calculo_pid(uint16_t pos, float deltaTime) {
     // Calcular deltaTime
-    float  deltaTime = (now - lastTime) / TIME_DIVISOR; // Convertir a segundos
+    //float  deltaTime = (now - lastTime) / TIME_DIVISOR; // Convertir a segundos
     deb(Serial.printf("deltaTime=%.6f\n", deltaTime);)
 
     // Calcular el error

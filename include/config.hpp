@@ -62,3 +62,15 @@ extern const float Kd;
     // Sonamos la bocina
     #define mute(bz) bz
 #endif
+
+
+// ===================================
+// USAR CONTROL - CAMBIA CUANDO LO USAMOS Y CUANDO NO
+// ===================================
+#ifdef USAR_CONTROL_IR
+    // Usamos el control
+    #define control_ir(IR) IR
+#else
+    // No usamos el control
+    #define control_ir()
+#endif

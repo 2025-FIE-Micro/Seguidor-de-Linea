@@ -15,20 +15,23 @@
 // SELECCION DE CORREDOR - CAMBIAR EN PLATFORMIO.INI
 // ===================================
 #if (CORREDOR == NIGHTFALL)
+    //Motores de 500 RPM
     #define USAR_MICROS   1         // Cambiar a 0 para millis()
-    uint8_t baseSpeed = 95;         // Velocidad base PORCENTAJE DE PWM (0-100%)
-    const float Ku = 0.1;
-    const float Tu = 0.9;
-#elif (CORREDOR == ARGENTUM)
-    #define USAR_MICROS   0         // Cambiar a 0 para millis()
-    uint8_t baseSpeed = 85;         // Velocidad base PORCENTAJE DE PWM (0-100%)
+    uint8_t baseSpeed = 100;         // Velocidad base PORCENTAJE DE PWM (0-100%)
     const float Ku = 0.05;
-    const float Tu = 1.100;
-#elif (CORREDOR == DIEGO)
+    const float Tu = 0.6;
+#elif (CORREDOR == ARGENTUM)
+    //Motores de 800 RPM
     #define USAR_MICROS   0         // Cambiar a 0 para millis()
-    uint8_t baseSpeed = 90;         // Velocidad base PORCENTAJE DE PWM (0-100%)
+    uint8_t baseSpeed = 78;         // Velocidad base PORCENTAJE DE PWM (0-100%)
+    const float Ku = 0.051;
+    const float Tu = 0.310;
+#elif (CORREDOR == DIEGO)
+    //Motores de 800 RPM
+    #define USAR_MICROS   0         // Cambiar a 0 para millis()
+    uint8_t baseSpeed = 65;         // Velocidad base PORCENTAJE DE PWM (0-100%)
     const float Ku = 0.049;
-    const float Tu = 0.72;
+    const float Tu = 0.310;
 #else
   #error "Valor de CORREDOR inválido. Use NIGHTFALL, ARGENTUM o DIEGO."
 #endif
