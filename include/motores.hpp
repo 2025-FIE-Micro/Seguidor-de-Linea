@@ -9,7 +9,8 @@ extern int32_t motorSpeedIzq;
 extern int32_t motorSpeedDer;
 extern Drv8833 motorIzq;
 extern Drv8833 motorDer;
-extern const uint8_t maxSpeed;
+extern const int32_t maxSpeed;
 
 void controlMotores(float correcion);
 void moverMotores(int32_t motorSpeedIzq, int32_t motorSpeedDer);
+void moverMotoresSinCorrecion(int32_t motorSpeedIzq, int32_t motorSpeedDer);

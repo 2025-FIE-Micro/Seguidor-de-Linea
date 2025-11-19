@@ -72,5 +72,5 @@ extern const float Kd;
     #define control_ir(IR) IR
 #else
     // No usamos el control
-    #define control_ir()
+    #define control_ir(IR)
 #endif

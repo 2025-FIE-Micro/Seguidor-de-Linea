@@ -1,12 +1,5 @@
-/* MAIN.CPP - CORREDOR PID COMPETENCIA ROBOTICA
- TODO: 
-    * Cambiar Float por Double (8b a 32b)
-    * Cambiar la tecla run/stop
-    * implementar TIMER_ISR
-    * modulo control_ir / separar del main
- */
 #include <Arduino.h>
-#include <IRremote.hpp>
+//#include <IRremote.hpp>
 #include "QTRSensors.h"
 #include "drv8833.hpp"
 #include "buzzer.hpp"
@@ -16,6 +9,24 @@
 #include "sensores.hpp"
 #include "motores.hpp"
 
+/* MAIN.CPP - CORREDOR PID COMPETENCIA ROBOTICA
+ TODO: 
+    * Cambiar Float por Double (8b a 32b) 
+    * implementar TIMER_ISR - reemplaza dt por una cantidad fija en donde se debe poder ejecutar el pid
+    * modulo control_ir / separar del main  - usar un mejor control/receptor mas ancho
+    * ¿Es mejor moverMotores con o sin correccion? - notas postcompetencia
+        - Con correcion en curvas muy cerradas es superior debido a la alta velocidad rotacional.
+        - Con una sintonizacion adecuada (otras costantes a las actuales) la correccion no es necesaria y va siempre adelante 
+    * Implementar un arranque seguro - evita desviaciones bruscaz por error alto al arrancar
+        - acelerar al principio. desde un min (50 - casi detenido) hasta base_speed
+        - debe durar unos pocos ms, despues no lo volvemos a hacer y solo usamos el PID 
+    * PCB vers ECO:
+        - uC arduino NANO o MICRO (ese que posee 8 ADCS y los pwm justos)
+        - driver puente h rojo - es comodo de usar y posee dist pin de enable (osea 1 que hace de dos drvs)
+        - siguen los sensores qrts, cambiamos el puenteH, uc y bateria (menos peso y espacio)
+    * Si cambio el uC, ¿como puedo evitar cambiar este codigo? ¿Separo los pines del main? 
+    * Separar las variables o pines del micro en otro programa (menos lineas)
+ */
 
 // ============================
 // PINES - LEDS, BOTONES, BOCINA y SENSOR IR
@@ -25,17 +36,17 @@ const uint8_t ledMotores = 13;          // LED para encender/apagar motores
 const uint8_t ledCalibracion = 2;       // LED azul que indica calibración finalizada
 const uint8_t BTN_RUN = 19;
 const uint8_t BTN_STOP = 22;
-const uint8_t IR_PIN = 4;
+//const uint8_t IR_PIN = 4;
 
 // VELOCIDADES  - PORCENTAJE DE PWM (0-100%)
-const uint8_t maxSpeed  = 100;   // Límite de velocidad
+const int32_t maxSpeed  = 80;   // Límite de velocidad
 // Velocidades base de motores - Le aumentamos o disminuimos para realizar correcion  
 int32_t motorSpeedIzq = baseSpeed;
 int32_t motorSpeedDer = baseSpeed; 
 
 // SETPOINT y ZONA MUERTA
-uint16_t setpoint = 3500;   // mitad de lectura de sensores - es decir pararnos sobre la linea
-uint16_t zonaMuerta = 200;  // zona entre el medio en la cual se considera setpoint ("min y max de setpoint") 
+uint16_t setpoint = 3500;       // mitad de lectura de sensores - es decir pararnos sobre la linea
+uint16_t zonaMuerta = 50;      // zona para acelerar "min y max de setpoint" 
 
 // Variables auxiliares para PID 
 float  lastError = 0;   // Error previo         -   control D
@@ -73,25 +84,44 @@ const uint8_t S8 = 14;  const uint8_t S7 = 27;  const uint8_t S6 = 33;  const ui
 const uint8_t S4 = 35;  const uint8_t S3 = 34;  const uint8_t S2 = 39;  const uint8_t S1 = 36;
 
 // Objeto sensor qtr, con 8 sensores S1 a S8 - obtenemos posicion con los sensor values 
-QTRSensors qtr;         const uint8_t SensorCount = 8;
+QTRSensors qtr;
+const uint8_t SensorCount = 8;
 const uint8_t sensorPins[SensorCount] = {S8, S7, S6, S5, S4, S3, S2, S1};
 uint16_t sensorValues[SensorCount];
 uint16_t position;
 
-
+/*
 // ============================
 // COMANDOS CONTROL
 // ============================
-#define CMD_ON_OFF   0x18           //Tecla '2'
-#define RAW_ON_OFF   0xE718FF00     //TODO: cambiar a tecla Play/Pause
+#define CMD_ON_OFF   0x43           //Tecla 'play/pause'
+#define RAW_ON_OFF   0xBC43FF00
+
+void leer_IR()
+{// Si recibe algo lo leemos/decodificamos - ISR interna (maquina de estado[?])
+    if (IrReceiver.decode()) {
+        // Guardamos los datos y separamos el dato crudo y el codigo
+        auto data = IrReceiver.decodedIRData;
+        uint32_t raw = data.decodedRawData;
+        uint8_t cmd  = data.command;
+
+        // Si coinciden el codigo crudo y comando entonces arranco o paro el coche
+        if (raw == RAW_ON_OFF && cmd == CMD_ON_OFF)   { RUN = !RUN;}
+
+        // Liberamos / salimos de la maquina
+        IrReceiver.resume();
+    }
+}*/
 
 
 // ============================
 // SETUP
 // ============================
 void setup() {
+    // Inicializar Serial, Buzzer, Control SOLOS SI se habilitaron en el PLATFORMIO.INI
     deb(Serial.begin(115200);)   
     mute(buzzer.begin();)         // 2 kHz y 8 bits
+    //control_ir( IrReceiver.begin(IR_PIN, ENABLE_LED_FEEDBACK);)
 
     // Configuración motores - pines de direcion, canal de pwm, frecuencia y resolucion
     motorDer.setup(motorPinIN1_Der, motorPinIN2_Der, motorPinSleep_Der, motorPWM_Der, freqPWM, resPWM);
@@ -112,9 +142,6 @@ void setup() {
     
     // Calibración inicial
     calibrarSensores();
-
-    // Inicializar receptor IR
-    IrReceiver.begin(IR_PIN, ENABLE_LED_FEEDBACK);
 }
 
 
@@ -123,26 +150,13 @@ void setup() {
 // ============================
 void loop() {
     // Lectura de control IR - Debe estar definido en el platformio
-    control_ir(
-        // Si recibe algo lo leemos/decodificamos - ISR interna (maquina de estado[?])
-        if (IrReceiver.decode()) {
-            // Guardamos los datos y separamos el dato crudo y el codigo
-            auto data = IrReceiver.decodedIRData;
-            uint32_t raw = data.decodedRawData;
-            uint8_t cmd  = data.command;
-
-            // Si coinciden el codigo crudo y comando entonces arranco o paro el coche
-            if (raw == RAW_ON_OFF && cmd == CMD_ON_OFF)   { RUN = !RUN;    }
-
-            // Liberamos / salimos de la maquina
-            IrReceiver.resume();
-        }
-    )
+    //control_ir( leer_IR(); )
 
     // Modo detenido - Como no se levanto el flag de correr entonces detenido
     if (!RUN) {
         digitalWrite(ledMotores, LOW);
-        motorIzq.stop();    motorDer.stop();
+        motorIzq.stop();
+        motorDer.stop();
         return;
     }
 
@@ -167,6 +181,9 @@ void loop() {
 
     // Mover los motores (Avanza, retrocede o para)
     moverMotores(motorSpeedIzq, motorSpeedDer);
+    
+    // Mover los motores (Avanza o para)    Requiere una nueva sintonizacion de ctes.
+    //moverMotoresSinCorrecion(motorSpeedIzq, motorSpeedDer);
 
     //Guardar el tiempo al finalizar
     lastTime = now;

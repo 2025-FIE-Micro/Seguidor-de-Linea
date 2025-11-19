@@ -6,7 +6,7 @@
 #include "pid.hpp"
 
 // ============================
-// FUNCION MOVER MOTORES
+// FUNCIONES PARA MOVER MOTORES
 // ============================
 void moverMotores(int32_t motorSpeedIzq, int32_t motorSpeedDer) {
     deb(Serial.printf("MotorIzq=%d\n", motorSpeedIzq);)
@@ -18,6 +18,22 @@ void moverMotores(int32_t motorSpeedIzq, int32_t motorSpeedDer) {
 
     if      (motorSpeedDer > 0) {   motorDer.forward(motorSpeedDer);        }
     else if (motorSpeedDer < 0) {   motorDer.reverse(abs(motorSpeedDer));   }
+    else                        {   motorDer.stop();    }   
+}
+
+void moverMotoresSinCorrecion(int32_t motorSpeedIzq, int32_t motorSpeedDer) {
+    //motorSpeedIzq = map(motorSpeedIzq, -100, 100, 0, 100);
+    //motorSpeedDer = map(motorSpeedDer, -100, 100, 0, 100);
+
+    motorSpeedIzq = constrain(motorSpeedIzq, 0, 100);
+    motorSpeedDer = constrain(motorSpeedDer, 0, 100);
+
+    deb(Serial.printf("MotorIzq=%d\n", motorSpeedIzq);)
+    deb(Serial.printf("MotorDer=%d\n", motorSpeedDer);)
+
+    if      (motorSpeedIzq > 0) {   motorIzq.forward(motorSpeedIzq);        }
+    else                        {   motorIzq.stop();    }
+    if      (motorSpeedDer > 0) {   motorDer.forward(motorSpeedDer);        }
     else                        {   motorDer.stop();    }   
 }
 
