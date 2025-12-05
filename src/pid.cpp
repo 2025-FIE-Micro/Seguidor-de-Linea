@@ -1,3 +1,8 @@
+/*
+    programa de calculo de controlador
+    * contralor PID
+*/
+
 #include <Arduino.h>
 #include "config.hpp"
 #include "drv8833.hpp"

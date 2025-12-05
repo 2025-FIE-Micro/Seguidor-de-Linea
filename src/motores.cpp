@@ -1,3 +1,11 @@
+/*
+    programa de direccion y control de motores
+    * movimiento con correcion para atras
+    * movimiento con correcion solamente recta
+    * control de motores - setpoint o pid
+    * TODO: separar correccion y setpoint  
+*/
+
 #include <Arduino.h>
 #include "sensores.hpp"
 #include "config.hpp"

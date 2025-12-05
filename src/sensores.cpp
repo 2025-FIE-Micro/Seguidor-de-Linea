@@ -1,3 +1,10 @@
+/*
+    programa de lectura y setup de sensores QTR8A
+    * calibracion de sensores
+    * lectura de linea (B o N)
+    * setup - tipo de sensor analogico, pines y nro de sensores
+*/
+
 #include <Arduino.h>
 #include "sensores.hpp"
 #include "motores.hpp"

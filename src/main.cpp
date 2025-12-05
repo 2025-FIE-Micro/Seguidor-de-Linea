@@ -11,12 +11,8 @@
 
 /* MAIN.CPP - CORREDOR PID COMPETENCIA ROBOTICA
  TODO: 
-    * Cambiar Float por Double (8b a 32b) 
     * implementar TIMER_ISR - reemplaza dt por una cantidad fija en donde se debe poder ejecutar el pid
     * modulo control_ir / separar del main  - usar un mejor control/receptor mas ancho
-    * ¿Es mejor moverMotores con o sin correccion? - notas postcompetencia
-        - Con correcion en curvas muy cerradas es superior debido a la alta velocidad rotacional.
-        - Con una sintonizacion adecuada (otras costantes a las actuales) la correccion no es necesaria y va siempre adelante 
     * Implementar un arranque seguro - evita desviaciones bruscaz por error alto al arrancar
         - acelerar al principio. desde un min (50 - casi detenido) hasta base_speed
         - debe durar unos pocos ms, despues no lo volvemos a hacer y solo usamos el PID 
@@ -26,17 +22,9 @@
         - siguen los sensores qrts, cambiamos el puenteH, uc y bateria (menos peso y espacio)
     * Si cambio el uC, ¿como puedo evitar cambiar este codigo? ¿Separo los pines del main? 
     * Separar las variables o pines del micro en otro programa (menos lineas)
- */
+    * Maquina de estados - paso de parado, a inicio seguro, y a correrdor
+*/
 
-// ============================
-// PINES - LEDS, BOTONES, BOCINA y SENSOR IR
-// ============================
-const uint8_t pinBuzzer = 17;
-const uint8_t ledMotores = 13;          // LED para encender/apagar motores
-const uint8_t ledCalibracion = 2;       // LED azul que indica calibración finalizada
-const uint8_t BTN_RUN = 19;
-const uint8_t BTN_STOP = 22;
-//const uint8_t IR_PIN = 4;
 
 // VELOCIDADES  - PORCENTAJE DE PWM (0-100%)
 const int32_t maxSpeed  = 80;   // Límite de velocidad
@@ -62,12 +50,6 @@ Buzzer buzzer(pinBuzzer, BuzzerPwm);   // objeto buzzer en el pin 17
 // ============================
 // CONFIGURACIÓN DE MOTORES
 // ============================ 
-const uint8_t motorPinIN1_Izq = 21;   const uint8_t motorPinIN2_Izq = 18;
-const uint8_t motorPinSleep_Izq = 23;
-
-// MOTOR DERECHO
-const uint8_t motorPinIN1_Der = 26;   const uint8_t motorPinIN2_Der = 25;
-const uint8_t motorPinSleep_Der = 16;
 
 // Ajustes PWM MOTORES
 const uint8_t motorPWM_Izq = 0; const uint8_t motorPWM_Der = 1;
@@ -80,9 +62,6 @@ Drv8833 motorDer;   Drv8833 motorIzq;
 // ============================
 // CONFIGURACIÓN SENSORES QTR & LINEA
 // ============================
-const uint8_t S8 = 14;  const uint8_t S7 = 27;  const uint8_t S6 = 33;  const uint8_t S5 = 32;
-const uint8_t S4 = 35;  const uint8_t S3 = 34;  const uint8_t S2 = 39;  const uint8_t S1 = 36;
-
 // Objeto sensor qtr, con 8 sensores S1 a S8 - obtenemos posicion con los sensor values 
 QTRSensors qtr;
 const uint8_t SensorCount = 8;
@@ -90,7 +69,7 @@ const uint8_t sensorPins[SensorCount] = {S8, S7, S6, S5, S4, S3, S2, S1};
 uint16_t sensorValues[SensorCount];
 uint16_t position;
 
-/*
+/* // CONTROL IR - comentado por ahora
 // ============================
 // COMANDOS CONTROL
 // ============================
@@ -115,51 +94,18 @@ void leer_IR()
 
 
 // ============================
-// SETUP
+// HANDLE ISR TIMER 
 // ============================
-void setup() {
-    // Inicializar Serial, Buzzer, Control SOLOS SI se habilitaron en el PLATFORMIO.INI
-    deb(Serial.begin(115200);)   
-    mute(buzzer.begin();)         // 2 kHz y 8 bits
-    //control_ir( IrReceiver.begin(IR_PIN, ENABLE_LED_FEEDBACK);)
-
-    // Configuración motores - pines de direcion, canal de pwm, frecuencia y resolucion
-    motorDer.setup(motorPinIN1_Der, motorPinIN2_Der, motorPinSleep_Der, motorPWM_Der, freqPWM, resPWM);
-    motorIzq.setup(motorPinIN1_Izq, motorPinIN2_Izq, motorPinSleep_Izq, motorPWM_Izq, freqPWM, resPWM);
-
-    // Configuración pines
-    pinMode(ledMotores, OUTPUT);
-    pinMode(ledCalibracion, OUTPUT);
-    pinMode(BTN_RUN, INPUT);
-    pinMode(BTN_STOP, INPUT);
-
-    // Interrupciones de arranque y parada
-    attachInterrupt(digitalPinToInterrupt(BTN_RUN), handleRun, RISING);
-    attachInterrupt(digitalPinToInterrupt(BTN_STOP), handleStop, RISING);
-
-    // Configuración sensores
-    setupSensores(sensorPins, SensorCount);
-    
-    // Calibración inicial
-    calibrarSensores();
-}
+const int32_t TIEMPO_TIMER = 5000;  // Interrupción cada 5 ms - unidad en microsegundos (700 por sensor)
+hw_timer_t *timer = NULL;
+volatile bool has_expired = false;
+void IRAM_ATTR timerInterrupcion() { has_expired = true; }
 
 
 // ============================
-// LOOP
+// FUNCION SEGUIDOR LINEA
 // ============================
-void loop() {
-    // Lectura de control IR - Debe estar definido en el platformio
-    //control_ir( leer_IR(); )
-
-    // Modo detenido - Como no se levanto el flag de correr entonces detenido
-    if (!RUN) {
-        digitalWrite(ledMotores, LOW);
-        motorIzq.stop();
-        motorDer.stop();
-        return;
-    }
-
+void seguirLinea() {
     // Enceder led modo corredor
     digitalWrite(ledMotores, HIGH);
     
@@ -183,9 +129,83 @@ void loop() {
     moverMotores(motorSpeedIzq, motorSpeedDer);
     
     // Mover los motores (Avanza o para)    Requiere una nueva sintonizacion de ctes.
-    //moverMotoresSinCorrecion(motorSpeedIzq, motorSpeedDer);
+    // moverMotoresSinCorrecion(motorSpeedIzq, motorSpeedDer);
 
     //Guardar el tiempo al finalizar
     lastTime = now;
     deb(Serial.println("\n ---------------------- \n");)
 }
+
+// ============================
+// SETUP
+// ============================
+void setup() {
+    // Inicializar Serial, Buzzer, Control SOLOS SI se habilitaron en el PLATFORMIO.INI
+    deb(Serial.begin(115200);)   
+    mute(buzzer.begin();)         // 2 kHz y 8 bits
+    //control_ir( IrReceiver.begin(IR_PIN, ENABLE_LED_FEEDBACK);)
+
+    // Configuración motores - pines de direcion, canal de pwm, frecuencia y resolucion
+    motorDer.setup(motorPinIN1_Der, motorPinIN2_Der, motorPinSleep_Der, motorPWM_Der, freqPWM, resPWM);
+    motorIzq.setup(motorPinIN1_Izq, motorPinIN2_Izq, motorPinSleep_Izq, motorPWM_Izq, freqPWM, resPWM);
+
+    // Configuración pines
+    pinMode(ledMotores, OUTPUT);
+    pinMode(ledCalibracion, OUTPUT);
+    pinMode(BTN_RUN, INPUT);
+    pinMode(BTN_STOP, INPUT);
+
+    // Interrupciones FISICAS de arranque y parada
+    attachInterrupt(digitalPinToInterrupt(BTN_RUN), handleRun, RISING);
+    attachInterrupt(digitalPinToInterrupt(BTN_STOP), handleStop, RISING);
+
+    // Interrupciones por TIMER - reemplaza dt por una unidad cte
+    timer = timerBegin(0, 80, true);                        // Timer 0, divisor de reloj 80
+    timerAttachInterrupt(timer, &timerInterrupcion, true);  // función de interrupción
+    timerAlarmWrite(timer, TIEMPO_TIMER, true);             // Interrupción por cada deltaTime 
+    timerAlarmEnable(timer);                                // Habilitar la alarma
+    
+    // Configuración sensores
+    setupSensores(sensorPins, SensorCount);
+    
+    // Calibración inicial
+    calibrarSensores();
+}
+
+
+// ============================
+// LOOP
+// ============================
+void loop() {
+    // Lectura de control IR - Debe estar definido en el platformio
+    // control_ir( leer_IR(); )
+
+    // Modo detenido - Me quedo detenido hasta que inicia el FLAG correr
+    if (!RUN) {
+        digitalWrite(ledMotores, LOW);
+        motorIzq.stop();
+        motorDer.stop();
+        return;
+    }
+ 
+    // TODO: ACELERAR
+
+    // TODO: debug - todavia puede seguir la linea y avisar que entro en la isr?
+    if(has_expired) {
+        has_expired = false;
+        deb(Serial.println("\n ----- DELTA TIME ----- \n");)
+        // implementar seguirLinea - con deltaTime = TIEMPO_TIMER / 1000000.0;
+    }
+
+    seguirLinea();
+}
+
+/*
+    TODO: Si lo de arriba funciona, probar con una maquina de estados. Evitamos tener returns en el loop
+    Curiosamente es una maquina de estados:
+    * inicia en uno stop y se queda ahi hasta que no cambie RUN
+    * cuando RUN = true pasamos a safeStart (hasta que pase cierto tiempo) despues pasamos a seguirLinea 
+    * nos quedamos en seguirLinea cada timerIsr. Pero cuando pasamos a run = 0 volvemos a stop. 
+    * DIEGO: NO USAR SWITCH CASE - INEFICIENTE
+    * DIEGO: USAR LA MAQ DE ESTADOS MILIS(?) DEL GITHUB o LAS CLASES  
+*/

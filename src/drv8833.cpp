@@ -1,20 +1,12 @@
-/**
- * \file drv8833.cpp
- * \brief Implementación para el driver de motores DRV8833
- * \author Legion de Ohm
- */
-
 #include <Arduino.h>
 #include "drv8833.hpp"
 
-Drv8833::Drv8833() 
-{
+Drv8833::Drv8833() {
     pinMode(_pinSleep, OUTPUT);     // Configuración de pinSleep como salida.
     digitalWrite(_pinSleep, HIGH);  // LOW lo desactiva. HIGH lo activa
 }
 
-void Drv8833::setup(uint8_t pinIN1, uint8_t pinIN2, uint8_t pinSleep, uint8_t chPWM, uint32_t freqPWM, uint8_t resPWM)
-{
+void Drv8833::setup(uint8_t pinIN1, uint8_t pinIN2, uint8_t pinSleep, uint8_t chPWM, uint32_t freqPWM, uint8_t resPWM) {
     // Ajuste de variables
     _pinIN1 = pinIN1;
     _pinIN2 = pinIN2;
@@ -31,8 +23,7 @@ void Drv8833::setup(uint8_t pinIN1, uint8_t pinIN2, uint8_t pinSleep, uint8_t ch
     ledcSetup(_chPWM, _freqPWM, _resPWM); // Se configura la frecuencia y la resolución del canal PWM.
 }
 
-void Drv8833::forward(uint8_t pPWM)
-{
+void Drv8833::forward(uint8_t pPWM) {
     ledcDetachPin(_pinIN2);             // Separo el pin IN2 del PWM a puramente DIGITAL.
     digitalWrite(_pinIN2, 0);           // Aplico un bajo en el pin IN2.
 
@@ -49,8 +40,7 @@ void Drv8833::forward(uint8_t pPWM)
     ledcWrite(_chPWM, pwmDutyCycle);    // Aplico el ciclo de trabajo al PWM del canal.
 }
 
-void Drv8833::reverse(uint8_t pPWM)
-{
+void Drv8833::reverse(uint8_t pPWM) {
     ledcDetachPin(_pinIN1);             // Separo el pin IN1 del PWM a puramente DIGITAL.
     digitalWrite(_pinIN1, 0);           // Aplico un bajo en el pin IN1.
 
@@ -67,8 +57,7 @@ void Drv8833::reverse(uint8_t pPWM)
     ledcWrite(_chPWM, pwmDutyCycle);    // Aplico el ciclo de trabajo al PWM del canal.
 }
 
-void Drv8833::stop()
-{
+void Drv8833::stop() {
     // Paso los pines IN1 y IN2 a puramente digitales
     ledcDetachPin(_pinIN1);
     ledcDetachPin(_pinIN2);
