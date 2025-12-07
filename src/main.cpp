@@ -30,7 +30,7 @@
 const int32_t maxSpeed  = 80;   // Límite de velocidad
 // Velocidades base de motores - Le aumentamos o disminuimos para realizar correcion  
 int32_t motorSpeedIzq = baseSpeed;
-int32_t motorSpeedDer = baseSpeed; 
+int32_t motorSpeedDer = baseSpeed;
 
 // SETPOINT y ZONA MUERTA
 uint16_t setpoint = 3500;       // mitad de lectura de sensores - es decir pararnos sobre la linea
@@ -50,14 +50,12 @@ Buzzer buzzer(pinBuzzer, BuzzerPwm);   // objeto buzzer en el pin 17
 // ============================
 // CONFIGURACIÓN DE MOTORES
 // ============================ 
-
+// Objeto de motores izq y der 
+Drv8833 motorDer;   Drv8833 motorIzq;
 // Ajustes PWM MOTORES
 const uint8_t motorPWM_Izq = 0; const uint8_t motorPWM_Der = 1;
 const uint32_t freqPWM = 20000; // Frecuencia del PWM = 20KHz
 const uint8_t resPWM = 8;       // Resolución de 8 bits = 256 valores posibles [0, 255]
-
-// Objeto de motores izq y der 
-Drv8833 motorDer;   Drv8833 motorIzq;
 
 // ============================
 // CONFIGURACIÓN SENSORES QTR & LINEA
@@ -92,49 +90,77 @@ void leer_IR()
     }
 }*/
 
+// ===================== Prototipos estados  =====================
+void estadoStop();
+void estadoAcel();
+void estadoControl();
 
-// ============================
-// HANDLE ISR TIMER 
-// ============================
-const int32_t TIEMPO_TIMER = 5000;  // Interrupción cada 5 ms - unidad en microsegundos (700 por sensor)
-hw_timer_t *timer = NULL;
-volatile bool has_expired = false;
-void IRAM_ATTR timerInterrupcion() { has_expired = true; }
+// Punteros a funciones de estado
+void (*acciones_estado[])() = { estadoStop, estadoAcel, estadoControl };
 
+enum estados { CUALQUIERA = -1, S, A, C, CANT_ESTADOS };
 
-// ============================
-// FUNCION SEGUIDOR LINEA
-// ============================
-void seguirLinea() {
-    // Enceder led modo corredor
-    digitalWrite(ledMotores, HIGH);
+// función dummy
+int nada(int c) { return 0; }
+
+// estructura de estado 
+typedef struct {
+    int recibo;               // combinación SP,RUN (00..11)
+    int (*transicion)(int);  // función acción (dummy)
+    int prox_estado;         // estado destino
+} estado_t;
+
+// ===================== TABLAS =====================
+// STOP
+estado_t stop[] = {
+    {0, nada, S},
+    {1, nada, A},
+    {2, nada, S},
+    {3, nada, A},
+    {CUALQUIERA, nada, S},
+};
+
+// ACELERAR
+estado_t acel[] = {
+    {0, nada, S},
+    {1, nada, C},
+    {2, nada, S},
+    {3, nada, A},
+    {CUALQUIERA, nada, A},
+};
+
+// CONTROL
+estado_t control[] = {
+    {0, nada, S},
+    {1, nada, C},
+    {2, nada, S},
+    {3, nada, A},
+    {CUALQUIERA, nada, C},
+};
+
+// tabla general
+estado_t* tabla_de_estados[] = { stop, acel, control };
+static int estadoActual = S;    // static - recuerda el valor entre llamadas
+
+// FUNCION TRANSICIONAR
+static int transicionar(int entrada) {
+    estado_t* p = tabla_de_estados[estadoActual];
+
+    // busca el el recibo que coincida con la entrada
+    while (p->recibo != entrada && p->recibo != CUALQUIERA) p++;
+
+    //ejecuta las funciones de transicion - dummies
+    (p->transicion)(entrada);
     
-    // Obtener el tiempo actual
-    uint32_t now = tiempoActual();
+    // actualizo el estado
+    estadoActual = p->prox_estado;
 
-    // Leer posición de línea (0 = extremo izquierda, 7000 = extremo derecha)    
-    position = leerLinea();
-    deb(Serial.printf("Posicion=%d\n", position);)  
+    // EJECUTAR ESTADO
+    acciones_estado[estadoActual]();
 
-    // calculo la diferencia entre intantes de tiempo
-    float  deltaTime = (now - lastTime) / TIME_DIVISOR; // Convertir a segundos
-
-    // calculo la correccion para los motores segun la posicion y el tiempo actual
-    float correcion = calculo_pid(position, deltaTime);
- 
-    // Control de motores
-    controlMotores(correcion);
-
-    // Mover los motores (Avanza, retrocede o para)
-    moverMotores(motorSpeedIzq, motorSpeedDer);
-    
-    // Mover los motores (Avanza o para)    Requiere una nueva sintonizacion de ctes.
-    // moverMotoresSinCorrecion(motorSpeedIzq, motorSpeedDer);
-
-    //Guardar el tiempo al finalizar
-    lastTime = now;
-    deb(Serial.println("\n ---------------------- \n");)
+    return estadoActual;
 }
+ 
 
 // ============================
 // SETUP
@@ -177,35 +203,92 @@ void setup() {
 // LOOP
 // ============================
 void loop() {
-    // Lectura de control IR - Debe estar definido en el platformio
-    // control_ir( leer_IR(); )
+    // Entrada de 2 bits (SETPOINT RUN - 00, 01, 10, 11) → 0, 1, 2, 3
+    uint8_t c = (SETPOINT << 1) | RUN;
+    static uint8_t c_prev = 255;
 
-    // Modo detenido - Me quedo detenido hasta que inicia el FLAG correr
-    if (!RUN) {
-        digitalWrite(ledMotores, LOW);
-        motorIzq.stop();
-        motorDer.stop();
-        return;
-    }
+    transicionar(c);
+}
+
+// ESTADO STOP
+void estadoStop() {
+    // si RUN = 0   se queda en S
+    // si RUN = 1   pasa a A
+    // si SP=1      se queda en S
+    // si SP=0      se queda en C
+    deb(Serial.println("Estado: STOP");)
+    
+    digitalWrite(ledMotores, LOW);
+    motorIzq.stop();
+    motorDer.stop();
+}
+
+// ESTADO ACEL
+void estadoAcel() {
+    // si RUN = 0   pasa a S
+    // si RUN = 1   se queda en A
+    // si SP=1      se queda en A
+    // si SP=0      pasa a C
+    deb(Serial.println("Estado: ACEL");)
+
+    // Leer posición de línea (0 = extremo izquierda, 7000 = extremo derecha)  
+    position = leerLinea();
+    deb(Serial.printf("Posicion=%d\n", position);)
+
+    // Mover los motores (Avanza, retrocede o para)
+    moverMotores(maxSpeed, maxSpeed);
+
+    // Calculamos si estamos en el setpoint
+    actualizarSP(position);
+
+    // Reiniciamos las variables PID
+    lastError = 0; integral =0;
+}
+
+
+// ESTADO CONTROL - FUNCION SEGUIDOR LINEA
+// todo: CAMBIAR NOW POR TIMER ISR - pasa cada 5 ms
+void estadoControl() {
+    // si RUN = 0 pasa a S
+    // si RUN = 1 se queda en c
+    // si SP=1, pasa a A
+    // si SP=0, se queda en C
+    deb(Serial.println("Estado: CONTROL");)
+
+    // Enceder led modo corredor
+    digitalWrite(ledMotores, HIGH);
+    
+    // Obtener el tiempo actual
+    uint32_t now = tiempoActual();
+
+    // Leer posición de línea (0 = extremo izquierda, 7000 = extremo derecha)    
+    position = leerLinea();
+    deb(Serial.printf("Posicion=%d\n", position);)
+
+    // calculo la diferencia entre intantes de tiempo
+    float  deltaTime = (now - lastTime) / TIME_DIVISOR; // Convertir a segundos
+
+    // calculo la correccion para los motores segun la posicion y el tiempo actual
+    float correcion = calculo_pid(position, deltaTime);
  
-    // TODO: ACELERAR
+    // Control de motores
+    controlMotores(correcion);
 
-    // TODO: debug - todavia puede seguir la linea y avisar que entro en la isr?
-    if(has_expired) {
-        has_expired = false;
-        deb(Serial.println("\n ----- DELTA TIME ----- \n");)
-        // implementar seguirLinea - con deltaTime = TIEMPO_TIMER / 1000000.0;
-    }
+    // Mover los motores (Avanza, retrocede o para)
+    moverMotores(motorSpeedIzq, motorSpeedDer);
 
-    seguirLinea();
+    //Guardar el tiempo al finalizar
+    lastTime = now;
+    
+    // Calculamos si estamos en el setpoint
+    actualizarSP(position);
+
+    deb(Serial.println("\n ---------------------- \n");)
 }
 
 /*
-    TODO: Si lo de arriba funciona, probar con una maquina de estados. Evitamos tener returns en el loop
-    Curiosamente es una maquina de estados:
+    Maquina de estados:
     * inicia en uno stop y se queda ahi hasta que no cambie RUN
-    * cuando RUN = true pasamos a safeStart (hasta que pase cierto tiempo) despues pasamos a seguirLinea 
-    * nos quedamos en seguirLinea cada timerIsr. Pero cuando pasamos a run = 0 volvemos a stop. 
-    * DIEGO: NO USAR SWITCH CASE - INEFICIENTE
-    * DIEGO: USAR LA MAQ DE ESTADOS MILIS(?) DEL GITHUB o LAS CLASES  
+    * cuando RUN = true pasamos a acel en setpoint, en setpoint pasamos a seguirLinea y fuera a ac 
+    * nos quedamos en seguirLinea cada timerIsr. Pero cuando pasamos a run = 0 volvemos a stop.  
 */

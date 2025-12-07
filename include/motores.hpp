@@ -12,5 +12,6 @@ extern Drv8833 motorDer;
 extern const int32_t maxSpeed;
 
 void controlMotores(float correcion);
+void actualizarSP(uint16_t pos);
 void moverMotores(int32_t motorSpeedIzq, int32_t motorSpeedDer);
 void moverMotoresSinCorrecion(int32_t motorSpeedIzq, int32_t motorSpeedDer);
