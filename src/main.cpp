@@ -12,56 +12,47 @@
 /* MAIN.CPP - CORREDOR PID COMPETENCIA ROBOTICA
  TODO: 
     * implementar TIMER_ISR - reemplaza dt por una cantidad fija en donde se debe poder ejecutar el pid
-    * modulo control_ir / separar del main  - usar un mejor control/receptor mas ancho
-    * Implementar un arranque seguro - evita desviaciones bruscaz por error alto al arrancar
-        - acelerar al principio. desde un min (50 - casi detenido) hasta base_speed
-        - debe durar unos pocos ms, despues no lo volvemos a hacer y solo usamos el PID 
+    * modulo control_ir / separar del main  - usar un mejor control/receptor mas ancho 
     * PCB vers ECO:
         - uC arduino NANO o MICRO (ese que posee 8 ADCS y los pwm justos)
         - driver puente h rojo - es comodo de usar y posee dist pin de enable (osea 1 que hace de dos drvs)
         - siguen los sensores qrts, cambiamos el puenteH, uc y bateria (menos peso y espacio)
-    * Si cambio el uC, ¿como puedo evitar cambiar este codigo? ¿Separo los pines del main? 
-    * Separar las variables o pines del micro en otro programa (menos lineas)
-    * Maquina de estados - paso de parado, a inicio seguro, y a correrdor
 */
-
 
 // VELOCIDADES  - PORCENTAJE DE PWM (0-100%)
 const int32_t maxSpeed  = 80;   // Límite de velocidad
+int32_t velocidadAcel = 50; // arranca suave (50%)
+
+// delta tiempo fijo en segundos - usado en el PID (TIEMPO_TIMER esta en us)
+const float FIXED_DT_S = (float)TIEMPO_TIMER / 1000000.0f;
+
 // Velocidades base de motores - Le aumentamos o disminuimos para realizar correcion  
 int32_t motorSpeedIzq = baseSpeed;
 int32_t motorSpeedDer = baseSpeed;
 
 // SETPOINT y ZONA MUERTA
 uint16_t setpoint = 3500;       // mitad de lectura de sensores - es decir pararnos sobre la linea
-uint16_t zonaMuerta = 50;      // zona para acelerar "min y max de setpoint" 
+uint16_t zonaMuerta = 200;      // zona para acelerar "min y max de setpoint" 
 
 // Variables auxiliares para PID 
 float  lastError = 0;   // Error previo         -   control D
 float  integral = 0;    // Acumulador           -   control I
 uint32_t lastTime = 0;  // Millis previo        -   delta Tiempo
 
-// =================================
 // CONFIGURACIÓN DE BUZZER
-// =================================
 const uint8_t BuzzerPwm = 2;            // Canal PWM 2  (0 y 1 son de motores)
 Buzzer buzzer(pinBuzzer, BuzzerPwm);   // objeto buzzer en el pin 17
 
-// ============================
 // CONFIGURACIÓN DE MOTORES
-// ============================ 
-// Objeto de motores izq y der 
-Drv8833 motorDer;   Drv8833 motorIzq;
-// Ajustes PWM MOTORES
-const uint8_t motorPWM_Izq = 0; const uint8_t motorPWM_Der = 1;
-const uint32_t freqPWM = 20000; // Frecuencia del PWM = 20KHz
-const uint8_t resPWM = 8;       // Resolución de 8 bits = 256 valores posibles [0, 255]
+Drv8833 motorDer;   Drv8833 motorIzq; // Objeto de motores izq y der 
+const uint8_t motorPWM_Izq = 0; const uint8_t motorPWM_Der = 1; // Canal PWM 2
+const uint32_t freqPWM = 10000;                                 // Frecuencia del PWM = 20KHz
+const uint8_t resPWM = 8;                                       // Resolución de 8 bits [0, 255]
 
 // ============================
 // CONFIGURACIÓN SENSORES QTR & LINEA
-// ============================
-// Objeto sensor qtr, con 8 sensores S1 a S8 - obtenemos posicion con los sensor values 
-QTRSensors qtr;
+// ============================ 
+QTRSensors qtr;                 // Objeto sensor qtr, con 8 sensores S1 a S8
 const uint8_t SensorCount = 8;
 const uint8_t sensorPins[SensorCount] = {S8, S7, S6, S5, S4, S3, S2, S1};
 uint16_t sensorValues[SensorCount];
@@ -94,6 +85,7 @@ void leer_IR()
 void estadoStop();
 void estadoAcel();
 void estadoControl();
+bool stop_done = false;     // recuerda si ejecutamos stop
 
 // Punteros a funciones de estado
 void (*acciones_estado[])() = { estadoStop, estadoAcel, estadoControl };
@@ -185,11 +177,17 @@ void setup() {
     attachInterrupt(digitalPinToInterrupt(BTN_RUN), handleRun, RISING);
     attachInterrupt(digitalPinToInterrupt(BTN_STOP), handleStop, RISING);
 
-    // Interrupciones por TIMER - reemplaza dt por una unidad cte
-    timer = timerBegin(0, 80, true);                        // Timer 0, divisor de reloj 80
-    timerAttachInterrupt(timer, &timerInterrupcion, true);  // función de interrupción
-    timerAlarmWrite(timer, TIEMPO_TIMER, true);             // Interrupción por cada deltaTime 
-    timerAlarmEnable(timer);                                // Habilitar la alarma
+    // Interrupciones por TIMER - Creamos el Timer 0, dividimos los 80MHz en 80 - cada 1us
+    timer = timerBegin(0, 80, true);
+
+    // Asocia la función de interrupción (ISR)
+    timerAttachInterrupt(timer, &timerInterrupcion, true);
+    
+    // Configura cada cuánto se activa la interrupcion
+    timerAlarmWrite(timer, TIEMPO_TIMER, true);
+   
+    // Enciende el timer para que empiece a generar las interrupciones
+    timerAlarmEnable(timer);
     
     // Configuración sensores
     setupSensores(sensorPins, SensorCount);
@@ -205,8 +203,7 @@ void setup() {
 void loop() {
     // Entrada de 2 bits (SETPOINT RUN - 00, 01, 10, 11) → 0, 1, 2, 3
     uint8_t c = (SETPOINT << 1) | RUN;
-    static uint8_t c_prev = 255;
-
+    
     transicionar(c);
 }
 
@@ -216,11 +213,19 @@ void estadoStop() {
     // si RUN = 1   pasa a A
     // si SP=1      se queda en S
     // si SP=0      se queda en C
-    deb(Serial.println("Estado: STOP");)
-    
-    digitalWrite(ledMotores, LOW);
-    motorIzq.stop();
-    motorDer.stop();
+
+    if (!stop_done) {                  // solo se ejecuta una vez
+        deb(Serial.println("Estado: STOP");)
+
+        digitalWrite(ledMotores, LOW);
+        digitalWrite(ledCalibracion, LOW);
+        motorIzq.stop();
+        motorDer.stop();
+        velocidadAcel = 50;
+
+        stop_done = true;
+        deb(Serial.println("\n ---------------------- \n");)
+    }
 }
 
 // ESTADO ACEL
@@ -230,58 +235,68 @@ void estadoAcel() {
     // si SP=1      se queda en A
     // si SP=0      pasa a C
     deb(Serial.println("Estado: ACEL");)
-
+    stop_done = false; // para que cuando vuelva a STOP se ejecute 1 vez
+    
     // Leer posición de línea (0 = extremo izquierda, 7000 = extremo derecha)  
     position = leerLinea();
     deb(Serial.printf("Posicion=%d\n", position);)
 
-    // Mover los motores (Avanza, retrocede o para)
-    moverMotores(maxSpeed, maxSpeed);
+     // Incremento suave de velocidad
+    if (velocidadAcel < maxSpeed) velocidadAcel++;
+
+    // Mover motores con aceleración progresiva
+    moverMotores(velocidadAcel, velocidadAcel);
+
+    // Indicador de que estamos en setpoint
+    digitalWrite(ledCalibracion, HIGH);
 
     // Calculamos si estamos en el setpoint
     actualizarSP(position);
 
     // Reiniciamos las variables PID
     lastError = 0; integral =0;
+    deb(Serial.println("\n ---------------------- \n");)
 }
 
 
 // ESTADO CONTROL - FUNCION SEGUIDOR LINEA
-// todo: CAMBIAR NOW POR TIMER ISR - pasa cada 5 ms
 void estadoControl() {
     // si RUN = 0 pasa a S
     // si RUN = 1 se queda en c
     // si SP=1, pasa a A
     // si SP=0, se queda en C
+
+    // Ejecutar solo cuando el timer indique el tick
+    if (!has_expired) return;
+
     deb(Serial.println("Estado: CONTROL");)
+    has_expired = false;    // consumir el evento
+    stop_done = false;      // cuando vuelva a STOP se ejecute 1 vez
 
     // Enceder led modo corredor
     digitalWrite(ledMotores, HIGH);
-    
-    // Obtener el tiempo actual
-    uint32_t now = tiempoActual();
+
+    // Apagar led cal - indicamos que no estamos en Setpoint 
+    digitalWrite(ledCalibracion, LOW);
 
     // Leer posición de línea (0 = extremo izquierda, 7000 = extremo derecha)    
     position = leerLinea();
     deb(Serial.printf("Posicion=%d\n", position);)
 
-    // calculo la diferencia entre intantes de tiempo
-    float  deltaTime = (now - lastTime) / TIME_DIVISOR; // Convertir a segundos
+    // dt fijo en segundos, definido por TIEMPO_TIMER (µs)
+    float deltaTime = FIXED_DT_S;
 
     // calculo la correccion para los motores segun la posicion y el tiempo actual
     float correcion = calculo_pid(position, deltaTime);
  
+    // Calculamos si estamos en el setpoint
+    actualizarSP(position);
+
     // Control de motores
     controlMotores(correcion);
 
     // Mover los motores (Avanza, retrocede o para)
     moverMotores(motorSpeedIzq, motorSpeedDer);
-
-    //Guardar el tiempo al finalizar
-    lastTime = now;
-    
-    // Calculamos si estamos en el setpoint
-    actualizarSP(position);
 
     deb(Serial.println("\n ---------------------- \n");)
 }
