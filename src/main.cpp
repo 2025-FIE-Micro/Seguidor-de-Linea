@@ -8,10 +8,10 @@
 #include "pid.hpp"
 #include "sensores.hpp"
 #include "motores.hpp"
+#include "fsm.hpp"
 
 /* MAIN.CPP - CORREDOR PID COMPETENCIA ROBOTICA
  TODO: 
-    * implementar TIMER_ISR - reemplaza dt por una cantidad fija en donde se debe poder ejecutar el pid
     * modulo control_ir / separar del main  - usar un mejor control/receptor mas ancho 
     * PCB vers ECO:
         - uC arduino NANO o MICRO (ese que posee 8 ADCS y los pwm justos)
@@ -49,9 +49,7 @@ const uint8_t motorPWM_Izq = 0; const uint8_t motorPWM_Der = 1; // Canal PWM 2
 const uint32_t freqPWM = 10000;                                 // Frecuencia del PWM = 20KHz
 const uint8_t resPWM = 8;                                       // Resolución de 8 bits [0, 255]
 
-// ============================
 // CONFIGURACIÓN SENSORES QTR & LINEA
-// ============================ 
 QTRSensors qtr;                 // Objeto sensor qtr, con 8 sensores S1 a S8
 const uint8_t SensorCount = 8;
 const uint8_t sensorPins[SensorCount] = {S8, S7, S6, S5, S4, S3, S2, S1};
@@ -81,78 +79,10 @@ void leer_IR()
     }
 }*/
 
-// ===================== Prototipos estados  =====================
-void estadoStop();
-void estadoAcel();
-void estadoControl();
+// Punteros a funciones de estado 
+void (*acciones_estado[])() = { estadoStop, estadoAcel, estadoControl };
 bool stop_done = false;     // recuerda si ejecutamos stop
 
-// Punteros a funciones de estado
-void (*acciones_estado[])() = { estadoStop, estadoAcel, estadoControl };
-
-enum estados { CUALQUIERA = -1, S, A, C, CANT_ESTADOS };
-
-// función dummy
-int nada(int c) { return 0; }
-
-// estructura de estado 
-typedef struct {
-    int recibo;               // combinación SP,RUN (00..11)
-    int (*transicion)(int);  // función acción (dummy)
-    int prox_estado;         // estado destino
-} estado_t;
-
-// ===================== TABLAS =====================
-// STOP
-estado_t stop[] = {
-    {0, nada, S},
-    {1, nada, A},
-    {2, nada, S},
-    {3, nada, A},
-    {CUALQUIERA, nada, S},
-};
-
-// ACELERAR
-estado_t acel[] = {
-    {0, nada, S},
-    {1, nada, C},
-    {2, nada, S},
-    {3, nada, A},
-    {CUALQUIERA, nada, A},
-};
-
-// CONTROL
-estado_t control[] = {
-    {0, nada, S},
-    {1, nada, C},
-    {2, nada, S},
-    {3, nada, A},
-    {CUALQUIERA, nada, C},
-};
-
-// tabla general
-estado_t* tabla_de_estados[] = { stop, acel, control };
-static int estadoActual = S;    // static - recuerda el valor entre llamadas
-
-// FUNCION TRANSICIONAR
-static int transicionar(int entrada) {
-    estado_t* p = tabla_de_estados[estadoActual];
-
-    // busca el el recibo que coincida con la entrada
-    while (p->recibo != entrada && p->recibo != CUALQUIERA) p++;
-
-    //ejecuta las funciones de transicion - dummies
-    (p->transicion)(entrada);
-    
-    // actualizo el estado
-    estadoActual = p->prox_estado;
-
-    // EJECUTAR ESTADO
-    acciones_estado[estadoActual]();
-
-    return estadoActual;
-}
- 
 
 // ============================
 // SETUP
@@ -207,6 +137,7 @@ void loop() {
     transicionar(c);
 }
 
+
 // ESTADO STOP
 void estadoStop() {
     // si RUN = 0   se queda en S
@@ -227,6 +158,7 @@ void estadoStop() {
         deb(Serial.println("\n ---------------------- \n");)
     }
 }
+
 
 // ESTADO ACEL
 void estadoAcel() {
@@ -300,10 +232,3 @@ void estadoControl() {
 
     deb(Serial.println("\n ---------------------- \n");)
 }
-
-/*
-    Maquina de estados:
-    * inicia en uno stop y se queda ahi hasta que no cambie RUN
-    * cuando RUN = true pasamos a acel en setpoint, en setpoint pasamos a seguirLinea y fuera a ac 
-    * nos quedamos en seguirLinea cada timerIsr. Pero cuando pasamos a run = 0 volvemos a stop.  
-*/
