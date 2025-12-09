@@ -10,29 +10,21 @@
 #include "motores.hpp"
 #include "fsm.hpp"
 
-/* MAIN.CPP - CORREDOR PID COMPETENCIA ROBOTICA
- TODO: 
-    * modulo control_ir / separar del main  - usar un mejor control/receptor mas ancho 
-    * PCB vers ECO:
-        - uC arduino NANO o MICRO (ese que posee 8 ADCS y los pwm justos)
-        - driver puente h rojo - es comodo de usar y posee dist pin de enable (osea 1 que hace de dos drvs)
-        - siguen los sensores qrts, cambiamos el puenteH, uc y bateria (menos peso y espacio)
-*/
+/* MAIN.CPP - CORREDOR PID COMPETENCIA ROBOTICA */
 
 // VELOCIDADES  - PORCENTAJE DE PWM (0-100%)
-const int32_t maxSpeed  = 80;   // Límite de velocidad
-int32_t velocidadAcel = 50; // arranca suave (50%)
+const int32_t maxSpeed  = 100;  // Límite de velocidad - usada para la max correccion y para acelerar - bajarla limita todas las velocidades  
+int32_t velocidadAcel = 50;     // arranca suave 50% sube hasta maxSpeed
 
 // delta tiempo fijo en segundos - usado en el PID (TIEMPO_TIMER esta en us)
 const float FIXED_DT_S = (float)TIEMPO_TIMER / 1000000.0f;
 
 // Velocidades base de motores - Le aumentamos o disminuimos para realizar correcion  
-int32_t motorSpeedIzq = baseSpeed;
-int32_t motorSpeedDer = baseSpeed;
+int32_t motorSpeedIzq = baseSpeed;  int32_t motorSpeedDer = baseSpeed;
 
 // SETPOINT y ZONA MUERTA
 uint16_t setpoint = 3500;       // mitad de lectura de sensores - es decir pararnos sobre la linea
-uint16_t zonaMuerta = 200;      // zona para acelerar "min y max de setpoint" 
+uint16_t zonaMuerta = 100;      // zona de mas y menos del setpoint para el estado acelerar 
 
 // Variables auxiliares para PID 
 float  lastError = 0;   // Error previo         -   control D
@@ -41,12 +33,12 @@ uint32_t lastTime = 0;  // Millis previo        -   delta Tiempo
 
 // CONFIGURACIÓN DE BUZZER
 const uint8_t BuzzerPwm = 2;            // Canal PWM 2  (0 y 1 son de motores)
-Buzzer buzzer(pinBuzzer, BuzzerPwm);   // objeto buzzer en el pin 17
+Buzzer buzzer(pinBuzzer, BuzzerPwm);    // objeto buzzer en el pin 17
 
 // CONFIGURACIÓN DE MOTORES
 Drv8833 motorDer;   Drv8833 motorIzq; // Objeto de motores izq y der 
-const uint8_t motorPWM_Izq = 0; const uint8_t motorPWM_Der = 1; // Canal PWM 2
-const uint32_t freqPWM = 10000;                                 // Frecuencia del PWM = 20KHz
+const uint8_t motorPWM_Izq = 0; const uint8_t motorPWM_Der = 1; // Canales PWM 0 y 1
+const uint32_t freqPWM = 10000;                                 // Frecuencia del PWM = 10KHz
 const uint8_t resPWM = 8;                                       // Resolución de 8 bits [0, 255]
 
 // CONFIGURACIÓN SENSORES QTR & LINEA
@@ -145,7 +137,7 @@ void estadoStop() {
     // si SP=1      se queda en S
     // si SP=0      se queda en C
 
-    if (!stop_done) {                  // solo se ejecuta una vez
+    if (!stop_done) {                  // solo ejecuta una vez
         deb(Serial.println("Estado: STOP");)
 
         digitalWrite(ledMotores, LOW);
@@ -202,7 +194,7 @@ void estadoControl() {
     if (!has_expired) return;
 
     deb(Serial.println("Estado: CONTROL");)
-    has_expired = false;    // consumir el evento
+    has_expired = false;    // ya paso un tick (timer isr) entonces debo reiniciarlo
     stop_done = false;      // cuando vuelva a STOP se ejecute 1 vez
 
     // Enceder led modo corredor
@@ -215,11 +207,8 @@ void estadoControl() {
     position = leerLinea();
     deb(Serial.printf("Posicion=%d\n", position);)
 
-    // dt fijo en segundos, definido por TIEMPO_TIMER (µs)
-    float deltaTime = FIXED_DT_S;
-
-    // calculo la correccion para los motores segun la posicion y el tiempo actual
-    float correcion = calculo_pid(position, deltaTime);
+    // calculo la correccion para los motores segun la posicion y el delta tiempo (timer isr) 
+    float correcion = calculo_pid(position, FIXED_DT_S);
  
     // Calculamos si estamos en el setpoint
     actualizarSP(position);
