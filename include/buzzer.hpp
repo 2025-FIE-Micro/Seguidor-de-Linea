@@ -1,3 +1,11 @@
+/*
+  programa declaracion de octavas (tonos) y clase buzzer
+  * octavas graves y agudas
+  * buzzer con pin y canal de pwm (frec de 200)
+*/
+
+#pragma once
+
 #ifndef PITCHES_H
 #define PITCHES_H
 
@@ -52,6 +60,7 @@ class Buzzer {
     // Detiene el sonido
     void stop() { ledcWriteTone(channel, 0);  }
 
+    /*
     void playMelody(const uint16_t *melody, const uint16_t *durations, uint16_t length, uint16_t baseTime = 500) {
       for (int i = 0; i < length; i++) {
         int noteDuration = baseTime * 4 / durations[i];
@@ -61,5 +70,6 @@ class Buzzer {
         delay(noteDuration * 0.2);
       }
     }
+    */
 };
 #endif

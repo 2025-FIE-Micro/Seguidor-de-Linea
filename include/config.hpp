@@ -1,9 +1,49 @@
+/*
+  programa declaracion de variables seguidor:
+  * tipo de linea
+  * constantes PID
+  * define debug, muteo, millis/micros, control IR
+  * selecciona el seguidor
+  * TODO: pines de seguidor
+*/
+
 #pragma once
 #include <Arduino.h>
 #include "sensores.hpp"
 
-extern Linea linea_competencia;
+// ============================
+// PINES - LEDS, BOTONES, BOCINA y SENSOR IR
+// ============================
+extern const uint8_t pinBuzzer;
+extern const uint8_t ledMotores;
+extern const uint8_t ledCalibracion;
+extern const uint8_t BTN_RUN;
+extern const uint8_t BTN_STOP;
 
+// ============================
+// CONFIGURACIÓN DE MOTORES
+// ============================
+extern const uint8_t motorPinIN1_Izq;
+extern const uint8_t motorPinIN2_Izq;
+extern const uint8_t motorPinSleep_Izq;
+
+extern const uint8_t motorPinIN1_Der;
+extern const uint8_t motorPinIN2_Der;
+extern const uint8_t motorPinSleep_Der;
+
+// ============================
+// CONFIGURACIÓN SENSORES QTR & LINEA
+// ============================
+extern const uint8_t S8;
+extern const uint8_t S7;
+extern const uint8_t S6;
+extern const uint8_t S5;
+extern const uint8_t S4;
+extern const uint8_t S3;
+extern const uint8_t S2;
+extern const uint8_t S1;
+
+extern Linea linea_competencia;
 extern uint8_t baseSpeed;
 
 // ============================
@@ -65,7 +105,7 @@ extern const float Kd;
 
 
 // ===================================
-// USAR CONTROL - CAMBIA CUANDO LO USAMOS Y CUANDO NO
+// USAR CONTROL IR - CAMBIA CUANDO LO USAMOS Y CUANDO NO
 // ===================================
 #ifdef USAR_CONTROL_IR
     // Usamos el control

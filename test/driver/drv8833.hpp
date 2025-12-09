@@ -20,8 +20,7 @@ public:
     // chPWM: Canal del PWM a utilizar con el driver.
     // freqPWM: Frecuencia del PWM. (ESP32: De 10 Hz a 40 MHz)
     // resPWM: Resolución del PWM. (ESP32: De 1 bit [0-1] a 16 bits [0-65536])
-    void setup( uint8_t pinIN1, uint8_t pinIN2, uint8_t pinSleep,
-                uint8_t chPWM, uint32_t freqPWM, uint8_t resPWM);
+    void setup(uint8_t pinIN1, uint8_t pinIN2, uint8_t pinSleep, uint8_t chPWM, uint32_t freqPWM, uint8_t resPWM);
 
     // Función para mover el motor hacia adelante.
     // pPWM: Porcentaje de PWM  a aplicar al motor [0, 100] %.

@@ -1,3 +1,8 @@
+/*
+    programa de calculo de controlador
+    * contralor PID
+*/
+
 #include <Arduino.h>
 #include "config.hpp"
 #include "drv8833.hpp"
@@ -9,12 +14,11 @@
 float calculo_pid(uint16_t pos, float deltaTime) {
     // Calcular deltaTime
     //float  deltaTime = (now - lastTime) / TIME_DIVISOR; // Convertir a segundos
-    deb(Serial.printf("deltaTime=%.6f\n", deltaTime);)
+    deb(Serial.printf("deltaTime=%.3f\n", deltaTime);)
 
     // Calcular el error
     float  error = pos - setpoint;               // valores entre -3500 y 3500
-    deb(Serial.printf("error=%.6f\n", error);)
-
+    
     // Calcular derivativo (tasa de cambio del error)
     float  derivativo = (error - lastError) / deltaTime;
 

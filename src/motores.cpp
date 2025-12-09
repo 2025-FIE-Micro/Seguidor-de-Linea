@@ -1,9 +1,18 @@
+/*
+    programa de direccion y control de motores
+    * movimiento con correcion para atras
+    * movimiento con correcion solamente recta
+    * control de motores - setpoint o pid
+    * TODO: separar correccion y setpoint  
+*/
+
 #include <Arduino.h>
 #include "sensores.hpp"
 #include "config.hpp"
 #include "drv8833.hpp"
 #include "motores.hpp"
 #include "pid.hpp"
+#include "interrupciones.hpp"
 
 // ============================
 // FUNCIONES PARA MOVER MOTORES
@@ -37,24 +46,29 @@ void moverMotoresSinCorrecion(int32_t motorSpeedIzq, int32_t motorSpeedDer) {
     else                        {   motorDer.stop();    }   
 }
 
+
+void actualizarSP(uint16_t pos) {
+    SETPOINT = (abs(pos - setpoint) < zonaMuerta);
+}
+
+
 // ============================
 // FUNCION CONTROL MOTORES - Zona muerta o Pid
 // ============================
 void controlMotores(float correcion) {
-    // En Zona muerta dejo de acumular y solo acelero
-    if (abs(position - setpoint) < zonaMuerta) {
-        motorSpeedIzq++;    // aumento las velocidades lentamente
-        motorSpeedDer++;
-        
-        correcion = 0;      // no corregir
-        integral = 0;       // dejar de acumular I
-    }
-    else{
+    // Si NO estoy en Zona muerta solo controlo
+    if ( !SETPOINT ) {
         // Calcular velocidad motores
         motorSpeedIzq = baseSpeed - correcion;
         motorSpeedDer = baseSpeed + correcion;
+
+        // Limitar a rango válido incluyendo negativos
+        motorSpeedIzq = constrain(motorSpeedIzq, -maxSpeed, maxSpeed);
+        motorSpeedDer = constrain(motorSpeedDer, -maxSpeed, maxSpeed);
+        return;
     }
-    // Limitar a rango válido incluyendo negativos
-    motorSpeedIzq = constrain(motorSpeedIzq, -maxSpeed, maxSpeed);
-    motorSpeedDer = constrain(motorSpeedDer, -maxSpeed, maxSpeed);
+
+    // se encuentra en el setpoint
+    SETPOINT = true;
+    return;
 }
