@@ -1,0 +1,181 @@
+\doxysection{Referencia de la clase Drv8833}
+\hypertarget{class_drv8833}{}\label{class_drv8833}\index{Drv8833@{Drv8833}}
+
+
+Clase que encapsula la lógica y configuración para controlar un motor DC a través del driver DRV8833. Incluye funciones para configurar sus pines, ajustar el PWM y manejar la dirección del motor (adelante/atrás).  
+
+
+
+
+{\ttfamily \#include $<$drv8833.\+hpp$>$}
+
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_drv8833_aa56746ae518b37ed1ab33885bba82da0}{Drv8833}} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto.\+ \+Inicializa la instancia del driver. Se asume que el pin Sleep está habilitado (HIGH) o controlado externamente para activar el driver.   \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drv8833_aaa709b8d35a36bcc162402f362c0ee96}{setup}} (uint8\+\_\+t pin\+IN1, uint8\+\_\+t pin\+IN2, uint8\+\_\+t pin\+Sleep, uint8\+\_\+t ch\+PWM, uint32\+\_\+t \mbox{\hyperlink{main_8cpp_a8c43e3511adff203060e1d0864e4bf05}{freq\+PWM}}, uint8\+\_\+t \mbox{\hyperlink{main_8cpp_addd24b2d185dd0276f79f49314ae3b48}{res\+PWM}})
+\begin{DoxyCompactList}\small\item\em Configura los pines de control del motor y el canal PWM del ESP32.\+ \+Este método es crucial para mapear los pines GPIO y el canal PWM ({\ttfamily ledc}) del ESP32 a las entradas del driver.       \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drv8833_a8967dc4a73f58ba459dd2aefd1822a79}{forward}} (uint8\+\_\+t p\+PWM)
+\begin{DoxyCompactList}\small\item\em Mueve el motor en dirección de avance. Configura los pines de dirección (IN1/\+IN2) para el movimiento en sentido de avance y aplica la señal PWM para controlar la velocidad. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drv8833_a672ca702073512e3d8251fec005f3c44}{reverse}} (uint8\+\_\+t p\+PWM)
+\begin{DoxyCompactList}\small\item\em Mueve el motor en dirección de reversa. Configura IN1/\+IN2 para reversa y aplica la señal PWM para controlar la velocidad.       \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drv8833_abc7d60f6a11b79fe1ff5ce59c3f11cc7}{stop}} ()
+\begin{DoxyCompactList}\small\item\em Detiene el motor mediante el frenado rápido (brake). Generalmente, establece ambas entradas (IN1 y IN2) en HIGH o LOW.       \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Clase que encapsula la lógica y configuración para controlar un motor DC a través del driver DRV8833. Incluye funciones para configurar sus pines, ajustar el PWM y manejar la dirección del motor (adelante/atrás). 
+
+\label{doc-constructors}
+\Hypertarget{class_drv8833_doc-constructors}
+\doxysubsection{Documentación de constructores y destructores}
+\Hypertarget{class_drv8833_aa56746ae518b37ed1ab33885bba82da0}\index{Drv8833@{Drv8833}!Drv8833@{Drv8833}}
+\index{Drv8833@{Drv8833}!Drv8833@{Drv8833}}
+\doxysubsubsection{\texorpdfstring{Drv8833()}{Drv8833()}}
+{\footnotesize\ttfamily \label{class_drv8833_aa56746ae518b37ed1ab33885bba82da0} 
+Drv8833\+::\+Drv8833 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor por defecto.\+ \+Inicializa la instancia del driver. Se asume que el pin Sleep está habilitado (HIGH) o controlado externamente para activar el driver.   
+
+Implementación para el driver de motores DRV8833. Contiene la lógica para la inicialización, configuración de PWM y el control de movimiento de un solo motor DC.
+
+ 
+
+\begin{DoxyAuthor}{Autor}
+Legion de Ohm
+\end{DoxyAuthor}
+Constructor de la clase \doxylink{class_drv8833}{Drv8833}. Inicializa el pin SLEEP como salida y lo establece en HIGH para asegurar que el driver esté activado y listo para recibir comandos de movimiento. 
+
+\label{doc-func-members}
+\Hypertarget{class_drv8833_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_drv8833_a8967dc4a73f58ba459dd2aefd1822a79}\index{Drv8833@{Drv8833}!forward@{forward}}
+\index{forward@{forward}!Drv8833@{Drv8833}}
+\doxysubsubsection{\texorpdfstring{forward()}{forward()}}
+{\footnotesize\ttfamily \label{class_drv8833_a8967dc4a73f58ba459dd2aefd1822a79} 
+void Drv8833\+::forward (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{p\+PWM}{}\end{DoxyParamCaption})}
+
+
+
+Mueve el motor en dirección de avance. Configura los pines de dirección (IN1/\+IN2) para el movimiento en sentido de avance y aplica la señal PWM para controlar la velocidad. 
+
+Mueve el motor en dirección de avance con un porcentaje de velocidad (PWM). Implementa el control de dirección\+: establece un pin en estado digital bajo (LOW) y el otro pin en el canal PWM para controlar la velocidad.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em p\+PWM} & Porcentaje de la velocidad (PWM) a aplicar al motor \mbox{[}0-\/100\mbox{]} \%. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parámetros}
+{\em p\+PWM} & Porcentaje de PWM a aplicar al motor \mbox{[}0, 100\mbox{]} \%. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+Cálculo del ciclo de trabajo (Duty Cycle). Transforma el porcentaje de PWM (0-\/100\%) en un valor de ciclo de trabajo basado en la resolución configurada (\$\textbackslash{}text\{Duty\} = 2\texorpdfstring{$^\wedge$}{\string^}\{\textbackslash{}text\{res\+PWM\}\} \textbackslash{}times (\textbackslash{}text\{p\+PWM\}/100)\$).\Hypertarget{class_drv8833_a672ca702073512e3d8251fec005f3c44}\index{Drv8833@{Drv8833}!reverse@{reverse}}
+\index{reverse@{reverse}!Drv8833@{Drv8833}}
+\doxysubsubsection{\texorpdfstring{reverse()}{reverse()}}
+{\footnotesize\ttfamily \label{class_drv8833_a672ca702073512e3d8251fec005f3c44} 
+void Drv8833\+::reverse (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{p\+PWM}{}\end{DoxyParamCaption})}
+
+
+
+Mueve el motor en dirección de reversa. Configura IN1/\+IN2 para reversa y aplica la señal PWM para controlar la velocidad.       
+
+Mueve el motor en dirección de reversa con un porcentaje de velocidad (PWM). Implementa el control de dirección invirtiendo la señal\+: establece IN1 en LOW y aplica la señal PWM en IN2.
+
+     
+\begin{DoxyParams}{Parámetros}
+{\em p\+PWM} & Porcentaje de la velocidad (PWM) a aplicar al motor \mbox{[}0-\/100\mbox{]} \%.      \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void      
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parámetros}
+{\em p\+PWM} & Porcentaje de PWM a aplicar al motor \mbox{[}0, 100\mbox{]} \%. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_drv8833_aaa709b8d35a36bcc162402f362c0ee96}\index{Drv8833@{Drv8833}!setup@{setup}}
+\index{setup@{setup}!Drv8833@{Drv8833}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{class_drv8833_aaa709b8d35a36bcc162402f362c0ee96} 
+void Drv8833\+::setup (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{pin\+IN1}{, }\item[{uint8\+\_\+t}]{pin\+IN2}{, }\item[{uint8\+\_\+t}]{pin\+Sleep}{, }\item[{uint8\+\_\+t}]{ch\+PWM}{, }\item[{uint32\+\_\+t}]{freq\+PWM}{, }\item[{uint8\+\_\+t}]{res\+PWM}{}\end{DoxyParamCaption})}
+
+
+
+Configura los pines de control del motor y el canal PWM del ESP32.\+ \+Este método es crucial para mapear los pines GPIO y el canal PWM ({\ttfamily ledc}) del ESP32 a las entradas del driver.       
+
+Configura el mapeo de pines y el canal de PWM del ESP32 para el control del motor.
+
+     
+\begin{DoxyParams}{Parámetros}
+{\em pin\+IN1} & Pin GPIO conectado a la entrada IN1 del driver.      \\
+\hline
+{\em pin\+IN2} & Pin GPIO conectado a la entrada IN2 del driver.      \\
+\hline
+{\em pin\+Sleep} & Pin GPIO conectado al pin SLEEP del driver (para habilitar/deshabilitar).      \\
+\hline
+{\em ch\+PWM} & Canal PWM (LEDC Channel) a utilizar (0-\/15 en ESP32).      \\
+\hline
+{\em freq\+PWM} & Frecuencia del PWM. Recomendado\+: 20 k\+Hz (audible) o 30 k\+Hz (silencioso).      \\
+\hline
+{\em res\+PWM} & Resolución del PWM (ej. 8 bits \mbox{[}0-\/255\mbox{]} o 10 bits \mbox{[}0-\/1023\mbox{]}).      \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void      
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parámetros}
+{\em pin\+IN1} & Pin GPIO conectado a la entrada IN1 del driver. \\
+\hline
+{\em pin\+IN2} & Pin GPIO conectado a la entrada IN2 del driver. \\
+\hline
+{\em pin\+Sleep} & Pin GPIO conectado al pin SLEEP del driver. \\
+\hline
+{\em ch\+PWM} & Canal PWM (LEDC Channel) a utilizar. \\
+\hline
+{\em freq\+PWM} & Frecuencia del PWM. \\
+\hline
+{\em res\+PWM} & Resolución del PWM (bits). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_drv8833_abc7d60f6a11b79fe1ff5ce59c3f11cc7}\index{Drv8833@{Drv8833}!stop@{stop}}
+\index{stop@{stop}!Drv8833@{Drv8833}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \label{class_drv8833_abc7d60f6a11b79fe1ff5ce59c3f11cc7} 
+void Drv8833\+::stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Detiene el motor mediante el frenado rápido (brake). Generalmente, establece ambas entradas (IN1 y IN2) en HIGH o LOW.       
+
+Detiene el motor mediante el frenado rápido (brake). El frenado rápido se logra al detener la señal PWM en ambos pines y establecerlos en un estado digital bajo (LOW), cortando la corriente.
+
+     \begin{DoxyReturn}{Devuelve}
+void      
+
+void 
+\end{DoxyReturn}
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{drv8833_8hpp}{drv8833.\+hpp}}\item 
+src/\mbox{\hyperlink{drv8833_8cpp}{drv8833.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Seguidor de Línea: Archivo de código fuente include/config.hpp</title>
+<link rel="icon" href="SeguidoresDeLinea_ElDiego_55px.png" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Seguidor de Línea
+   </div>
+   <div id="projectbrief">Controlador de movimiento de Seguidor de Línea usando PID para competencia de robótica.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.15.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('config_8hpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">config.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="config_8hpp.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="sensores_8hpp.html">sensores.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">extern</span> <a class="code hl_enumeration" href="sensores_8hpp.html#aa9b6c9070c996b54591a9d0fdf86e66d">Linea</a> <a class="code hl_variable" href="config_8hpp.html#ad41c7e6046107ea067785fa523ddab36">linea_competencia</a>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">extern</span> uint8_t <a class="code hl_variable" href="config_8hpp.html#ab2b0c78a81e045d7a8f28be307b8c61b">baseSpeed</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="config_8hpp.html#ae0fd140825889f1a7ed103b66c28ce38">Ku</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="config_8hpp.html#a38eca5301b0c8380eaea74f460237a09">Tu</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="config_8hpp.html#a790f9df599f1d6c92855645c65a0cccc">Kp</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="config_8hpp.html#a0534f74e5e04a4433256a6d9bb982d2e">Ki</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="config_8hpp.html#ad76756e0056f2f5ec10057052cbed3c9">Kd</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#ifdef DEBUG</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="preprocessor">  #define deb(x) x</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="config_8hpp.html#ab1eb689f09a6ae459c0367e53f96b3c2">   70</a></span><span class="preprocessor">  #define deb(x)</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#if USAR_MICROS</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="preprocessor">  #define tiempoActual() micros()</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="config_8hpp.html#a3807edcc6e235d1ebb8cef39fb2dc337">TIME_DIVISOR</a> = 1000000.0;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="config_8hpp.html#ac673612e12b6394929b07456f87a56e6">   82</a></span><span class="preprocessor">  #define tiempoActual() millis()</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="config_8hpp.html#a3807edcc6e235d1ebb8cef39fb2dc337">   83</a></span>  <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="config_8hpp.html#a3807edcc6e235d1ebb8cef39fb2dc337">TIME_DIVISOR</a> = 1000.0;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="config_8hpp.html#a4c812cd18f41070703e93472552cf9c4">   96</a></span><span class="preprocessor">#define NIGHTFALL 1</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="config_8hpp.html#a2ba455b13796d86a8eb25decafaccae9">  101</a></span><span class="preprocessor">#define ARGENTUM  2</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="config_8hpp.html#aca34268fee75456ce1fed891486eb509">  106</a></span><span class="preprocessor">#define DIEGO     3</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="preprocessor">#ifndef CORREDOR</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="preprocessor">  #error &quot;Debe definir CORREDOR en platformio.ini (ej: -D CORREDOR=NIGHTFALL)&quot;</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor">#ifdef MUTEAR</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">    #define mute(bz)</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="preprocessor">#else</span><span class="preprocessor">    </span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="config_8hpp.html#aff272c7fac0e78cdd4bbcaa85b508606">  133</a></span><span class="preprocessor">   #define mute(bz) bz</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="preprocessor">#ifdef USAR_CONTROL_IR</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="preprocessor">    #define control_ir(IR) IR</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="preprocessor">#else</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="config_8hpp.html#a8851a0d6ef5edc9c7ebf030cfdc8500f">  152</a></span><span class="preprocessor">    #define control_ir(IR)</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aconfig_8hpp_html_a0534f74e5e04a4433256a6d9bb982d2e"><div class="ttname"><a href="config_8hpp.html#a0534f74e5e04a4433256a6d9bb982d2e">Ki</a></div><div class="ttdeci">const float Ki</div><div class="ttdoc">Constante Integral.</div><div class="ttdef"><b>Definition</b> config.cpp:69</div></div>
+<div class="ttc" id="aconfig_8hpp_html_a3807edcc6e235d1ebb8cef39fb2dc337"><div class="ttname"><a href="config_8hpp.html#a3807edcc6e235d1ebb8cef39fb2dc337">TIME_DIVISOR</a></div><div class="ttdeci">const float TIME_DIVISOR</div><div class="ttdef"><b>Definition</b> config.hpp:83</div></div>
+<div class="ttc" id="aconfig_8hpp_html_a38eca5301b0c8380eaea74f460237a09"><div class="ttname"><a href="config_8hpp.html#a38eca5301b0c8380eaea74f460237a09">Tu</a></div><div class="ttdeci">const float Tu</div><div class="ttdoc">Periodo o tiempo de oscilación crítica, obtenida de la grabación de oscilaciones sostenidas de cada s...</div><div class="ttdef"><b>Definition</b> config.cpp:34</div></div>
+<div class="ttc" id="aconfig_8hpp_html_a790f9df599f1d6c92855645c65a0cccc"><div class="ttname"><a href="config_8hpp.html#a790f9df599f1d6c92855645c65a0cccc">Kp</a></div><div class="ttdeci">const float Kp</div><div class="ttdoc">Constante Proporcional.</div><div class="ttdef"><b>Definition</b> config.cpp:68</div></div>
+<div class="ttc" id="aconfig_8hpp_html_ab2b0c78a81e045d7a8f28be307b8c61b"><div class="ttname"><a href="config_8hpp.html#ab2b0c78a81e045d7a8f28be307b8c61b">baseSpeed</a></div><div class="ttdeci">uint8_t baseSpeed</div><div class="ttdoc">Velocidad base de los motores que se usa como punto de partida para los cálculos PID....</div><div class="ttdef"><b>Definition</b> config.cpp:32</div></div>
+<div class="ttc" id="aconfig_8hpp_html_ad41c7e6046107ea067785fa523ddab36"><div class="ttname"><a href="config_8hpp.html#ad41c7e6046107ea067785fa523ddab36">linea_competencia</a></div><div class="ttdeci">Linea linea_competencia</div><div class="ttdoc">Objeto global de la clase Linea que gestiona la lectura y calibración de los sensores QTR.</div><div class="ttdef"><b>Definition</b> config.cpp:22</div></div>
+<div class="ttc" id="aconfig_8hpp_html_ad76756e0056f2f5ec10057052cbed3c9"><div class="ttname"><a href="config_8hpp.html#ad76756e0056f2f5ec10057052cbed3c9">Kd</a></div><div class="ttdeci">const float Kd</div><div class="ttdoc">Constante Derivativa.</div><div class="ttdef"><b>Definition</b> config.cpp:70</div></div>
+<div class="ttc" id="aconfig_8hpp_html_ae0fd140825889f1a7ed103b66c28ce38"><div class="ttname"><a href="config_8hpp.html#ae0fd140825889f1a7ed103b66c28ce38">Ku</a></div><div class="ttdeci">const float Ku</div><div class="ttdoc">Ganancia crítica obtenida experimentalmente para cada seguidor de línea.</div><div class="ttdef"><b>Definition</b> config.cpp:33</div></div>
+<div class="ttc" id="asensores_8hpp_html"><div class="ttname"><a href="sensores_8hpp.html">sensores.hpp</a></div><div class="ttdoc">Cabecera para la configuración, calibración y lectura del array de sensores QTR. Contiene la definici...</div></div>
+<div class="ttc" id="asensores_8hpp_html_aa9b6c9070c996b54591a9d0fdf86e66d"><div class="ttname"><a href="sensores_8hpp.html#aa9b6c9070c996b54591a9d0fdf86e66d">Linea</a></div><div class="ttdeci">Linea</div><div class="ttdoc">Define el modo de operación del seguidor de línea: Indica si el robot debe buscar la línea oscura (NE...</div><div class="ttdef"><b>Definition</b> sensores.hpp:20</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="config_8hpp.html">config.hpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
+  </ul>
+</div>
+</body>
+</html>

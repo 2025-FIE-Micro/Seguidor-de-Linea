@@ -1,0 +1,226 @@
+\doxysection{Referencia del archivo include/config.hpp}
+\hypertarget{config_8hpp}{}\label{config_8hpp}\index{include/config.hpp@{include/config.hpp}}
+
+
+Archivo de configuración global que define las constantes, banderas de compilación y la selección de perfil de corredor para el sistema PID.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}sensores.\+hpp"{}}\newline
+\doxysubsubsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{config_8hpp_ab1eb689f09a6ae459c0367e53f96b3c2}{deb}}(x)
+\item 
+\#define \mbox{\hyperlink{config_8hpp_ac673612e12b6394929b07456f87a56e6}{tiempo\+Actual}}()
+\item 
+\#define \mbox{\hyperlink{config_8hpp_aff272c7fac0e78cdd4bbcaa85b508606}{mute}}(bz)
+\begin{DoxyCompactList}\small\item\em Macro que ejecuta la función de sonido {\ttfamily bz} si MUTEAR está definido. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{config_8hpp_a8851a0d6ef5edc9c7ebf030cfdc8500f}{control\+\_\+ir}}(IR)
+\begin{DoxyCompactList}\small\item\em Macro que no ejecuta código si USAR\+\_\+\+CONTROL\+\_\+\+IR no está definido. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Perfiles de Corredor}\par
+{\em Identificadores numéricos para cada perfil de constantes PID y calibración. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{config_8hpp_a4c812cd18f41070703e93472552cf9c4}{NIGHTFALL}}~1
+\begin{DoxyCompactList}\small\item\em Perfil de constantes NIGHTFALL. Valor\+: 1. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{config_8hpp_a2ba455b13796d86a8eb25decafaccae9}{ARGENTUM}}~2
+\begin{DoxyCompactList}\small\item\em Perfil de constantes ARGENTUM. Valor\+: 2. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{config_8hpp_aca34268fee75456ce1fed891486eb509}{DIEGO}}~3
+\begin{DoxyCompactList}\small\item\em Perfil de constantes DIEGO. Valor\+: 3. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66d}{Linea}} \mbox{\hyperlink{config_8hpp_ad41c7e6046107ea067785fa523ddab36}{linea\+\_\+competencia}}
+\begin{DoxyCompactList}\small\item\em Objeto global de la clase \doxylink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66d}{Linea} que gestiona la lectura y calibración de los sensores QTR. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{config_8hpp_ab2b0c78a81e045d7a8f28be307b8c61b}{base\+Speed}}
+\begin{DoxyCompactList}\small\item\em Velocidad base de los motores que se usa como punto de partida para los cálculos PID.\+Este valor es ajustado por la corrección PID. \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{config_8hpp_a3807edcc6e235d1ebb8cef39fb2dc337}{TIME\+\_\+\+DIVISOR}} = 1000.\+0
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Constantes Ziegler-\/\+Nichols}\par
+{\em Constantes experimentales obtenidas del método de Ziegler-\/\+Nichols para el PID de los seguidores de línea. }\begin{DoxyCompactItemize}
+\item 
+const float \mbox{\hyperlink{config_8hpp_ae0fd140825889f1a7ed103b66c28ce38}{Ku}}
+\begin{DoxyCompactList}\small\item\em Ganancia crítica obtenida experimentalmente para cada seguidor de línea. \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{config_8hpp_a38eca5301b0c8380eaea74f460237a09}{Tu}}
+\begin{DoxyCompactList}\small\item\em Periodo o tiempo de oscilación crítica, obtenida de la grabación de oscilaciones sostenidas de cada seguidor de línea. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Constantes PID}\par
+{\em Constantes Proporcional, Integral y Derivativa utilizadas en el algoritmo final. }\begin{DoxyCompactItemize}
+\item 
+const float \mbox{\hyperlink{config_8hpp_a790f9df599f1d6c92855645c65a0cccc}{Kp}}
+\begin{DoxyCompactList}\small\item\em Constante Proporcional. \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{config_8hpp_a0534f74e5e04a4433256a6d9bb982d2e}{Ki}}
+\begin{DoxyCompactList}\small\item\em Constante Integral. \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{config_8hpp_ad76756e0056f2f5ec10057052cbed3c9}{Kd}}
+\begin{DoxyCompactList}\small\item\em Constante Derivativa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Descripción detallada}
+Archivo de configuración global que define las constantes, banderas de compilación y la selección de perfil de corredor para el sistema PID. 
+
+\begin{DoxyAuthor}{Autor}
+Legion de Ohm 
+\end{DoxyAuthor}
+
+
+\label{doc-define-members}
+\Hypertarget{config_8hpp_doc-define-members}
+\doxysubsection{Documentación de «define»}
+\Hypertarget{config_8hpp_a2ba455b13796d86a8eb25decafaccae9}\index{config.hpp@{config.hpp}!ARGENTUM@{ARGENTUM}}
+\index{ARGENTUM@{ARGENTUM}!config.hpp@{config.hpp}}
+\doxysubsubsection{\texorpdfstring{ARGENTUM}{ARGENTUM}}
+{\footnotesize\ttfamily \label{config_8hpp_a2ba455b13796d86a8eb25decafaccae9} 
+\#define ARGENTUM~2}
+
+
+
+Perfil de constantes ARGENTUM. Valor\+: 2. 
+
+\Hypertarget{config_8hpp_a8851a0d6ef5edc9c7ebf030cfdc8500f}\index{config.hpp@{config.hpp}!control\_ir@{control\_ir}}
+\index{control\_ir@{control\_ir}!config.hpp@{config.hpp}}
+\doxysubsubsection{\texorpdfstring{control\_ir}{control\_ir}}
+{\footnotesize\ttfamily \label{config_8hpp_a8851a0d6ef5edc9c7ebf030cfdc8500f} 
+\#define control\+\_\+ir(\begin{DoxyParamCaption}\item[{}]{IR}{}\end{DoxyParamCaption})}
+
+
+
+Macro que no ejecuta código si USAR\+\_\+\+CONTROL\+\_\+\+IR no está definido. 
+
+\Hypertarget{config_8hpp_ab1eb689f09a6ae459c0367e53f96b3c2}\index{config.hpp@{config.hpp}!deb@{deb}}
+\index{deb@{deb}!config.hpp@{config.hpp}}
+\doxysubsubsection{\texorpdfstring{deb}{deb}}
+{\footnotesize\ttfamily \label{config_8hpp_ab1eb689f09a6ae459c0367e53f96b3c2} 
+\#define deb(\begin{DoxyParamCaption}\item[{}]{x}{}\end{DoxyParamCaption})}
+
+\Hypertarget{config_8hpp_aca34268fee75456ce1fed891486eb509}\index{config.hpp@{config.hpp}!DIEGO@{DIEGO}}
+\index{DIEGO@{DIEGO}!config.hpp@{config.hpp}}
+\doxysubsubsection{\texorpdfstring{DIEGO}{DIEGO}}
+{\footnotesize\ttfamily \label{config_8hpp_aca34268fee75456ce1fed891486eb509} 
+\#define DIEGO~3}
+
+
+
+Perfil de constantes DIEGO. Valor\+: 3. 
+
+\Hypertarget{config_8hpp_aff272c7fac0e78cdd4bbcaa85b508606}\index{config.hpp@{config.hpp}!mute@{mute}}
+\index{mute@{mute}!config.hpp@{config.hpp}}
+\doxysubsubsection{\texorpdfstring{mute}{mute}}
+{\footnotesize\ttfamily \label{config_8hpp_aff272c7fac0e78cdd4bbcaa85b508606} 
+\#define mute(\begin{DoxyParamCaption}\item[{}]{bz}{}\end{DoxyParamCaption})}
+
+{\bfseries Valor\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{bz}
+
+\end{DoxyCode}
+
+
+Macro que ejecuta la función de sonido {\ttfamily bz} si MUTEAR está definido. 
+
+\Hypertarget{config_8hpp_a4c812cd18f41070703e93472552cf9c4}\index{config.hpp@{config.hpp}!NIGHTFALL@{NIGHTFALL}}
+\index{NIGHTFALL@{NIGHTFALL}!config.hpp@{config.hpp}}
+\doxysubsubsection{\texorpdfstring{NIGHTFALL}{NIGHTFALL}}
+{\footnotesize\ttfamily \label{config_8hpp_a4c812cd18f41070703e93472552cf9c4} 
+\#define NIGHTFALL~1}
+
+
+
+Perfil de constantes NIGHTFALL. Valor\+: 1. 
+
+\Hypertarget{config_8hpp_ac673612e12b6394929b07456f87a56e6}\index{config.hpp@{config.hpp}!tiempoActual@{tiempoActual}}
+\index{tiempoActual@{tiempoActual}!config.hpp@{config.hpp}}
+\doxysubsubsection{\texorpdfstring{tiempoActual}{tiempoActual}}
+{\footnotesize\ttfamily \label{config_8hpp_ac673612e12b6394929b07456f87a56e6} 
+\#define tiempo\+Actual(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries Valor\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{millis()}
+
+\end{DoxyCode}
+
+
+\label{doc-var-members}
+\Hypertarget{config_8hpp_doc-var-members}
+\doxysubsection{Documentación de variables}
+\Hypertarget{config_8hpp_ab2b0c78a81e045d7a8f28be307b8c61b}\index{config.hpp@{config.hpp}!baseSpeed@{baseSpeed}}
+\index{baseSpeed@{baseSpeed}!config.hpp@{config.hpp}}
+\doxysubsubsection{\texorpdfstring{baseSpeed}{baseSpeed}}
+{\footnotesize\ttfamily \label{config_8hpp_ab2b0c78a81e045d7a8f28be307b8c61b} 
+uint8\+\_\+t base\+Speed\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Velocidad base de los motores que se usa como punto de partida para los cálculos PID.\+Este valor es ajustado por la corrección PID. 
+
+Velocidad base de los motores que se usa como punto de partida para los cálculos PID.\+Este valor es ajustado por la corrección PID. \Hypertarget{config_8hpp_ad76756e0056f2f5ec10057052cbed3c9}\index{config.hpp@{config.hpp}!Kd@{Kd}}
+\index{Kd@{Kd}!config.hpp@{config.hpp}}
+\doxysubsubsection{\texorpdfstring{Kd}{Kd}}
+{\footnotesize\ttfamily \label{config_8hpp_ad76756e0056f2f5ec10057052cbed3c9} 
+const float Kd\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Constante Derivativa. 
+
+\Hypertarget{config_8hpp_a0534f74e5e04a4433256a6d9bb982d2e}\index{config.hpp@{config.hpp}!Ki@{Ki}}
+\index{Ki@{Ki}!config.hpp@{config.hpp}}
+\doxysubsubsection{\texorpdfstring{Ki}{Ki}}
+{\footnotesize\ttfamily \label{config_8hpp_a0534f74e5e04a4433256a6d9bb982d2e} 
+const float Ki\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Constante Integral. 
+
+\Hypertarget{config_8hpp_a790f9df599f1d6c92855645c65a0cccc}\index{config.hpp@{config.hpp}!Kp@{Kp}}
+\index{Kp@{Kp}!config.hpp@{config.hpp}}
+\doxysubsubsection{\texorpdfstring{Kp}{Kp}}
+{\footnotesize\ttfamily \label{config_8hpp_a790f9df599f1d6c92855645c65a0cccc} 
+const float Kp\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Constante Proporcional. 
+
+Constante Proporcional.
+
+Fórmulas para el cálculo de las constantes PID basadas en Ziegler-\/\+Nichols (PID Clásico). La fórmula usada es\+: \$ Kp = 0.\+6 \textbackslash{}cdot K\+\_\+u \$; \$ K\+\_\+i = 2 \textbackslash{}cdot K\+\_\+p / T\+\_\+u \$; \$ K\+\_\+d = K\+\_\+p \textbackslash{}cdot T\+\_\+u / 8 \$. Esto resulta en una respuesta de amortiguamiento del 75\%. \Hypertarget{config_8hpp_ae0fd140825889f1a7ed103b66c28ce38}\index{config.hpp@{config.hpp}!Ku@{Ku}}
+\index{Ku@{Ku}!config.hpp@{config.hpp}}
+\doxysubsubsection{\texorpdfstring{Ku}{Ku}}
+{\footnotesize\ttfamily \label{config_8hpp_ae0fd140825889f1a7ed103b66c28ce38} 
+const float Ku\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Ganancia crítica obtenida experimentalmente para cada seguidor de línea. 
+
+Ganancia crítica obtenida experimentalmente para cada seguidor de línea. \Hypertarget{config_8hpp_ad41c7e6046107ea067785fa523ddab36}\index{config.hpp@{config.hpp}!linea\_competencia@{linea\_competencia}}
+\index{linea\_competencia@{linea\_competencia}!config.hpp@{config.hpp}}
+\doxysubsubsection{\texorpdfstring{linea\_competencia}{linea\_competencia}}
+{\footnotesize\ttfamily \label{config_8hpp_ad41c7e6046107ea067785fa523ddab36} 
+\mbox{\hyperlink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66d}{Linea}} linea\+\_\+competencia\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Objeto global de la clase \doxylink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66d}{Linea} que gestiona la lectura y calibración de los sensores QTR. 
+
+Selecciona el modo de detección de línea\+: Negro o Blanco. Si la bandera {\ttfamily LINEA\+\_\+\+NEGRA} está definida en platformio.\+ini, el seguidor de linea buscará la línea negra. De lo contrario, buscará la línea blanca. El valor asignado se utiliza para configurar la calibración de los sensores. \Hypertarget{config_8hpp_a3807edcc6e235d1ebb8cef39fb2dc337}\index{config.hpp@{config.hpp}!TIME\_DIVISOR@{TIME\_DIVISOR}}
+\index{TIME\_DIVISOR@{TIME\_DIVISOR}!config.hpp@{config.hpp}}
+\doxysubsubsection{\texorpdfstring{TIME\_DIVISOR}{TIME\_DIVISOR}}
+{\footnotesize\ttfamily \label{config_8hpp_a3807edcc6e235d1ebb8cef39fb2dc337} 
+const float TIME\+\_\+\+DIVISOR = 1000.\+0}
+
+\Hypertarget{config_8hpp_a38eca5301b0c8380eaea74f460237a09}\index{config.hpp@{config.hpp}!Tu@{Tu}}
+\index{Tu@{Tu}!config.hpp@{config.hpp}}
+\doxysubsubsection{\texorpdfstring{Tu}{Tu}}
+{\footnotesize\ttfamily \label{config_8hpp_a38eca5301b0c8380eaea74f460237a09} 
+const float Tu\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Periodo o tiempo de oscilación crítica, obtenida de la grabación de oscilaciones sostenidas de cada seguidor de línea. 
+
+Periodo o tiempo de oscilación crítica, obtenida de la grabación de oscilaciones sostenidas de cada seguidor de línea. 

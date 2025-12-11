@@ -1,5 +1,10 @@
+/**
+ @file main.cpp
+ @brief Programa principal para el seguidor de línea de competencia (Control PID). Este archivo ensambla todos los módulos del robot: sensores, drivers de motor, buzzer, y la lógica de control PID. Se inicializan todos los periféricos en setup() y se ejecuta el ciclo de control de alta frecuencia en loop().
+ @author Legion de Ohm
+ */
+
 #include <Arduino.h>
-//#include <IRremote.hpp>
 #include "QTRSensors.h"
 #include "drv8833.hpp"
 #include "buzzer.hpp"
@@ -9,138 +14,85 @@
 #include "sensores.hpp"
 #include "motores.hpp"
 
-/* MAIN.CPP - CORREDOR PID COMPETENCIA ROBOTICA
- TODO: 
-    * Cambiar Float por Double (8b a 32b) 
-    * implementar TIMER_ISR - reemplaza dt por una cantidad fija en donde se debe poder ejecutar el pid
-    * modulo control_ir / separar del main  - usar un mejor control/receptor mas ancho
-    * ¿Es mejor moverMotores con o sin correccion? - notas postcompetencia
-        - Con correcion en curvas muy cerradas es superior debido a la alta velocidad rotacional.
-        - Con una sintonizacion adecuada (otras costantes a las actuales) la correccion no es necesaria y va siempre adelante 
-    * Implementar un arranque seguro - evita desviaciones bruscaz por error alto al arrancar
-        - acelerar al principio. desde un min (50 - casi detenido) hasta base_speed
-        - debe durar unos pocos ms, despues no lo volvemos a hacer y solo usamos el PID 
-    * PCB vers ECO:
-        - uC arduino NANO o MICRO (ese que posee 8 ADCS y los pwm justos)
-        - driver puente h rojo - es comodo de usar y posee dist pin de enable (osea 1 que hace de dos drvs)
-        - siguen los sensores qrts, cambiamos el puenteH, uc y bateria (menos peso y espacio)
-    * Si cambio el uC, ¿como puedo evitar cambiar este codigo? ¿Separo los pines del main? 
-    * Separar las variables o pines del micro en otro programa (menos lineas)
- */
-
 // ============================
-// PINES - LEDS, BOTONES, BOCINA y SENSOR IR
+// PINES Y PERIFÉRICOS GLOBALES
 // ============================
 const uint8_t pinBuzzer = 17;
-const uint8_t ledMotores = 13;          // LED para encender/apagar motores
-const uint8_t ledCalibracion = 2;       // LED azul que indica calibración finalizada
+const uint8_t ledMotores = 13;          // LED para encender/apagar motores (Indicador RUN)
+const uint8_t ledCalibracion = 2;       // LED para indicar estado de calibración
 const uint8_t BTN_RUN = 19;
 const uint8_t BTN_STOP = 22;
-//const uint8_t IR_PIN = 4;
 
-// VELOCIDADES  - PORCENTAJE DE PWM (0-100%)
-const int32_t maxSpeed  = 80;   // Límite de velocidad
-// Velocidades base de motores - Le aumentamos o disminuimos para realizar correcion  
+// ============================
+// DEFINICIÓN DE VARIABLES GLOBALES (Externas)
+// ============================
+
+// Velocidades
+const int32_t maxSpeed = 80;   // Límite de velocidad PWM
 int32_t motorSpeedIzq = baseSpeed;
 int32_t motorSpeedDer = baseSpeed; 
 
-// SETPOINT y ZONA MUERTA
-uint16_t setpoint = 3500;       // mitad de lectura de sensores - es decir pararnos sobre la linea
-uint16_t zonaMuerta = 50;      // zona para acelerar "min y max de setpoint" 
+// PID y Setpoint
+uint16_t setpoint = 3500;       // Valor central de la lectura de sensores (ej. 0 a 7000)
+uint16_t zonaMuerta = 50;      // Banda muerta de error alrededor del setpoint
+float lastError = 0;           // Último error (Término D)
+float integral = 0;            // Acumulador Integral (Término I)
+uint32_t lastTime = 0;          // Tiempo de la última iteración (para $\Delta T$)
 
-// Variables auxiliares para PID 
-float  lastError = 0;   // Error previo         -   control D
-float  integral = 0;    // Acumulador           -   control I
-uint32_t lastTime = 0;  // Millis previo        -   delta Tiempo
+// Buzzer
+const uint8_t BuzzerPwm = 2;    // Canal PWM para el zumbador
+Buzzer buzzer(pinBuzzer, BuzzerPwm);   // Objeto Buzzer
 
-// =================================
-// CONFIGURACIÓN DE BUZZER
-// =================================
-const uint8_t BuzzerPwm = 2;            // Canal PWM 2  (0 y 1 son de motores)
-Buzzer buzzer(pinBuzzer, BuzzerPwm);   // objeto buzzer en el pin 17
-
-// ============================
-// CONFIGURACIÓN DE MOTORES
-// ============================ 
-const uint8_t motorPinIN1_Izq = 21;   const uint8_t motorPinIN2_Izq = 18;
+// Motores (DRV8833)
+const uint8_t motorPinIN1_Izq = 21; const uint8_t motorPinIN2_Izq = 18;
 const uint8_t motorPinSleep_Izq = 23;
-
-// MOTOR DERECHO
-const uint8_t motorPinIN1_Der = 26;   const uint8_t motorPinIN2_Der = 25;
+const uint8_t motorPinIN1_Der = 26; const uint8_t motorPinIN2_Der = 25;
 const uint8_t motorPinSleep_Der = 16;
-
-// Ajustes PWM MOTORES
 const uint8_t motorPWM_Izq = 0; const uint8_t motorPWM_Der = 1;
-const uint32_t freqPWM = 20000; // Frecuencia del PWM = 20KHz
-const uint8_t resPWM = 8;       // Resolución de 8 bits = 256 valores posibles [0, 255]
+const uint32_t freqPWM = 20000; 
+const uint8_t resPWM = 8;
+Drv8833 motorDer; Drv8833 motorIzq;
 
-// Objeto de motores izq y der 
-Drv8833 motorDer;   Drv8833 motorIzq;
-
-// ============================
-// CONFIGURACIÓN SENSORES QTR & LINEA
-// ============================
-const uint8_t S8 = 14;  const uint8_t S7 = 27;  const uint8_t S6 = 33;  const uint8_t S5 = 32;
-const uint8_t S4 = 35;  const uint8_t S3 = 34;  const uint8_t S2 = 39;  const uint8_t S1 = 36;
-
-// Objeto sensor qtr, con 8 sensores S1 a S8 - obtenemos posicion con los sensor values 
+// Sensores QTR
+const uint8_t S8 = 14; const uint8_t S7 = 27; const uint8_t S6 = 33; const uint8_t S5 = 32;
+const uint8_t S4 = 35; const uint8_t S3 = 34; const uint8_t S2 = 39; const uint8_t S1 = 36;
 QTRSensors qtr;
 const uint8_t SensorCount = 8;
 const uint8_t sensorPins[SensorCount] = {S8, S7, S6, S5, S4, S3, S2, S1};
 uint16_t sensorValues[SensorCount];
 uint16_t position;
 
-/*
-// ============================
-// COMANDOS CONTROL
-// ============================
-#define CMD_ON_OFF   0x43           //Tecla 'play/pause'
-#define RAW_ON_OFF   0xBC43FF00
-
-void leer_IR()
-{// Si recibe algo lo leemos/decodificamos - ISR interna (maquina de estado[?])
-    if (IrReceiver.decode()) {
-        // Guardamos los datos y separamos el dato crudo y el codigo
-        auto data = IrReceiver.decodedIRData;
-        uint32_t raw = data.decodedRawData;
-        uint8_t cmd  = data.command;
-
-        // Si coinciden el codigo crudo y comando entonces arranco o paro el coche
-        if (raw == RAW_ON_OFF && cmd == CMD_ON_OFF)   { RUN = !RUN;}
-
-        // Liberamos / salimos de la maquina
-        IrReceiver.resume();
-    }
-}*/
-
-
 // ============================
 // SETUP
 // ============================
+/**
+ @brief Función de inicialización de Arduino. Configura todos los periféricos de entrada y salida, inicializa los drivers y establece las interrupciones para el control de inicio/parada.
+ @return void
+ */
 void setup() {
-    // Inicializar Serial, Buzzer, Control SOLOS SI se habilitaron en el PLATFORMIO.INI
-    deb(Serial.begin(115200);)   
-    mute(buzzer.begin();)         // 2 kHz y 8 bits
-    //control_ir( IrReceiver.begin(IR_PIN, ENABLE_LED_FEEDBACK);)
+    // Inicialización de periféricos básicos
+    deb(Serial.begin(115200);)
+    mute(buzzer.begin();) 
 
-    // Configuración motores - pines de direcion, canal de pwm, frecuencia y resolucion
+    // Configuración de drivers de motores DRV8833
     motorDer.setup(motorPinIN1_Der, motorPinIN2_Der, motorPinSleep_Der, motorPWM_Der, freqPWM, resPWM);
     motorIzq.setup(motorPinIN1_Izq, motorPinIN2_Izq, motorPinSleep_Izq, motorPWM_Izq, freqPWM, resPWM);
 
-    // Configuración pines
+    // Configuración pines E/S
     pinMode(ledMotores, OUTPUT);
     pinMode(ledCalibracion, OUTPUT);
     pinMode(BTN_RUN, INPUT);
     pinMode(BTN_STOP, INPUT);
 
-    // Interrupciones de arranque y parada
+    // Interrupciones de arranque y parada
+    // Se adjuntan las funciones ISR a los pines.
     attachInterrupt(digitalPinToInterrupt(BTN_RUN), handleRun, RISING);
     attachInterrupt(digitalPinToInterrupt(BTN_STOP), handleStop, RISING);
 
-    // Configuración sensores
+    // Configuración sensores QTR
     setupSensores(sensorPins, SensorCount);
-    
-    // Calibración inicial
+
+    // Calibración inicial
     calibrarSensores();
 }
 
@@ -148,11 +100,12 @@ void setup() {
 // ============================
 // LOOP
 // ============================
+/**
+ @brief Bucle principal de control del robot. Este es el ciclo de control primario. Solo se ejecuta la lógica de seguimiento si la bandera `RUN` está activa.
+ @return void
+ */
 void loop() {
-    // Lectura de control IR - Debe estar definido en el platformio
-    //control_ir( leer_IR(); )
-
-    // Modo detenido - Como no se levanto el flag de correr entonces detenido
+    // 1. MODO DETENIDO (IDLE)
     if (!RUN) {
         digitalWrite(ledMotores, LOW);
         motorIzq.stop();
@@ -160,32 +113,31 @@ void loop() {
         return;
     }
 
-    // Enceder led modo corredor
+    // MODO CARRERA
     digitalWrite(ledMotores, HIGH);
-    
-    // Obtener el tiempo actual
+
+    // 2. LECTURA DE SENSORES Y TIEMPO
     uint32_t now = tiempoActual();
+    
+    // Lectura de posición de línea (Input al PID) 
+    position = leerLinea(); 
+    deb(Serial.printf("Posicion=%d\n", position);)  
 
-    // Leer posición de línea (0 = extremo izquierda, 7000 = extremo derecha)    
-    position = leerLinea();
-    deb(Serial.printf("Posicion=%d\n", position);)  
+    // Cálculo del Delta Tiempo ($\Delta T$)
+    float deltaTime = (now - lastTime) / TIME_DIVISOR; // Convertir a segundos
 
-    // calculo la diferencia entre intantes de tiempo
-    float  deltaTime = (now - lastTime) / TIME_DIVISOR; // Convertir a segundos
-
-    // calculo la correccion para los motores segun la posicion y el tiempo actual
+    // 3. CÁLCULO PID
+    // La salida del PID es la corrección angular/de trayectoria
     float correcion = calculo_pid(position, deltaTime);
- 
-    // Control de motores
+
+    // 4. ACTUACIÓN Y MOVIMIENTO
+    // Mapeo de la corrección a las velocidades de motor (con lógica de zona muerta)
     controlMotores(correcion);
 
-    // Mover los motores (Avanza, retrocede o para)
+    // Aplicar las velocidades calculadas (permite avance y retroceso)
     moverMotores(motorSpeedIzq, motorSpeedDer);
-    
-    // Mover los motores (Avanza o para)    Requiere una nueva sintonizacion de ctes.
-    //moverMotoresSinCorrecion(motorSpeedIzq, motorSpeedDer);
 
-    //Guardar el tiempo al finalizar
+    // 5. REINICIO DE CICLO
     lastTime = now;
     deb(Serial.println("\n ---------------------- \n");)
 }

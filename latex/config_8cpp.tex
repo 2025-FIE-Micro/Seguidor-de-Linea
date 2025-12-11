@@ -1,0 +1,133 @@
+\doxysection{Referencia del archivo src/config.cpp}
+\hypertarget{config_8cpp}{}\label{config_8cpp}\index{src/config.cpp@{src/config.cpp}}
+
+
+Implementación de las constantes de configuración global y lógica de selección de perfil. Nota\+:\texorpdfstring{$\ast$}{*} Las variables globales (extern) se definen aquí con su valor inicial, dependiendo del perfil de corredor seleccionado en platformio.\+ini.  
+
+
+{\ttfamily \#include "{}config.\+hpp"{}}\newline
+\doxysubsubsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{config_8cpp_ae7574d5fe2360c19fdaedf46f2975a6e}{USAR\+\_\+\+MICROS}}~0
+\begin{DoxyCompactList}\small\item\em Bandera de compilación para seleccionar la precisión de tiempo. Si está definida se ejecuta la función que retorna el tiempo transcurrido en microsegundos. Si no está definida, se ejecuta la función que convierte el tiempo de microsegundos a segundos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66d}{Linea}} \mbox{\hyperlink{config_8cpp_ad41c7e6046107ea067785fa523ddab36}{linea\+\_\+competencia}} = \mbox{\hyperlink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66da637182e28b9d39bb102f3309c827c1e7}{BLANCA}}
+\begin{DoxyCompactList}\small\item\em Objeto global de la clase \doxylink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66d}{Linea} que gestiona la lectura y calibración de los sensores QTR. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{config_8cpp_ab2b0c78a81e045d7a8f28be307b8c61b}{base\+Speed}} = 90
+\begin{DoxyCompactList}\small\item\em Velocidad base de los motores (PWM 0-\/100\%). \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{config_8cpp_ae0fd140825889f1a7ed103b66c28ce38}{Ku}} = 0.\+045
+\begin{DoxyCompactList}\small\item\em Ganancia crítica (Ku) para este perfil. \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{config_8cpp_a38eca5301b0c8380eaea74f460237a09}{Tu}} = 0.\+5
+\begin{DoxyCompactList}\small\item\em Período crítico (Tu) para este perfil. \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{config_8cpp_a790f9df599f1d6c92855645c65a0cccc}{Kp}} = 0.\+6 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{config_8cpp_ae0fd140825889f1a7ed103b66c28ce38}{Ku}}
+\begin{DoxyCompactList}\small\item\em Lógica para la asignación de constantes finales PID. Si {\ttfamily TEST\+\_\+\+PID} está definido, usa las constantes de prueba (solo Kp = Ku y el periodo Tu). Si no está definido, calcula las constantes finales usando las fórmulas derivadas del método de Ziegler-\/\+Nichols (PID clásico). \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{config_8cpp_a0534f74e5e04a4433256a6d9bb982d2e}{Ki}} = 2 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{config_8cpp_a790f9df599f1d6c92855645c65a0cccc}{Kp}} / \mbox{\hyperlink{config_8cpp_a38eca5301b0c8380eaea74f460237a09}{Tu}}
+\begin{DoxyCompactList}\small\item\em Constante Integral. \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{config_8cpp_ad76756e0056f2f5ec10057052cbed3c9}{Kd}} = \mbox{\hyperlink{config_8cpp_a790f9df599f1d6c92855645c65a0cccc}{Kp}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{config_8cpp_a38eca5301b0c8380eaea74f460237a09}{Tu}} / 8
+\begin{DoxyCompactList}\small\item\em Constante Derivativa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Implementación de las constantes de configuración global y lógica de selección de perfil. Nota\+:\texorpdfstring{$\ast$}{*} Las variables globales (extern) se definen aquí con su valor inicial, dependiendo del perfil de corredor seleccionado en platformio.\+ini. 
+
+\begin{DoxyAuthor}{Autor}
+Legion de Ohm 
+\end{DoxyAuthor}
+
+
+\label{doc-define-members}
+\Hypertarget{config_8cpp_doc-define-members}
+\doxysubsection{Documentación de «define»}
+\Hypertarget{config_8cpp_ae7574d5fe2360c19fdaedf46f2975a6e}\index{config.cpp@{config.cpp}!USAR\_MICROS@{USAR\_MICROS}}
+\index{USAR\_MICROS@{USAR\_MICROS}!config.cpp@{config.cpp}}
+\doxysubsubsection{\texorpdfstring{USAR\_MICROS}{USAR\_MICROS}}
+{\footnotesize\ttfamily \label{config_8cpp_ae7574d5fe2360c19fdaedf46f2975a6e} 
+\#define USAR\+\_\+\+MICROS~0}
+
+
+
+Bandera de compilación para seleccionar la precisión de tiempo. Si está definida se ejecuta la función que retorna el tiempo transcurrido en microsegundos. Si no está definida, se ejecuta la función que convierte el tiempo de microsegundos a segundos. 
+
+Perfil NIGHTFALL\+: Ajustes para motores de 500 RPM.
+
+Define si se usan micros() o millis(). (0 = millis) 
+
+\label{doc-var-members}
+\Hypertarget{config_8cpp_doc-var-members}
+\doxysubsection{Documentación de variables}
+\Hypertarget{config_8cpp_ab2b0c78a81e045d7a8f28be307b8c61b}\index{config.cpp@{config.cpp}!baseSpeed@{baseSpeed}}
+\index{baseSpeed@{baseSpeed}!config.cpp@{config.cpp}}
+\doxysubsubsection{\texorpdfstring{baseSpeed}{baseSpeed}}
+{\footnotesize\ttfamily \label{config_8cpp_ab2b0c78a81e045d7a8f28be307b8c61b} 
+uint8\+\_\+t base\+Speed = 90}
+
+
+
+Velocidad base de los motores (PWM 0-\/100\%). 
+
+Velocidad base de los motores que se usa como punto de partida para los cálculos PID.\+Este valor es ajustado por la corrección PID. \Hypertarget{config_8cpp_ad76756e0056f2f5ec10057052cbed3c9}\index{config.cpp@{config.cpp}!Kd@{Kd}}
+\index{Kd@{Kd}!config.cpp@{config.cpp}}
+\doxysubsubsection{\texorpdfstring{Kd}{Kd}}
+{\footnotesize\ttfamily \label{config_8cpp_ad76756e0056f2f5ec10057052cbed3c9} 
+const float Kd = \mbox{\hyperlink{config_8cpp_a790f9df599f1d6c92855645c65a0cccc}{Kp}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{config_8cpp_a38eca5301b0c8380eaea74f460237a09}{Tu}} / 8}
+
+
+
+Constante Derivativa. 
+
+\Hypertarget{config_8cpp_a0534f74e5e04a4433256a6d9bb982d2e}\index{config.cpp@{config.cpp}!Ki@{Ki}}
+\index{Ki@{Ki}!config.cpp@{config.cpp}}
+\doxysubsubsection{\texorpdfstring{Ki}{Ki}}
+{\footnotesize\ttfamily \label{config_8cpp_a0534f74e5e04a4433256a6d9bb982d2e} 
+const float Ki = 2 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{config_8cpp_a790f9df599f1d6c92855645c65a0cccc}{Kp}} / \mbox{\hyperlink{config_8cpp_a38eca5301b0c8380eaea74f460237a09}{Tu}}}
+
+
+
+Constante Integral. 
+
+\Hypertarget{config_8cpp_a790f9df599f1d6c92855645c65a0cccc}\index{config.cpp@{config.cpp}!Kp@{Kp}}
+\index{Kp@{Kp}!config.cpp@{config.cpp}}
+\doxysubsubsection{\texorpdfstring{Kp}{Kp}}
+{\footnotesize\ttfamily \label{config_8cpp_a790f9df599f1d6c92855645c65a0cccc} 
+const float Kp = 0.\+6 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{config_8cpp_ae0fd140825889f1a7ed103b66c28ce38}{Ku}}}
+
+
+
+Lógica para la asignación de constantes finales PID. Si {\ttfamily TEST\+\_\+\+PID} está definido, usa las constantes de prueba (solo Kp = Ku y el periodo Tu). Si no está definido, calcula las constantes finales usando las fórmulas derivadas del método de Ziegler-\/\+Nichols (PID clásico). 
+
+Constante Proporcional.
+
+Fórmulas para el cálculo de las constantes PID basadas en Ziegler-\/\+Nichols (PID Clásico). La fórmula usada es\+: \$ Kp = 0.\+6 \textbackslash{}cdot K\+\_\+u \$; \$ K\+\_\+i = 2 \textbackslash{}cdot K\+\_\+p / T\+\_\+u \$; \$ K\+\_\+d = K\+\_\+p \textbackslash{}cdot T\+\_\+u / 8 \$. Esto resulta en una respuesta de amortiguamiento del 75\%. \Hypertarget{config_8cpp_ae0fd140825889f1a7ed103b66c28ce38}\index{config.cpp@{config.cpp}!Ku@{Ku}}
+\index{Ku@{Ku}!config.cpp@{config.cpp}}
+\doxysubsubsection{\texorpdfstring{Ku}{Ku}}
+{\footnotesize\ttfamily \label{config_8cpp_ae0fd140825889f1a7ed103b66c28ce38} 
+const float Ku = 0.\+045}
+
+
+
+Ganancia crítica (Ku) para este perfil. 
+
+Ganancia crítica obtenida experimentalmente para cada seguidor de línea. \Hypertarget{config_8cpp_ad41c7e6046107ea067785fa523ddab36}\index{config.cpp@{config.cpp}!linea\_competencia@{linea\_competencia}}
+\index{linea\_competencia@{linea\_competencia}!config.cpp@{config.cpp}}
+\doxysubsubsection{\texorpdfstring{linea\_competencia}{linea\_competencia}}
+{\footnotesize\ttfamily \label{config_8cpp_ad41c7e6046107ea067785fa523ddab36} 
+\mbox{\hyperlink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66d}{Linea}} linea\+\_\+competencia = \mbox{\hyperlink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66da637182e28b9d39bb102f3309c827c1e7}{BLANCA}}}
+
+
+
+Objeto global de la clase \doxylink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66d}{Linea} que gestiona la lectura y calibración de los sensores QTR. 
+
+Selecciona el modo de detección de línea\+: Negro o Blanco. Si la bandera {\ttfamily LINEA\+\_\+\+NEGRA} está definida en platformio.\+ini, el seguidor de linea buscará la línea negra. De lo contrario, buscará la línea blanca. El valor asignado se utiliza para configurar la calibración de los sensores. \Hypertarget{config_8cpp_a38eca5301b0c8380eaea74f460237a09}\index{config.cpp@{config.cpp}!Tu@{Tu}}
+\index{Tu@{Tu}!config.cpp@{config.cpp}}
+\doxysubsubsection{\texorpdfstring{Tu}{Tu}}
+{\footnotesize\ttfamily \label{config_8cpp_a38eca5301b0c8380eaea74f460237a09} 
+const float Tu = 0.\+5}
+
+
+
+Período crítico (Tu) para este perfil. 
+
+Periodo o tiempo de oscilación crítica, obtenida de la grabación de oscilaciones sostenidas de cada seguidor de línea. 

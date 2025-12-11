@@ -1,0 +1,479 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Seguidor de Línea: Referencia del archivo include/config.hpp</title>
+<link rel="icon" href="SeguidoresDeLinea_ElDiego_55px.png" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Seguidor de Línea
+   </div>
+   <div id="projectbrief">Controlador de movimiento de Seguidor de Línea usando PID para competencia de robótica.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.15.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('config_8hpp.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referencia del archivo config.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Archivo de configuración global que define las constantes, banderas de compilación y la selección de perfil de corredor para el sistema PID.  
+<a href="#details">Más...</a></p>
+<div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="sensores_8hpp_source.html">sensores.hpp</a>&quot;</code><br />
+</div>
+<p><a href="config_8hpp_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:ab1eb689f09a6ae459c0367e53f96b3c2" id="r_ab1eb689f09a6ae459c0367e53f96b3c2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1eb689f09a6ae459c0367e53f96b3c2">deb</a>(x)</td></tr>
+<tr class="memitem:ac673612e12b6394929b07456f87a56e6" id="r_ac673612e12b6394929b07456f87a56e6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac673612e12b6394929b07456f87a56e6">tiempoActual</a>()</td></tr>
+<tr class="memitem:aff272c7fac0e78cdd4bbcaa85b508606" id="r_aff272c7fac0e78cdd4bbcaa85b508606"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff272c7fac0e78cdd4bbcaa85b508606">mute</a>(bz)</td></tr>
+<tr class="memdesc:aff272c7fac0e78cdd4bbcaa85b508606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro que ejecuta la función de sonido <span class="tt">bz</span> si MUTEAR está definido.  <br /></td></tr>
+<tr class="memitem:a8851a0d6ef5edc9c7ebf030cfdc8500f" id="r_a8851a0d6ef5edc9c7ebf030cfdc8500f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8851a0d6ef5edc9c7ebf030cfdc8500f">control_ir</a>(IR)</td></tr>
+<tr class="memdesc:a8851a0d6ef5edc9c7ebf030cfdc8500f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro que no ejecuta código si USAR_CONTROL_IR no está definido.  <br /></td></tr>
+<tr id="define-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Perfiles de Corredor</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Identificadores numéricos para cada perfil de constantes PID y calibración. </p>
+</div></td></tr>
+<tr class="memitem:a4c812cd18f41070703e93472552cf9c4" id="r_a4c812cd18f41070703e93472552cf9c4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c812cd18f41070703e93472552cf9c4">NIGHTFALL</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a4c812cd18f41070703e93472552cf9c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perfil de constantes NIGHTFALL. Valor: 1.  <br /></td></tr>
+<tr class="memitem:a2ba455b13796d86a8eb25decafaccae9" id="r_a2ba455b13796d86a8eb25decafaccae9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ba455b13796d86a8eb25decafaccae9">ARGENTUM</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memdesc:a2ba455b13796d86a8eb25decafaccae9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perfil de constantes ARGENTUM. Valor: 2.  <br /></td></tr>
+<tr class="memitem:aca34268fee75456ce1fed891486eb509" id="r_aca34268fee75456ce1fed891486eb509"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca34268fee75456ce1fed891486eb509">DIEGO</a>&#160;&#160;&#160;3</td></tr>
+<tr class="memdesc:aca34268fee75456ce1fed891486eb509"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perfil de constantes DIEGO. Valor: 3.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ad41c7e6046107ea067785fa523ddab36" id="r_ad41c7e6046107ea067785fa523ddab36"><td class="memItemLeft" align="right" valign="top"><a class="el" href="sensores_8hpp.html#aa9b6c9070c996b54591a9d0fdf86e66d">Linea</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad41c7e6046107ea067785fa523ddab36">linea_competencia</a></td></tr>
+<tr class="memdesc:ad41c7e6046107ea067785fa523ddab36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Objeto global de la clase <a class="el" href="sensores_8hpp.html#aa9b6c9070c996b54591a9d0fdf86e66d" title="Define el modo de operación del seguidor de línea: Indica si el robot debe buscar la línea oscura (NE...">Linea</a> que gestiona la lectura y calibración de los sensores QTR.  <br /></td></tr>
+<tr class="memitem:ab2b0c78a81e045d7a8f28be307b8c61b" id="r_ab2b0c78a81e045d7a8f28be307b8c61b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2b0c78a81e045d7a8f28be307b8c61b">baseSpeed</a></td></tr>
+<tr class="memdesc:ab2b0c78a81e045d7a8f28be307b8c61b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Velocidad base de los motores que se usa como punto de partida para los cálculos PID.Este valor es ajustado por la corrección PID.  <br /></td></tr>
+<tr class="memitem:a3807edcc6e235d1ebb8cef39fb2dc337" id="r_a3807edcc6e235d1ebb8cef39fb2dc337"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3807edcc6e235d1ebb8cef39fb2dc337">TIME_DIVISOR</a> = 1000.0</td></tr>
+<tr id="var-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Constantes Ziegler-Nichols</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Constantes experimentales obtenidas del método de Ziegler-Nichols para el PID de los seguidores de línea. </p>
+</div></td></tr>
+<tr class="memitem:ae0fd140825889f1a7ed103b66c28ce38" id="r_ae0fd140825889f1a7ed103b66c28ce38"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0fd140825889f1a7ed103b66c28ce38">Ku</a></td></tr>
+<tr class="memdesc:ae0fd140825889f1a7ed103b66c28ce38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ganancia crítica obtenida experimentalmente para cada seguidor de línea.  <br /></td></tr>
+<tr class="memitem:a38eca5301b0c8380eaea74f460237a09" id="r_a38eca5301b0c8380eaea74f460237a09"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38eca5301b0c8380eaea74f460237a09">Tu</a></td></tr>
+<tr class="memdesc:a38eca5301b0c8380eaea74f460237a09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Periodo o tiempo de oscilación crítica, obtenida de la grabación de oscilaciones sostenidas de cada seguidor de línea.  <br /></td></tr>
+<tr id="var-members-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Constantes PID</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Constantes Proporcional, Integral y Derivativa utilizadas en el algoritmo final. </p>
+</div></td></tr>
+<tr class="memitem:a790f9df599f1d6c92855645c65a0cccc" id="r_a790f9df599f1d6c92855645c65a0cccc"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a790f9df599f1d6c92855645c65a0cccc">Kp</a></td></tr>
+<tr class="memdesc:a790f9df599f1d6c92855645c65a0cccc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constante Proporcional.  <br /></td></tr>
+<tr class="memitem:a0534f74e5e04a4433256a6d9bb982d2e" id="r_a0534f74e5e04a4433256a6d9bb982d2e"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0534f74e5e04a4433256a6d9bb982d2e">Ki</a></td></tr>
+<tr class="memdesc:a0534f74e5e04a4433256a6d9bb982d2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constante Integral.  <br /></td></tr>
+<tr class="memitem:ad76756e0056f2f5ec10057052cbed3c9" id="r_ad76756e0056f2f5ec10057052cbed3c9"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad76756e0056f2f5ec10057052cbed3c9">Kd</a></td></tr>
+<tr class="memdesc:ad76756e0056f2f5ec10057052cbed3c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constante Derivativa.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Archivo de configuración global que define las constantes, banderas de compilación y la selección de perfil de corredor para el sistema PID. </p>
+<dl class="section author"><dt>Autor</dt><dd>Legion de Ohm </dd></dl>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Documentación de «define»</h2>
+<a id="a2ba455b13796d86a8eb25decafaccae9" name="a2ba455b13796d86a8eb25decafaccae9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ba455b13796d86a8eb25decafaccae9">&#9670;&#160;</a></span>ARGENTUM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ARGENTUM&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Perfil de constantes ARGENTUM. Valor: 2. </p>
+
+</div>
+</div>
+<a id="a8851a0d6ef5edc9c7ebf030cfdc8500f" name="a8851a0d6ef5edc9c7ebf030cfdc8500f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8851a0d6ef5edc9c7ebf030cfdc8500f">&#9670;&#160;</a></span>control_ir</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define control_ir</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>IR</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Macro que no ejecuta código si USAR_CONTROL_IR no está definido. </p>
+
+</div>
+</div>
+<a id="ab1eb689f09a6ae459c0367e53f96b3c2" name="ab1eb689f09a6ae459c0367e53f96b3c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1eb689f09a6ae459c0367e53f96b3c2">&#9670;&#160;</a></span>deb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define deb</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aca34268fee75456ce1fed891486eb509" name="aca34268fee75456ce1fed891486eb509"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca34268fee75456ce1fed891486eb509">&#9670;&#160;</a></span>DIEGO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DIEGO&#160;&#160;&#160;3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Perfil de constantes DIEGO. Valor: 3. </p>
+
+</div>
+</div>
+<a id="aff272c7fac0e78cdd4bbcaa85b508606" name="aff272c7fac0e78cdd4bbcaa85b508606"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff272c7fac0e78cdd4bbcaa85b508606">&#9670;&#160;</a></span>mute</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define mute</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>bz</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">bz</div>
+</div><!-- fragment -->
+<p>Macro que ejecuta la función de sonido <span class="tt">bz</span> si MUTEAR está definido. </p>
+
+</div>
+</div>
+<a id="a4c812cd18f41070703e93472552cf9c4" name="a4c812cd18f41070703e93472552cf9c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c812cd18f41070703e93472552cf9c4">&#9670;&#160;</a></span>NIGHTFALL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NIGHTFALL&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Perfil de constantes NIGHTFALL. Valor: 1. </p>
+
+</div>
+</div>
+<a id="ac673612e12b6394929b07456f87a56e6" name="ac673612e12b6394929b07456f87a56e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac673612e12b6394929b07456f87a56e6">&#9670;&#160;</a></span>tiempoActual</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define tiempoActual</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">millis()</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
+<a id="ab2b0c78a81e045d7a8f28be307b8c61b" name="ab2b0c78a81e045d7a8f28be307b8c61b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2b0c78a81e045d7a8f28be307b8c61b">&#9670;&#160;</a></span>baseSpeed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t baseSpeed</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Velocidad base de los motores que se usa como punto de partida para los cálculos PID.Este valor es ajustado por la corrección PID. </p>
+<p>Velocidad base de los motores que se usa como punto de partida para los cálculos PID.Este valor es ajustado por la corrección PID. </p>
+
+</div>
+</div>
+<a id="ad76756e0056f2f5ec10057052cbed3c9" name="ad76756e0056f2f5ec10057052cbed3c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad76756e0056f2f5ec10057052cbed3c9">&#9670;&#160;</a></span>Kd</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float Kd</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constante Derivativa. </p>
+
+</div>
+</div>
+<a id="a0534f74e5e04a4433256a6d9bb982d2e" name="a0534f74e5e04a4433256a6d9bb982d2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0534f74e5e04a4433256a6d9bb982d2e">&#9670;&#160;</a></span>Ki</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float Ki</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constante Integral. </p>
+
+</div>
+</div>
+<a id="a790f9df599f1d6c92855645c65a0cccc" name="a790f9df599f1d6c92855645c65a0cccc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a790f9df599f1d6c92855645c65a0cccc">&#9670;&#160;</a></span>Kp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float Kp</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constante Proporcional. </p>
+<p>Constante Proporcional.</p>
+<p>Fórmulas para el cálculo de las constantes PID basadas en Ziegler-Nichols (PID Clásico). La fórmula usada es: $ Kp = 0.6 \cdot K_u $; $ K_i = 2 \cdot K_p / T_u $; $ K_d = K_p \cdot T_u / 8 $. Esto resulta en una respuesta de amortiguamiento del 75%. </p>
+
+</div>
+</div>
+<a id="ae0fd140825889f1a7ed103b66c28ce38" name="ae0fd140825889f1a7ed103b66c28ce38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0fd140825889f1a7ed103b66c28ce38">&#9670;&#160;</a></span>Ku</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float Ku</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ganancia crítica obtenida experimentalmente para cada seguidor de línea. </p>
+<p>Ganancia crítica obtenida experimentalmente para cada seguidor de línea. </p>
+
+</div>
+</div>
+<a id="ad41c7e6046107ea067785fa523ddab36" name="ad41c7e6046107ea067785fa523ddab36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad41c7e6046107ea067785fa523ddab36">&#9670;&#160;</a></span>linea_competencia</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="sensores_8hpp.html#aa9b6c9070c996b54591a9d0fdf86e66d">Linea</a> linea_competencia</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Objeto global de la clase <a class="el" href="sensores_8hpp.html#aa9b6c9070c996b54591a9d0fdf86e66d" title="Define el modo de operación del seguidor de línea: Indica si el robot debe buscar la línea oscura (NE...">Linea</a> que gestiona la lectura y calibración de los sensores QTR. </p>
+<p>Selecciona el modo de detección de línea: Negro o Blanco. Si la bandera <span class="tt">LINEA_NEGRA</span> está definida en platformio.ini, el seguidor de linea buscará la línea negra. De lo contrario, buscará la línea blanca. El valor asignado se utiliza para configurar la calibración de los sensores. </p>
+
+</div>
+</div>
+<a id="a3807edcc6e235d1ebb8cef39fb2dc337" name="a3807edcc6e235d1ebb8cef39fb2dc337"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3807edcc6e235d1ebb8cef39fb2dc337">&#9670;&#160;</a></span>TIME_DIVISOR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float TIME_DIVISOR = 1000.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a38eca5301b0c8380eaea74f460237a09" name="a38eca5301b0c8380eaea74f460237a09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38eca5301b0c8380eaea74f460237a09">&#9670;&#160;</a></span>Tu</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float Tu</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Periodo o tiempo de oscilación crítica, obtenida de la grabación de oscilaciones sostenidas de cada seguidor de línea. </p>
+<p>Periodo o tiempo de oscilación crítica, obtenida de la grabación de oscilaciones sostenidas de cada seguidor de línea. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="config_8hpp.html">config.hpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
+  </ul>
+</div>
+</body>
+</html>

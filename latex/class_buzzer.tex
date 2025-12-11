@@ -1,0 +1,134 @@
+\doxysection{Referencia de la clase Buzzer}
+\hypertarget{class_buzzer}{}\label{class_buzzer}\index{Buzzer@{Buzzer}}
+
+
+Clase para controlar el zumbador (buzzer) mediante la generación de tonos por PWM. Utiliza las funciones {\ttfamily ledc} del ESP32 para generar tonos precisos sin bloquear el {\ttfamily delay()}.  
+
+
+
+
+{\ttfamily \#include $<$buzzer.\+hpp$>$}
+
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_buzzer_a2a7cf7775b3a4bbd72bcf3d65f0e7d99}{Buzzer}} (uint8\+\_\+t buzzer\+Pin, uint8\+\_\+t pwm\+Channel=0)
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_buzzer}{Buzzer}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_buzzer_a01a965482698ccd0406b0018565895d1}{begin}} (uint16\+\_\+t freq=2000, uint8\+\_\+t resolution=8)
+\begin{DoxyCompactList}\small\item\em Inicializa el canal PWM del ESP32 y adjunta el pin. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_buzzer_a15877cd206c99d7fba9304275c27f5c3}{play}} (uint16\+\_\+t freq)
+\begin{DoxyCompactList}\small\item\em Toca una nota con una frecuencia específica. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_buzzer_acbb32df95ae1af7d4ba9bb01dc9e3b20}{stop}} ()
+\begin{DoxyCompactList}\small\item\em Detiene el sonido del zumbador. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_buzzer_a89c50cc999e910a0f9596dff901e8db5}{play\+Melody}} (const uint16\+\_\+t \texorpdfstring{$\ast$}{*}melody, const uint16\+\_\+t \texorpdfstring{$\ast$}{*}durations, uint16\+\_\+t length, uint16\+\_\+t base\+Time=500)
+\begin{DoxyCompactList}\small\item\em Reproduce una melodía a partir de arrays de notas y duraciones. Las duraciones deben estar en formato de notas musicales (ej. 4 = negra, 8 = corchea). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Clase para controlar el zumbador (buzzer) mediante la generación de tonos por PWM. Utiliza las funciones {\ttfamily ledc} del ESP32 para generar tonos precisos sin bloquear el {\ttfamily delay()}. 
+
+\label{doc-constructors}
+\Hypertarget{class_buzzer_doc-constructors}
+\doxysubsection{Documentación de constructores y destructores}
+\Hypertarget{class_buzzer_a2a7cf7775b3a4bbd72bcf3d65f0e7d99}\index{Buzzer@{Buzzer}!Buzzer@{Buzzer}}
+\index{Buzzer@{Buzzer}!Buzzer@{Buzzer}}
+\doxysubsubsection{\texorpdfstring{Buzzer()}{Buzzer()}}
+{\footnotesize\ttfamily \label{class_buzzer_a2a7cf7775b3a4bbd72bcf3d65f0e7d99} 
+Buzzer\+::\+Buzzer (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{buzzer\+Pin}{, }\item[{uint8\+\_\+t}]{pwm\+Channel}{ = {\ttfamily 0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor de la clase \doxylink{class_buzzer}{Buzzer}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em buzzer\+Pin} & Pin GPIO al que está conectado el zumbador. \\
+\hline
+{\em pwm\+Channel} & Canal ledc del ESP32 a utilizar (por defecto\+: 0). \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_buzzer_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_buzzer_a01a965482698ccd0406b0018565895d1}\index{Buzzer@{Buzzer}!begin@{begin}}
+\index{begin@{begin}!Buzzer@{Buzzer}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily \label{class_buzzer_a01a965482698ccd0406b0018565895d1} 
+void Buzzer\+::begin (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{freq}{ = {\ttfamily 2000}, }\item[{uint8\+\_\+t}]{resolution}{ = {\ttfamily 8}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Inicializa el canal PWM del ESP32 y adjunta el pin. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em freq} & Frecuencia base del PWM para la inicialización (por defecto\+: 2000 Hz). \\
+\hline
+{\em resolution} & Resolución del PWM (por defecto\+: 8 bits). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_buzzer_a15877cd206c99d7fba9304275c27f5c3}\index{Buzzer@{Buzzer}!play@{play}}
+\index{play@{play}!Buzzer@{Buzzer}}
+\doxysubsubsection{\texorpdfstring{play()}{play()}}
+{\footnotesize\ttfamily \label{class_buzzer_a15877cd206c99d7fba9304275c27f5c3} 
+void Buzzer\+::play (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{freq}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Toca una nota con una frecuencia específica. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em freq} & Frecuencia del tono a reproducir en Hercios (Hz). Utiliza las constantes NOTE\+\_\+\+C4, etc. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_buzzer_a89c50cc999e910a0f9596dff901e8db5}\index{Buzzer@{Buzzer}!playMelody@{playMelody}}
+\index{playMelody@{playMelody}!Buzzer@{Buzzer}}
+\doxysubsubsection{\texorpdfstring{playMelody()}{playMelody()}}
+{\footnotesize\ttfamily \label{class_buzzer_a89c50cc999e910a0f9596dff901e8db5} 
+void Buzzer\+::play\+Melody (\begin{DoxyParamCaption}\item[{const uint16\+\_\+t \texorpdfstring{$\ast$}{*}}]{melody}{, }\item[{const uint16\+\_\+t \texorpdfstring{$\ast$}{*}}]{durations}{, }\item[{uint16\+\_\+t}]{length}{, }\item[{uint16\+\_\+t}]{base\+Time}{ = {\ttfamily 500}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reproduce una melodía a partir de arrays de notas y duraciones. Las duraciones deben estar en formato de notas musicales (ej. 4 = negra, 8 = corchea). 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em melody} & Array de frecuencias (uint16\+\_\+t) que definen la melodía. \\
+\hline
+{\em durations} & Array de duraciones (uint16\+\_\+t) que definen el ritmo. \\
+\hline
+{\em length} & Número de notas en la melodía. \\
+\hline
+{\em base\+Time} & Tiempo base en milisegundos para una nota redonda (4), por defecto 500ms. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_buzzer_acbb32df95ae1af7d4ba9bb01dc9e3b20}\index{Buzzer@{Buzzer}!stop@{stop}}
+\index{stop@{stop}!Buzzer@{Buzzer}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \label{class_buzzer_acbb32df95ae1af7d4ba9bb01dc9e3b20} 
+void Buzzer\+::stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Detiene el sonido del zumbador. 
+
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+
+
+La documentación de esta clase está generada del siguiente archivo\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{buzzer_8hpp}{buzzer.\+hpp}}\end{DoxyCompactItemize}

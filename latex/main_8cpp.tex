@@ -1,0 +1,450 @@
+\doxysection{Referencia del archivo src/main.cpp}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+
+
+Programa principal para el seguidor de línea de competencia (Control PID). Este archivo ensambla todos los módulos del robot\+: sensores, drivers de motor, buzzer, y la lógica de control PID. Se inicializan todos los periféricos en \doxylink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()} y se ejecuta el ciclo de control de alta frecuencia en \doxylink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}QTRSensors.\+h"{}}\newline
+{\ttfamily \#include "{}drv8833.\+hpp"{}}\newline
+{\ttfamily \#include "{}buzzer.\+hpp"{}}\newline
+{\ttfamily \#include "{}interrupciones.\+hpp"{}}\newline
+{\ttfamily \#include "{}config.\+hpp"{}}\newline
+{\ttfamily \#include "{}pid.\+hpp"{}}\newline
+{\ttfamily \#include "{}sensores.\+hpp"{}}\newline
+{\ttfamily \#include "{}motores.\+hpp"{}}\newline
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\begin{DoxyCompactList}\small\item\em Función de inicialización de Arduino. Configura todos los periféricos de entrada y salida, inicializa los drivers y establece las interrupciones para el control de inicio/parada. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
+\begin{DoxyCompactList}\small\item\em Bucle principal de control del robot. Este es el ciclo de control primario. Solo se ejecuta la lógica de seguimiento si la bandera {\ttfamily \doxylink{interrupciones_8hpp_a081d22c8c0bb30d050a1a7c4505f00b9}{RUN}} está activa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_adb846a29dd2e116cc22e62ff323aa7eb}{pin\+Buzzer}} = 17
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_ad91ea72ca9ce6b1e1bbdc49ee34aed79}{led\+Motores}} = 13
+\item 
+          const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_acf8b0c17708baf699e54b7aed1cb6331}{led\+Calibracion}} = 2
+\begin{DoxyCompactList}\small\item\em Pin GPIO conectado al LED que indica el estado de calibración. \end{DoxyCompactList}\item 
+      const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_ada507787428efb45ad3f9923c0490703}{BTN\+\_\+\+RUN}} = 19
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_a8c0f1ded83ee76d2d1c5e67d8382f6bd}{BTN\+\_\+\+STOP}} = 22
+\item 
+const int32\+\_\+t \mbox{\hyperlink{main_8cpp_a1b7806663c5c1c52ee5701de3732eb4c}{max\+Speed}} = 80
+\begin{DoxyCompactList}\small\item\em Límite máximo de velocidad (PWM) que puede alcanzar cualquier motor. Usado para asegurar que la velocidad calculada por el PID no exceda la capacidad del sistema. \end{DoxyCompactList}\item 
+  int32\+\_\+t \mbox{\hyperlink{main_8cpp_ad86c867bae18606952e28ce0cd49bf3d}{motor\+Speed\+Izq}} = \mbox{\hyperlink{config_8hpp_ab2b0c78a81e045d7a8f28be307b8c61b}{base\+Speed}}
+\begin{DoxyCompactList}\small\item\em Velocidad final del motor izquierdo, calculada después de aplicar la corrección PID. Este valor puede ser positivo (avance) o negativo (reversa) y se traduce a PWM. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{main_8cpp_a9bafa76643a24230be378bcd0ddf03ba}{motor\+Speed\+Der}} = \mbox{\hyperlink{config_8hpp_ab2b0c78a81e045d7a8f28be307b8c61b}{base\+Speed}}
+\begin{DoxyCompactList}\small\item\em Velocidad final del motor derecho, calculada después de aplicar la corrección PID. Este valor puede ser positivo (avance) o negativo (reversa) y se traduce a PWM. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{main_8cpp_a8b6f34837979e0ebe80423697c0250f8}{setpoint}} = 3500
+\begin{DoxyCompactList}\small\item\em Valor deseado del error o posición (referencia). Generalmente se establece en el centro de la pista (ej. 0 o 2500), donde el error debe ser cero. \end{DoxyCompactList}\item 
+      uint16\+\_\+t \mbox{\hyperlink{main_8cpp_ae51641b467ac93ad0a8048cad89ea66d}{zona\+Muerta}} = 50
+\begin{DoxyCompactList}\small\item\em Rango de error permitido alrededor del setpoint donde no se aplica corrección (deadband). Usado en {\ttfamily \doxylink{motores_8hpp_adcfe68224198cf968169275300dec7f4}{control\+Motores}} para evitar oscilaciones innecesarias del robot. \end{DoxyCompactList}\item 
+      float \mbox{\hyperlink{main_8cpp_a832d4c515b53b519b1228cdbe6a69a17}{last\+Error}} = 0
+\begin{DoxyCompactList}\small\item\em Último valor de error calculado en la iteración anterior. Es esencial para el término Derivativo (D) del PID, ya que calcula el cambio en el error. \end{DoxyCompactList}\item 
+  float \mbox{\hyperlink{main_8cpp_a4da285cdac9ee962e446e98680eb9fcf}{integral}} = 0
+\begin{DoxyCompactList}\small\item\em Acumulador del error a lo largo del tiempo. Es esencial para el término Integral (I) del PID, ayudando a corregir errores persistentes. \end{DoxyCompactList}\item 
+    uint32\+\_\+t \mbox{\hyperlink{main_8cpp_af2658ec3a4be896b5f81ae8f4a5f97ed}{last\+Time}} = 0
+\begin{DoxyCompactList}\small\item\em Marca de tiempo (millis o micros) del último cálculo de PID. Se utiliza para calcular el tiempo transcurrido (\$\textbackslash{}\+Delta T\$), necesario para los términos Integral y Derivativo. \end{DoxyCompactList}\item 
+  const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_abfcde96cb21a3b4e93e04aea04e535c6}{Buzzer\+Pwm}} = 2
+\item 
+\mbox{\hyperlink{class_buzzer}{Buzzer}} \mbox{\hyperlink{main_8cpp_a7047ab716eb3f80fb3d336d4d5567393}{buzzer}} (\mbox{\hyperlink{main_8cpp_adb846a29dd2e116cc22e62ff323aa7eb}{pin\+Buzzer}}, \mbox{\hyperlink{main_8cpp_abfcde96cb21a3b4e93e04aea04e535c6}{Buzzer\+Pwm}})
+\item 
+  const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_a0163f2906b4512c7281b25d2c9caf531}{motor\+Pin\+IN1\+\_\+\+Izq}} = 21
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_a22407d1452bfe93994e837127f050014}{motor\+Pin\+IN2\+\_\+\+Izq}} = 18
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_a01fb00c1c5583a04240a38b6adc3427e}{motor\+Pin\+Sleep\+\_\+\+Izq}} = 23
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_a3b6af078ccca43a68dc57a346e8f5e5f}{motor\+Pin\+IN1\+\_\+\+Der}} = 26
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_ade51c7ee976dbe0b0da9c3947c63b4e5}{motor\+Pin\+IN2\+\_\+\+Der}} = 25
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_a168d8d68cf4e67da7ca572d428d48fb9}{motor\+Pin\+Sleep\+\_\+\+Der}} = 16
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_a7ede4426b2911a5d7d15154c490109ae}{motor\+PWM\+\_\+\+Izq}} = 0
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_a8c1ac60b027fd4a67e5b6cb0588fbb7f}{motor\+PWM\+\_\+\+Der}} = 1
+\item 
+const uint32\+\_\+t \mbox{\hyperlink{main_8cpp_a8c43e3511adff203060e1d0864e4bf05}{freq\+PWM}} = 20000
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_addd24b2d185dd0276f79f49314ae3b48}{res\+PWM}} = 8
+\item 
+\mbox{\hyperlink{class_drv8833}{Drv8833}} \mbox{\hyperlink{main_8cpp_add4d923a5084e869330460f9b0e9f42f}{motor\+Der}}
+\begin{DoxyCompactList}\small\item\em Instancia global del driver DRV8833 para el motor del lado derecho. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_drv8833}{Drv8833}} \mbox{\hyperlink{main_8cpp_a295e4503a2239e2a4a8d1c72a5d5df02}{motor\+Izq}}
+\begin{DoxyCompactList}\small\item\em Instancia global del driver DRV8833 para el motor del lado izquierdo. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_a7bbdb12018674ed5c695af86b5d217c4}{S8}} = 14
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_aacecf1551eda779cc1c6e09a6eef764b}{S7}} = 27
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_a7983d910b22a2f02f3a4ed595b8ccc13}{S6}} = 33
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_a9f27d21e6a2077b0ec64dd2c19f73cf4}{S5}} = 32
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_acde777eb76d961291dbb04407339c2e2}{S4}} = 35
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_a774691cda50d8d29d88775f91df8fa90}{S3}} = 34
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_a639d36256a336a55cadffeb11c014e34}{S2}} = 39
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_a00aaec5f953e5f8be262fd49ed007d76}{S1}} = 36
+\item 
+QTRSensors \mbox{\hyperlink{main_8cpp_a9e05607474a03ba0b5bd2ee27c003524}{qtr}}
+\begin{DoxyCompactList}\small\item\em Objeto principal de la librería QTRSensors para interactuar con el array de sensores. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_a3ac4073d185617435faaca724a413fec}{Sensor\+Count}} = 8
+\begin{DoxyCompactList}\small\item\em Número de sensores infrarrojos utilizados en el array QTR. Este valor es crucial para el tamaño de los arrays de lectura y para las funciones de calibración. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \mbox{\hyperlink{main_8cpp_a60839c64d95207d4b55d0e6ddb9d9d1f}{sensor\+Pins}} \mbox{[}\mbox{\hyperlink{main_8cpp_a3ac4073d185617435faaca724a413fec}{Sensor\+Count}}\mbox{]} = \{\mbox{\hyperlink{main_8cpp_a7bbdb12018674ed5c695af86b5d217c4}{S8}}, \mbox{\hyperlink{main_8cpp_aacecf1551eda779cc1c6e09a6eef764b}{S7}}, \mbox{\hyperlink{main_8cpp_a7983d910b22a2f02f3a4ed595b8ccc13}{S6}}, \mbox{\hyperlink{main_8cpp_a9f27d21e6a2077b0ec64dd2c19f73cf4}{S5}}, \mbox{\hyperlink{main_8cpp_acde777eb76d961291dbb04407339c2e2}{S4}}, \mbox{\hyperlink{main_8cpp_a774691cda50d8d29d88775f91df8fa90}{S3}}, \mbox{\hyperlink{main_8cpp_a639d36256a336a55cadffeb11c014e34}{S2}}, \mbox{\hyperlink{main_8cpp_a00aaec5f953e5f8be262fd49ed007d76}{S1}}\}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{main_8cpp_a908407702b8a9dbb612a617c21ce31ba}{sensor\+Values}} \mbox{[}\mbox{\hyperlink{main_8cpp_a3ac4073d185617435faaca724a413fec}{Sensor\+Count}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Array que almacena las lecturas de los sensores (0-\/1023 o 0-\/4095, dependiendo de la configuración). El tamaño de este array está definido por {\ttfamily \doxylink{sensores_8hpp_a3ac4073d185617435faaca724a413fec}{Sensor\+Count}}. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{main_8cpp_a6f14bde43ef12199f2d2ef07adb6c942}{position}}
+\begin{DoxyCompactList}\small\item\em Posición calculada de la línea. Es el valor de la salida del proceso (PV), usado como entrada para el controlador PID. Este valor se normaliza (ej. 0 a 4000) donde el centro es el punto de referencia ({\ttfamily \doxylink{pid_8hpp_a8b6f34837979e0ebe80423697c0250f8}{setpoint}}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Programa principal para el seguidor de línea de competencia (Control PID). Este archivo ensambla todos los módulos del robot\+: sensores, drivers de motor, buzzer, y la lógica de control PID. Se inicializan todos los periféricos en \doxylink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()} y se ejecuta el ciclo de control de alta frecuencia en \doxylink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}. 
+
+\begin{DoxyAuthor}{Autor}
+Legion de Ohm 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{main_8cpp_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{main_8cpp_afe461d27b9c48d5921c00d521181f12f}\index{main.cpp@{main.cpp}!loop@{loop}}
+\index{loop@{loop}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily \label{main_8cpp_afe461d27b9c48d5921c00d521181f12f} 
+void loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Bucle principal de control del robot. Este es el ciclo de control primario. Solo se ejecuta la lógica de seguimiento si la bandera {\ttfamily \doxylink{interrupciones_8hpp_a081d22c8c0bb30d050a1a7c4505f00b9}{RUN}} está activa. 
+
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\index{main.cpp@{main.cpp}!setup@{setup}}
+\index{setup@{setup}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d} 
+void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función de inicialización de Arduino. Configura todos los periféricos de entrada y salida, inicializa los drivers y establece las interrupciones para el control de inicio/parada. 
+
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+
+
+\label{doc-var-members}
+\Hypertarget{main_8cpp_doc-var-members}
+\doxysubsection{Documentación de variables}
+\Hypertarget{main_8cpp_ada507787428efb45ad3f9923c0490703}\index{main.cpp@{main.cpp}!BTN\_RUN@{BTN\_RUN}}
+\index{BTN\_RUN@{BTN\_RUN}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{BTN\_RUN}{BTN\_RUN}}
+{\footnotesize\ttfamily \label{main_8cpp_ada507787428efb45ad3f9923c0490703} 
+      const uint8\+\_\+t BTN\+\_\+\+RUN = 19}
+
+\Hypertarget{main_8cpp_a8c0f1ded83ee76d2d1c5e67d8382f6bd}\index{main.cpp@{main.cpp}!BTN\_STOP@{BTN\_STOP}}
+\index{BTN\_STOP@{BTN\_STOP}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{BTN\_STOP}{BTN\_STOP}}
+{\footnotesize\ttfamily \label{main_8cpp_a8c0f1ded83ee76d2d1c5e67d8382f6bd} 
+const uint8\+\_\+t BTN\+\_\+\+STOP = 22}
+
+\Hypertarget{main_8cpp_a7047ab716eb3f80fb3d336d4d5567393}\index{main.cpp@{main.cpp}!buzzer@{buzzer}}
+\index{buzzer@{buzzer}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{buzzer}{buzzer}}
+{\footnotesize\ttfamily \label{main_8cpp_a7047ab716eb3f80fb3d336d4d5567393} 
+\mbox{\hyperlink{class_buzzer}{Buzzer}} buzzer(\mbox{\hyperlink{main_8cpp_adb846a29dd2e116cc22e62ff323aa7eb}{pin\+Buzzer}}, \mbox{\hyperlink{main_8cpp_abfcde96cb21a3b4e93e04aea04e535c6}{Buzzer\+Pwm}}) (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{main_8cpp_adb846a29dd2e116cc22e62ff323aa7eb}{pin\+Buzzer}}}]{}{, }\item[{\mbox{\hyperlink{main_8cpp_abfcde96cb21a3b4e93e04aea04e535c6}{Buzzer\+Pwm}}}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_abfcde96cb21a3b4e93e04aea04e535c6}\index{main.cpp@{main.cpp}!BuzzerPwm@{BuzzerPwm}}
+\index{BuzzerPwm@{BuzzerPwm}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{BuzzerPwm}{BuzzerPwm}}
+{\footnotesize\ttfamily \label{main_8cpp_abfcde96cb21a3b4e93e04aea04e535c6} 
+  const uint8\+\_\+t Buzzer\+Pwm = 2}
+
+\Hypertarget{main_8cpp_a8c43e3511adff203060e1d0864e4bf05}\index{main.cpp@{main.cpp}!freqPWM@{freqPWM}}
+\index{freqPWM@{freqPWM}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{freqPWM}{freqPWM}}
+{\footnotesize\ttfamily \label{main_8cpp_a8c43e3511adff203060e1d0864e4bf05} 
+const uint32\+\_\+t freq\+PWM = 20000}
+
+\Hypertarget{main_8cpp_a4da285cdac9ee962e446e98680eb9fcf}\index{main.cpp@{main.cpp}!integral@{integral}}
+\index{integral@{integral}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{integral}{integral}}
+{\footnotesize\ttfamily \label{main_8cpp_a4da285cdac9ee962e446e98680eb9fcf} 
+  float integral = 0}
+
+
+
+Acumulador del error a lo largo del tiempo. Es esencial para el término Integral (I) del PID, ayudando a corregir errores persistentes. 
+
+\Hypertarget{main_8cpp_a832d4c515b53b519b1228cdbe6a69a17}\index{main.cpp@{main.cpp}!lastError@{lastError}}
+\index{lastError@{lastError}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{lastError}{lastError}}
+{\footnotesize\ttfamily \label{main_8cpp_a832d4c515b53b519b1228cdbe6a69a17} 
+      float last\+Error = 0}
+
+
+
+Último valor de error calculado en la iteración anterior. Es esencial para el término Derivativo (D) del PID, ya que calcula el cambio en el error. 
+
+\Hypertarget{main_8cpp_af2658ec3a4be896b5f81ae8f4a5f97ed}\index{main.cpp@{main.cpp}!lastTime@{lastTime}}
+\index{lastTime@{lastTime}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{lastTime}{lastTime}}
+{\footnotesize\ttfamily \label{main_8cpp_af2658ec3a4be896b5f81ae8f4a5f97ed} 
+    uint32\+\_\+t last\+Time = 0}
+
+
+
+Marca de tiempo (millis o micros) del último cálculo de PID. Se utiliza para calcular el tiempo transcurrido (\$\textbackslash{}\+Delta T\$), necesario para los términos Integral y Derivativo. 
+
+\Hypertarget{main_8cpp_acf8b0c17708baf699e54b7aed1cb6331}\index{main.cpp@{main.cpp}!ledCalibracion@{ledCalibracion}}
+\index{ledCalibracion@{ledCalibracion}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{ledCalibracion}{ledCalibracion}}
+{\footnotesize\ttfamily \label{main_8cpp_acf8b0c17708baf699e54b7aed1cb6331} 
+          const uint8\+\_\+t led\+Calibracion = 2}
+
+
+
+Pin GPIO conectado al LED que indica el estado de calibración. 
+
+\Hypertarget{main_8cpp_ad91ea72ca9ce6b1e1bbdc49ee34aed79}\index{main.cpp@{main.cpp}!ledMotores@{ledMotores}}
+\index{ledMotores@{ledMotores}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{ledMotores}{ledMotores}}
+{\footnotesize\ttfamily \label{main_8cpp_ad91ea72ca9ce6b1e1bbdc49ee34aed79} 
+const uint8\+\_\+t led\+Motores = 13}
+
+\Hypertarget{main_8cpp_a1b7806663c5c1c52ee5701de3732eb4c}\index{main.cpp@{main.cpp}!maxSpeed@{maxSpeed}}
+\index{maxSpeed@{maxSpeed}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{maxSpeed}{maxSpeed}}
+{\footnotesize\ttfamily \label{main_8cpp_a1b7806663c5c1c52ee5701de3732eb4c} 
+const int32\+\_\+t max\+Speed = 80}
+
+
+
+Límite máximo de velocidad (PWM) que puede alcanzar cualquier motor. Usado para asegurar que la velocidad calculada por el PID no exceda la capacidad del sistema. 
+
+\Hypertarget{main_8cpp_add4d923a5084e869330460f9b0e9f42f}\index{main.cpp@{main.cpp}!motorDer@{motorDer}}
+\index{motorDer@{motorDer}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{motorDer}{motorDer}}
+{\footnotesize\ttfamily \label{main_8cpp_add4d923a5084e869330460f9b0e9f42f} 
+\mbox{\hyperlink{class_drv8833}{Drv8833}} motor\+Der}
+
+
+
+Instancia global del driver DRV8833 para el motor del lado derecho. 
+
+\Hypertarget{main_8cpp_a295e4503a2239e2a4a8d1c72a5d5df02}\index{main.cpp@{main.cpp}!motorIzq@{motorIzq}}
+\index{motorIzq@{motorIzq}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{motorIzq}{motorIzq}}
+{\footnotesize\ttfamily \label{main_8cpp_a295e4503a2239e2a4a8d1c72a5d5df02} 
+\mbox{\hyperlink{class_drv8833}{Drv8833}} motor\+Izq}
+
+
+
+Instancia global del driver DRV8833 para el motor del lado izquierdo. 
+
+\Hypertarget{main_8cpp_a3b6af078ccca43a68dc57a346e8f5e5f}\index{main.cpp@{main.cpp}!motorPinIN1\_Der@{motorPinIN1\_Der}}
+\index{motorPinIN1\_Der@{motorPinIN1\_Der}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{motorPinIN1\_Der}{motorPinIN1\_Der}}
+{\footnotesize\ttfamily \label{main_8cpp_a3b6af078ccca43a68dc57a346e8f5e5f} 
+const uint8\+\_\+t motor\+Pin\+IN1\+\_\+\+Der = 26}
+
+\Hypertarget{main_8cpp_a0163f2906b4512c7281b25d2c9caf531}\index{main.cpp@{main.cpp}!motorPinIN1\_Izq@{motorPinIN1\_Izq}}
+\index{motorPinIN1\_Izq@{motorPinIN1\_Izq}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{motorPinIN1\_Izq}{motorPinIN1\_Izq}}
+{\footnotesize\ttfamily \label{main_8cpp_a0163f2906b4512c7281b25d2c9caf531} 
+  const uint8\+\_\+t motor\+Pin\+IN1\+\_\+\+Izq = 21}
+
+\Hypertarget{main_8cpp_ade51c7ee976dbe0b0da9c3947c63b4e5}\index{main.cpp@{main.cpp}!motorPinIN2\_Der@{motorPinIN2\_Der}}
+\index{motorPinIN2\_Der@{motorPinIN2\_Der}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{motorPinIN2\_Der}{motorPinIN2\_Der}}
+{\footnotesize\ttfamily \label{main_8cpp_ade51c7ee976dbe0b0da9c3947c63b4e5} 
+const uint8\+\_\+t motor\+Pin\+IN2\+\_\+\+Der = 25}
+
+\Hypertarget{main_8cpp_a22407d1452bfe93994e837127f050014}\index{main.cpp@{main.cpp}!motorPinIN2\_Izq@{motorPinIN2\_Izq}}
+\index{motorPinIN2\_Izq@{motorPinIN2\_Izq}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{motorPinIN2\_Izq}{motorPinIN2\_Izq}}
+{\footnotesize\ttfamily \label{main_8cpp_a22407d1452bfe93994e837127f050014} 
+const uint8\+\_\+t motor\+Pin\+IN2\+\_\+\+Izq = 18}
+
+\Hypertarget{main_8cpp_a168d8d68cf4e67da7ca572d428d48fb9}\index{main.cpp@{main.cpp}!motorPinSleep\_Der@{motorPinSleep\_Der}}
+\index{motorPinSleep\_Der@{motorPinSleep\_Der}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{motorPinSleep\_Der}{motorPinSleep\_Der}}
+{\footnotesize\ttfamily \label{main_8cpp_a168d8d68cf4e67da7ca572d428d48fb9} 
+const uint8\+\_\+t motor\+Pin\+Sleep\+\_\+\+Der = 16}
+
+\Hypertarget{main_8cpp_a01fb00c1c5583a04240a38b6adc3427e}\index{main.cpp@{main.cpp}!motorPinSleep\_Izq@{motorPinSleep\_Izq}}
+\index{motorPinSleep\_Izq@{motorPinSleep\_Izq}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{motorPinSleep\_Izq}{motorPinSleep\_Izq}}
+{\footnotesize\ttfamily \label{main_8cpp_a01fb00c1c5583a04240a38b6adc3427e} 
+const uint8\+\_\+t motor\+Pin\+Sleep\+\_\+\+Izq = 23}
+
+\Hypertarget{main_8cpp_a8c1ac60b027fd4a67e5b6cb0588fbb7f}\index{main.cpp@{main.cpp}!motorPWM\_Der@{motorPWM\_Der}}
+\index{motorPWM\_Der@{motorPWM\_Der}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{motorPWM\_Der}{motorPWM\_Der}}
+{\footnotesize\ttfamily \label{main_8cpp_a8c1ac60b027fd4a67e5b6cb0588fbb7f} 
+const uint8\+\_\+t motor\+PWM\+\_\+\+Der = 1}
+
+\Hypertarget{main_8cpp_a7ede4426b2911a5d7d15154c490109ae}\index{main.cpp@{main.cpp}!motorPWM\_Izq@{motorPWM\_Izq}}
+\index{motorPWM\_Izq@{motorPWM\_Izq}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{motorPWM\_Izq}{motorPWM\_Izq}}
+{\footnotesize\ttfamily \label{main_8cpp_a7ede4426b2911a5d7d15154c490109ae} 
+const uint8\+\_\+t motor\+PWM\+\_\+\+Izq = 0}
+
+\Hypertarget{main_8cpp_a9bafa76643a24230be378bcd0ddf03ba}\index{main.cpp@{main.cpp}!motorSpeedDer@{motorSpeedDer}}
+\index{motorSpeedDer@{motorSpeedDer}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{motorSpeedDer}{motorSpeedDer}}
+{\footnotesize\ttfamily \label{main_8cpp_a9bafa76643a24230be378bcd0ddf03ba} 
+int32\+\_\+t motor\+Speed\+Der = \mbox{\hyperlink{config_8hpp_ab2b0c78a81e045d7a8f28be307b8c61b}{base\+Speed}}}
+
+
+
+Velocidad final del motor derecho, calculada después de aplicar la corrección PID. Este valor puede ser positivo (avance) o negativo (reversa) y se traduce a PWM. 
+
+\Hypertarget{main_8cpp_ad86c867bae18606952e28ce0cd49bf3d}\index{main.cpp@{main.cpp}!motorSpeedIzq@{motorSpeedIzq}}
+\index{motorSpeedIzq@{motorSpeedIzq}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{motorSpeedIzq}{motorSpeedIzq}}
+{\footnotesize\ttfamily \label{main_8cpp_ad86c867bae18606952e28ce0cd49bf3d} 
+  int32\+\_\+t motor\+Speed\+Izq = \mbox{\hyperlink{config_8hpp_ab2b0c78a81e045d7a8f28be307b8c61b}{base\+Speed}}}
+
+
+
+Velocidad final del motor izquierdo, calculada después de aplicar la corrección PID. Este valor puede ser positivo (avance) o negativo (reversa) y se traduce a PWM. 
+
+\Hypertarget{main_8cpp_adb846a29dd2e116cc22e62ff323aa7eb}\index{main.cpp@{main.cpp}!pinBuzzer@{pinBuzzer}}
+\index{pinBuzzer@{pinBuzzer}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{pinBuzzer}{pinBuzzer}}
+{\footnotesize\ttfamily \label{main_8cpp_adb846a29dd2e116cc22e62ff323aa7eb} 
+const uint8\+\_\+t pin\+Buzzer = 17}
+
+\Hypertarget{main_8cpp_a6f14bde43ef12199f2d2ef07adb6c942}\index{main.cpp@{main.cpp}!position@{position}}
+\index{position@{position}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily \label{main_8cpp_a6f14bde43ef12199f2d2ef07adb6c942} 
+uint16\+\_\+t position}
+
+
+
+Posición calculada de la línea. Es el valor de la salida del proceso (PV), usado como entrada para el controlador PID. Este valor se normaliza (ej. 0 a 4000) donde el centro es el punto de referencia ({\ttfamily \doxylink{pid_8hpp_a8b6f34837979e0ebe80423697c0250f8}{setpoint}}). 
+
+\Hypertarget{main_8cpp_a9e05607474a03ba0b5bd2ee27c003524}\index{main.cpp@{main.cpp}!qtr@{qtr}}
+\index{qtr@{qtr}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{qtr}{qtr}}
+{\footnotesize\ttfamily \label{main_8cpp_a9e05607474a03ba0b5bd2ee27c003524} 
+QTRSensors qtr}
+
+
+
+Objeto principal de la librería QTRSensors para interactuar con el array de sensores. 
+
+\Hypertarget{main_8cpp_addd24b2d185dd0276f79f49314ae3b48}\index{main.cpp@{main.cpp}!resPWM@{resPWM}}
+\index{resPWM@{resPWM}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{resPWM}{resPWM}}
+{\footnotesize\ttfamily \label{main_8cpp_addd24b2d185dd0276f79f49314ae3b48} 
+const uint8\+\_\+t res\+PWM = 8}
+
+\Hypertarget{main_8cpp_a00aaec5f953e5f8be262fd49ed007d76}\index{main.cpp@{main.cpp}!S1@{S1}}
+\index{S1@{S1}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{S1}{S1}}
+{\footnotesize\ttfamily \label{main_8cpp_a00aaec5f953e5f8be262fd49ed007d76} 
+const uint8\+\_\+t S1 = 36}
+
+\Hypertarget{main_8cpp_a639d36256a336a55cadffeb11c014e34}\index{main.cpp@{main.cpp}!S2@{S2}}
+\index{S2@{S2}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{S2}{S2}}
+{\footnotesize\ttfamily \label{main_8cpp_a639d36256a336a55cadffeb11c014e34} 
+const uint8\+\_\+t S2 = 39}
+
+\Hypertarget{main_8cpp_a774691cda50d8d29d88775f91df8fa90}\index{main.cpp@{main.cpp}!S3@{S3}}
+\index{S3@{S3}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{S3}{S3}}
+{\footnotesize\ttfamily \label{main_8cpp_a774691cda50d8d29d88775f91df8fa90} 
+const uint8\+\_\+t S3 = 34}
+
+\Hypertarget{main_8cpp_acde777eb76d961291dbb04407339c2e2}\index{main.cpp@{main.cpp}!S4@{S4}}
+\index{S4@{S4}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{S4}{S4}}
+{\footnotesize\ttfamily \label{main_8cpp_acde777eb76d961291dbb04407339c2e2} 
+const uint8\+\_\+t S4 = 35}
+
+\Hypertarget{main_8cpp_a9f27d21e6a2077b0ec64dd2c19f73cf4}\index{main.cpp@{main.cpp}!S5@{S5}}
+\index{S5@{S5}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{S5}{S5}}
+{\footnotesize\ttfamily \label{main_8cpp_a9f27d21e6a2077b0ec64dd2c19f73cf4} 
+const uint8\+\_\+t S5 = 32}
+
+\Hypertarget{main_8cpp_a7983d910b22a2f02f3a4ed595b8ccc13}\index{main.cpp@{main.cpp}!S6@{S6}}
+\index{S6@{S6}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{S6}{S6}}
+{\footnotesize\ttfamily \label{main_8cpp_a7983d910b22a2f02f3a4ed595b8ccc13} 
+const uint8\+\_\+t S6 = 33}
+
+\Hypertarget{main_8cpp_aacecf1551eda779cc1c6e09a6eef764b}\index{main.cpp@{main.cpp}!S7@{S7}}
+\index{S7@{S7}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{S7}{S7}}
+{\footnotesize\ttfamily \label{main_8cpp_aacecf1551eda779cc1c6e09a6eef764b} 
+const uint8\+\_\+t S7 = 27}
+
+\Hypertarget{main_8cpp_a7bbdb12018674ed5c695af86b5d217c4}\index{main.cpp@{main.cpp}!S8@{S8}}
+\index{S8@{S8}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{S8}{S8}}
+{\footnotesize\ttfamily \label{main_8cpp_a7bbdb12018674ed5c695af86b5d217c4} 
+const uint8\+\_\+t S8 = 14}
+
+\Hypertarget{main_8cpp_a3ac4073d185617435faaca724a413fec}\index{main.cpp@{main.cpp}!SensorCount@{SensorCount}}
+\index{SensorCount@{SensorCount}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{SensorCount}{SensorCount}}
+{\footnotesize\ttfamily \label{main_8cpp_a3ac4073d185617435faaca724a413fec} 
+const uint8\+\_\+t Sensor\+Count = 8}
+
+
+
+Número de sensores infrarrojos utilizados en el array QTR. Este valor es crucial para el tamaño de los arrays de lectura y para las funciones de calibración. 
+
+\Hypertarget{main_8cpp_a60839c64d95207d4b55d0e6ddb9d9d1f}\index{main.cpp@{main.cpp}!sensorPins@{sensorPins}}
+\index{sensorPins@{sensorPins}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{sensorPins}{sensorPins}}
+{\footnotesize\ttfamily \label{main_8cpp_a60839c64d95207d4b55d0e6ddb9d9d1f} 
+const uint8\+\_\+t sensor\+Pins\mbox{[}\mbox{\hyperlink{main_8cpp_a3ac4073d185617435faaca724a413fec}{Sensor\+Count}}\mbox{]} = \{\mbox{\hyperlink{main_8cpp_a7bbdb12018674ed5c695af86b5d217c4}{S8}}, \mbox{\hyperlink{main_8cpp_aacecf1551eda779cc1c6e09a6eef764b}{S7}}, \mbox{\hyperlink{main_8cpp_a7983d910b22a2f02f3a4ed595b8ccc13}{S6}}, \mbox{\hyperlink{main_8cpp_a9f27d21e6a2077b0ec64dd2c19f73cf4}{S5}}, \mbox{\hyperlink{main_8cpp_acde777eb76d961291dbb04407339c2e2}{S4}}, \mbox{\hyperlink{main_8cpp_a774691cda50d8d29d88775f91df8fa90}{S3}}, \mbox{\hyperlink{main_8cpp_a639d36256a336a55cadffeb11c014e34}{S2}}, \mbox{\hyperlink{main_8cpp_a00aaec5f953e5f8be262fd49ed007d76}{S1}}\}}
+
+\Hypertarget{main_8cpp_a908407702b8a9dbb612a617c21ce31ba}\index{main.cpp@{main.cpp}!sensorValues@{sensorValues}}
+\index{sensorValues@{sensorValues}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{sensorValues}{sensorValues}}
+{\footnotesize\ttfamily \label{main_8cpp_a908407702b8a9dbb612a617c21ce31ba} 
+uint16\+\_\+t sensor\+Values\mbox{[}\mbox{\hyperlink{main_8cpp_a3ac4073d185617435faaca724a413fec}{Sensor\+Count}}\mbox{]}}
+
+
+
+Array que almacena las lecturas de los sensores (0-\/1023 o 0-\/4095, dependiendo de la configuración). El tamaño de este array está definido por {\ttfamily \doxylink{sensores_8hpp_a3ac4073d185617435faaca724a413fec}{Sensor\+Count}}. 
+
+\Hypertarget{main_8cpp_a8b6f34837979e0ebe80423697c0250f8}\index{main.cpp@{main.cpp}!setpoint@{setpoint}}
+\index{setpoint@{setpoint}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{setpoint}{setpoint}}
+{\footnotesize\ttfamily \label{main_8cpp_a8b6f34837979e0ebe80423697c0250f8} 
+uint16\+\_\+t setpoint = 3500}
+
+
+
+Valor deseado del error o posición (referencia). Generalmente se establece en el centro de la pista (ej. 0 o 2500), donde el error debe ser cero. 
+
+\Hypertarget{main_8cpp_ae51641b467ac93ad0a8048cad89ea66d}\index{main.cpp@{main.cpp}!zonaMuerta@{zonaMuerta}}
+\index{zonaMuerta@{zonaMuerta}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{zonaMuerta}{zonaMuerta}}
+{\footnotesize\ttfamily \label{main_8cpp_ae51641b467ac93ad0a8048cad89ea66d} 
+      uint16\+\_\+t zona\+Muerta = 50}
+
+
+
+Rango de error permitido alrededor del setpoint donde no se aplica corrección (deadband). Usado en {\ttfamily \doxylink{motores_8hpp_adcfe68224198cf968169275300dec7f4}{control\+Motores}} para evitar oscilaciones innecesarias del robot. 
+

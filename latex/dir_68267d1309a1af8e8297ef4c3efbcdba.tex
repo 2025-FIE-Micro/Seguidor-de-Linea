@@ -1,0 +1,19 @@
+\doxysection{Referencia del directorio src}
+\hypertarget{dir_68267d1309a1af8e8297ef4c3efbcdba}{}\label{dir_68267d1309a1af8e8297ef4c3efbcdba}\index{Referencia del directorio src@{Referencia del directorio src}}
+\doxysubsubsection*{Archivos}
+\begin{DoxyCompactItemize}
+\item 
+archivo \mbox{\hyperlink{config_8cpp}{config.\+cpp}}
+\begin{DoxyCompactList}\small\item\em Implementación de las constantes de configuración global y lógica de selección de perfil. Nota\+:\texorpdfstring{$\ast$}{*} Las variables globales (extern) se definen aquí con su valor inicial, dependiendo del perfil de corredor seleccionado en platformio.\+ini. \end{DoxyCompactList}\item 
+archivo \mbox{\hyperlink{drv8833_8cpp}{drv8833.\+cpp}}
+\item 
+archivo \mbox{\hyperlink{interrupciones_8cpp}{interrupciones.\+cpp}}
+\begin{DoxyCompactList}\small\item\em Implementación de las funciones de servicio de interrupción (ISR) para el control de estado RUN. Contiene la definición de la variable de estado RUN y la lógica de las ISRs para cambiar dicho estado rápidamente. \end{DoxyCompactList}\item 
+archivo \mbox{\hyperlink{main_8cpp}{main.\+cpp}}
+\begin{DoxyCompactList}\small\item\em Programa principal para el seguidor de línea de competencia (Control PID). Este archivo ensambla todos los módulos del robot\+: sensores, drivers de motor, buzzer, y la lógica de control PID. Se inicializan todos los periféricos en \doxylink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()} y se ejecuta el ciclo de control de alta frecuencia en \doxylink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}. \end{DoxyCompactList}\item 
+archivo \mbox{\hyperlink{motores_8cpp}{motores.\+cpp}}
+\begin{DoxyCompactList}\small\item\em Implementación de las funciones de control de motores de alto nivel. Contiene la lógica para la asignación de velocidad (PWM) y dirección de los motores a partir de la corrección PID o movimientos sin corrección. \end{DoxyCompactList}\item 
+archivo \mbox{\hyperlink{pid_8cpp}{pid.\+cpp}}
+\begin{DoxyCompactList}\small\item\em Implementación de la función de cálculo del controlador PID. Contiene la lógica para calcular los términos Proporcional, Integral y Derivativo y obtener la corrección final aplicada a los motores. \end{DoxyCompactList}\item 
+archivo \mbox{\hyperlink{sensores_8cpp}{sensores.\+cpp}}
+\begin{DoxyCompactList}\small\item\em Implementación de las funciones de configuración, calibración y lectura de línea. Contiene la lógica para la inicialización de la librería QTRSensors, la rutina de calibración (que incluye feedback visual y sonoro) y la función principal de lectura de la línea. \end{DoxyCompactList}\end{DoxyCompactItemize}

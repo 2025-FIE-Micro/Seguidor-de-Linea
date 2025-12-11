@@ -1,0 +1,167 @@
+\doxysection{Referencia del archivo src/motores.cpp}
+\hypertarget{motores_8cpp}{}\label{motores_8cpp}\index{src/motores.cpp@{src/motores.cpp}}
+
+
+Implementación de las funciones de control de motores de alto nivel. Contiene la lógica para la asignación de velocidad (PWM) y dirección de los motores a partir de la corrección PID o movimientos sin corrección.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}sensores.\+hpp"{}}\newline
+{\ttfamily \#include "{}config.\+hpp"{}}\newline
+{\ttfamily \#include "{}drv8833.\+hpp"{}}\newline
+{\ttfamily \#include "{}motores.\+hpp"{}}\newline
+{\ttfamily \#include "{}pid.\+hpp"{}}\newline
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{motores_8cpp_a9d98237426c9fb3c44711508dd0bdd3e}{mover\+Motores}} (int32\+\_\+t \mbox{\hyperlink{motores_8cpp_a6abf0890e5cb283ee239088e602420c6}{motor\+Speed\+Izq}}, int32\+\_\+t \mbox{\hyperlink{motores_8cpp_a9bafa76643a24230be378bcd0ddf03ba}{motor\+Speed\+Der}})
+\begin{DoxyCompactList}\small\item\em Función de interfaz que traduce las velocidades con signo a comandos del driver. Determina la dirección de cada motor (forward, reverse, stop) basándose en el signo del valor de velocidad y llama a los métodos de la clase \doxylink{class_drv8833}{Drv8833}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motores_8cpp_a0d187634fb8edf6228276eb53b06f3ca}{mover\+Motores\+Sin\+Correcion}} (int32\+\_\+t \mbox{\hyperlink{motores_8cpp_a6abf0890e5cb283ee239088e602420c6}{motor\+Speed\+Izq}}, int32\+\_\+t \mbox{\hyperlink{motores_8cpp_a9bafa76643a24230be378bcd0ddf03ba}{motor\+Speed\+Der}})
+\begin{DoxyCompactList}\small\item\em Mueve los motores sin considerar el signo, forzando solo el avance. Esta función se utiliza para movimientos donde la reversa no es necesaria (ej. calibración) y asegura que las velocidades estén limitadas entre 0 y 100. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motores_8cpp_adcfe68224198cf968169275300dec7f4}{control\+Motores}} (float correcion)
+\begin{DoxyCompactList}\small\item\em Función principal que aplica la corrección PID a las velocidades base. Implementa la lógica de la "{}zona muerta"{} (deadband) para permitir un movimiento recto sin acumular error integral cuando el error es insignificante. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int32\+\_\+t \mbox{\hyperlink{motores_8cpp_a6abf0890e5cb283ee239088e602420c6}{motor\+Speed\+Izq}} = 0
+\begin{DoxyCompactList}\small\item\em Velocidad final del motor izquierdo, calculada después de aplicar la corrección PID. Este valor puede ser positivo (avance) o negativo (reversa) y se traduce a PWM. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motores_8cpp_a9bafa76643a24230be378bcd0ddf03ba}{motor\+Speed\+Der}} = 0
+\begin{DoxyCompactList}\small\item\em Velocidad final del motor derecho, calculada después de aplicar la corrección PID. Este valor puede ser positivo (avance) o negativo (reversa) y se traduce a PWM. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_drv8833}{Drv8833}} \mbox{\hyperlink{motores_8cpp_a295e4503a2239e2a4a8d1c72a5d5df02}{motor\+Izq}}
+\begin{DoxyCompactList}\small\item\em Instancia global del driver DRV8833 para el motor del lado izquierdo. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_drv8833}{Drv8833}} \mbox{\hyperlink{motores_8cpp_add4d923a5084e869330460f9b0e9f42f}{motor\+Der}}
+\begin{DoxyCompactList}\small\item\em Instancia global del driver DRV8833 para el motor del lado derecho. \end{DoxyCompactList}\item 
+const int32\+\_\+t \mbox{\hyperlink{motores_8cpp_a1b7806663c5c1c52ee5701de3732eb4c}{max\+Speed}} = 100
+\begin{DoxyCompactList}\small\item\em Límite máximo de velocidad (PWM) que puede alcanzar cualquier motor. Usado para asegurar que la velocidad calculada por el PID no exceda la capacidad del sistema. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Implementación de las funciones de control de motores de alto nivel. Contiene la lógica para la asignación de velocidad (PWM) y dirección de los motores a partir de la corrección PID o movimientos sin corrección. 
+
+\begin{DoxyAuthor}{Autor}
+Legion de Ohm 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{motores_8cpp_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{motores_8cpp_adcfe68224198cf968169275300dec7f4}\index{motores.cpp@{motores.cpp}!controlMotores@{controlMotores}}
+\index{controlMotores@{controlMotores}!motores.cpp@{motores.cpp}}
+\doxysubsubsection{\texorpdfstring{controlMotores()}{controlMotores()}}
+{\footnotesize\ttfamily \label{motores_8cpp_adcfe68224198cf968169275300dec7f4} 
+void control\+Motores (\begin{DoxyParamCaption}\item[{float}]{correcion}{}\end{DoxyParamCaption})}
+
+
+
+Función principal que aplica la corrección PID a las velocidades base. Implementa la lógica de la "{}zona muerta"{} (deadband) para permitir un movimiento recto sin acumular error integral cuando el error es insignificante. 
+
+Función principal de control que calcula la velocidad final de cada motor. Utiliza la velocidad base ({\ttfamily \doxylink{config_8hpp_ab2b0c78a81e045d7a8f28be307b8c61b}{base\+Speed}} de \doxylink{config_8hpp}{config.\+hpp}) y aplica la corrección diferencial para determinar {\ttfamily \doxylink{motores_8hpp_a6abf0890e5cb283ee239088e602420c6}{motor\+Speed\+Izq}} y {\ttfamily \doxylink{motores_8hpp_a9bafa76643a24230be378bcd0ddf03ba}{motor\+Speed\+Der}}.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em correcion} & Valor flotante de la salida del PID (error corregido). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{motores_8cpp_a9d98237426c9fb3c44711508dd0bdd3e}\index{motores.cpp@{motores.cpp}!moverMotores@{moverMotores}}
+\index{moverMotores@{moverMotores}!motores.cpp@{motores.cpp}}
+\doxysubsubsection{\texorpdfstring{moverMotores()}{moverMotores()}}
+{\footnotesize\ttfamily \label{motores_8cpp_a9d98237426c9fb3c44711508dd0bdd3e} 
+void mover\+Motores (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{motor\+Speed\+Izq}{, }\item[{int32\+\_\+t}]{motor\+Speed\+Der}{}\end{DoxyParamCaption})}
+
+
+
+Función de interfaz que traduce las velocidades con signo a comandos del driver. Determina la dirección de cada motor (forward, reverse, stop) basándose en el signo del valor de velocidad y llama a los métodos de la clase \doxylink{class_drv8833}{Drv8833}. 
+
+Mueve los motores aplicando directamente los valores de velocidad. Esta función es la interfaz de bajo nivel que llama a las funciones {\ttfamily forward} / {\ttfamily reverse}de las instancias de los drivers ({\ttfamily \doxylink{motores_8hpp_a295e4503a2239e2a4a8d1c72a5d5df02}{motor\+Izq}}, {\ttfamily \doxylink{motores_8hpp_add4d923a5084e869330460f9b0e9f42f}{motor\+Der}}).
+
+
+\begin{DoxyParams}{Parámetros}
+{\em motor\+Speed\+Izq} & Velocidad del motor izquierdo. Positivo = avance, Negativo = reversa. \\
+\hline
+{\em motor\+Speed\+Der} & Velocidad del motor derecho. Positivo = avance, Negativo = reversa. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{motores_8cpp_a0d187634fb8edf6228276eb53b06f3ca}\index{motores.cpp@{motores.cpp}!moverMotoresSinCorrecion@{moverMotoresSinCorrecion}}
+\index{moverMotoresSinCorrecion@{moverMotoresSinCorrecion}!motores.cpp@{motores.cpp}}
+\doxysubsubsection{\texorpdfstring{moverMotoresSinCorrecion()}{moverMotoresSinCorrecion()}}
+{\footnotesize\ttfamily \label{motores_8cpp_a0d187634fb8edf6228276eb53b06f3ca} 
+void mover\+Motores\+Sin\+Correcion (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{motor\+Speed\+Izq}{, }\item[{int32\+\_\+t}]{motor\+Speed\+Der}{}\end{DoxyParamCaption})}
+
+
+
+Mueve los motores sin considerar el signo, forzando solo el avance. Esta función se utiliza para movimientos donde la reversa no es necesaria (ej. calibración) y asegura que las velocidades estén limitadas entre 0 y 100. 
+
+Mueve los motores sin aplicar la corrección. Útil para movimientos rectos o debugging.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em motor\+Speed\+Izq} & Velocidad (PWM) para el motor izquierdo (se limita a 0-\/100). \\
+\hline
+{\em motor\+Speed\+Der} & Velocidad (PWM) para el motor derecho (se limita a 0-\/100). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+
+
+\label{doc-var-members}
+\Hypertarget{motores_8cpp_doc-var-members}
+\doxysubsection{Documentación de variables}
+\Hypertarget{motores_8cpp_a1b7806663c5c1c52ee5701de3732eb4c}\index{motores.cpp@{motores.cpp}!maxSpeed@{maxSpeed}}
+\index{maxSpeed@{maxSpeed}!motores.cpp@{motores.cpp}}
+\doxysubsubsection{\texorpdfstring{maxSpeed}{maxSpeed}}
+{\footnotesize\ttfamily \label{motores_8cpp_a1b7806663c5c1c52ee5701de3732eb4c} 
+const int32\+\_\+t max\+Speed = 100}
+
+
+
+Límite máximo de velocidad (PWM) que puede alcanzar cualquier motor. Usado para asegurar que la velocidad calculada por el PID no exceda la capacidad del sistema. 
+
+\Hypertarget{motores_8cpp_add4d923a5084e869330460f9b0e9f42f}\index{motores.cpp@{motores.cpp}!motorDer@{motorDer}}
+\index{motorDer@{motorDer}!motores.cpp@{motores.cpp}}
+\doxysubsubsection{\texorpdfstring{motorDer}{motorDer}}
+{\footnotesize\ttfamily \label{motores_8cpp_add4d923a5084e869330460f9b0e9f42f} 
+\mbox{\hyperlink{class_drv8833}{Drv8833}} motor\+Der}
+
+
+
+Instancia global del driver DRV8833 para el motor del lado derecho. 
+
+\Hypertarget{motores_8cpp_a295e4503a2239e2a4a8d1c72a5d5df02}\index{motores.cpp@{motores.cpp}!motorIzq@{motorIzq}}
+\index{motorIzq@{motorIzq}!motores.cpp@{motores.cpp}}
+\doxysubsubsection{\texorpdfstring{motorIzq}{motorIzq}}
+{\footnotesize\ttfamily \label{motores_8cpp_a295e4503a2239e2a4a8d1c72a5d5df02} 
+\mbox{\hyperlink{class_drv8833}{Drv8833}} motor\+Izq}
+
+
+
+Instancia global del driver DRV8833 para el motor del lado izquierdo. 
+
+\Hypertarget{motores_8cpp_a9bafa76643a24230be378bcd0ddf03ba}\index{motores.cpp@{motores.cpp}!motorSpeedDer@{motorSpeedDer}}
+\index{motorSpeedDer@{motorSpeedDer}!motores.cpp@{motores.cpp}}
+\doxysubsubsection{\texorpdfstring{motorSpeedDer}{motorSpeedDer}}
+{\footnotesize\ttfamily \label{motores_8cpp_a9bafa76643a24230be378bcd0ddf03ba} 
+int32\+\_\+t motor\+Speed\+Der = 0}
+
+
+
+Velocidad final del motor derecho, calculada después de aplicar la corrección PID. Este valor puede ser positivo (avance) o negativo (reversa) y se traduce a PWM. 
+
+\Hypertarget{motores_8cpp_a6abf0890e5cb283ee239088e602420c6}\index{motores.cpp@{motores.cpp}!motorSpeedIzq@{motorSpeedIzq}}
+\index{motorSpeedIzq@{motorSpeedIzq}!motores.cpp@{motores.cpp}}
+\doxysubsubsection{\texorpdfstring{motorSpeedIzq}{motorSpeedIzq}}
+{\footnotesize\ttfamily \label{motores_8cpp_a6abf0890e5cb283ee239088e602420c6} 
+int32\+\_\+t motor\+Speed\+Izq = 0}
+
+
+
+Velocidad final del motor izquierdo, calculada después de aplicar la corrección PID. Este valor puede ser positivo (avance) o negativo (reversa) y se traduce a PWM. 
+

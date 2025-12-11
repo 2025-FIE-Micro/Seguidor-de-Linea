@@ -1,0 +1,63 @@
+\doxysection{config.\+hpp}
+\hypertarget{config_8hpp_source}{}\label{config_8hpp_source}\index{include/config.hpp@{include/config.hpp}}
+\mbox{\hyperlink{config_8hpp}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sensores_8hpp}{sensores.hpp}}"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66d}{Linea}}\ \mbox{\hyperlink{config_8hpp_ad41c7e6046107ea067785fa523ddab36}{linea\_competencia}};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{config_8hpp_ab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{config_8hpp_ae0fd140825889f1a7ed103b66c28ce38}{Ku}};}
+\DoxyCodeLine{00037\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{config_8hpp_a38eca5301b0c8380eaea74f460237a09}{Tu}};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{config_8hpp_a790f9df599f1d6c92855645c65a0cccc}{Kp}};}
+\DoxyCodeLine{00054\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{config_8hpp_a0534f74e5e04a4433256a6d9bb982d2e}{Ki}};}
+\DoxyCodeLine{00059\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{config_8hpp_ad76756e0056f2f5ec10057052cbed3c9}{Kd}};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#ifdef\ DEBUG}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\ \ \#define\ deb(x)\ x}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\ \ \#define\ deb(x)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#if\ USAR\_MICROS}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\ \ \#define\ tiempoActual()\ micros()}}
+\DoxyCodeLine{00080\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{config_8hpp_a3807edcc6e235d1ebb8cef39fb2dc337}{TIME\_DIVISOR}}\ =\ 1000000.0;}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\ \ \#define\ tiempoActual()\ millis()}}
+\DoxyCodeLine{00083\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{config_8hpp_a3807edcc6e235d1ebb8cef39fb2dc337}{TIME\_DIVISOR}}\ =\ 1000.0;}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ NIGHTFALL\ 1}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ ARGENTUM\ \ 2}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ DIEGO\ \ \ \ \ 3}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#ifndef\ CORREDOR}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\ \ \#error\ "{}Debe\ definir\ CORREDOR\ en\ platformio.ini\ (ej:\ -\/D\ CORREDOR=NIGHTFALL)"{}}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#ifdef\ MUTEAR}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\ \ \ \ \#define\ mute(bz)}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#else}\textcolor{preprocessor}{\ \ \ \ }}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\ \ \ \#define\ mute(bz)\ bz}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#ifdef\ USAR\_CONTROL\_IR}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\ \ \ \ \#define\ control\_ir(IR)\ IR}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#else}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\ \ \ \ \#define\ control\_ir(IR)}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

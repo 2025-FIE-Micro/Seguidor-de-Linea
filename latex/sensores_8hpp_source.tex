@@ -1,0 +1,47 @@
+\doxysection{sensores.\+hpp}
+\hypertarget{sensores_8hpp_source}{}\label{sensores_8hpp_source}\index{include/sensores.hpp@{include/sensores.hpp}}
+\mbox{\hyperlink{sensores_8hpp}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}QTRSensors.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{buzzer_8hpp}{buzzer.hpp}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ ===================================}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ TIPOS\ DE\ DATOS\ Y\ CONSTANTES}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ ===================================}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66d}{Linea}}\ \{\ }
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66da637182e28b9d39bb102f3309c827c1e7}{BLANCA}},\ }
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66dac4f59a0066d6178a05185e2041f74571}{NEGRA}}\ \ \ }
+\DoxyCodeLine{00023\ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ ===================================}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ VARIABLES\ GLOBALES\ (extern)}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ ===================================}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{extern}\ QTRSensors\ \mbox{\hyperlink{sensores_8hpp_a9e05607474a03ba0b5bd2ee27c003524}{qtr}};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ uint8\_t\ \mbox{\hyperlink{sensores_8hpp_a3ac4073d185617435faaca724a413fec}{SensorCount}};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{extern}\ uint16\_t\ \mbox{\hyperlink{sensores_8hpp_a997c373dc8e57c8d7edc5672ea97bc3f}{sensorValues}}[];}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{extern}\ uint16\_t\ \mbox{\hyperlink{sensores_8hpp_a6f14bde43ef12199f2d2ef07adb6c942}{position}};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ uint8\_t\ \mbox{\hyperlink{sensores_8hpp_ab94a044ae6bf552465ae9ccfb9b27c04}{ledCalibracion}};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{class_buzzer}{Buzzer}}\ \mbox{\hyperlink{sensores_8hpp_ab09674ce6646dd45db889c40607a500a}{buzzer}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ ===================================}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ PROTOTIPOS\ DE\ FUNCIONES}}
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ ===================================}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00075\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sensores_8hpp_a2f219266814710460b32105d03655688}{setupSensores}}(\textcolor{keyword}{const}\ uint8\_t*\ \mbox{\hyperlink{main_8cpp_a60839c64d95207d4b55d0e6ddb9d9d1f}{sensorPins}},\ uint8\_t\ \mbox{\hyperlink{sensores_8hpp_a3ac4073d185617435faaca724a413fec}{SensorCount}});}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00081\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sensores_8hpp_a087f5f49fa452708bb142e6af46d4b94}{calibrarSensores}}();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00087\ uint16\_t\ \mbox{\hyperlink{sensores_8hpp_a739ecba438965ecfcd4cea298b08d2ca}{leerLinea}}();}
+
+\end{DoxyCode}

@@ -1,0 +1,69 @@
+\doxysection{Referencia del archivo include/interrupciones.hpp}
+\hypertarget{interrupciones_8hpp}{}\label{interrupciones_8hpp}\index{include/interrupciones.hpp@{include/interrupciones.hpp}}
+
+
+Cabecera para la gestión de las interrupciones externas (ISR). Este módulo maneja la lógica de inicio y detención de la rutina principal del robot a través de un pin de interrupción (ej. un botón o jumper de seguridad).  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void IRAM\+\_\+\+ATTR \mbox{\hyperlink{interrupciones_8hpp_ac43d7f08eeb67b32fc99e80cbe45b48f}{handle\+Run}} ()
+\begin{DoxyCompactList}\small\item\em Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo {\ttfamily IRAM\+\_\+\+ATTR} se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece {\ttfamily \doxylink{interrupciones_8hpp_a081d22c8c0bb30d050a1a7c4505f00b9}{RUN} = true;}. \end{DoxyCompactList}\item 
+void IRAM\+\_\+\+ATTR \mbox{\hyperlink{interrupciones_8hpp_ad381aa5df28fccb991bc49fcb5856b43}{handle\+Stop}} ()
+\begin{DoxyCompactList}\small\item\em Función de servicio de interrupción (ISR) para detener la rutina principal. Se ejecuta cuando se detecta el evento de detención en el pin de interrupción. Esta función probablemente establece {\ttfamily \doxylink{interrupciones_8hpp_a081d22c8c0bb30d050a1a7c4505f00b9}{RUN} = false;}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile bool \mbox{\hyperlink{interrupciones_8hpp_a081d22c8c0bb30d050a1a7c4505f00b9}{RUN}}
+\begin{DoxyCompactList}\small\item\em Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador {\ttfamily volatile} es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal ({\ttfamily \doxylink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Cabecera para la gestión de las interrupciones externas (ISR). Este módulo maneja la lógica de inicio y detención de la rutina principal del robot a través de un pin de interrupción (ej. un botón o jumper de seguridad). 
+
+\begin{DoxyAuthor}{Autor}
+Legion de Ohm 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{interrupciones_8hpp_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{interrupciones_8hpp_ac43d7f08eeb67b32fc99e80cbe45b48f}\index{interrupciones.hpp@{interrupciones.hpp}!handleRun@{handleRun}}
+\index{handleRun@{handleRun}!interrupciones.hpp@{interrupciones.hpp}}
+\doxysubsubsection{\texorpdfstring{handleRun()}{handleRun()}}
+{\footnotesize\ttfamily \label{interrupciones_8hpp_ac43d7f08eeb67b32fc99e80cbe45b48f} 
+void IRAM\+\_\+\+ATTR handle\+Run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo {\ttfamily IRAM\+\_\+\+ATTR} se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece {\ttfamily \doxylink{interrupciones_8hpp_a081d22c8c0bb30d050a1a7c4505f00b9}{RUN} = true;}. 
+
+Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo {\ttfamily IRAM\+\_\+\+ATTR} se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece {\ttfamily \doxylink{interrupciones_8hpp_a081d22c8c0bb30d050a1a7c4505f00b9}{RUN} = true;}. \Hypertarget{interrupciones_8hpp_ad381aa5df28fccb991bc49fcb5856b43}\index{interrupciones.hpp@{interrupciones.hpp}!handleStop@{handleStop}}
+\index{handleStop@{handleStop}!interrupciones.hpp@{interrupciones.hpp}}
+\doxysubsubsection{\texorpdfstring{handleStop()}{handleStop()}}
+{\footnotesize\ttfamily \label{interrupciones_8hpp_ad381aa5df28fccb991bc49fcb5856b43} 
+void IRAM\+\_\+\+ATTR handle\+Stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función de servicio de interrupción (ISR) para detener la rutina principal. Se ejecuta cuando se detecta el evento de detención en el pin de interrupción. Esta función probablemente establece {\ttfamily \doxylink{interrupciones_8hpp_a081d22c8c0bb30d050a1a7c4505f00b9}{RUN} = false;}. 
+
+Función de servicio de interrupción (ISR) para detener la rutina principal. Se ejecuta cuando se detecta el evento de detención en el pin de interrupción. Esta función probablemente establece {\ttfamily \doxylink{interrupciones_8hpp_a081d22c8c0bb30d050a1a7c4505f00b9}{RUN} = false;}. 
+
+\label{doc-var-members}
+\Hypertarget{interrupciones_8hpp_doc-var-members}
+\doxysubsection{Documentación de variables}
+\Hypertarget{interrupciones_8hpp_a081d22c8c0bb30d050a1a7c4505f00b9}\index{interrupciones.hpp@{interrupciones.hpp}!RUN@{RUN}}
+\index{RUN@{RUN}!interrupciones.hpp@{interrupciones.hpp}}
+\doxysubsubsection{\texorpdfstring{RUN}{RUN}}
+{\footnotesize\ttfamily \label{interrupciones_8hpp_a081d22c8c0bb30d050a1a7c4505f00b9} 
+volatile bool RUN\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador {\ttfamily volatile} es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal ({\ttfamily \doxylink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}}). 
+
+Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. Se inicializa en \textquotesingle{}false\textquotesingle{}, requiriendo una interrupción externa para iniciar la operación. 

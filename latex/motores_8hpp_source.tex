@@ -1,0 +1,38 @@
+\doxysection{motores.\+hpp}
+\hypertarget{motores_8hpp_source}{}\label{motores_8hpp_source}\index{include/motores.hpp@{include/motores.hpp}}
+\mbox{\hyperlink{motores_8hpp}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{config_8hpp}{config.hpp}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{drv8833_8hpp}{drv8833.hpp}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sensores_8hpp}{sensores.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pid_8hpp}{pid.hpp}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ ===================================}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ VARIABLES\ GLOBALES\ DE\ MOVIMIENTO}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ ===================================}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{extern}\ int32\_t\ \mbox{\hyperlink{motores_8hpp_a6abf0890e5cb283ee239088e602420c6}{motorSpeedIzq}};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{extern}\ int32\_t\ \mbox{\hyperlink{motores_8hpp_a9bafa76643a24230be378bcd0ddf03ba}{motorSpeedDer}};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{class_drv8833}{Drv8833}}\ \mbox{\hyperlink{motores_8hpp_a295e4503a2239e2a4a8d1c72a5d5df02}{motorIzq}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{class_drv8833}{Drv8833}}\ \mbox{\hyperlink{motores_8hpp_add4d923a5084e869330460f9b0e9f42f}{motorDer}};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ int32\_t\ \mbox{\hyperlink{motores_8hpp_a1b7806663c5c1c52ee5701de3732eb4c}{maxSpeed}};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ ===================================}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ FUNCIONES\ DE\ CONTROL\ DE\ MOVIMIENTO}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ ===================================}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00057\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{motores_8hpp_adcfe68224198cf968169275300dec7f4}{controlMotores}}(\textcolor{keywordtype}{float}\ correcion);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00065\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{motores_8hpp_a9d98237426c9fb3c44711508dd0bdd3e}{moverMotores}}(int32\_t\ \mbox{\hyperlink{motores_8hpp_a6abf0890e5cb283ee239088e602420c6}{motorSpeedIzq}},\ int32\_t\ \mbox{\hyperlink{motores_8hpp_a9bafa76643a24230be378bcd0ddf03ba}{motorSpeedDer}});}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00073\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{motores_8hpp_a0d187634fb8edf6228276eb53b06f3ca}{moverMotoresSinCorrecion}}(int32\_t\ \mbox{\hyperlink{motores_8hpp_a6abf0890e5cb283ee239088e602420c6}{motorSpeedIzq}},\ int32\_t\ \mbox{\hyperlink{motores_8hpp_a9bafa76643a24230be378bcd0ddf03ba}{motorSpeedDer}});}
+
+\end{DoxyCode}

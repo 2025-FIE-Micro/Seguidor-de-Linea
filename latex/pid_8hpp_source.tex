@@ -1,0 +1,32 @@
+\doxysection{pid.\+hpp}
+\hypertarget{pid_8hpp_source}{}\label{pid_8hpp_source}\index{include/pid.hpp@{include/pid.hpp}}
+\mbox{\hyperlink{pid_8hpp}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ ===================================}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ VARIABLES\ DE\ REFERENCIA\ Y\ ZONA\ SEGURA}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ ===================================}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{extern}\ uint16\_t\ \mbox{\hyperlink{pid_8hpp_a8b6f34837979e0ebe80423697c0250f8}{setpoint}};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{extern}\ uint16\_t\ \mbox{\hyperlink{pid_8hpp_aab7a8228729d5377011a111f72bef773}{zonaMuerta}};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ ===================================}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ VARIABLES\ DE\ ESTADO\ PID}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ ===================================}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{pid_8hpp_aa816869ccf685e5813827a4dae362891}{lastError}};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{pid_8hpp_a1174af01b8a329a6d465ea6e0951b3e5}{integral}};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{extern}\ uint32\_t\ \mbox{\hyperlink{pid_8hpp_ae6951301aef881b2aafcbe3538a45148}{lastTime}};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ ===================================}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ FUNCIÓN\ PRINCIPAL}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ ===================================}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00056\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{pid_8hpp_aaa3441d50a3a4f31e76e5014882b3a95}{calculo\_pid}}(uint16\_t\ pos,\ \textcolor{keywordtype}{float}\ deltaTime);}
+
+\end{DoxyCode}

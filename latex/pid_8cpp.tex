@@ -1,0 +1,119 @@
+\doxysection{Referencia del archivo src/pid.cpp}
+\hypertarget{pid_8cpp}{}\label{pid_8cpp}\index{src/pid.cpp@{src/pid.cpp}}
+
+
+Implementación de la función de cálculo del controlador PID. Contiene la lógica para calcular los términos Proporcional, Integral y Derivativo y obtener la corrección final aplicada a los motores.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}config.\+hpp"{}}\newline
+{\ttfamily \#include "{}drv8833.\+hpp"{}}\newline
+{\ttfamily \#include "{}pid.\+hpp"{}}\newline
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+  float \mbox{\hyperlink{pid_8cpp_a2eb257527413db6cbb15bc7e02abe4df}{calculo\+\_\+pid}} (uint16\+\_\+t pos, float delta\+Time)
+\begin{DoxyCompactList}\small\item\em Calcula la corrección necesaria para el sistema usando la fórmula PID. Este es el núcleo del algoritmo de control. Utiliza las constantes Kp, Ki, Kd definidas en {\ttfamily \doxylink{config_8cpp}{config.\+cpp}} para generar un valor de corrección basado en el error actual, la acumulación del error y la tasa de cambio del error. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{pid_8cpp_a8b6f34837979e0ebe80423697c0250f8}{setpoint}} = 0
+\begin{DoxyCompactList}\small\item\em Valor deseado del error o posición (referencia). Generalmente se establece en el centro de la pista (ej. 0 o 2500), donde el error debe ser cero. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{pid_8cpp_aab7a8228729d5377011a111f72bef773}{zona\+Muerta}} = 0
+\begin{DoxyCompactList}\small\item\em Rango de error permitido alrededor del setpoint donde no se aplica corrección (deadband). Usado en {\ttfamily \doxylink{motores_8hpp_adcfe68224198cf968169275300dec7f4}{control\+Motores}} para evitar oscilaciones innecesarias del robot. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{pid_8cpp_aa816869ccf685e5813827a4dae362891}{last\+Error}} = 0
+\begin{DoxyCompactList}\small\item\em Último valor de error calculado en la iteración anterior. Es esencial para el término Derivativo (D) del PID, ya que calcula el cambio en el error. \end{DoxyCompactList}\item 
+  float \mbox{\hyperlink{pid_8cpp_a4da285cdac9ee962e446e98680eb9fcf}{integral}} = 0
+\begin{DoxyCompactList}\small\item\em Acumulador del error a lo largo del tiempo. Es esencial para el término Integral (I) del PID, ayudando a corregir errores persistentes. \end{DoxyCompactList}\item 
+    uint32\+\_\+t \mbox{\hyperlink{pid_8cpp_af2658ec3a4be896b5f81ae8f4a5f97ed}{last\+Time}} = 0
+\begin{DoxyCompactList}\small\item\em Marca de tiempo (millis o micros) del último cálculo de PID. Se utiliza para calcular el tiempo transcurrido (\$\textbackslash{}\+Delta T\$), necesario para los términos Integral y Derivativo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Implementación de la función de cálculo del controlador PID. Contiene la lógica para calcular los términos Proporcional, Integral y Derivativo y obtener la corrección final aplicada a los motores. 
+
+\begin{DoxyAuthor}{Autor}
+Legion de Ohm 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{pid_8cpp_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{pid_8cpp_a2eb257527413db6cbb15bc7e02abe4df}\index{pid.cpp@{pid.cpp}!calculo\_pid@{calculo\_pid}}
+\index{calculo\_pid@{calculo\_pid}!pid.cpp@{pid.cpp}}
+\doxysubsubsection{\texorpdfstring{calculo\_pid()}{calculo\_pid()}}
+{\footnotesize\ttfamily \label{pid_8cpp_a2eb257527413db6cbb15bc7e02abe4df} 
+  float calculo\+\_\+pid (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{pos}{, }\item[{float}]{delta\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Calcula la corrección necesaria para el sistema usando la fórmula PID. Este es el núcleo del algoritmo de control. Utiliza las constantes Kp, Ki, Kd definidas en {\ttfamily \doxylink{config_8cpp}{config.\+cpp}} para generar un valor de corrección basado en el error actual, la acumulación del error y la tasa de cambio del error. 
+
+Calcula la corrección necesaria para el sistema usando la fórmula PID. La salida es la corrección que se suma o resta de la velocidad base de los motores. La fórmula general es\+: \$ \textbackslash{}text\{Salida\} = K\+\_\+p \textbackslash{}cdot \textbackslash{}text\{Error\} + K\+\_\+i \textbackslash{}cdot \textbackslash{}text\{Integral\} + K\+\_\+d \textbackslash{}cdot \textbackslash{}text\{Derivativo\} \$.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pos} & Posición actual leída por los sensores. Este es el valor de entrada del proceso. \\
+\hline
+{\em delta\+Time} & Tiempo transcurrido (\$\textbackslash{}\+Delta T\$) desde el último cálculo de PID (en segundos). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+float Valor de corrección PID (output) a aplicar a las velocidades de los motores. 
+\end{DoxyReturn}
+
+
+\label{doc-var-members}
+\Hypertarget{pid_8cpp_doc-var-members}
+\doxysubsection{Documentación de variables}
+\Hypertarget{pid_8cpp_a4da285cdac9ee962e446e98680eb9fcf}\index{pid.cpp@{pid.cpp}!integral@{integral}}
+\index{integral@{integral}!pid.cpp@{pid.cpp}}
+\doxysubsubsection{\texorpdfstring{integral}{integral}}
+{\footnotesize\ttfamily \label{pid_8cpp_a4da285cdac9ee962e446e98680eb9fcf} 
+  float integral = 0}
+
+
+
+Acumulador del error a lo largo del tiempo. Es esencial para el término Integral (I) del PID, ayudando a corregir errores persistentes. 
+
+\Hypertarget{pid_8cpp_aa816869ccf685e5813827a4dae362891}\index{pid.cpp@{pid.cpp}!lastError@{lastError}}
+\index{lastError@{lastError}!pid.cpp@{pid.cpp}}
+\doxysubsubsection{\texorpdfstring{lastError}{lastError}}
+{\footnotesize\ttfamily \label{pid_8cpp_aa816869ccf685e5813827a4dae362891} 
+float last\+Error = 0}
+
+
+
+Último valor de error calculado en la iteración anterior. Es esencial para el término Derivativo (D) del PID, ya que calcula el cambio en el error. 
+
+\Hypertarget{pid_8cpp_af2658ec3a4be896b5f81ae8f4a5f97ed}\index{pid.cpp@{pid.cpp}!lastTime@{lastTime}}
+\index{lastTime@{lastTime}!pid.cpp@{pid.cpp}}
+\doxysubsubsection{\texorpdfstring{lastTime}{lastTime}}
+{\footnotesize\ttfamily \label{pid_8cpp_af2658ec3a4be896b5f81ae8f4a5f97ed} 
+    uint32\+\_\+t last\+Time = 0}
+
+
+
+Marca de tiempo (millis o micros) del último cálculo de PID. Se utiliza para calcular el tiempo transcurrido (\$\textbackslash{}\+Delta T\$), necesario para los términos Integral y Derivativo. 
+
+\Hypertarget{pid_8cpp_a8b6f34837979e0ebe80423697c0250f8}\index{pid.cpp@{pid.cpp}!setpoint@{setpoint}}
+\index{setpoint@{setpoint}!pid.cpp@{pid.cpp}}
+\doxysubsubsection{\texorpdfstring{setpoint}{setpoint}}
+{\footnotesize\ttfamily \label{pid_8cpp_a8b6f34837979e0ebe80423697c0250f8} 
+uint16\+\_\+t setpoint = 0}
+
+
+
+Valor deseado del error o posición (referencia). Generalmente se establece en el centro de la pista (ej. 0 o 2500), donde el error debe ser cero. 
+
+\Hypertarget{pid_8cpp_aab7a8228729d5377011a111f72bef773}\index{pid.cpp@{pid.cpp}!zonaMuerta@{zonaMuerta}}
+\index{zonaMuerta@{zonaMuerta}!pid.cpp@{pid.cpp}}
+\doxysubsubsection{\texorpdfstring{zonaMuerta}{zonaMuerta}}
+{\footnotesize\ttfamily \label{pid_8cpp_aab7a8228729d5377011a111f72bef773} 
+uint16\+\_\+t zona\+Muerta = 0}
+
+
+
+Rango de error permitido alrededor del setpoint donde no se aplica corrección (deadband). Usado en {\ttfamily \doxylink{motores_8hpp_adcfe68224198cf968169275300dec7f4}{control\+Motores}} para evitar oscilaciones innecesarias del robot. 
+

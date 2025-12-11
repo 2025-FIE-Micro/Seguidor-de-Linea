@@ -1,0 +1,153 @@
+\doxysection{Referencia del archivo src/sensores.cpp}
+\hypertarget{sensores_8cpp}{}\label{sensores_8cpp}\index{src/sensores.cpp@{src/sensores.cpp}}
+
+
+Implementación de las funciones de configuración, calibración y lectura de línea. Contiene la lógica para la inicialización de la librería QTRSensors, la rutina de calibración (que incluye feedback visual y sonoro) y la función principal de lectura de la línea.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}sensores.\+hpp"{}}\newline
+{\ttfamily \#include "{}motores.\+hpp"{}}\newline
+{\ttfamily \#include "{}config.\+hpp"{}}\newline
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{sensores_8cpp_a087f5f49fa452708bb142e6af46d4b94}{calibrar\+Sensores}} ()
+\begin{DoxyCompactList}\small\item\em Ejecuta la rutina de calibración automática para los sensores QTR. Durante la calibración, el robot debe moverse lentamente sobre la línea y el fondo. El proceso parpadea el LED de calibración y emite tonos para indicar el inicio y fin. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{sensores_8cpp_a739ecba438965ecfcd4cea298b08d2ca}{leer\+Linea}} ()
+\begin{DoxyCompactList}\small\item\em Lee los sensores y calcula la posición ponderada de la línea. Utiliza la constante global {\ttfamily \doxylink{config_8hpp_ad41c7e6046107ea067785fa523ddab36}{linea\+\_\+competencia}} (NEGRA o BLANCA) para seleccionar el modo de lectura de la librería QTR ({\ttfamily read\+Line\+Black} o {\ttfamily read\+Line\+White}). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sensores_8cpp_a2f219266814710460b32105d03655688}{setup\+Sensores}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{main_8cpp_a60839c64d95207d4b55d0e6ddb9d9d1f}{sensor\+Pins}}, uint8\+\_\+t \mbox{\hyperlink{sensores_8cpp_a3ac4073d185617435faaca724a413fec}{Sensor\+Count}})
+\begin{DoxyCompactList}\small\item\em Inicializa el objeto QTR y configura los pines del sensor. Este método debe llamarse una sola vez en el {\ttfamily \doxylink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}} de Arduino. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+QTRSensors \mbox{\hyperlink{sensores_8cpp_a9e05607474a03ba0b5bd2ee27c003524}{qtr}}
+\begin{DoxyCompactList}\small\item\em Objeto principal de la librería QTRSensors para interactuar con el array de sensores. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \mbox{\hyperlink{sensores_8cpp_a3ac4073d185617435faaca724a413fec}{Sensor\+Count}} = 8
+\begin{DoxyCompactList}\small\item\em Número de sensores infrarrojos utilizados en el array QTR. Este valor es crucial para el tamaño de los arrays de lectura y para las funciones de calibración. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{sensores_8cpp_a7e7673265d26c213547b4fd096136984}{sensor\+Values}} \mbox{[}8\mbox{]}
+\begin{DoxyCompactList}\small\item\em Array que almacena las lecturas de los sensores (0-\/1023 o 0-\/4095, dependiendo de la configuración). El tamaño de este array está definido por {\ttfamily \doxylink{sensores_8hpp_a3ac4073d185617435faaca724a413fec}{Sensor\+Count}}. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{sensores_8cpp_a6f14bde43ef12199f2d2ef07adb6c942}{position}} = 0
+\begin{DoxyCompactList}\small\item\em Posición calculada de la línea. Es el valor de la salida del proceso (PV), usado como entrada para el controlador PID. Este valor se normaliza (ej. 0 a 4000) donde el centro es el punto de referencia ({\ttfamily \doxylink{pid_8hpp_a8b6f34837979e0ebe80423697c0250f8}{setpoint}}). \end{DoxyCompactList}\item 
+const uint8\+\_\+t \mbox{\hyperlink{sensores_8cpp_ab94a044ae6bf552465ae9ccfb9b27c04}{led\+Calibracion}} = 13
+\begin{DoxyCompactList}\small\item\em Pin GPIO conectado al LED que indica el estado de calibración. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Implementación de las funciones de configuración, calibración y lectura de línea. Contiene la lógica para la inicialización de la librería QTRSensors, la rutina de calibración (que incluye feedback visual y sonoro) y la función principal de lectura de la línea. 
+
+\begin{DoxyAuthor}{Autor}
+Legion de Ohm 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{sensores_8cpp_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{sensores_8cpp_a087f5f49fa452708bb142e6af46d4b94}\index{sensores.cpp@{sensores.cpp}!calibrarSensores@{calibrarSensores}}
+\index{calibrarSensores@{calibrarSensores}!sensores.cpp@{sensores.cpp}}
+\doxysubsubsection{\texorpdfstring{calibrarSensores()}{calibrarSensores()}}
+{\footnotesize\ttfamily \label{sensores_8cpp_a087f5f49fa452708bb142e6af46d4b94} 
+void calibrar\+Sensores (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Ejecuta la rutina de calibración automática para los sensores QTR. Durante la calibración, el robot debe moverse lentamente sobre la línea y el fondo. El proceso parpadea el LED de calibración y emite tonos para indicar el inicio y fin. 
+
+Rutina de calibración de los sensores para adaptarse a las condiciones de la pista. Ejecuta un ciclo de calibración (ej. 2.\+5 segundos) para determinar los valores mínimo y máximo de blanco y negro, crucial para la lectura precisa de la línea.
+
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{sensores_8cpp_a739ecba438965ecfcd4cea298b08d2ca}\index{sensores.cpp@{sensores.cpp}!leerLinea@{leerLinea}}
+\index{leerLinea@{leerLinea}!sensores.cpp@{sensores.cpp}}
+\doxysubsubsection{\texorpdfstring{leerLinea()}{leerLinea()}}
+{\footnotesize\ttfamily \label{sensores_8cpp_a739ecba438965ecfcd4cea298b08d2ca} 
+uint16\+\_\+t leer\+Linea (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Lee los sensores y calcula la posición ponderada de la línea. Utiliza la constante global {\ttfamily \doxylink{config_8hpp_ad41c7e6046107ea067785fa523ddab36}{linea\+\_\+competencia}} (NEGRA o BLANCA) para seleccionar el modo de lectura de la librería QTR ({\ttfamily read\+Line\+Black} o {\ttfamily read\+Line\+White}). 
+
+Lee los sensores y calcula la posición ponderada de la línea. Utiliza la función {\ttfamily read\+Line()} de la librería QTR para devolver un valor normalizado que indica el desplazamiento lateral respecto al centro del array.
+
+\begin{DoxyReturn}{Devuelve}
+uint16\+\_\+t La posición ponderada de la línea. (Ej. 0 a 4000). 
+\end{DoxyReturn}
+\Hypertarget{sensores_8cpp_a2f219266814710460b32105d03655688}\index{sensores.cpp@{sensores.cpp}!setupSensores@{setupSensores}}
+\index{setupSensores@{setupSensores}!sensores.cpp@{sensores.cpp}}
+\doxysubsubsection{\texorpdfstring{setupSensores()}{setupSensores()}}
+{\footnotesize\ttfamily \label{sensores_8cpp_a2f219266814710460b32105d03655688} 
+void setup\+Sensores (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{sensor\+Pins}{, }\item[{uint8\+\_\+t}]{Sensor\+Count}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa el objeto QTR y configura los pines del sensor. Este método debe llamarse una sola vez en el {\ttfamily \doxylink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}} de Arduino. 
+
+Inicializa el objeto QTRSensors con los pines de entrada/salida.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em sensor\+Pins} & Array que contiene los pines GPIO a los que están conectados los sensores. \\
+\hline
+{\em Sensor\+Count} & Número total de sensores a inicializar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+
+
+\label{doc-var-members}
+\Hypertarget{sensores_8cpp_doc-var-members}
+\doxysubsection{Documentación de variables}
+\Hypertarget{sensores_8cpp_ab94a044ae6bf552465ae9ccfb9b27c04}\index{sensores.cpp@{sensores.cpp}!ledCalibracion@{ledCalibracion}}
+\index{ledCalibracion@{ledCalibracion}!sensores.cpp@{sensores.cpp}}
+\doxysubsubsection{\texorpdfstring{ledCalibracion}{ledCalibracion}}
+{\footnotesize\ttfamily \label{sensores_8cpp_ab94a044ae6bf552465ae9ccfb9b27c04} 
+const uint8\+\_\+t led\+Calibracion = 13}
+
+
+
+Pin GPIO conectado al LED que indica el estado de calibración. 
+
+\Hypertarget{sensores_8cpp_a6f14bde43ef12199f2d2ef07adb6c942}\index{sensores.cpp@{sensores.cpp}!position@{position}}
+\index{position@{position}!sensores.cpp@{sensores.cpp}}
+\doxysubsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily \label{sensores_8cpp_a6f14bde43ef12199f2d2ef07adb6c942} 
+uint16\+\_\+t position = 0}
+
+
+
+Posición calculada de la línea. Es el valor de la salida del proceso (PV), usado como entrada para el controlador PID. Este valor se normaliza (ej. 0 a 4000) donde el centro es el punto de referencia ({\ttfamily \doxylink{pid_8hpp_a8b6f34837979e0ebe80423697c0250f8}{setpoint}}). 
+
+\Hypertarget{sensores_8cpp_a9e05607474a03ba0b5bd2ee27c003524}\index{sensores.cpp@{sensores.cpp}!qtr@{qtr}}
+\index{qtr@{qtr}!sensores.cpp@{sensores.cpp}}
+\doxysubsubsection{\texorpdfstring{qtr}{qtr}}
+{\footnotesize\ttfamily \label{sensores_8cpp_a9e05607474a03ba0b5bd2ee27c003524} 
+QTRSensors qtr}
+
+
+
+Objeto principal de la librería QTRSensors para interactuar con el array de sensores. 
+
+\Hypertarget{sensores_8cpp_a3ac4073d185617435faaca724a413fec}\index{sensores.cpp@{sensores.cpp}!SensorCount@{SensorCount}}
+\index{SensorCount@{SensorCount}!sensores.cpp@{sensores.cpp}}
+\doxysubsubsection{\texorpdfstring{SensorCount}{SensorCount}}
+{\footnotesize\ttfamily \label{sensores_8cpp_a3ac4073d185617435faaca724a413fec} 
+const uint8\+\_\+t Sensor\+Count = 8}
+
+
+
+Número de sensores infrarrojos utilizados en el array QTR. Este valor es crucial para el tamaño de los arrays de lectura y para las funciones de calibración. 
+
+\Hypertarget{sensores_8cpp_a7e7673265d26c213547b4fd096136984}\index{sensores.cpp@{sensores.cpp}!sensorValues@{sensorValues}}
+\index{sensorValues@{sensorValues}!sensores.cpp@{sensores.cpp}}
+\doxysubsubsection{\texorpdfstring{sensorValues}{sensorValues}}
+{\footnotesize\ttfamily \label{sensores_8cpp_a7e7673265d26c213547b4fd096136984} 
+uint16\+\_\+t sensor\+Values\mbox{[}8\mbox{]}}
+
+
+
+Array que almacena las lecturas de los sensores (0-\/1023 o 0-\/4095, dependiendo de la configuración). El tamaño de este array está definido por {\ttfamily \doxylink{sensores_8hpp_a3ac4073d185617435faaca724a413fec}{Sensor\+Count}}. 
+

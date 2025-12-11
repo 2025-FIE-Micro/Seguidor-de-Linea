@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Seguidor de Línea: Referencia de la clase Drv8833</title>
+<link rel="icon" href="SeguidoresDeLinea_ElDiego_55px.png" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Seguidor de Línea
+   </div>
+   <div id="projectbrief">Controlador de movimiento de Seguidor de Línea usando PID para competencia de robótica.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.15.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('class_drv8833.html','','class_drv8833-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referencia de la clase Drv8833</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Clase que encapsula la lógica y configuración para controlar un motor DC a través del driver DRV8833. Incluye funciones para configurar sus pines, ajustar el PWM y manejar la dirección del motor (adelante/atrás).  
+ <a href="#details">Más...</a></p>
+
+<p><code>#include &lt;<a class="el" href="drv8833_8hpp_source.html">drv8833.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Métodos públicos</h2></td></tr>
+<tr class="memitem:aa56746ae518b37ed1ab33885bba82da0" id="r_aa56746ae518b37ed1ab33885bba82da0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa56746ae518b37ed1ab33885bba82da0">Drv8833</a> ()</td></tr>
+<tr class="memdesc:aa56746ae518b37ed1ab33885bba82da0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor por defecto. Inicializa la instancia del driver. Se asume que el pin Sleep está habilitado (HIGH) o controlado externamente para activar el driver.    <br /></td></tr>
+<tr class="memitem:aaa709b8d35a36bcc162402f362c0ee96" id="r_aaa709b8d35a36bcc162402f362c0ee96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa709b8d35a36bcc162402f362c0ee96">setup</a> (uint8_t pinIN1, uint8_t pinIN2, uint8_t pinSleep, uint8_t chPWM, uint32_t <a class="el" href="main_8cpp.html#a8c43e3511adff203060e1d0864e4bf05">freqPWM</a>, uint8_t <a class="el" href="main_8cpp.html#addd24b2d185dd0276f79f49314ae3b48">resPWM</a>)</td></tr>
+<tr class="memdesc:aaa709b8d35a36bcc162402f362c0ee96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configura los pines de control del motor y el canal PWM del ESP32. Este método es crucial para mapear los pines GPIO y el canal PWM (<span class="tt">ledc</span>) del ESP32 a las entradas del driver.        <br /></td></tr>
+<tr class="memitem:a8967dc4a73f58ba459dd2aefd1822a79" id="r_a8967dc4a73f58ba459dd2aefd1822a79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8967dc4a73f58ba459dd2aefd1822a79">forward</a> (uint8_t pPWM)</td></tr>
+<tr class="memdesc:a8967dc4a73f58ba459dd2aefd1822a79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mueve el motor en dirección de avance. Configura los pines de dirección (IN1/IN2) para el movimiento en sentido de avance y aplica la señal PWM para controlar la velocidad.  <br /></td></tr>
+<tr class="memitem:a672ca702073512e3d8251fec005f3c44" id="r_a672ca702073512e3d8251fec005f3c44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a672ca702073512e3d8251fec005f3c44">reverse</a> (uint8_t pPWM)</td></tr>
+<tr class="memdesc:a672ca702073512e3d8251fec005f3c44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mueve el motor en dirección de reversa. Configura IN1/IN2 para reversa y aplica la señal PWM para controlar la velocidad.        <br /></td></tr>
+<tr class="memitem:abc7d60f6a11b79fe1ff5ce59c3f11cc7" id="r_abc7d60f6a11b79fe1ff5ce59c3f11cc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc7d60f6a11b79fe1ff5ce59c3f11cc7">stop</a> ()</td></tr>
+<tr class="memdesc:abc7d60f6a11b79fe1ff5ce59c3f11cc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detiene el motor mediante el frenado rápido (brake). Generalmente, establece ambas entradas (IN1 y IN2) en HIGH o LOW.        <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Clase que encapsula la lógica y configuración para controlar un motor DC a través del driver DRV8833. Incluye funciones para configurar sus pines, ajustar el PWM y manejar la dirección del motor (adelante/atrás). </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Documentación de constructores y destructores</h2>
+<a id="aa56746ae518b37ed1ab33885bba82da0" name="aa56746ae518b37ed1ab33885bba82da0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa56746ae518b37ed1ab33885bba82da0">&#9670;&#160;</a></span>Drv8833()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Drv8833::Drv8833 </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor por defecto. Inicializa la instancia del driver. Se asume que el pin Sleep está habilitado (HIGH) o controlado externamente para activar el driver.   </p>
+<p>Implementación para el driver de motores DRV8833. Contiene la lógica para la inicialización, configuración de PWM y el control de movimiento de un solo motor DC.</p>
+<p> </p>
+<dl class="section author"><dt>Autor</dt><dd>Legion de Ohm</dd></dl>
+<p>Constructor de la clase <a class="el" href="class_drv8833.html" title="Clase que encapsula la lógica y configuración para controlar un motor DC a través del driver DRV8833....">Drv8833</a>. Inicializa el pin SLEEP como salida y lo establece en HIGH para asegurar que el driver esté activado y listo para recibir comandos de movimiento. </p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones miembro</h2>
+<a id="a8967dc4a73f58ba459dd2aefd1822a79" name="a8967dc4a73f58ba459dd2aefd1822a79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8967dc4a73f58ba459dd2aefd1822a79">&#9670;&#160;</a></span>forward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Drv8833::forward </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>pPWM</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mueve el motor en dirección de avance. Configura los pines de dirección (IN1/IN2) para el movimiento en sentido de avance y aplica la señal PWM para controlar la velocidad. </p>
+<p>Mueve el motor en dirección de avance con un porcentaje de velocidad (PWM). Implementa el control de dirección: establece un pin en estado digital bajo (LOW) y el otro pin en el canal PWM para controlar la velocidad.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pPWM</td><td>Porcentaje de la velocidad (PWM) a aplicar al motor [0-100] %. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>void</dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pPWM</td><td>Porcentaje de PWM a aplicar al motor [0, 100] %. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>void </dd></dl>
+<p>Cálculo del ciclo de trabajo (Duty Cycle). Transforma el porcentaje de PWM (0-100%) en un valor de ciclo de trabajo basado en la resolución configurada ($\text{Duty} = 2^{\text{resPWM}} \times (\text{pPWM}/100)$).</p>
+
+</div>
+</div>
+<a id="a672ca702073512e3d8251fec005f3c44" name="a672ca702073512e3d8251fec005f3c44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a672ca702073512e3d8251fec005f3c44">&#9670;&#160;</a></span>reverse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Drv8833::reverse </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>pPWM</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mueve el motor en dirección de reversa. Configura IN1/IN2 para reversa y aplica la señal PWM para controlar la velocidad.       </p>
+<p>Mueve el motor en dirección de reversa con un porcentaje de velocidad (PWM). Implementa el control de dirección invirtiendo la señal: establece IN1 en LOW y aplica la señal PWM en IN2.</p>
+<p>     </p><dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pPWM</td><td>Porcentaje de la velocidad (PWM) a aplicar al motor [0-100] %.      </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>void      </dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pPWM</td><td>Porcentaje de PWM a aplicar al motor [0, 100] %. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>void </dd></dl>
+
+</div>
+</div>
+<a id="aaa709b8d35a36bcc162402f362c0ee96" name="aaa709b8d35a36bcc162402f362c0ee96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa709b8d35a36bcc162402f362c0ee96">&#9670;&#160;</a></span>setup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Drv8833::setup </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>pinIN1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>pinIN2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>pinSleep</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>chPWM</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>freqPWM</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>resPWM</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configura los pines de control del motor y el canal PWM del ESP32. Este método es crucial para mapear los pines GPIO y el canal PWM (<span class="tt">ledc</span>) del ESP32 a las entradas del driver.       </p>
+<p>Configura el mapeo de pines y el canal de PWM del ESP32 para el control del motor.</p>
+<p>     </p><dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pinIN1</td><td>Pin GPIO conectado a la entrada IN1 del driver.      </td></tr>
+    <tr><td class="paramname">pinIN2</td><td>Pin GPIO conectado a la entrada IN2 del driver.      </td></tr>
+    <tr><td class="paramname">pinSleep</td><td>Pin GPIO conectado al pin SLEEP del driver (para habilitar/deshabilitar).      </td></tr>
+    <tr><td class="paramname">chPWM</td><td>Canal PWM (LEDC Channel) a utilizar (0-15 en ESP32).      </td></tr>
+    <tr><td class="paramname">freqPWM</td><td>Frecuencia del PWM. Recomendado: 20 kHz (audible) o 30 kHz (silencioso).      </td></tr>
+    <tr><td class="paramname">resPWM</td><td>Resolución del PWM (ej. 8 bits [0-255] o 10 bits [0-1023]).      </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>void      </dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pinIN1</td><td>Pin GPIO conectado a la entrada IN1 del driver. </td></tr>
+    <tr><td class="paramname">pinIN2</td><td>Pin GPIO conectado a la entrada IN2 del driver. </td></tr>
+    <tr><td class="paramname">pinSleep</td><td>Pin GPIO conectado al pin SLEEP del driver. </td></tr>
+    <tr><td class="paramname">chPWM</td><td>Canal PWM (LEDC Channel) a utilizar. </td></tr>
+    <tr><td class="paramname">freqPWM</td><td>Frecuencia del PWM. </td></tr>
+    <tr><td class="paramname">resPWM</td><td>Resolución del PWM (bits). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>void </dd></dl>
+
+</div>
+</div>
+<a id="abc7d60f6a11b79fe1ff5ce59c3f11cc7" name="abc7d60f6a11b79fe1ff5ce59c3f11cc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc7d60f6a11b79fe1ff5ce59c3f11cc7">&#9670;&#160;</a></span>stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Drv8833::stop </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Detiene el motor mediante el frenado rápido (brake). Generalmente, establece ambas entradas (IN1 y IN2) en HIGH o LOW.       </p>
+<p>Detiene el motor mediante el frenado rápido (brake). El frenado rápido se logra al detener la señal PWM en ambos pines y establecerlos en un estado digital bajo (LOW), cortando la corriente.</p>
+<p>     </p><dl class="section return"><dt>Devuelve</dt><dd>void      </dd>
+<dd>
+void </dd></dl>
+
+</div>
+</div>
+<hr/>La documentación de esta clase está generada de los siguientes archivos:<ul>
+<li>include/<a class="el" href="drv8833_8hpp_source.html">drv8833.hpp</a></li>
+<li>src/<a class="el" href="drv8833_8cpp.html">drv8833.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="class_drv8833.html">Drv8833</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
+  </ul>
+</div>
+</body>
+</html>
