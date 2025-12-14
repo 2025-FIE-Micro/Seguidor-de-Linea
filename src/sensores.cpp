@@ -5,11 +5,40 @@
     * setup - tipo de sensor analogico, pines y nro de sensores
 */
 
-#include <Arduino.h>
 #include "sensores.hpp"
-#include "motores.hpp"
 #include "config.hpp"
+#include "motores.hpp"
+#include "buzzer.hpp"
 
+// ============================
+// CONFIGURACIÓN QTR
+// ============================
+
+// Objeto estatico para manejar los sensores QTR - inicializa una sola vez y mantiene su valor
+static QTRSensors qtr;
+
+// Numero de sensores QTR (8 sensores en total, desde S1 a S8)
+static const uint8_t SensorCount = 8;
+
+// Definicion de los pines del sensor QTR (cada pin esta asignado a un sensor de la lista S1 a S8).
+static const uint8_t sensorPins[SensorCount] = {S8, S7, S6, S5, S4, S3, S2, S1};
+
+// Array para almacenar los valores de lectura de cada sensor QTR - 8 elementos c/u con valor de sensor individual.
+static uint16_t sensorValues[SensorCount];
+
+// Variable para almacenar la posición de la línea detectada por los sensores QTR
+uint16_t position;
+
+// ============================
+// SETUP DE SENSORES
+// ============================
+void setupSensores() {
+    // Usaremos lectura analógica (ADC)
+    qtr.setTypeAnalog();
+    
+    // Cargamos los pines de sensores QTR
+    qtr.setSensorPins(sensorPins, SensorCount);
+}
 
 // ============================
 // FUNCION CALIBRAR
@@ -52,22 +81,9 @@ void calibrarSensores() {
 // ============================
 uint16_t leerLinea() {
     // Dependiendo del color de la pista, se usa lectura inversa:
-
     if (linea_competencia == BLANCA)    position = qtr.readLineWhite(sensorValues);
     else                                position = qtr.readLineBlack(sensorValues);
 
     // Devuelve un valor entre ~0 (izquierda) y ~7000 (derecha)
     return position;
-}
-
-
-// ============================
-// SETUP DE SENSORES
-// ============================
-void setupSensores(const uint8_t* sensorPins, uint8_t SensorCount) {
-    // Usaremos lectura analógica (ADC)
-    qtr.setTypeAnalog();
-    
-    // Cargamos los pines de sensores QTR
-    qtr.setSensorPins(sensorPins, SensorCount);
 }

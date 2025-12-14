@@ -38,13 +38,6 @@ const uint8_t motorPWM_Der = 1; // Canal PWM 1
 const uint32_t freqPWM = 10000; // Frecuencia del PWM = 10KHz
 const uint8_t resPWM = 8;                                       // Resolución de 8 bits [0, 255]
 
-// CONFIGURACIÓN SENSORES QTR & LINEA
-QTRSensors qtr;                 // Objeto sensor qtr, con 8 sensores S1 a S8
-const uint8_t SensorCount = 8;
-const uint8_t sensorPins[SensorCount] = {S8, S7, S6, S5, S4, S3, S2, S1};
-uint16_t sensorValues[SensorCount];
-uint16_t position;
-
 /* // CONTROL IR - comentado por ahora
 // ============================
 // COMANDOS CONTROL
@@ -108,7 +101,7 @@ void setup() {
     timerAlarmEnable(timer);
     
     // Configuración sensores
-    setupSensores(sensorPins, SensorCount);
+    setupSensores();
     
     // Calibración inicial
     calibrarSensores();

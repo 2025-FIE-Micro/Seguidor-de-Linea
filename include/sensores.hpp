@@ -1,19 +1,14 @@
 #pragma once
 #include <Arduino.h>
 #include "QTRSensors.h"
-#include "buzzer.hpp"
+// #include "buzzer.hpp"
 
 enum Linea { BLANCA, NEGRA };
 
-extern QTRSensors qtr;
-extern const uint8_t SensorCount;
-extern uint16_t sensorValues[];   // tamaño definido en el .cpp donde se defina
+// Variables públicas del módulo
 extern uint16_t position;
 
-extern const uint8_t ledCalibracion;
-extern Buzzer buzzer;
-
-// Prototipos de funciones
-void setupSensores(const uint8_t* sensorPins, uint8_t SensorCount);
+// API del módulo
+void setupSensores();
 void calibrarSensores();
 uint16_t leerLinea();
