@@ -10,8 +10,6 @@ extern volatile bool RUN;
 extern volatile bool SETPOINT;
 extern volatile bool has_expired;
 
-extern const int32_t TIEMPO_TIMER;
-
 extern hw_timer_t *timer;
 
 // Declaración de funciones de interrupción

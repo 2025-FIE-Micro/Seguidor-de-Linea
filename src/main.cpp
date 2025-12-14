@@ -13,23 +13,19 @@
 /* MAIN.CPP - CORREDOR PID COMPETENCIA ROBOTICA */
 
 // VELOCIDADES  - PORCENTAJE DE PWM (0-100%)
-const int32_t maxSpeed  = 100;  // Límite de velocidad - usada para la max correccion y para acelerar - bajarla limita todas las velocidades  
+const int32_t maxSpeed  = 90;   // Límite de velocidad - usada para la max correccion y para acelerar  
 int32_t velocidadAcel = 50;     // arranca suave 50% sube hasta maxSpeed
 
-// delta tiempo fijo en segundos - usado en el PID (TIEMPO_TIMER esta en us)
-const float FIXED_DT_S = (float)TIEMPO_TIMER / 1000000.0f;
+const int32_t TIEMPO_TIMER = 6000;              // Interrupción del timer (microsegundos)
+const float FIXED_DT_S = TIEMPO_TIMER * 1e-6f;  // Delta de tiempo (segundos)
 
 // Velocidades base de motores - Le aumentamos o disminuimos para realizar correcion  
-int32_t motorSpeedIzq = baseSpeed;  int32_t motorSpeedDer = baseSpeed;
+int32_t motorSpeedIzq = baseSpeed;
+int32_t motorSpeedDer = baseSpeed;
 
 // SETPOINT y ZONA MUERTA
 uint16_t setpoint = 3500;       // mitad de lectura de sensores - es decir pararnos sobre la linea
 uint16_t zonaMuerta = 100;      // zona de mas y menos del setpoint para el estado acelerar 
-
-// Variables auxiliares para PID 
-float  lastError = 0;   // Error previo         -   control D
-float  integral = 0;    // Acumulador           -   control I
-uint32_t lastTime = 0;  // Millis previo        -   delta Tiempo
 
 // CONFIGURACIÓN DE BUZZER
 const uint8_t BuzzerPwm = 2;            // Canal PWM 2  (0 y 1 son de motores)
@@ -37,8 +33,9 @@ Buzzer buzzer(pinBuzzer, BuzzerPwm);    // objeto buzzer en el pin 17
 
 // CONFIGURACIÓN DE MOTORES
 Drv8833 motorDer;   Drv8833 motorIzq; // Objeto de motores izq y der 
-const uint8_t motorPWM_Izq = 0; const uint8_t motorPWM_Der = 1; // Canales PWM 0 y 1
-const uint32_t freqPWM = 10000;                                 // Frecuencia del PWM = 10KHz
+const uint8_t motorPWM_Izq = 0; // Canal PWM 0
+const uint8_t motorPWM_Der = 1; // Canal PWM 1
+const uint32_t freqPWM = 10000; // Frecuencia del PWM = 10KHz
 const uint8_t resPWM = 8;                                       // Resolución de 8 bits [0, 255]
 
 // CONFIGURACIÓN SENSORES QTR & LINEA
@@ -55,18 +52,17 @@ uint16_t position;
 #define CMD_ON_OFF   0x43           //Tecla 'play/pause'
 #define RAW_ON_OFF   0xBC43FF00
 
-void leer_IR()
-{// Si recibe algo lo leemos/decodificamos - ISR interna (maquina de estado[?])
+void leer_IR() {
+// Si recibe algo lo leemos/decodificamos
     if (IrReceiver.decode()) {
         // Guardamos los datos y separamos el dato crudo y el codigo
         auto data = IrReceiver.decodedIRData;
-        uint32_t raw = data.decodedRawData;
         uint8_t cmd  = data.command;
 
         // Si coinciden el codigo crudo y comando entonces arranco o paro el coche
-        if (raw == RAW_ON_OFF && cmd == CMD_ON_OFF)   { RUN = !RUN;}
+        if (cmd == CMD_ON_OFF)   { RUN = !RUN;}
 
-        // Liberamos / salimos de la maquina
+        // Liberamos
         IrReceiver.resume();
     }
 }*/
@@ -81,8 +77,8 @@ bool stop_done = false;     // recuerda si ejecutamos stop
 // ============================
 void setup() {
     // Inicializar Serial, Buzzer, Control SOLOS SI se habilitaron en el PLATFORMIO.INI
-    deb(Serial.begin(115200);)   
-    mute(buzzer.begin();)         // 2 kHz y 8 bits
+    deb(Serial.begin(115200);)
+    mute(buzzer.begin();)
     //control_ir( IrReceiver.begin(IR_PIN, ENABLE_LED_FEEDBACK);)
 
     // Configuración motores - pines de direcion, canal de pwm, frecuencia y resolucion
@@ -118,14 +114,13 @@ void setup() {
     calibrarSensores();
 }
 
-
 // ============================
 // LOOP
 // ============================
 void loop() {
     // Entrada de 2 bits (SETPOINT RUN - 00, 01, 10, 11) → 0, 1, 2, 3
     uint8_t c = (SETPOINT << 1) | RUN;
-    
+
     transicionar(c);
 }
 
@@ -178,7 +173,8 @@ void estadoAcel() {
     actualizarSP(position);
 
     // Reiniciamos las variables PID
-    lastError = 0; integral =0;
+    reiniciar_pid();
+
     deb(Serial.println("\n ---------------------- \n");)
 }
 

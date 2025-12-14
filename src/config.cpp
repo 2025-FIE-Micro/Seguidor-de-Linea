@@ -48,20 +48,14 @@ const uint8_t S4 = 35;  const uint8_t S3 = 34;  const uint8_t S2 = 39;  const ui
 // SELECCION DE CORREDOR - CAMBIAR EN PLATFORMIO.INI
 // ===================================
 #if (CORREDOR == NIGHTFALL)
-    //Motores de 800 RPM
-    #define USAR_MICROS   0         // Cambiar a 0 para millis()
-    uint8_t baseSpeed = 65;         // Velocidad base PORCENTAJE DE PWM (0-100%)
-    const float Ku = 0.06;          //buena combinacion 65 0.06 0.35 (max 100)
-    const float Tu = 0.35;
+    uint8_t baseSpeed = 75;         // Velocidad base PORCENTAJE DE PWM (0-100%)
+    const float Ku = 0.05;          //buena combinacion 65 0.06 0.35 (max 100)
+    const float Tu = 0.38;
 #elif (CORREDOR == ARGENTUM)
-    //Motores de 800 RPM
-    #define USAR_MICROS   0         // Cambiar a 0 para millis()
     uint8_t baseSpeed = 78;         // Velocidad base PORCENTAJE DE PWM (0-100%)
     const float Ku = 0.05;
     const float Tu = 0.31;
 #elif (CORREDOR == DIEGO)
-    //Motores de 800 RPM
-    #define USAR_MICROS   0         // Cambiar a 0 para millis()
     uint8_t baseSpeed = 70;         // Velocidad base PORCENTAJE DE PWM (0-100%)
     const float Ku = 0.05;
     const float Tu = 0.38;
@@ -78,11 +72,6 @@ const uint8_t S4 = 35;  const uint8_t S3 = 34;  const uint8_t S2 = 39;  const ui
     const float Ki = 0;
     const float Kd = 0;
 #else
-    /* Valores de planta estabilizada de ejemplo:
-            *P = 1.9    
-            *I = 1.5    casi como p 
-            *D = 0.2    valor chico
-    */
     const float Kp = 0.6 * Ku;
     const float Ki = 2 * Kp / Tu;
     const float Kd = Kp * Tu / 8;

@@ -8,6 +8,11 @@
 #include "drv8833.hpp"
 #include "pid.hpp"
 
+// Variables auxiliares para PID 
+float  lastError = 0;   // Error previo         -   control D
+float  integral = 0;    // Acumulador           -   control I
+uint32_t lastTime = 0;  // Millis previo        -   delta Tiempo
+
 // ============================
 // FUNCION CALCULO DE PID
 // ============================
@@ -33,4 +38,8 @@ float calculo_pid(uint16_t pos, float deltaTime) {
 
     deb(Serial.printf("PID=%.6f\n", output);)
     return output;
+}
+
+void reiniciar_pid() {
+    lastError = 0; integral =0;
 }

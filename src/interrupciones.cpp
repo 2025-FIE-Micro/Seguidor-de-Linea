@@ -11,8 +11,6 @@
 volatile bool RUN = false;      // Flag indicador de modo corredor
 volatile bool SETPOINT = true;  // Flag indicador de control
 
-const int32_t TIEMPO_TIMER = 5000;  // Interrupción cada 5 ms - unidad en microsegundos (700m por sensor)
-
 // Timer del ESP32
 hw_timer_t *timer = NULL;
 volatile bool has_expired = false;  // Marca que ocurrió un tick de tiempo 
