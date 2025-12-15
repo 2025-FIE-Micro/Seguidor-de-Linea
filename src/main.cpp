@@ -16,9 +16,6 @@
 const int32_t maxSpeed  = 90;   // Límite de velocidad - usada para la max correccion y para acelerar  
 int32_t velocidadAcel = 50;     // arranca suave 50% sube hasta maxSpeed
 
-const int32_t TIEMPO_TIMER = 6000;              // Interrupcion del timer (microsegundos)
-const float FIXED_DT_S = TIEMPO_TIMER * 1e-6f;  // Delta de tiempo (segundos)
-
 // SETPOINT y ZONA MUERTA
 uint16_t setpoint = 3500;       // mitad de lectura de sensores - es decir pararnos sobre la linea
 uint16_t zonaMuerta = 100;      // zona de mas y menos del setpoint para el estado acelerar 
@@ -72,27 +69,11 @@ void setup() {
     pinMode(BTN_RUN, INPUT);
     pinMode(BTN_STOP, INPUT);
 
-    // Interrupciones FISICAS de arranque y parada
-    attachInterrupt(digitalPinToInterrupt(BTN_RUN), handleRun, RISING);
-    attachInterrupt(digitalPinToInterrupt(BTN_STOP), handleStop, RISING);
+    // Configuracion interrupciones
+    setupInterrupciones(); 
 
-    // Interrupciones por TIMER - Creamos el Timer 0, dividimos los 80MHz en 80 - cada 1us
-    timer = timerBegin(0, 80, true);
-
-    // Asocia la funcion de interrupcion (ISR)
-    timerAttachInterrupt(timer, &timerInterrupcion, true);
-    
-    // Configura cada cuánto se activa la interrupcion
-    timerAlarmWrite(timer, TIEMPO_TIMER, true);
-   
-    // Enciende el timer para que empiece a generar las interrupciones
-    timerAlarmEnable(timer);
-    
-    // Configuracion sensores
+    // Configuracion y calibracion de sensores
     setupSensores();
-    
-    // Calibracion inicial
-    calibrarSensores();
 }
 
 // ============================
@@ -102,6 +83,7 @@ void loop() {
     // Entrada de 2 bits (SETPOINT RUN - 00, 01, 10, 11) → 0, 1, 2, 3
     uint8_t c = (SETPOINT << 1) | RUN;
 
+    // Realizamos la transicion y ejecutamos su estado 
     transicionar(c);
 }
 

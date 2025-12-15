@@ -5,14 +5,27 @@
 #pragma once
 #include <Arduino.h>
 
-// Variable global que indica si el robot debe correr
+// ============================
+// FLAGS COMPARTIDOS
+// ============================
 extern volatile bool RUN;
 extern volatile bool SETPOINT;
 extern volatile bool has_expired;
 
-extern hw_timer_t *timer;
+// ============================
+// TIEMPO DE CONTROL
+// ============================
+extern const int32_t TIEMPO_TIMER;   // us
+extern const float FIXED_DT_S;       // s
 
-// Declaración de funciones de interrupción
+// ============================
+// INICIALIZACIÓN
+// ============================
+void setupInterrupciones();
+
+// ============================
+// ISRs
+// ============================
 void IRAM_ATTR handleRun();
 void IRAM_ATTR handleStop();
 void IRAM_ATTR timerInterrupcion();

@@ -38,6 +38,9 @@ void setupSensores() {
     
     // Cargamos los pines de sensores QTR
     qtr.setSensorPins(sensorPins, SensorCount);
+
+    // Calibracion inicial
+    calibrarSensores();
 }
 
 // ============================
