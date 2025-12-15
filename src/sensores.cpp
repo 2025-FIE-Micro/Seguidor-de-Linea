@@ -1,11 +1,13 @@
 /*
     programa de lectura y setup de sensores QTR8A
     * calibracion de sensores
+    * tipo de linea
     * lectura de linea (B o N)
     * setup - tipo de sensor analogico, pines y nro de sensores
 */
 
 #include "sensores.hpp"
+#include "QTRSensors.h"
 #include "config.hpp"
 #include "motores.hpp"
 #include "buzzer.hpp"
@@ -13,7 +15,6 @@
 // ============================
 // CONFIGURACIÓN QTR
 // ============================
-
 // Objeto estatico para manejar los sensores QTR - inicializa una sola vez y mantiene su valor
 static QTRSensors qtr;
 
@@ -28,6 +29,15 @@ static uint16_t sensorValues[SensorCount];
 
 // Variable para almacenar la posición de la línea detectada por los sensores QTR
 uint16_t position;
+
+// ===================================
+// LINEA NEGRA o BLANCA - CAMBIAR EN PLATFORMIO.INI
+// ===================================
+#ifdef LINEA_NEGRA
+    Linea linea_competencia = NEGRA;
+#else
+    Linea linea_competencia = BLANCA;
+#endif 
 
 // ============================
 // SETUP DE SENSORES

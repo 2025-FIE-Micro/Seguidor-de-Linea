@@ -1,6 +1,6 @@
 /*
     programa declaracion de puente H - drv8833
-    * pines IN y sleep
+    * define pines del motor - IN1, IN1 y Sleep
     * define el canal, resolucion y frecuencia de pwm
 */
 

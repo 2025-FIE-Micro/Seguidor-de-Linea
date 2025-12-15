@@ -1,15 +1,12 @@
 /*
   programa declaracion de variables seguidor:
-  * tipo de linea
-  * constantes PID
-  * define debug, muteo, millis/micros, control IR
-  * selecciona el seguidor
-  * TODO: pines de seguidor
+  * define debug, muteo, control IR
+  * pines de seguidor
+  * nro de seguidor (Argentum, Diego y Nightfall)
 */
 
 #pragma once
 #include <Arduino.h>
-#include "sensores.hpp"
 
 // ============================
 // PINES - LEDS, BOTONES, BOCINA y SENSOR IR
@@ -43,19 +40,6 @@ extern const uint8_t S3;
 extern const uint8_t S2;
 extern const uint8_t S1;
 
-extern Linea linea_competencia;
-extern uint8_t baseSpeed;
-
-// ============================
-// CONTROL PID - METODO Ziegler-Nichols
-// ============================
-extern const float Ku;
-extern const float Tu;
-
-extern const float Kp;
-extern const float Ki;
-extern const float Kd;
-
 
 // ===================================
 // MODO DEBUG - CAMBIAR EN PLATFORMIO.INI
@@ -66,18 +50,6 @@ extern const float Kd;
 #else
     // No hacemos lo que esta dentro
     #define deb(x)
-#endif
-
-
-// =================================
-// CONFIGURACIÓN DE TIEMPOS - CAMBIA SEGUN EL CORREDOR 
-// =================================
-#if USAR_MICROS
-  #define tiempoActual() micros()
-  const float TIME_DIVISOR = 1000000.0; // microsegundos → segundos
-#else
-  #define tiempoActual() millis()
-  const float TIME_DIVISOR = 1000.0;    // milisegundos → segundos
 #endif
 
 

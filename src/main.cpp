@@ -1,7 +1,7 @@
+/* MAIN.CPP - CORREDOR PID COMPETENCIA ROBOTICA */
+
 #include <Arduino.h>
 //#include <IRremote.hpp>
-#include "QTRSensors.h"
-#include "drv8833.hpp"
 #include "buzzer.hpp"
 #include "interrupciones.hpp"
 #include "config.hpp"
@@ -10,8 +10,6 @@
 #include "motores.hpp"
 #include "fsm.hpp"
 
-/* MAIN.CPP - CORREDOR PID COMPETENCIA ROBOTICA */
-
 // VELOCIDADES  - PORCENTAJE DE PWM (0-100%)
 const int32_t maxSpeed  = 90;   // Límite de velocidad - usada para la max correccion y para acelerar  
 int32_t velocidadAcel = 50;     // arranca suave 50% sube hasta maxSpeed
@@ -19,10 +17,6 @@ int32_t velocidadAcel = 50;     // arranca suave 50% sube hasta maxSpeed
 // SETPOINT y ZONA MUERTA
 uint16_t setpoint = 3500;       // mitad de lectura de sensores - es decir pararnos sobre la linea
 uint16_t zonaMuerta = 100;      // zona de mas y menos del setpoint para el estado acelerar 
-
-// CONFIGURACIÓN DE BUZZER
-const uint8_t BuzzerPwm = 2;            // Canal PWM 2  (0 y 1 son de motores)
-Buzzer buzzer(pinBuzzer, BuzzerPwm);    // objeto buzzer en el pin 17
 
 /* // CONTROL IR - comentado por ahora
 // ============================
@@ -48,18 +42,20 @@ void leer_IR() {
 
 // Punteros a funciones de estado 
 void (*acciones_estado[])() = { estadoStop, estadoAcel, estadoControl };
-bool stop_done = false;     // recuerda si ejecutamos stop
+bool stop_done = false;         // recuerda si ejecutamos stop
 
 
 // ============================
 // SETUP
 // ============================
 void setup() {
-    // Inicializar Serial, Buzzer, Control-IR SOLOS SI se habilitaron en el PLATFORMIO.INI
+    // Inicializar Serial, Control-IR SOLOS SI se habilitaron en el PLATFORMIO.INI
     deb(Serial.begin(115200);)
-    mute(buzzer.begin();)
     //control_ir( IrReceiver.begin(IR_PIN, ENABLE_LED_FEEDBACK);)
-
+    
+    // Configuracion buzzer
+    setupBuzzer();
+    
     // Configuracion motores - pines de direcion, canal de pwm, frecuencia y resolucion
     setupMotores();
 
@@ -75,6 +71,7 @@ void setup() {
     // Configuracion y calibracion de sensores
     setupSensores();
 }
+
 
 // ============================
 // LOOP

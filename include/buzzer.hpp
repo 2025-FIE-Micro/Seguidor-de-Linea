@@ -53,23 +53,14 @@ class Buzzer {
     }
 
     // Toca una nota (frecuencia en Hz)
-    void play(uint16_t freq) {
-      ledcWriteTone(channel, freq);
-    }
+    void play(uint16_t freq) { ledcWriteTone(channel, freq); }
 
     // Detiene el sonido
     void stop() { ledcWriteTone(channel, 0);  }
-
-    /*
-    void playMelody(const uint16_t *melody, const uint16_t *durations, uint16_t length, uint16_t baseTime = 500) {
-      for (int i = 0; i < length; i++) {
-        int noteDuration = baseTime * 4 / durations[i];
-        play(melody[i]);
-        delay(noteDuration);
-        stop();
-        delay(noteDuration * 0.2);
-      }
-    }
-    */
 };
+
+extern Buzzer buzzer; // Declaración de la instancia externa del buzzer
+
+void setupBuzzer(uint16_t freq = 2000, uint8_t resolution = 8);
+
 #endif

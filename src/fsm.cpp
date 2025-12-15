@@ -62,7 +62,7 @@ int transicionar(int entrada) {
     while (p->recibo != entrada && p->recibo != CUALQUIERA) p++;
 
     // ejecuta las funciones de transicion - dummies (como no las ejecutamos lo dejaremos comentado)
-    (p->transicion)(entrada);
+    //(p->transicion)(entrada);
     
     // actualizo el estado
     estadoActual = p->prox_estado;

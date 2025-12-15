@@ -1,9 +1,8 @@
 #pragma once
 #include <Arduino.h>
-#include "QTRSensors.h"
-// #include "buzzer.hpp"
 
 enum Linea { BLANCA, NEGRA };
+extern Linea linea_competencia;
 
 // Variables públicas del módulo
 extern uint16_t position;
