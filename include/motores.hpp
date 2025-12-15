@@ -1,4 +1,4 @@
-#pragma once
+/* #pragma once
 #include <Arduino.h>
 #include "config.hpp"
 #include "drv8833.hpp"
@@ -13,5 +13,24 @@ extern const int32_t maxSpeed;
 
 void controlMotores(float correcion);
 void actualizarSP(uint16_t pos);
+void moverMotores(int32_t motorSpeedIzq, int32_t motorSpeedDer); */
+
+#pragma once
+#include <Arduino.h>
+
+// Velocidades actuales (control PID)
+extern int32_t motorSpeedIzq;
+extern int32_t motorSpeedDer;
+
+extern const int32_t maxSpeed;
+
+// Inicialización
+void setupMotores();
+
+// Movimiento
 void moverMotores(int32_t motorSpeedIzq, int32_t motorSpeedDer);
-void moverMotoresSinCorrecion(int32_t motorSpeedIzq, int32_t motorSpeedDer);
+void detenerMotores();
+
+// Control
+void controlMotores(float correccion);
+void actualizarSP(uint16_t pos);

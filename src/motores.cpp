@@ -15,8 +15,46 @@
 #include "interrupciones.hpp"
 
 // ============================
-// FUNCIONES PARA MOVER MOTORES
+// CONFIGURACIÓN DE MOTORES
 // ============================
+
+// Objetos de motores (visibles solo en este modulo)
+static Drv8833 motorIzq;
+static Drv8833 motorDer;
+
+// Canales PWM usados por cada motor
+static const uint8_t motorPWM_Izq = 0;
+static const uint8_t motorPWM_Der = 1;
+
+// Parámetros de PWM
+static const uint32_t freqPWM = 20000; // 20 kHz
+static const uint8_t  resPWM  = 8;     // 8 bits (0..255)
+
+// Velocidades actuales
+int32_t motorSpeedIzq = 0;
+int32_t motorSpeedDer = 0;
+
+
+// INICIACION DE MOTORES
+void setupMotores() {
+    motorDer.setup(motorPinIN1_Der, motorPinIN2_Der,
+                   motorPinSleep_Der, motorPWM_Der,
+                   freqPWM, resPWM);
+
+    motorIzq.setup(motorPinIN1_Izq, motorPinIN2_Izq,
+                   motorPinSleep_Izq, motorPWM_Izq,
+                   freqPWM, resPWM);
+
+    detenerMotores();
+}
+
+
+// ============================
+// FUNCION PARA MOVER MOTORES
+// ============================
+// Aplica las velocidades calculadas a cada motor.
+// Valores positivos hacen avanzar el motor,
+// valores negativos lo hacen girar en reversa.
 void moverMotores(int32_t motorSpeedIzq, int32_t motorSpeedDer) {
     deb(Serial.printf("MotorIzq=%d\n", motorSpeedIzq);)
     deb(Serial.printf("MotorDer=%d\n", motorSpeedDer);)
@@ -30,31 +68,26 @@ void moverMotores(int32_t motorSpeedIzq, int32_t motorSpeedDer) {
     else                        {   motorDer.stop();    }   
 }
 
-void moverMotoresSinCorrecion(int32_t motorSpeedIzq, int32_t motorSpeedDer) {
-    //motorSpeedIzq = map(motorSpeedIzq, -100, 100, 0, 100);
-    //motorSpeedDer = map(motorSpeedDer, -100, 100, 0, 100);
-
-    motorSpeedIzq = constrain(motorSpeedIzq, 0, 100);
-    motorSpeedDer = constrain(motorSpeedDer, 0, 100);
-
-    deb(Serial.printf("MotorIzq=%d\n", motorSpeedIzq);)
-    deb(Serial.printf("MotorDer=%d\n", motorSpeedDer);)
-
-    if      (motorSpeedIzq > 0) {   motorIzq.forward(motorSpeedIzq);        }
-    else                        {   motorIzq.stop();    }
-    if      (motorSpeedDer > 0) {   motorDer.forward(motorSpeedDer);        }
-    else                        {   motorDer.stop();    }   
+// Detener ambos motores
+void detenerMotores(){
+    motorIzq.stop();
+    motorDer.stop();
 }
 
 
+// Determina si el robot se encuentra dentro de la zona muerta del setpoint.
+// Actualiza la bandera SETPOINT usada por la FSM.
 void actualizarSP(uint16_t pos) {
     SETPOINT = (abs(pos - setpoint) < zonaMuerta);
 }
 
 
 // ============================
-// FUNCION CONTROL MOTORES - Zona muerta o Pid
+// FUNCION CONTROL MOTORES
 // ============================
+// Calcula las velocidades de los motores a partir de la corrección del PID.
+// Si el robot no está en el setpoint, aplica corrección diferencial.
+// En el setpoint, mantiene el estado sin corrección.
 void controlMotores(float correcion) {
     // Si NO estoy en Zona muerta solo controlo
     if ( !SETPOINT ) {
@@ -70,5 +103,4 @@ void controlMotores(float correcion) {
 
     // se encuentra en el setpoint
     SETPOINT = true;
-    return;
 }

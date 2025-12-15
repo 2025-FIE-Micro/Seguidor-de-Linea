@@ -51,10 +51,6 @@ void calibrarSensores() {
         buzzer.stop();
     );
 
-    // Por seguridad el robot debe estar detenido durante la calibración
-    motorIzq.stop();
-    motorDer.stop();
-
     // Encendemos el LED de estado para indicar proceso de calibración
     digitalWrite(ledCalibracion, HIGH);
     deb(Serial.println("Calibrando sensores..."); )
