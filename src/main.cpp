@@ -16,7 +16,7 @@ int32_t velocidadAcel = 50;     // arranca suave 50% sube hasta maxSpeed
 
 // SETPOINT y ZONA MUERTA
 uint16_t setpoint = 3500;       // mitad de lectura de sensores - es decir pararnos sobre la linea
-uint16_t zonaMuerta = 100;      // zona de mas y menos del setpoint para el estado acelerar 
+uint16_t zonaMuerta = 50;      // zona de mas y menos del setpoint para el estado acelerar 
 
 /* // CONTROL IR - comentado por ahora
 // ============================

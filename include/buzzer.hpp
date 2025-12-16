@@ -5,6 +5,7 @@
 */
 
 #pragma once
+#include <Arduino.h>
 
 #ifndef PITCHES_H
 #define PITCHES_H
@@ -31,9 +32,6 @@ const uint16_t NOTE_B5 = 988;
 
 #ifndef BUZZER_H
 #define BUZZER_H
-
-#include <Arduino.h>
-
 class Buzzer {
   private:
     uint8_t pin;
@@ -62,5 +60,4 @@ class Buzzer {
 extern Buzzer buzzer; // Declaración de la instancia externa del buzzer
 
 void setupBuzzer(uint16_t freq = 2000, uint8_t resolution = 8);
-
 #endif

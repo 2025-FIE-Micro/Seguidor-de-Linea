@@ -7,7 +7,7 @@
 
 #include <Arduino.h>
 #include "config.hpp"
-#include "drv8833.hpp"
+//#include "drv8833.hpp"
 #include "pid.hpp"
 
 // Variables auxiliares para el calculo PID 
@@ -20,9 +20,9 @@ uint32_t lastTime = 0;  // Millis previo        -   delta Tiempo
 // SELECCION DE CORREDOR - CAMBIAR EN PLATFORMIO.INI
 // ===================================
 #if (CORREDOR == NIGHTFALL)
-    uint8_t baseSpeed = 75;         // Velocidad base PORCENTAJE DE PWM (0-100%)
-    const float Ku = 0.05;          //buena combinacion 65 0.06 0.35 (max 100)
-    const float Tu = 0.38;
+    uint8_t baseSpeed = 70;         // Velocidad base PORCENTAJE DE PWM (0-100%)
+    const float Ku = 0.065;         //buena combinacion 75 0.065 0.350 (max 92)
+    const float Tu = 0.350;
 #elif (CORREDOR == ARGENTUM)
     uint8_t baseSpeed = 78;         // Velocidad base PORCENTAJE DE PWM (0-100%)
     const float Ku = 0.05;
