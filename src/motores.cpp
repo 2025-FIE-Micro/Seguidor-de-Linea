@@ -3,13 +3,11 @@
     * movimiento con correcion para atras
     * movimiento con correcion solamente recta
     * control de motores - setpoint o pid
-    * TODO: separar correccion y setpoint  
 */
 
 #include <Arduino.h>
 #include "sensores.hpp"
 #include "config.hpp"
-//#include "drv8833.hpp"
 #include "motores.hpp"
 #include "pid.hpp"
 #include "interrupciones.hpp"
@@ -68,7 +66,6 @@ void Drv8833::stop() {
     digitalWrite(_pinIN1, LOW);
     digitalWrite(_pinIN2, LOW);
 }
-
 
 // ============================
 // CONFIGURACIÓN DE MOTORES

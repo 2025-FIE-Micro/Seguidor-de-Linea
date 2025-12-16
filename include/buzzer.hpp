@@ -36,25 +36,19 @@ class Buzzer {
   private:
     uint8_t pin;
     uint8_t channel;
-    
+
   public:
     // Constructor
-    Buzzer(uint8_t buzzerPin, uint8_t pwmChannel = 0) {
-      pin = buzzerPin;
-      channel = pwmChannel;
-    }
+    Buzzer(uint8_t buzzerPin, uint8_t pwmChannel);
 
     // Inicializa el buzzer (PWM)
-    void begin(uint16_t freq = 2000, uint8_t resolution = 8) {
-      ledcSetup(channel, freq, resolution);
-      ledcAttachPin(pin, channel);
-    }
+    void begin(uint16_t freq = 2000, uint8_t resolution = 8);
 
     // Toca una nota (frecuencia en Hz)
-    void play(uint16_t freq) { ledcWriteTone(channel, freq); }
+    void play(uint16_t freq);
 
     // Detiene el sonido
-    void stop() { ledcWriteTone(channel, 0);  }
+    void stop();
 };
 
 extern Buzzer buzzer; // Declaración de la instancia externa del buzzer

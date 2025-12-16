@@ -85,7 +85,7 @@ void loop() {
 }
 
 
-// ESTADO STOP
+// ESTADO STOP - FUNCION DETENIDO
 void estadoStop() {
     // si RUN = 0   se queda en S
     // si RUN = 1   pasa a A
@@ -108,7 +108,7 @@ void estadoStop() {
 }
 
 
-// ESTADO ACEL
+// ESTADO ACEL - FUNCION ACELERAR EN LINEA
 void estadoAcel() {
     // si RUN = 0   pasa a S
     // si RUN = 1   se queda en A
@@ -141,7 +141,7 @@ void estadoAcel() {
 }
 
 
-// ESTADO CONTROL - FUNCION SEGUIDOR LINEA
+// ESTADO CONTROL - FUNCION CONTROL EN LINEA
 void estadoControl() {
     // si RUN = 0 pasa a S
     // si RUN = 1 se queda en c
