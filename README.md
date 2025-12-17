@@ -51,8 +51,6 @@ El sistema se basa en un **ciclo principal** que evalúa continuamente los senso
 * **ACELERAR**: Aceleracion recta mientras esta centrado en la linea (SETPOINT).
 * **CONTROL**: Corrección de trayectoria mientras esta desalineado a la linea.
 
----
-
 ### Diagrama General de Estados
 
 El diagrama completo de la máquina de estados se encuentra en el archivo:
@@ -61,8 +59,6 @@ El diagrama completo de la máquina de estados se encuentra en el archivo:
 Vista previa:
 
 ![Diagrama de Máquina de Estados](docs/fsm_diagram.png)
-
----
 
 ### Pasos del Algoritmo
 
