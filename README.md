@@ -28,12 +28,12 @@ La estructura general del proyecto se organiza de la siguiente manera:
 │   ├── config.hpp
 │   ├── fsm.hpp
 │   ├── motores.hpp
-│   ├── interrupciones.hpp 
-│   ├── pid.hpp             
-│   └── buzzer.hpp          
+│   ├── interrupciones.hpp
+│   ├── pid.hpp
+│   └── buzzer.hpp
 │
-├── README.md                 # Documentación del proyecto
-└── platformio.ini / .ino     # Configuración según entorno de desarrollo
+├── README.md               # Documentacion del proyecto
+└── platformio.ini          # Configuracion según entorno de desarrollo
 ```
 
 Cada módulo cumple una función específica, evitando dependencias innecesarias y manteniendo el código desacoplado.

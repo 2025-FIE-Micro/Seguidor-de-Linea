@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.9 Chrome/134.0.6998.205 Electron/35.4.0 Safari/537.36" version="27.0.9">
   <diagram name="FSM - Máquina de Estados" id="fsm-diagram">
-    <mxGraphModel dx="1026" dy="622" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="872" dy="529" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -22,7 +22,7 @@
             <mxPoint x="439" y="350" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="trans-stop-acel" value="RUN=1, SP=0 o 1&lt;br&gt;(entrada: 1 o 3)" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;fontSize=12;fontColor=#0000FF;" parent="1" source="state-stop" target="state-acel" edge="1">
+        <mxCell id="trans-stop-acel" value="RUN=1&#xa;(entrada: 1 o 3)" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;fontSize=12;fontColor=#0000FF;" parent="1" source="state-stop" target="state-acel" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="389" y="400" as="sourcePoint" />
             <mxPoint x="439" y="350" as="targetPoint" />
@@ -35,15 +35,15 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="trans-acel-stop" value="RUN=0&#xa;(entrada: 0 o 2)" style="endArrow=classic;html=1;exitX=0.25;exitY=0.079;exitDx=0;exitDy=0;entryX=0.65;entryY=0.05;entryDx=0;entryDy=0;strokeWidth=2;fontSize=12;fontColor=#FF0000;curved=1;entryPerimeter=0;exitPerimeter=0;" parent="1" source="state-acel" target="state-stop" edge="1">
-          <mxGeometry x="-0.0326" width="50" height="50" relative="1" as="geometry">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="389" y="400" as="sourcePoint" />
             <mxPoint x="439" y="350" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="380" y="170" />
+              <mxPoint x="390" y="170" />
+              <mxPoint x="340" y="170" />
               <mxPoint x="329" y="170" />
               <mxPoint x="219" y="170" />
             </Array>
-            <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="trans-control-stop" value="RUN=0&#xa;(entrada: 0 o 2)" style="endArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;fontSize=12;fontColor=#FF0000;curved=1;" parent="1" source="state-control" target="state-stop" edge="1">
@@ -67,7 +67,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="loop-stop" value="RUN=0, SP=0 o 1&lt;br&gt;(entrada: 0 o 2)" style="endArrow=classic;html=1;entryX=0.086;entryY=0.25;entryDx=0;entryDy=0;strokeWidth=2;fontSize=11;fontColor=#666666;curved=1;entryPerimeter=0;" parent="1" target="state-stop" edge="1">
+        <mxCell id="loop-stop" value="RUN=0&#xa;(entrada: 0 o 2)" style="endArrow=classic;html=1;entryX=0.086;entryY=0.25;entryDx=0;entryDy=0;strokeWidth=2;fontSize=11;fontColor=#666666;curved=1;entryPerimeter=0;" parent="1" target="state-stop" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="159" y="250" as="sourcePoint" />
             <mxPoint x="439" y="350" as="targetPoint" />
@@ -76,7 +76,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="loop-acel" value="RUN=1, SP=1&lt;br&gt;(entrada: 1)" style="endArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;fontSize=11;fontColor=#666666;curved=1;" parent="1" source="state-acel" target="state-acel" edge="1">
+        <mxCell id="loop-acel" value="RUN=1, SP=0&#xa;(entrada: 1)" style="endArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;fontSize=11;fontColor=#666666;curved=1;" parent="1" source="state-acel" target="state-acel" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="389" y="490" as="sourcePoint" />
             <mxPoint x="439" y="440" as="targetPoint" />
