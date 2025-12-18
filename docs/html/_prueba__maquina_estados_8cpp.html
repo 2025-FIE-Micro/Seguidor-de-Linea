@@ -101,6 +101,9 @@ $(function(){initNavTree('_prueba__maquina_estados_8cpp.html','',''); });
   <div class="headertitle"><div class="title">Referencia del archivo Prueba_maquinaEstados.cpp</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Programa de prueba para la Máquina de Estados Finitos (FSM).  
+<a href="#details">Más...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
@@ -110,63 +113,83 @@ Clases</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumeraciones</h2></td></tr>
-<tr class="memitem:a0a26545d88471dde33a6d048939b41c7" id="r_a0a26545d88471dde33a6d048939b41c7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a26545d88471dde33a6d048939b41c7">estadoStop</a> { <br />
-&#160;&#160;<a class="el" href="#a0a26545d88471dde33a6d048939b41c7aea15d1f110a11dbe706b2e0113108061">CUALQUIERA</a> = -1
-, <a class="el" href="#a0a26545d88471dde33a6d048939b41c7af1ce01387d2348f8b858721a7db81670">S</a>
-, <a class="el" href="#a0a26545d88471dde33a6d048939b41c7a42a4ade1acd55a49164099104990e09f">A</a>
-, <a class="el" href="#a0a26545d88471dde33a6d048939b41c7a739ce3f516592d245d16fd8a3893472c">C</a>
+<tr class="memitem:ab80847f836461323c4a0cc5d8f73f45e" id="r_ab80847f836461323c4a0cc5d8f73f45e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab80847f836461323c4a0cc5d8f73f45e">estadoStop</a> { <br />
+&#160;&#160;<a class="el" href="#ab80847f836461323c4a0cc5d8f73f45eaea15d1f110a11dbe706b2e0113108061">CUALQUIERA</a> = -1
+, <a class="el" href="#ab80847f836461323c4a0cc5d8f73f45eaf1ce01387d2348f8b858721a7db81670">S</a>
+, <a class="el" href="#ab80847f836461323c4a0cc5d8f73f45ea42a4ade1acd55a49164099104990e09f">A</a>
+, <a class="el" href="#ab80847f836461323c4a0cc5d8f73f45ea739ce3f516592d245d16fd8a3893472c">C</a>
 , <br />
-&#160;&#160;<a class="el" href="#a0a26545d88471dde33a6d048939b41c7ad9eaacf742e7d95d4388fbacee83dfe7">CANT_estadoStop</a>
+&#160;&#160;<a class="el" href="#ab80847f836461323c4a0cc5d8f73f45ead9eaacf742e7d95d4388fbacee83dfe7">CANT_estadoStop</a>
 <br />
  }</td></tr>
+<tr class="memdesc:ab80847f836461323c4a0cc5d8f73f45e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lógica del estado STOP: Apaga LEDs y muestra mensaje.  <a href="#ab80847f836461323c4a0cc5d8f73f45e">Más...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Funciones</h2></td></tr>
 <tr class="memitem:aaff5fba0226931c3ad70a6d28b8fad99" id="r_aaff5fba0226931c3ad70a6d28b8fad99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaff5fba0226931c3ad70a6d28b8fad99">estadoAcel</a> ()</td></tr>
-<tr class="memdesc:aaff5fba0226931c3ad70a6d28b8fad99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acción ejecutada durante la fase de aceleración (A).  <br /></td></tr>
+<tr class="memdesc:aaff5fba0226931c3ad70a6d28b8fad99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lógica del estado ACEL: Enciende ambos LEDs y muestra mensaje.  <br /></td></tr>
 <tr class="memitem:a088f0fc3ef27d7538fafe1ec168354e7" id="r_a088f0fc3ef27d7538fafe1ec168354e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a088f0fc3ef27d7538fafe1ec168354e7">estadoControl</a> ()</td></tr>
-<tr class="memdesc:a088f0fc3ef27d7538fafe1ec168354e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acción ejecutada durante la fase de control activo (C).  <br /></td></tr>
+<tr class="memdesc:a088f0fc3ef27d7538fafe1ec168354e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lógica del estado CONTROL: Enciende solo LED externo y muestra mensaje.  <br /></td></tr>
 <tr class="memitem:ac43d7f08eeb67b32fc99e80cbe45b48f" id="r_ac43d7f08eeb67b32fc99e80cbe45b48f"><td class="memItemLeft" align="right" valign="top">void IRAM_ATTR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac43d7f08eeb67b32fc99e80cbe45b48f">handleRun</a> ()</td></tr>
-<tr class="memdesc:ac43d7f08eeb67b32fc99e80cbe45b48f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo <span class="tt">IRAM_ATTR</span> se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece <span class="tt"><a class="el" href="interrupciones_8hpp.html#a081d22c8c0bb30d050a1a7c4505f00b9" title="Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador volati...">RUN</a> = true;</span>.  <br /></td></tr>
+<tr class="memdesc:ac43d7f08eeb67b32fc99e80cbe45b48f"><td class="mdescLeft">&#160;</td><td class="mdescRight">ISR para iniciar el modo corredor.  <br /></td></tr>
 <tr class="memitem:ac4760fa91d2516a12338d9ef62218eb4" id="r_ac4760fa91d2516a12338d9ef62218eb4"><td class="memItemLeft" align="right" valign="top">void IRAM_ATTR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4760fa91d2516a12338d9ef62218eb4">handleControl</a> ()</td></tr>
+<tr class="memdesc:ac4760fa91d2516a12338d9ef62218eb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">ISR para simular el cambio a modo control.  <br /></td></tr>
 <tr class="memitem:acd0d099ac54b24e9fcd0a9e2ea12c4a7" id="r_acd0d099ac54b24e9fcd0a9e2ea12c4a7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd0d099ac54b24e9fcd0a9e2ea12c4a7">nada</a> (int c)</td></tr>
+<tr class="memdesc:acd0d099ac54b24e9fcd0a9e2ea12c4a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función dummy para transiciones que no ejecutan acciones adicionales.  <br /></td></tr>
 <tr class="memitem:a4fc01d736fe50cf5b977f755b675f11d" id="r_a4fc01d736fe50cf5b977f755b675f11d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d">setup</a> ()</td></tr>
+<tr class="memdesc:a4fc01d736fe50cf5b977f755b675f11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuración inicial del test de FSM.  <br /></td></tr>
 <tr class="memitem:afe461d27b9c48d5921c00d521181f12f" id="r_afe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe461d27b9c48d5921c00d521181f12f">loop</a> ()</td></tr>
+<tr class="memdesc:afe461d27b9c48d5921c00d521181f12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ciclo principal que calcula la entrada y ejecuta la transición.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:aa8079ae3d08fedcadb8c8dc85eecccd3" id="r_aa8079ae3d08fedcadb8c8dc85eecccd3"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8079ae3d08fedcadb8c8dc85eecccd3">LED_INTERNAL</a> = 2</td></tr>
+<tr class="memdesc:aa8079ae3d08fedcadb8c8dc85eecccd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin del LED interno de la placa.  <br /></td></tr>
 <tr class="memitem:acf230a96ef202ec239456472f789565a" id="r_acf230a96ef202ec239456472f789565a"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf230a96ef202ec239456472f789565a">LED_EXTERNAL</a> = 13</td></tr>
+<tr class="memdesc:acf230a96ef202ec239456472f789565a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin del LED externo para indicar el estado del sistema.  <br /></td></tr>
 <tr class="memitem:ad5ad2bae2adeebba035fd54481cd15f2" id="r_ad5ad2bae2adeebba035fd54481cd15f2"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5ad2bae2adeebba035fd54481cd15f2">BTN_ON</a> = 19</td></tr>
+<tr class="memdesc:ad5ad2bae2adeebba035fd54481cd15f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin del botón para activar el modo RUN (inicio).  <br /></td></tr>
 <tr class="memitem:a05864874d1dfbd27df332c76ff068480" id="r_a05864874d1dfbd27df332c76ff068480"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05864874d1dfbd27df332c76ff068480">BTN_SP</a> = 22</td></tr>
+<tr class="memdesc:a05864874d1dfbd27df332c76ff068480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin del botón para simular la salida del setpoint (modo CONTROL).  <br /></td></tr>
 <tr class="memitem:a081d22c8c0bb30d050a1a7c4505f00b9" id="r_a081d22c8c0bb30d050a1a7c4505f00b9"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a081d22c8c0bb30d050a1a7c4505f00b9">RUN</a> = 0</td></tr>
-<tr class="memdesc:a081d22c8c0bb30d050a1a7c4505f00b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador <span class="tt">volatile</span> es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal (<span class="tt"><a class="el" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del programa.">loop</a></span>).  <br /></td></tr>
+<tr class="memdesc:a081d22c8c0bb30d050a1a7c4505f00b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bandera volátil que indica si el sistema está activo.  <br /></td></tr>
 <tr class="memitem:a54b97467d59263bb6140712f4ab9609e" id="r_a54b97467d59263bb6140712f4ab9609e"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a54b97467d59263bb6140712f4ab9609e">SP</a> = 1</td></tr>
-<tr class="memitem:a75ca1f171787107103fec12fc9b031f8" id="r_a75ca1f171787107103fec12fc9b031f8"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75ca1f171787107103fec12fc9b031f8">acciones_estado</a> [])() = { <a class="el" href="#a0a26545d88471dde33a6d048939b41c7">estadoStop</a>, <a class="el" href="#aaff5fba0226931c3ad70a6d28b8fad99">estadoAcel</a>, <a class="el" href="#a088f0fc3ef27d7538fafe1ec168354e7">estadoControl</a> }</td></tr>
-<tr class="memdesc:a75ca1f171787107103fec12fc9b031f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Punteros a las funciones de acción de cada estado, definidas externamente.  <br /></td></tr>
+<tr class="memdesc:a54b97467d59263bb6140712f4ab9609e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bandera volátil que indica si el robot está en el setpoint (1) o fuera (0).  <br /></td></tr>
+<tr class="memitem:a75ca1f171787107103fec12fc9b031f8" id="r_a75ca1f171787107103fec12fc9b031f8"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75ca1f171787107103fec12fc9b031f8">acciones_estado</a> [])() = { <a class="el" href="#ab80847f836461323c4a0cc5d8f73f45e">estadoStop</a>, <a class="el" href="#aaff5fba0226931c3ad70a6d28b8fad99">estadoAcel</a>, <a class="el" href="#a088f0fc3ef27d7538fafe1ec168354e7">estadoControl</a> }</td></tr>
+<tr class="memdesc:a75ca1f171787107103fec12fc9b031f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array de punteros a funciones que vincula los identificadores de estado con su lógica.  <br /></td></tr>
 <tr class="memitem:a069a28f6c0e81686e8cb3a9ef42e540c" id="r_a069a28f6c0e81686e8cb3a9ef42e540c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structestado__t.html">estado_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a069a28f6c0e81686e8cb3a9ef42e540c">stop</a> []</td></tr>
+<tr class="memdesc:a069a28f6c0e81686e8cb3a9ef42e540c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transiciones desde el estado STOP (S).  <br /></td></tr>
 <tr class="memitem:acfa49cb38c51dc041b36385d4b1d7b1b" id="r_acfa49cb38c51dc041b36385d4b1d7b1b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structestado__t.html">estado_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfa49cb38c51dc041b36385d4b1d7b1b">acel</a> []</td></tr>
+<tr class="memdesc:acfa49cb38c51dc041b36385d4b1d7b1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transiciones desde el estado ACELERAR (A).  <br /></td></tr>
 <tr class="memitem:a4d31f5a8868cdbae7ffa8b386cfe7761" id="r_a4d31f5a8868cdbae7ffa8b386cfe7761"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structestado__t.html">estado_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d31f5a8868cdbae7ffa8b386cfe7761">control</a> []</td></tr>
+<tr class="memdesc:a4d31f5a8868cdbae7ffa8b386cfe7761"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transiciones desde el estado CONTROL (C).  <br /></td></tr>
 <tr class="memitem:abd88f3559bbd3b2b3ffd8eb3b3dbe1fc" id="r_abd88f3559bbd3b2b3ffd8eb3b3dbe1fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structestado__t.html">estado_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd88f3559bbd3b2b3ffd8eb3b3dbe1fc">tabla_de_estados</a> [] = { <a class="el" href="#a069a28f6c0e81686e8cb3a9ef42e540c">stop</a>, <a class="el" href="#acfa49cb38c51dc041b36385d4b1d7b1b">acel</a>, <a class="el" href="#a4d31f5a8868cdbae7ffa8b386cfe7761">control</a> }</td></tr>
+<tr class="memdesc:abd88f3559bbd3b2b3ffd8eb3b3dbe1fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tabla general que agrupa todas las tablas de estado.  <br /></td></tr>
 </table>
-<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Documentación de enumeraciones</h2>
-<a id="a0a26545d88471dde33a6d048939b41c7" name="a0a26545d88471dde33a6d048939b41c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a26545d88471dde33a6d048939b41c7">&#9670;&#160;</a></span>estadoStop</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Programa de prueba para la Máquina de Estados Finitos (FSM). </p>
+<p>Este test valida la lógica de transiciones entre los estados STOP, ACEL y CONTROL utilizando señales de entrada simuladas por botones y feedback visual mediante LEDs. </p><dl class="section author"><dt>Autor</dt><dd>Legion de Ohm </dd></dl>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Documentación de enumeraciones</h2>
+<a id="ab80847f836461323c4a0cc5d8f73f45e" name="ab80847f836461323c4a0cc5d8f73f45e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab80847f836461323c4a0cc5d8f73f45e">&#9670;&#160;</a></span>estadoStop</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum void <a class="el" href="#a0a26545d88471dde33a6d048939b41c7">estadoStop</a></td>
+          <td class="memname">enum void <a class="el" href="#ab80847f836461323c4a0cc5d8f73f45e">estadoStop</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Lógica del estado STOP: Apaga LEDs y muestra mensaje. </p>
+<p>Enumeración de los estados posibles y valores especiales de la tabla. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Valores de enumeraciones</th></tr><tr><td class="fieldname"><a id="a0a26545d88471dde33a6d048939b41c7aea15d1f110a11dbe706b2e0113108061" name="a0a26545d88471dde33a6d048939b41c7aea15d1f110a11dbe706b2e0113108061"></a>CUALQUIERA&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a0a26545d88471dde33a6d048939b41c7af1ce01387d2348f8b858721a7db81670" name="a0a26545d88471dde33a6d048939b41c7af1ce01387d2348f8b858721a7db81670"></a>S&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a0a26545d88471dde33a6d048939b41c7a42a4ade1acd55a49164099104990e09f" name="a0a26545d88471dde33a6d048939b41c7a42a4ade1acd55a49164099104990e09f"></a>A&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a0a26545d88471dde33a6d048939b41c7a739ce3f516592d245d16fd8a3893472c" name="a0a26545d88471dde33a6d048939b41c7a739ce3f516592d245d16fd8a3893472c"></a>C&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a0a26545d88471dde33a6d048939b41c7ad9eaacf742e7d95d4388fbacee83dfe7" name="a0a26545d88471dde33a6d048939b41c7ad9eaacf742e7d95d4388fbacee83dfe7"></a>CANT_estadoStop&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Valores de enumeraciones</th></tr><tr><td class="fieldname"><a id="ab80847f836461323c4a0cc5d8f73f45eaea15d1f110a11dbe706b2e0113108061" name="ab80847f836461323c4a0cc5d8f73f45eaea15d1f110a11dbe706b2e0113108061"></a>CUALQUIERA&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ab80847f836461323c4a0cc5d8f73f45eaf1ce01387d2348f8b858721a7db81670" name="ab80847f836461323c4a0cc5d8f73f45eaf1ce01387d2348f8b858721a7db81670"></a>S&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ab80847f836461323c4a0cc5d8f73f45ea42a4ade1acd55a49164099104990e09f" name="ab80847f836461323c4a0cc5d8f73f45ea42a4ade1acd55a49164099104990e09f"></a>A&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ab80847f836461323c4a0cc5d8f73f45ea739ce3f516592d245d16fd8a3893472c" name="ab80847f836461323c4a0cc5d8f73f45ea739ce3f516592d245d16fd8a3893472c"></a>C&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ab80847f836461323c4a0cc5d8f73f45ead9eaacf742e7d95d4388fbacee83dfe7" name="ab80847f836461323c4a0cc5d8f73f45ead9eaacf742e7d95d4388fbacee83dfe7"></a>CANT_estadoStop&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -187,10 +210,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Lógica del estado ACEL: Enciende ambos LEDs y muestra mensaje. </p>
 <p>Acción ejecutada durante la fase de aceleración (A). </p>
-<p>Aplica un perfil de velocidad creciente para romper la inercia inicial. </p><dl class="section return"><dt>Devuelve</dt><dd>void</dd></dl>
-<p>Acción ejecutada durante la fase de aceleración (A).</p>
-<p>Realiza un incremento progresivo de la velocidad mientras el robot se encuentre dentro del setpoint para romper la inercia de manera suave. </p>
 
 </div>
 </div>
@@ -209,10 +230,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Lógica del estado CONTROL: Enciende solo LED externo y muestra mensaje. </p>
 <p>Acción ejecutada durante la fase de control activo (C). </p>
-<p>Ejecuta la lectura de sensores, cálculo de PID y ajuste de motores en tiempo real. </p><dl class="section return"><dt>Devuelve</dt><dd>void</dd></dl>
-<p>Acción ejecutada durante la fase de control activo (C).</p>
-<p>Ejecuta el algoritmo PID a intervalos fijos marcados por el temporizador para corregir la trayectoria del robot sobre la línea. </p>
 
 </div>
 </div>
@@ -231,6 +250,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>ISR para simular el cambio a modo control. </p>
+<p>Desactiva la bandera SP para forzar la transición a control PID. </p>
+
 </div>
 </div>
 <a id="ac43d7f08eeb67b32fc99e80cbe45b48f" name="ac43d7f08eeb67b32fc99e80cbe45b48f"></a>
@@ -248,9 +270,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo <span class="tt">IRAM_ATTR</span> se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece <span class="tt"><a class="el" href="interrupciones_8hpp.html#a081d22c8c0bb30d050a1a7c4505f00b9" title="Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador volati...">RUN</a> = true;</span>. </p>
+<p>ISR para iniciar el modo corredor. </p>
 <p>Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo <span class="tt">IRAM_ATTR</span> se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece <span class="tt"><a class="el" href="interrupciones_8hpp.html#a081d22c8c0bb30d050a1a7c4505f00b9" title="Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador volati...">RUN</a> = true;</span>.</p>
-<p>Activa las banderas RUN y SETPOINT para iniciar la lógica de movimiento. </p>
+<p>Activa RUN y restablece SP para comenzar en aceleración. </p>
 
 </div>
 </div>
@@ -269,6 +291,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Ciclo principal que calcula la entrada y ejecuta la transición. </p>
+
 </div>
 </div>
 <a id="acd0d099ac54b24e9fcd0a9e2ea12c4a7" name="acd0d099ac54b24e9fcd0a9e2ea12c4a7"></a>
@@ -285,6 +309,15 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Función dummy para transiciones que no ejecutan acciones adicionales. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>Valor de entrada. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>int Siempre 0. </dd></dl>
 
 </div>
 </div>
@@ -303,6 +336,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Configuración inicial del test de FSM. </p>
+
 </div>
 </div>
 <a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
@@ -316,12 +351,12 @@ Variables</h2></td></tr>
           <td class="memname">void(* acciones_estado[])() </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> = { <a class="el" href="#a0a26545d88471dde33a6d048939b41c7">estadoStop</a>, <a class="el" href="#aaff5fba0226931c3ad70a6d28b8fad99">estadoAcel</a>, <a class="el" href="#a088f0fc3ef27d7538fafe1ec168354e7">estadoControl</a> }</td>
+          <td> = { <a class="el" href="#ab80847f836461323c4a0cc5d8f73f45e">estadoStop</a>, <a class="el" href="#aaff5fba0226931c3ad70a6d28b8fad99">estadoAcel</a>, <a class="el" href="#a088f0fc3ef27d7538fafe1ec168354e7">estadoControl</a> }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Punteros a las funciones de acción de cada estado, definidas externamente. </p>
+<p>Array de punteros a funciones que vincula los identificadores de estado con su lógica. </p>
 <p>Punteros a las funciones de acción de cada estado, definidas externamente. </p>
 
 </div>
@@ -350,6 +385,8 @@ Variables</h2></td></tr>
 <div class="ttc" id="afsm_8hpp_html_a16933f9df95c0418037c4d7184797631aea15d1f110a11dbe706b2e0113108061"><div class="ttname"><a href="fsm_8hpp.html#a16933f9df95c0418037c4d7184797631aea15d1f110a11dbe706b2e0113108061">CUALQUIERA</a></div><div class="ttdeci">@ CUALQUIERA</div><div class="ttdoc">Estado para transiciones genéricas.</div><div class="ttdef"><b>Definition</b> fsm.hpp:14</div></div>
 <div class="ttc" id="afsm_8hpp_html_a16933f9df95c0418037c4d7184797631af1ce01387d2348f8b858721a7db81670"><div class="ttname"><a href="fsm_8hpp.html#a16933f9df95c0418037c4d7184797631af1ce01387d2348f8b858721a7db81670">S</a></div><div class="ttdeci">@ S</div><div class="ttdoc">Estado STOP: Robot detenido y a la espera.</div><div class="ttdef"><b>Definition</b> fsm.hpp:15</div></div>
 </div><!-- fragment -->
+<p>Transiciones desde el estado ACELERAR (A). </p>
+
 </div>
 </div>
 <a id="ad5ad2bae2adeebba035fd54481cd15f2" name="ad5ad2bae2adeebba035fd54481cd15f2"></a>
@@ -364,6 +401,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Pin del botón para activar el modo RUN (inicio). </p>
+
 </div>
 </div>
 <a id="a05864874d1dfbd27df332c76ff068480" name="a05864874d1dfbd27df332c76ff068480"></a>
@@ -377,6 +416,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Pin del botón para simular la salida del setpoint (modo CONTROL). </p>
 
 </div>
 </div>
@@ -399,6 +440,8 @@ Variables</h2></td></tr>
 <div class="line">    {<a class="code hl_enumvalue" href="fsm_8hpp.html#a16933f9df95c0418037c4d7184797631aea15d1f110a11dbe706b2e0113108061">CUALQUIERA</a>, <a class="code hl_function" href="fsm_8cpp.html#acd0d099ac54b24e9fcd0a9e2ea12c4a7">nada</a>, <a class="code hl_enumvalue" href="fsm_8hpp.html#a16933f9df95c0418037c4d7184797631a739ce3f516592d245d16fd8a3893472c">C</a>},</div>
 <div class="line">}</div>
 </div><!-- fragment -->
+<p>Transiciones desde el estado CONTROL (C). </p>
+
 </div>
 </div>
 <a id="acf230a96ef202ec239456472f789565a" name="acf230a96ef202ec239456472f789565a"></a>
@@ -412,6 +455,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Pin del LED externo para indicar el estado del sistema. </p>
 
 </div>
 </div>
@@ -427,6 +472,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Pin del LED interno de la placa. </p>
+
 </div>
 </div>
 <a id="a081d22c8c0bb30d050a1a7c4505f00b9" name="a081d22c8c0bb30d050a1a7c4505f00b9"></a>
@@ -441,7 +488,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador <span class="tt">volatile</span> es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal (<span class="tt"><a class="el" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del programa.">loop</a></span>). </p>
+<p>Bandera volátil que indica si el sistema está activo. </p>
 <p>Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador <span class="tt">volatile</span> es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal (<span class="tt"><a class="el" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del programa.">loop</a></span>). </p>
 
 </div>
@@ -457,6 +504,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Bandera volátil que indica si el robot está en el setpoint (1) o fuera (0). </p>
 
 </div>
 </div>
@@ -479,6 +528,8 @@ Variables</h2></td></tr>
 <div class="line">    {<a class="code hl_enumvalue" href="fsm_8hpp.html#a16933f9df95c0418037c4d7184797631aea15d1f110a11dbe706b2e0113108061">CUALQUIERA</a>, <a class="code hl_function" href="fsm_8cpp.html#acd0d099ac54b24e9fcd0a9e2ea12c4a7">nada</a>, <a class="code hl_enumvalue" href="fsm_8hpp.html#a16933f9df95c0418037c4d7184797631af1ce01387d2348f8b858721a7db81670">S</a>},</div>
 <div class="line">}</div>
 </div><!-- fragment -->
+<p>Transiciones desde el estado STOP (S). </p>
+
 </div>
 </div>
 <a id="abd88f3559bbd3b2b3ffd8eb3b3dbe1fc" name="abd88f3559bbd3b2b3ffd8eb3b3dbe1fc"></a>
@@ -492,6 +543,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Tabla general que agrupa todas las tablas de estado. </p>
 
 </div>
 </div>

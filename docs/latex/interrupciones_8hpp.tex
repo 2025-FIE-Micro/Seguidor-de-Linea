@@ -55,7 +55,11 @@ Función de servicio de interrupción (ISR) para iniciar la rutina principal. El
 
 Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo {\ttfamily IRAM\+\_\+\+ATTR} se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece {\ttfamily \doxylink{interrupciones_8hpp_a081d22c8c0bb30d050a1a7c4505f00b9}{RUN} = true;}.
 
-Activa las banderas RUN y SETPOINT para iniciar la lógica de movimiento. \Hypertarget{interrupciones_8hpp_ad381aa5df28fccb991bc49fcb5856b43}\index{interrupciones.hpp@{interrupciones.hpp}!handleStop@{handleStop}}
+Activa las banderas RUN y SETPOINT para iniciar la lógica de movimiento.
+
+Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo {\ttfamily IRAM\+\_\+\+ATTR} se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece {\ttfamily \doxylink{interrupciones_8hpp_a081d22c8c0bb30d050a1a7c4505f00b9}{RUN} = true;}.
+
+Activa RUN y restablece SP para comenzar en aceleración. \Hypertarget{interrupciones_8hpp_ad381aa5df28fccb991bc49fcb5856b43}\index{interrupciones.hpp@{interrupciones.hpp}!handleStop@{handleStop}}
 \index{handleStop@{handleStop}!interrupciones.hpp@{interrupciones.hpp}}
 \doxysubsubsection{\texorpdfstring{handleStop()}{handleStop()}}
 {\footnotesize\ttfamily \label{interrupciones_8hpp_ad381aa5df28fccb991bc49fcb5856b43} 

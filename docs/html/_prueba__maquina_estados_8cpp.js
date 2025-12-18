@@ -1,12 +1,12 @@
 var _prueba__maquina_estados_8cpp =
 [
     [ "estado_t", "structestado__t.html", "structestado__t" ],
-    [ "estadoStop", "_prueba__maquina_estados_8cpp.html#a0a26545d88471dde33a6d048939b41c7", [
-      [ "CUALQUIERA", "_prueba__maquina_estados_8cpp.html#a0a26545d88471dde33a6d048939b41c7aea15d1f110a11dbe706b2e0113108061", null ],
-      [ "S", "_prueba__maquina_estados_8cpp.html#a0a26545d88471dde33a6d048939b41c7af1ce01387d2348f8b858721a7db81670", null ],
-      [ "A", "_prueba__maquina_estados_8cpp.html#a0a26545d88471dde33a6d048939b41c7a42a4ade1acd55a49164099104990e09f", null ],
-      [ "C", "_prueba__maquina_estados_8cpp.html#a0a26545d88471dde33a6d048939b41c7a739ce3f516592d245d16fd8a3893472c", null ],
-      [ "CANT_estadoStop", "_prueba__maquina_estados_8cpp.html#a0a26545d88471dde33a6d048939b41c7ad9eaacf742e7d95d4388fbacee83dfe7", null ]
+    [ "estadoStop", "_prueba__maquina_estados_8cpp.html#ab80847f836461323c4a0cc5d8f73f45e", [
+      [ "CUALQUIERA", "_prueba__maquina_estados_8cpp.html#ab80847f836461323c4a0cc5d8f73f45eaea15d1f110a11dbe706b2e0113108061", null ],
+      [ "S", "_prueba__maquina_estados_8cpp.html#ab80847f836461323c4a0cc5d8f73f45eaf1ce01387d2348f8b858721a7db81670", null ],
+      [ "A", "_prueba__maquina_estados_8cpp.html#ab80847f836461323c4a0cc5d8f73f45ea42a4ade1acd55a49164099104990e09f", null ],
+      [ "C", "_prueba__maquina_estados_8cpp.html#ab80847f836461323c4a0cc5d8f73f45ea739ce3f516592d245d16fd8a3893472c", null ],
+      [ "CANT_estadoStop", "_prueba__maquina_estados_8cpp.html#ab80847f836461323c4a0cc5d8f73f45ead9eaacf742e7d95d4388fbacee83dfe7", null ]
     ] ],
     [ "estadoAcel", "_prueba__maquina_estados_8cpp.html#aaff5fba0226931c3ad70a6d28b8fad99", null ],
     [ "estadoControl", "_prueba__maquina_estados_8cpp.html#a088f0fc3ef27d7538fafe1ec168354e7", null ],

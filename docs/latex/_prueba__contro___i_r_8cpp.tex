@@ -1,26 +1,31 @@
 \doxysection{Referencia del archivo test/\+Prueba\+\_\+contro\+\_\+\+IR.cpp}
 \hypertarget{_prueba__contro___i_r_8cpp}{}\label{_prueba__contro___i_r_8cpp}\index{test/Prueba\_contro\_IR.cpp@{test/Prueba\_contro\_IR.cpp}}
+
+
+Programa de prueba para el control dual (Botones e Infrarrojo) de un LED.  
+
+
 {\ttfamily \#include $<$Arduino.\+h$>$}\newline
 {\ttfamily \#include $<$IRremote.\+hpp$>$}\newline
 \doxysubsubsection*{defines}
 \begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{_prueba__contro___i_r_8cpp_a214f742fc735c29dbf970e16611a095f}{LED\+\_\+\+EXTERNAL}}~13
-\item 
+\begin{DoxyCompactList}\small\item\em Pin del LED externo de prueba. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{_prueba__contro___i_r_8cpp_add532b97f503429f7bd807c5731cfe53}{BTN\+\_\+\+ON}}~19
-\item 
+\begin{DoxyCompactList}\small\item\em Pin del botón físico para encendido. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{_prueba__contro___i_r_8cpp_a1d46f05dd7b4d7c7a73237f20842b810}{BTN\+\_\+\+OFF}}~22
-\item 
+\begin{DoxyCompactList}\small\item\em Pin del botón físico para apagado. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{_prueba__contro___i_r_8cpp_a3b0a1d1d72b10a9c0c95adeb235d19f4}{IR\+\_\+\+PIN}}~4
-\item 
+\begin{DoxyCompactList}\small\item\em Pin de datos del receptor IR. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{_prueba__contro___i_r_8cpp_ad22b3834e4e8a59a072b1b630b2a0cb7}{CMD\+\_\+\+ON}}~0x18
-\item 
+\begin{DoxyCompactList}\small\item\em Comando hexadecimal del botón ON en el control remoto. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{_prueba__contro___i_r_8cpp_a216d50141d4a94c1ce96eafd87cf8e1a}{RAW\+\_\+\+ON}}~0x\+E718\+FF00
-\item 
+\begin{DoxyCompactList}\small\item\em Dato crudo (Raw) esperado para el comando ON. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{_prueba__contro___i_r_8cpp_a48422ade9d3e69812b682755ed27b51d}{CMD\+\_\+\+OFF}}~0x1C
-\item 
+\begin{DoxyCompactList}\small\item\em Comando hexadecimal del botón OFF en el control remoto. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{_prueba__contro___i_r_8cpp_a8e348cdba02e89e70f98e16e283007e1}{RAW\+\_\+\+OFF}}~0x\+E31\+CFF00
-\item 
+\begin{DoxyCompactList}\small\item\em Dato crudo (Raw) esperado para el comando OFF. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{_prueba__contro___i_r_8cpp_a9eaf83e62ca1ec14900f44dd3b298a73}{USAR\+\_\+\+CONTROL\+\_\+\+IR}}
 \begin{DoxyCompactList}\small\item\em Bandera de compilación para habilitar la lógica de control remoto IR. Si no está definido, todo el código relacionado con la recepción IR se ignora. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{_prueba__contro___i_r_8cpp_a8851a0d6ef5edc9c7ebf030cfdc8500f}{control\+\_\+ir}}(IR)
@@ -29,18 +34,26 @@
 \begin{DoxyCompactItemize}
 \item 
 void IRAM\+\_\+\+ATTR \mbox{\hyperlink{_prueba__contro___i_r_8cpp_a874207ed40332f6909664827e57ea070}{handle\+On}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em ISR para el botón de encendido. Cambia el estado a true. \end{DoxyCompactList}\item 
 void IRAM\+\_\+\+ATTR \mbox{\hyperlink{_prueba__contro___i_r_8cpp_a817f4d032bbcd8cd69c4096856d117ad}{handle\+Off}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em ISR para el botón de apagado. Cambia el estado a false. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_prueba__contro___i_r_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Configuración inicial del test de control. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_prueba__contro___i_r_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Lazo principal de la prueba. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 volatile bool \mbox{\hyperlink{_prueba__contro___i_r_8cpp_a721652ea8495ead65724ceff69063b9a}{led\+State}} = false
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Estado lógico global del LED, modificado por ISR y decodificación IR. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Programa de prueba para el control dual (Botones e Infrarrojo) de un LED. 
+
+Este test verifica la integración de la librería IRremote con interrupciones de hardware para conmutar el estado de un LED externo. \begin{DoxyAuthor}{Autor}
+Legion de Ohm 
+\end{DoxyAuthor}
 
 
 \label{doc-define-members}
@@ -52,11 +65,19 @@ volatile bool \mbox{\hyperlink{_prueba__contro___i_r_8cpp_a721652ea8495ead65724c
 {\footnotesize\ttfamily \label{_prueba__contro___i_r_8cpp_a1d46f05dd7b4d7c7a73237f20842b810} 
 \#define BTN\+\_\+\+OFF~22}
 
+
+
+Pin del botón físico para apagado. 
+
 \Hypertarget{_prueba__contro___i_r_8cpp_add532b97f503429f7bd807c5731cfe53}\index{Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}!BTN\_ON@{BTN\_ON}}
 \index{BTN\_ON@{BTN\_ON}!Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}}
 \doxysubsubsection{\texorpdfstring{BTN\_ON}{BTN\_ON}}
 {\footnotesize\ttfamily \label{_prueba__contro___i_r_8cpp_add532b97f503429f7bd807c5731cfe53} 
 \#define BTN\+\_\+\+ON~19}
+
+
+
+Pin del botón físico para encendido. 
 
 \Hypertarget{_prueba__contro___i_r_8cpp_a48422ade9d3e69812b682755ed27b51d}\index{Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}!CMD\_OFF@{CMD\_OFF}}
 \index{CMD\_OFF@{CMD\_OFF}!Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}}
@@ -64,11 +85,19 @@ volatile bool \mbox{\hyperlink{_prueba__contro___i_r_8cpp_a721652ea8495ead65724c
 {\footnotesize\ttfamily \label{_prueba__contro___i_r_8cpp_a48422ade9d3e69812b682755ed27b51d} 
 \#define CMD\+\_\+\+OFF~0x1C}
 
+
+
+Comando hexadecimal del botón OFF en el control remoto. 
+
 \Hypertarget{_prueba__contro___i_r_8cpp_ad22b3834e4e8a59a072b1b630b2a0cb7}\index{Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}!CMD\_ON@{CMD\_ON}}
 \index{CMD\_ON@{CMD\_ON}!Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}}
 \doxysubsubsection{\texorpdfstring{CMD\_ON}{CMD\_ON}}
 {\footnotesize\ttfamily \label{_prueba__contro___i_r_8cpp_ad22b3834e4e8a59a072b1b630b2a0cb7} 
 \#define CMD\+\_\+\+ON~0x18}
+
+
+
+Comando hexadecimal del botón ON en el control remoto. 
 
 \Hypertarget{_prueba__contro___i_r_8cpp_a8851a0d6ef5edc9c7ebf030cfdc8500f}\index{Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}!control\_ir@{control\_ir}}
 \index{control\_ir@{control\_ir}!Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}}
@@ -87,11 +116,19 @@ volatile bool \mbox{\hyperlink{_prueba__contro___i_r_8cpp_a721652ea8495ead65724c
 {\footnotesize\ttfamily \label{_prueba__contro___i_r_8cpp_a3b0a1d1d72b10a9c0c95adeb235d19f4} 
 \#define IR\+\_\+\+PIN~4}
 
+
+
+Pin de datos del receptor IR. 
+
 \Hypertarget{_prueba__contro___i_r_8cpp_a214f742fc735c29dbf970e16611a095f}\index{Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}!LED\_EXTERNAL@{LED\_EXTERNAL}}
 \index{LED\_EXTERNAL@{LED\_EXTERNAL}!Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}}
 \doxysubsubsection{\texorpdfstring{LED\_EXTERNAL}{LED\_EXTERNAL}}
 {\footnotesize\ttfamily \label{_prueba__contro___i_r_8cpp_a214f742fc735c29dbf970e16611a095f} 
 \#define LED\+\_\+\+EXTERNAL~13}
+
+
+
+Pin del LED externo de prueba. 
 
 \Hypertarget{_prueba__contro___i_r_8cpp_a8e348cdba02e89e70f98e16e283007e1}\index{Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}!RAW\_OFF@{RAW\_OFF}}
 \index{RAW\_OFF@{RAW\_OFF}!Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}}
@@ -99,11 +136,19 @@ volatile bool \mbox{\hyperlink{_prueba__contro___i_r_8cpp_a721652ea8495ead65724c
 {\footnotesize\ttfamily \label{_prueba__contro___i_r_8cpp_a8e348cdba02e89e70f98e16e283007e1} 
 \#define RAW\+\_\+\+OFF~0x\+E31\+CFF00}
 
+
+
+Dato crudo (Raw) esperado para el comando OFF. 
+
 \Hypertarget{_prueba__contro___i_r_8cpp_a216d50141d4a94c1ce96eafd87cf8e1a}\index{Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}!RAW\_ON@{RAW\_ON}}
 \index{RAW\_ON@{RAW\_ON}!Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}}
 \doxysubsubsection{\texorpdfstring{RAW\_ON}{RAW\_ON}}
 {\footnotesize\ttfamily \label{_prueba__contro___i_r_8cpp_a216d50141d4a94c1ce96eafd87cf8e1a} 
 \#define RAW\+\_\+\+ON~0x\+E718\+FF00}
+
+
+
+Dato crudo (Raw) esperado para el comando ON. 
 
 \Hypertarget{_prueba__contro___i_r_8cpp_a9eaf83e62ca1ec14900f44dd3b298a73}\index{Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}!USAR\_CONTROL\_IR@{USAR\_CONTROL\_IR}}
 \index{USAR\_CONTROL\_IR@{USAR\_CONTROL\_IR}!Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}}
@@ -115,7 +160,7 @@ volatile bool \mbox{\hyperlink{_prueba__contro___i_r_8cpp_a721652ea8495ead65724c
 
 Bandera de compilación para habilitar la lógica de control remoto IR. Si no está definido, todo el código relacionado con la recepción IR se ignora. 
 
-
+Macro de configuración para habilitar o deshabilitar el bloque de control IR. 
 
 \label{doc-func-members}
 \Hypertarget{_prueba__contro___i_r_8cpp_doc-func-members}
@@ -126,11 +171,19 @@ Bandera de compilación para habilitar la lógica de control remoto IR. Si no es
 {\footnotesize\ttfamily \label{_prueba__contro___i_r_8cpp_a817f4d032bbcd8cd69c4096856d117ad} 
 void IRAM\+\_\+\+ATTR handle\+Off (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
+
+
+ISR para el botón de apagado. Cambia el estado a false. 
+
 \Hypertarget{_prueba__contro___i_r_8cpp_a874207ed40332f6909664827e57ea070}\index{Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}!handleOn@{handleOn}}
 \index{handleOn@{handleOn}!Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}}
 \doxysubsubsection{\texorpdfstring{handleOn()}{handleOn()}}
 {\footnotesize\ttfamily \label{_prueba__contro___i_r_8cpp_a874207ed40332f6909664827e57ea070} 
 void IRAM\+\_\+\+ATTR handle\+On (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+ISR para el botón de encendido. Cambia el estado a true. 
 
 \Hypertarget{_prueba__contro___i_r_8cpp_afe461d27b9c48d5921c00d521181f12f}\index{Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}!loop@{loop}}
 \index{loop@{loop}!Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}}
@@ -138,13 +191,21 @@ void IRAM\+\_\+\+ATTR handle\+On (\begin{DoxyParamCaption}{}{}\end{DoxyParamCapt
 {\footnotesize\ttfamily \label{_prueba__contro___i_r_8cpp_afe461d27b9c48d5921c00d521181f12f} 
 void loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-\Hypertarget{_prueba__contro___i_r_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\index{Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}!setup@{setup}}
+
+
+Lazo principal de la prueba. 
+
+Procesa las señales infrarrojas recibidas, decodifica el protocolo y compara los comandos con los valores autorizados (RAW\+\_\+\+ON/\+OFF). Actualiza el pin del LED según led\+State. \Hypertarget{_prueba__contro___i_r_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\index{Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}!setup@{setup}}
 \index{setup@{setup}!Prueba\_contro\_IR.cpp@{Prueba\_contro\_IR.cpp}}
 \doxysubsubsection{\texorpdfstring{setup()}{setup()}}
 {\footnotesize\ttfamily \label{_prueba__contro___i_r_8cpp_a4fc01d736fe50cf5b977f755b675f11d} 
 void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
+
+Configuración inicial del test de control. 
+
+Inicializa los periféricos, configura las interrupciones externas por flanco ascendente e inicializa el receptor IR con feedback visual. 
 
 \label{doc-var-members}
 \Hypertarget{_prueba__contro___i_r_8cpp_doc-var-members}
@@ -154,4 +215,8 @@ void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 \doxysubsubsection{\texorpdfstring{ledState}{ledState}}
 {\footnotesize\ttfamily \label{_prueba__contro___i_r_8cpp_a721652ea8495ead65724ceff69063b9a} 
 volatile bool led\+State = false}
+
+
+
+Estado lógico global del LED, modificado por ISR y decodificación IR. 
 

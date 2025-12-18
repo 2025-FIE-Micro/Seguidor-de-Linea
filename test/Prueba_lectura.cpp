@@ -1,25 +1,53 @@
+/**
+ @file prueba_lectura.cpp
+ @brief Programa de prueba para la lectura y calibración de sensores QTR.
+ @details Este test permite verificar la correcta recepción de datos de los 8 sensores, 
+ comparando el modo de lectura (RC o Analógico) y visualizando la posición calculada 
+ de la línea a través del monitor serial.
+ @author Legion de Ohm
+ */
+
 #include <Arduino.h>
 #include "QTRSensors.h"
 
 // ----------------------------
 // CONFIGURACIÓN
 // ----------------------------
+/** @brief Define el tipo de sensor a utilizar. Si está definido usa RC, de lo contrario usa ADC. */
 #define USE_RC  // Comentar para usar ADC
+
+/** @brief Pin del LED integrado para feedback visual de calibración. */
 #define LED_BUILTIN 2
 
+/** @brief Cantidad total de sensores en el array. */
 const uint8_t SensorCount = 8;
+
+/** @brief Mapeo de pines GPIO para los 8 sensores reflectivos. */
 const uint8_t sensorPins[SensorCount] = {14, 27, 33, 32, 35, 34, 39, 36};
+
+/** @brief Almacena los valores normalizados leídos de cada sensor individual. */
 uint16_t sensorValues[SensorCount];
+
+/** @brief Variable para almacenar la posición calculada de la línea (0-7000). */
 uint16_t position;
 
+/** @brief Instancia del objeto QTRSensors para gestionar el hardware. */
 QTRSensors qtr;
 
+/** @brief Variable para el control de tiempo no bloqueante. */
 unsigned long previousMillis = 0;
+
+/** @brief Intervalo de muestreo entre lecturas en milisegundos. */
 const long interval = 10; // Leer cada 10 ms
 
 // ----------------------------
 // SETUP
 // ----------------------------
+/**
+ @brief Inicializa el puerto serial y configura el tipo de sensores y pines.
+ @details Ejecuta una rutina de calibración de 400 ciclos (aprox. 10 segundos) 
+ indicando el inicio y fin mediante el LED interno.
+ */
 void setup() {
     Serial.begin(115200);
 
@@ -51,6 +79,11 @@ void setup() {
 // ----------------------------
 // LOOP
 // ----------------------------
+/**
+ @brief Lazo principal de muestreo.
+ @details Realiza la lectura de la línea cada 10ms. Si se usa RC, lee la línea negra; 
+ si se usa Analógico, lee la línea blanca. Imprime los valores brutos y la posición por serial.
+ */
 void loop() {
     unsigned long currentMillis = millis();
 

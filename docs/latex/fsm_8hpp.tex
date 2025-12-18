@@ -88,12 +88,16 @@ void estado\+Acel (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 Acción ejecutada durante la fase de aceleración (A). 
 
+Lógica del estado ACEL\+: Enciende ambos LEDs y muestra mensaje.
+
 Aplica un perfil de velocidad creciente para romper la inercia inicial. \begin{DoxyReturn}{Devuelve}
 void
 \end{DoxyReturn}
 Acción ejecutada durante la fase de aceleración (A).
 
-Realiza un incremento progresivo de la velocidad mientras el robot se encuentre dentro del setpoint para romper la inercia de manera suave. \Hypertarget{fsm_8hpp_a088f0fc3ef27d7538fafe1ec168354e7}\index{fsm.hpp@{fsm.hpp}!estadoControl@{estadoControl}}
+Realiza un incremento progresivo de la velocidad mientras el robot se encuentre dentro del setpoint para romper la inercia de manera suave.
+
+Acción ejecutada durante la fase de aceleración (A). \Hypertarget{fsm_8hpp_a088f0fc3ef27d7538fafe1ec168354e7}\index{fsm.hpp@{fsm.hpp}!estadoControl@{estadoControl}}
 \index{estadoControl@{estadoControl}!fsm.hpp@{fsm.hpp}}
 \doxysubsubsection{\texorpdfstring{estadoControl()}{estadoControl()}}
 {\footnotesize\ttfamily \label{fsm_8hpp_a088f0fc3ef27d7538fafe1ec168354e7} 
@@ -103,16 +107,20 @@ void estado\+Control (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 Acción ejecutada durante la fase de control activo (C). 
 
+Lógica del estado CONTROL\+: Enciende solo LED externo y muestra mensaje.
+
 Ejecuta la lectura de sensores, cálculo de PID y ajuste de motores en tiempo real. \begin{DoxyReturn}{Devuelve}
 void
 \end{DoxyReturn}
 Acción ejecutada durante la fase de control activo (C).
 
-Ejecuta el algoritmo PID a intervalos fijos marcados por el temporizador para corregir la trayectoria del robot sobre la línea. \Hypertarget{fsm_8hpp_ab80847f836461323c4a0cc5d8f73f45e}\index{fsm.hpp@{fsm.hpp}!estadoStop@{estadoStop}}
+Ejecuta el algoritmo PID a intervalos fijos marcados por el temporizador para corregir la trayectoria del robot sobre la línea.
+
+Acción ejecutada durante la fase de control activo (C). \Hypertarget{fsm_8hpp_ab80847f836461323c4a0cc5d8f73f45e}\index{fsm.hpp@{fsm.hpp}!estadoStop@{estadoStop}}
 \index{estadoStop@{estadoStop}!fsm.hpp@{fsm.hpp}}
 \doxysubsubsection{\texorpdfstring{estadoStop()}{estadoStop()}}
 {\footnotesize\ttfamily \label{fsm_8hpp_ab80847f836461323c4a0cc5d8f73f45e} 
-void \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7}{estado\+Stop}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+void \mbox{\hyperlink{_prueba__maquina_estados_8cpp_ab80847f836461323c4a0cc5d8f73f45e}{estado\+Stop}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 

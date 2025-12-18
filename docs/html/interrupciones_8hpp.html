@@ -153,7 +153,9 @@ Variables</h2></td></tr>
 
 <p>Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo <span class="tt">IRAM_ATTR</span> se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece <span class="tt"><a class="el" href="#a081d22c8c0bb30d050a1a7c4505f00b9" title="Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador volati...">RUN</a> = true;</span>. </p>
 <p>Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo <span class="tt">IRAM_ATTR</span> se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece <span class="tt"><a class="el" href="#a081d22c8c0bb30d050a1a7c4505f00b9" title="Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador volati...">RUN</a> = true;</span>.</p>
-<p>Activa las banderas RUN y SETPOINT para iniciar la lógica de movimiento. </p>
+<p>Activa las banderas RUN y SETPOINT para iniciar la lógica de movimiento.</p>
+<p>Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo <span class="tt">IRAM_ATTR</span> se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece <span class="tt"><a class="el" href="#a081d22c8c0bb30d050a1a7c4505f00b9" title="Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador volati...">RUN</a> = true;</span>.</p>
+<p>Activa RUN y restablece SP para comenzar en aceleración. </p>
 
 </div>
 </div>

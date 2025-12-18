@@ -19,6 +19,8 @@ int \mbox{\hyperlink{structestado__t_a567e18e092557f1deeed008f38f7806b}{prox\+\_
 \doxysubsection{Descripción detallada}
 Estructura que define una fila en la tabla de transiciones de un estado. 
 
+Estructura de la tabla de transiciones. 
+
 \label{doc-variable-members}
 \Hypertarget{structestado__t_doc-variable-members}
 \doxysubsection{Documentación de datos miembro}
@@ -32,7 +34,7 @@ int estado\+\_\+t\+::prox\+\_\+estado}
 
 Identificador del siguiente estado. 
 
-\Hypertarget{structestado__t_aab000aa8718015ecc7dcbb8e94389dc0}\index{estado\_t@{estado\_t}!recibo@{recibo}}
+Siguiente estado tras la coincidencia. \Hypertarget{structestado__t_aab000aa8718015ecc7dcbb8e94389dc0}\index{estado\_t@{estado\_t}!recibo@{recibo}}
 \index{recibo@{recibo}!estado\_t@{estado\_t}}
 \doxysubsubsection{\texorpdfstring{recibo}{recibo}}
 {\footnotesize\ttfamily \label{structestado__t_aab000aa8718015ecc7dcbb8e94389dc0} 
@@ -42,7 +44,7 @@ int estado\+\_\+t\+::recibo}
 
 Combinación binaria de señales de entrada (SP, RUN). 
 
-\Hypertarget{structestado__t_a777f7bab04abb0285660692a2d172e65}\index{estado\_t@{estado\_t}!transicion@{transicion}}
+Valor de entrada esperado (combinación SP, RUN). \Hypertarget{structestado__t_a777f7bab04abb0285660692a2d172e65}\index{estado\_t@{estado\_t}!transicion@{transicion}}
 \index{transicion@{transicion}!estado\_t@{estado\_t}}
 \doxysubsubsection{\texorpdfstring{transicion}{transicion}}
 {\footnotesize\ttfamily \label{structestado__t_a777f7bab04abb0285660692a2d172e65} 
@@ -52,7 +54,7 @@ int(\texorpdfstring{$\ast$}{*} estado\+\_\+t\+::transicion)(int)}
 
 Puntero a función de acción de transición (dummy). 
 
-
+Puntero a función de transición. 
 
 La documentación de esta estructura está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
 \item 

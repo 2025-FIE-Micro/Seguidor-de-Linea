@@ -180,9 +180,11 @@ Funciones</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Acción ejecutada durante la fase de aceleración (A). </p>
+<p>Lógica del estado ACEL: Enciende ambos LEDs y muestra mensaje.</p>
 <p>Aplica un perfil de velocidad creciente para romper la inercia inicial. </p><dl class="section return"><dt>Devuelve</dt><dd>void</dd></dl>
 <p>Acción ejecutada durante la fase de aceleración (A).</p>
-<p>Realiza un incremento progresivo de la velocidad mientras el robot se encuentre dentro del setpoint para romper la inercia de manera suave. </p>
+<p>Realiza un incremento progresivo de la velocidad mientras el robot se encuentre dentro del setpoint para romper la inercia de manera suave.</p>
+<p>Acción ejecutada durante la fase de aceleración (A). </p>
 
 </div>
 </div>
@@ -202,9 +204,11 @@ Funciones</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Acción ejecutada durante la fase de control activo (C). </p>
+<p>Lógica del estado CONTROL: Enciende solo LED externo y muestra mensaje.</p>
 <p>Ejecuta la lectura de sensores, cálculo de PID y ajuste de motores en tiempo real. </p><dl class="section return"><dt>Devuelve</dt><dd>void</dd></dl>
 <p>Acción ejecutada durante la fase de control activo (C).</p>
-<p>Ejecuta el algoritmo PID a intervalos fijos marcados por el temporizador para corregir la trayectoria del robot sobre la línea. </p>
+<p>Ejecuta el algoritmo PID a intervalos fijos marcados por el temporizador para corregir la trayectoria del robot sobre la línea.</p>
+<p>Acción ejecutada durante la fase de control activo (C). </p>
 
 </div>
 </div>
@@ -215,7 +219,7 @@ Funciones</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="_prueba__maquina_estados_8cpp.html#a0a26545d88471dde33a6d048939b41c7">estadoStop</a> </td>
+          <td class="memname">void <a class="el" href="_prueba__maquina_estados_8cpp.html#ab80847f836461323c4a0cc5d8f73f45e">estadoStop</a> </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>

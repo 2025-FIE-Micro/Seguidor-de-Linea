@@ -1,38 +1,51 @@
 \doxysection{Referencia del archivo test/\+Prueba\+\_\+lectura.cpp}
 \hypertarget{_prueba__lectura_8cpp}{}\label{_prueba__lectura_8cpp}\index{test/Prueba\_lectura.cpp@{test/Prueba\_lectura.cpp}}
+
+
+Programa de prueba para la lectura y calibración de sensores QTR.  
+
+
 {\ttfamily \#include $<$Arduino.\+h$>$}\newline
 {\ttfamily \#include "{}QTRSensors.\+h"{}}\newline
 \doxysubsubsection*{defines}
 \begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{_prueba__lectura_8cpp_a9ff0cc7629c4b34b68830042e89480e0}{USE\+\_\+\+RC}}
-\item 
+\begin{DoxyCompactList}\small\item\em Define el tipo de sensor a utilizar. Si está definido usa RC, de lo contrario usa ADC. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{_prueba__lectura_8cpp_a450a7c16ead7b3c7b882536b08f30a00}{LED\+\_\+\+BUILTIN}}~2
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Pin del LED integrado para feedback visual de calibración. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Funciones}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{_prueba__lectura_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Inicializa el puerto serial y configura el tipo de sensores y pines. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_prueba__lectura_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Lazo principal de muestreo. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 const uint8\+\_\+t \mbox{\hyperlink{_prueba__lectura_8cpp_a3ac4073d185617435faaca724a413fec}{Sensor\+Count}} = 8
-\item 
+\begin{DoxyCompactList}\small\item\em Cantidad total de sensores en el array. \end{DoxyCompactList}\item 
 const uint8\+\_\+t \mbox{\hyperlink{_prueba__lectura_8cpp_a60839c64d95207d4b55d0e6ddb9d9d1f}{sensor\+Pins}} \mbox{[}\mbox{\hyperlink{_prueba__lectura_8cpp_a3ac4073d185617435faaca724a413fec}{Sensor\+Count}}\mbox{]} = \{14, 27, 33, 32, 35, 34, 39, 36\}
-\item 
+\begin{DoxyCompactList}\small\item\em Mapeo de pines GPIO para los 8 sensores reflectivos. \end{DoxyCompactList}\item 
 uint16\+\_\+t \mbox{\hyperlink{_prueba__lectura_8cpp_a908407702b8a9dbb612a617c21ce31ba}{sensor\+Values}} \mbox{[}\mbox{\hyperlink{_prueba__lectura_8cpp_a3ac4073d185617435faaca724a413fec}{Sensor\+Count}}\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em Almacena los valores normalizados leídos de cada sensor individual. \end{DoxyCompactList}\item 
 uint16\+\_\+t \mbox{\hyperlink{_prueba__lectura_8cpp_a6f14bde43ef12199f2d2ef07adb6c942}{position}}
-\begin{DoxyCompactList}\small\item\em Posición calculada de la línea. Es el valor de la salida del proceso (PV), usado como entrada para el controlador PID. Este valor se normaliza (ej. 0 a 4000) donde el centro es el punto de referencia ({\ttfamily \doxylink{pid_8hpp_a8b6f34837979e0ebe80423697c0250f8}{setpoint}}). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Variable para almacenar la posición calculada de la línea (0-\/7000). \end{DoxyCompactList}\item 
 QTRSensors \mbox{\hyperlink{_prueba__lectura_8cpp_a9e05607474a03ba0b5bd2ee27c003524}{qtr}}
-\item 
+\begin{DoxyCompactList}\small\item\em Instancia del objeto QTRSensors para gestionar el hardware. \end{DoxyCompactList}\item 
 unsigned long \mbox{\hyperlink{_prueba__lectura_8cpp_a86027ad9c9159f02624d136fb63364fe}{previous\+Millis}} = 0
-\item 
+\begin{DoxyCompactList}\small\item\em Variable para el control de tiempo no bloqueante. \end{DoxyCompactList}\item 
 const long \mbox{\hyperlink{_prueba__lectura_8cpp_afab23e0ee85e56261dace1dba900e39e}{interval}} = 10
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Intervalo de muestreo entre lecturas en milisegundos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Programa de prueba para la lectura y calibración de sensores QTR. 
+
+Este test permite verificar la correcta recepción de datos de los 8 sensores, comparando el modo de lectura (RC o Analógico) y visualizando la posición calculada de la línea a través del monitor serial. \begin{DoxyAuthor}{Autor}
+Legion de Ohm 
+\end{DoxyAuthor}
 
 
 \label{doc-define-members}
@@ -44,11 +57,19 @@ const long \mbox{\hyperlink{_prueba__lectura_8cpp_afab23e0ee85e56261dace1dba900e
 {\footnotesize\ttfamily \label{_prueba__lectura_8cpp_a450a7c16ead7b3c7b882536b08f30a00} 
 \#define LED\+\_\+\+BUILTIN~2}
 
+
+
+Pin del LED integrado para feedback visual de calibración. 
+
 \Hypertarget{_prueba__lectura_8cpp_a9ff0cc7629c4b34b68830042e89480e0}\index{Prueba\_lectura.cpp@{Prueba\_lectura.cpp}!USE\_RC@{USE\_RC}}
 \index{USE\_RC@{USE\_RC}!Prueba\_lectura.cpp@{Prueba\_lectura.cpp}}
 \doxysubsubsection{\texorpdfstring{USE\_RC}{USE\_RC}}
 {\footnotesize\ttfamily \label{_prueba__lectura_8cpp_a9ff0cc7629c4b34b68830042e89480e0} 
 \#define USE\+\_\+\+RC}
+
+
+
+Define el tipo de sensor a utilizar. Si está definido usa RC, de lo contrario usa ADC. 
 
 
 
@@ -61,13 +82,21 @@ const long \mbox{\hyperlink{_prueba__lectura_8cpp_afab23e0ee85e56261dace1dba900e
 {\footnotesize\ttfamily \label{_prueba__lectura_8cpp_afe461d27b9c48d5921c00d521181f12f} 
 void loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-\Hypertarget{_prueba__lectura_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\index{Prueba\_lectura.cpp@{Prueba\_lectura.cpp}!setup@{setup}}
+
+
+Lazo principal de muestreo. 
+
+Realiza la lectura de la línea cada 10ms. Si se usa RC, lee la línea negra; si se usa Analógico, lee la línea blanca. Imprime los valores brutos y la posición por serial. \Hypertarget{_prueba__lectura_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\index{Prueba\_lectura.cpp@{Prueba\_lectura.cpp}!setup@{setup}}
 \index{setup@{setup}!Prueba\_lectura.cpp@{Prueba\_lectura.cpp}}
 \doxysubsubsection{\texorpdfstring{setup()}{setup()}}
 {\footnotesize\ttfamily \label{_prueba__lectura_8cpp_a4fc01d736fe50cf5b977f755b675f11d} 
 void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
+
+Inicializa el puerto serial y configura el tipo de sensores y pines. 
+
+Ejecuta una rutina de calibración de 400 ciclos (aprox. 10 segundos) indicando el inicio y fin mediante el LED interno. 
 
 \label{doc-var-members}
 \Hypertarget{_prueba__lectura_8cpp_doc-var-members}
@@ -78,6 +107,10 @@ void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 {\footnotesize\ttfamily \label{_prueba__lectura_8cpp_afab23e0ee85e56261dace1dba900e39e} 
 const long interval = 10}
 
+
+
+Intervalo de muestreo entre lecturas en milisegundos. 
+
 \Hypertarget{_prueba__lectura_8cpp_a6f14bde43ef12199f2d2ef07adb6c942}\index{Prueba\_lectura.cpp@{Prueba\_lectura.cpp}!position@{position}}
 \index{position@{position}!Prueba\_lectura.cpp@{Prueba\_lectura.cpp}}
 \doxysubsubsection{\texorpdfstring{position}{position}}
@@ -86,7 +119,7 @@ uint16\+\_\+t position}
 
 
 
-Posición calculada de la línea. Es el valor de la salida del proceso (PV), usado como entrada para el controlador PID. Este valor se normaliza (ej. 0 a 4000) donde el centro es el punto de referencia ({\ttfamily \doxylink{pid_8hpp_a8b6f34837979e0ebe80423697c0250f8}{setpoint}}). 
+Variable para almacenar la posición calculada de la línea (0-\/7000). 
 
 Posición calculada de la línea. Es el valor de la salida del proceso (PV), usado como entrada para el controlador PID. Este valor se normaliza (ej. 0 a 4000) donde el centro es el punto de referencia ({\ttfamily \doxylink{pid_8hpp_a8b6f34837979e0ebe80423697c0250f8}{setpoint}}). \Hypertarget{_prueba__lectura_8cpp_a86027ad9c9159f02624d136fb63364fe}\index{Prueba\_lectura.cpp@{Prueba\_lectura.cpp}!previousMillis@{previousMillis}}
 \index{previousMillis@{previousMillis}!Prueba\_lectura.cpp@{Prueba\_lectura.cpp}}
@@ -94,11 +127,19 @@ Posición calculada de la línea. Es el valor de la salida del proceso (PV), usa
 {\footnotesize\ttfamily \label{_prueba__lectura_8cpp_a86027ad9c9159f02624d136fb63364fe} 
 unsigned long previous\+Millis = 0}
 
+
+
+Variable para el control de tiempo no bloqueante. 
+
 \Hypertarget{_prueba__lectura_8cpp_a9e05607474a03ba0b5bd2ee27c003524}\index{Prueba\_lectura.cpp@{Prueba\_lectura.cpp}!qtr@{qtr}}
 \index{qtr@{qtr}!Prueba\_lectura.cpp@{Prueba\_lectura.cpp}}
 \doxysubsubsection{\texorpdfstring{qtr}{qtr}}
 {\footnotesize\ttfamily \label{_prueba__lectura_8cpp_a9e05607474a03ba0b5bd2ee27c003524} 
 QTRSensors qtr}
+
+
+
+Instancia del objeto QTRSensors para gestionar el hardware. 
 
 \Hypertarget{_prueba__lectura_8cpp_a3ac4073d185617435faaca724a413fec}\index{Prueba\_lectura.cpp@{Prueba\_lectura.cpp}!SensorCount@{SensorCount}}
 \index{SensorCount@{SensorCount}!Prueba\_lectura.cpp@{Prueba\_lectura.cpp}}
@@ -106,15 +147,27 @@ QTRSensors qtr}
 {\footnotesize\ttfamily \label{_prueba__lectura_8cpp_a3ac4073d185617435faaca724a413fec} 
 const uint8\+\_\+t Sensor\+Count = 8}
 
+
+
+Cantidad total de sensores en el array. 
+
 \Hypertarget{_prueba__lectura_8cpp_a60839c64d95207d4b55d0e6ddb9d9d1f}\index{Prueba\_lectura.cpp@{Prueba\_lectura.cpp}!sensorPins@{sensorPins}}
 \index{sensorPins@{sensorPins}!Prueba\_lectura.cpp@{Prueba\_lectura.cpp}}
 \doxysubsubsection{\texorpdfstring{sensorPins}{sensorPins}}
 {\footnotesize\ttfamily \label{_prueba__lectura_8cpp_a60839c64d95207d4b55d0e6ddb9d9d1f} 
 const uint8\+\_\+t sensor\+Pins\mbox{[}\mbox{\hyperlink{_prueba__lectura_8cpp_a3ac4073d185617435faaca724a413fec}{Sensor\+Count}}\mbox{]} = \{14, 27, 33, 32, 35, 34, 39, 36\}}
 
+
+
+Mapeo de pines GPIO para los 8 sensores reflectivos. 
+
 \Hypertarget{_prueba__lectura_8cpp_a908407702b8a9dbb612a617c21ce31ba}\index{Prueba\_lectura.cpp@{Prueba\_lectura.cpp}!sensorValues@{sensorValues}}
 \index{sensorValues@{sensorValues}!Prueba\_lectura.cpp@{Prueba\_lectura.cpp}}
 \doxysubsubsection{\texorpdfstring{sensorValues}{sensorValues}}
 {\footnotesize\ttfamily \label{_prueba__lectura_8cpp_a908407702b8a9dbb612a617c21ce31ba} 
 uint16\+\_\+t sensor\+Values\mbox{[}\mbox{\hyperlink{_prueba__lectura_8cpp_a3ac4073d185617435faaca724a413fec}{Sensor\+Count}}\mbox{]}}
+
+
+
+Almacena los valores normalizados leídos de cada sensor individual. 
 

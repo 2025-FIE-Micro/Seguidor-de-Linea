@@ -1,28 +1,41 @@
 \doxysection{Referencia del archivo test/\+Prueba\+\_\+interrupciones.cpp}
 \hypertarget{_prueba__interrupciones_8cpp}{}\label{_prueba__interrupciones_8cpp}\index{test/Prueba\_interrupciones.cpp@{test/Prueba\_interrupciones.cpp}}
+
+
+Programa de prueba para la gestión de interrupciones externas mediante botones.  
+
+
 {\ttfamily \#include $<$Arduino.\+h$>$}\newline
 \doxysubsubsection*{Funciones}
 \begin{DoxyCompactItemize}
 \item 
 void IRAM\+\_\+\+ATTR \mbox{\hyperlink{_prueba__interrupciones_8cpp_a874207ed40332f6909664827e57ea070}{handle\+On}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em ISR para el encendido del LED. \end{DoxyCompactList}\item 
 void IRAM\+\_\+\+ATTR \mbox{\hyperlink{_prueba__interrupciones_8cpp_a817f4d032bbcd8cd69c4096856d117ad}{handle\+Off}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em ISR para el apagado del LED. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_prueba__interrupciones_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Configuración inicial del hardware de interrupciones. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_prueba__interrupciones_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Lazo principal. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 const int \mbox{\hyperlink{_prueba__interrupciones_8cpp_aa8079ae3d08fedcadb8c8dc85eecccd3}{LED\+\_\+\+INTERNAL}} = 2
-\item 
+\begin{DoxyCompactList}\small\item\em Pin del LED interno de la placa. \end{DoxyCompactList}\item 
 const int \mbox{\hyperlink{_prueba__interrupciones_8cpp_acf230a96ef202ec239456472f789565a}{LED\+\_\+\+EXTERNAL}} = 13
-\item 
+\begin{DoxyCompactList}\small\item\em Pin del LED externo utilizado para la prueba. \end{DoxyCompactList}\item 
 const int \mbox{\hyperlink{_prueba__interrupciones_8cpp_ad5ad2bae2adeebba035fd54481cd15f2}{BTN\+\_\+\+ON}} = 19
-\item 
+\begin{DoxyCompactList}\small\item\em Pin del botón asignado para la acción de encendido. \end{DoxyCompactList}\item 
 const int \mbox{\hyperlink{_prueba__interrupciones_8cpp_aa98bc6bd1445fe6da7aec352049cb9f8}{BTN\+\_\+\+OFF}} = 22
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Pin del botón asignado para la acción de apagado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Programa de prueba para la gestión de interrupciones externas mediante botones. 
+
+Este test verifica la respuesta inmediata del hardware ante señales de entrada externas (botones) utilizando las funciones de interrupción de Arduino/\+ESP32 para conmutar un LED sin intervención del lazo principal. \begin{DoxyAuthor}{Autor}
+Legion de Ohm 
+\end{DoxyAuthor}
 
 
 \label{doc-func-members}
@@ -34,25 +47,41 @@ const int \mbox{\hyperlink{_prueba__interrupciones_8cpp_aa98bc6bd1445fe6da7aec35
 {\footnotesize\ttfamily \label{_prueba__interrupciones_8cpp_a817f4d032bbcd8cd69c4096856d117ad} 
 void IRAM\+\_\+\+ATTR handle\+Off (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-\Hypertarget{_prueba__interrupciones_8cpp_a874207ed40332f6909664827e57ea070}\index{Prueba\_interrupciones.cpp@{Prueba\_interrupciones.cpp}!handleOn@{handleOn}}
+
+
+ISR para el apagado del LED. 
+
+Se ejecuta inmediatamente al detectar un flanco ascendente en BTN\+\_\+\+OFF. \Hypertarget{_prueba__interrupciones_8cpp_a874207ed40332f6909664827e57ea070}\index{Prueba\_interrupciones.cpp@{Prueba\_interrupciones.cpp}!handleOn@{handleOn}}
 \index{handleOn@{handleOn}!Prueba\_interrupciones.cpp@{Prueba\_interrupciones.cpp}}
 \doxysubsubsection{\texorpdfstring{handleOn()}{handleOn()}}
 {\footnotesize\ttfamily \label{_prueba__interrupciones_8cpp_a874207ed40332f6909664827e57ea070} 
 void IRAM\+\_\+\+ATTR handle\+On (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-\Hypertarget{_prueba__interrupciones_8cpp_afe461d27b9c48d5921c00d521181f12f}\index{Prueba\_interrupciones.cpp@{Prueba\_interrupciones.cpp}!loop@{loop}}
+
+
+ISR para el encendido del LED. 
+
+Se ejecuta inmediatamente al detectar un flanco ascendente en BTN\+\_\+\+ON. \Hypertarget{_prueba__interrupciones_8cpp_afe461d27b9c48d5921c00d521181f12f}\index{Prueba\_interrupciones.cpp@{Prueba\_interrupciones.cpp}!loop@{loop}}
 \index{loop@{loop}!Prueba\_interrupciones.cpp@{Prueba\_interrupciones.cpp}}
 \doxysubsubsection{\texorpdfstring{loop()}{loop()}}
 {\footnotesize\ttfamily \label{_prueba__interrupciones_8cpp_afe461d27b9c48d5921c00d521181f12f} 
 void loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-\Hypertarget{_prueba__interrupciones_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\index{Prueba\_interrupciones.cpp@{Prueba\_interrupciones.cpp}!setup@{setup}}
+
+
+Lazo principal. 
+
+En este programa de prueba, el lazo se mantiene vacío ya que el control es gestionado íntegramente por hardware a través de las interrupciones. \Hypertarget{_prueba__interrupciones_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\index{Prueba\_interrupciones.cpp@{Prueba\_interrupciones.cpp}!setup@{setup}}
 \index{setup@{setup}!Prueba\_interrupciones.cpp@{Prueba\_interrupciones.cpp}}
 \doxysubsubsection{\texorpdfstring{setup()}{setup()}}
 {\footnotesize\ttfamily \label{_prueba__interrupciones_8cpp_a4fc01d736fe50cf5b977f755b675f11d} 
 void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
+
+Configuración inicial del hardware de interrupciones. 
+
+Define los modos de los pines y vincula los disparadores de interrupción por flanco de subida (RISING) a sus respectivas funciones controladoras. 
 
 \label{doc-var-members}
 \Hypertarget{_prueba__interrupciones_8cpp_doc-var-members}
@@ -63,11 +92,19 @@ void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 {\footnotesize\ttfamily \label{_prueba__interrupciones_8cpp_aa98bc6bd1445fe6da7aec352049cb9f8} 
 const int BTN\+\_\+\+OFF = 22}
 
+
+
+Pin del botón asignado para la acción de apagado. 
+
 \Hypertarget{_prueba__interrupciones_8cpp_ad5ad2bae2adeebba035fd54481cd15f2}\index{Prueba\_interrupciones.cpp@{Prueba\_interrupciones.cpp}!BTN\_ON@{BTN\_ON}}
 \index{BTN\_ON@{BTN\_ON}!Prueba\_interrupciones.cpp@{Prueba\_interrupciones.cpp}}
 \doxysubsubsection{\texorpdfstring{BTN\_ON}{BTN\_ON}}
 {\footnotesize\ttfamily \label{_prueba__interrupciones_8cpp_ad5ad2bae2adeebba035fd54481cd15f2} 
 const int BTN\+\_\+\+ON = 19}
+
+
+
+Pin del botón asignado para la acción de encendido. 
 
 \Hypertarget{_prueba__interrupciones_8cpp_acf230a96ef202ec239456472f789565a}\index{Prueba\_interrupciones.cpp@{Prueba\_interrupciones.cpp}!LED\_EXTERNAL@{LED\_EXTERNAL}}
 \index{LED\_EXTERNAL@{LED\_EXTERNAL}!Prueba\_interrupciones.cpp@{Prueba\_interrupciones.cpp}}
@@ -75,9 +112,17 @@ const int BTN\+\_\+\+ON = 19}
 {\footnotesize\ttfamily \label{_prueba__interrupciones_8cpp_acf230a96ef202ec239456472f789565a} 
 const int LED\+\_\+\+EXTERNAL = 13}
 
+
+
+Pin del LED externo utilizado para la prueba. 
+
 \Hypertarget{_prueba__interrupciones_8cpp_aa8079ae3d08fedcadb8c8dc85eecccd3}\index{Prueba\_interrupciones.cpp@{Prueba\_interrupciones.cpp}!LED\_INTERNAL@{LED\_INTERNAL}}
 \index{LED\_INTERNAL@{LED\_INTERNAL}!Prueba\_interrupciones.cpp@{Prueba\_interrupciones.cpp}}
 \doxysubsubsection{\texorpdfstring{LED\_INTERNAL}{LED\_INTERNAL}}
 {\footnotesize\ttfamily \label{_prueba__interrupciones_8cpp_aa8079ae3d08fedcadb8c8dc85eecccd3} 
 const int LED\+\_\+\+INTERNAL = 2}
+
+
+
+Pin del LED interno de la placa. 
 

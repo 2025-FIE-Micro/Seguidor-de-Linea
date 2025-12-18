@@ -101,23 +101,37 @@ $(function(){initNavTree('_prueba__interrupciones_8cpp.html','',''); });
   <div class="headertitle"><div class="title">Referencia del archivo Prueba_interrupciones.cpp</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Programa de prueba para la gestión de interrupciones externas mediante botones.  
+<a href="#details">Más...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Funciones</h2></td></tr>
 <tr class="memitem:a874207ed40332f6909664827e57ea070" id="r_a874207ed40332f6909664827e57ea070"><td class="memItemLeft" align="right" valign="top">void IRAM_ATTR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a874207ed40332f6909664827e57ea070">handleOn</a> ()</td></tr>
+<tr class="memdesc:a874207ed40332f6909664827e57ea070"><td class="mdescLeft">&#160;</td><td class="mdescRight">ISR para el encendido del LED.  <br /></td></tr>
 <tr class="memitem:a817f4d032bbcd8cd69c4096856d117ad" id="r_a817f4d032bbcd8cd69c4096856d117ad"><td class="memItemLeft" align="right" valign="top">void IRAM_ATTR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a817f4d032bbcd8cd69c4096856d117ad">handleOff</a> ()</td></tr>
+<tr class="memdesc:a817f4d032bbcd8cd69c4096856d117ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">ISR para el apagado del LED.  <br /></td></tr>
 <tr class="memitem:a4fc01d736fe50cf5b977f755b675f11d" id="r_a4fc01d736fe50cf5b977f755b675f11d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d">setup</a> ()</td></tr>
+<tr class="memdesc:a4fc01d736fe50cf5b977f755b675f11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuración inicial del hardware de interrupciones.  <br /></td></tr>
 <tr class="memitem:afe461d27b9c48d5921c00d521181f12f" id="r_afe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe461d27b9c48d5921c00d521181f12f">loop</a> ()</td></tr>
+<tr class="memdesc:afe461d27b9c48d5921c00d521181f12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lazo principal.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:aa8079ae3d08fedcadb8c8dc85eecccd3" id="r_aa8079ae3d08fedcadb8c8dc85eecccd3"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8079ae3d08fedcadb8c8dc85eecccd3">LED_INTERNAL</a> = 2</td></tr>
+<tr class="memdesc:aa8079ae3d08fedcadb8c8dc85eecccd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin del LED interno de la placa.  <br /></td></tr>
 <tr class="memitem:acf230a96ef202ec239456472f789565a" id="r_acf230a96ef202ec239456472f789565a"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf230a96ef202ec239456472f789565a">LED_EXTERNAL</a> = 13</td></tr>
+<tr class="memdesc:acf230a96ef202ec239456472f789565a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin del LED externo utilizado para la prueba.  <br /></td></tr>
 <tr class="memitem:ad5ad2bae2adeebba035fd54481cd15f2" id="r_ad5ad2bae2adeebba035fd54481cd15f2"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5ad2bae2adeebba035fd54481cd15f2">BTN_ON</a> = 19</td></tr>
+<tr class="memdesc:ad5ad2bae2adeebba035fd54481cd15f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin del botón asignado para la acción de encendido.  <br /></td></tr>
 <tr class="memitem:aa98bc6bd1445fe6da7aec352049cb9f8" id="r_aa98bc6bd1445fe6da7aec352049cb9f8"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa98bc6bd1445fe6da7aec352049cb9f8">BTN_OFF</a> = 22</td></tr>
+<tr class="memdesc:aa98bc6bd1445fe6da7aec352049cb9f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin del botón asignado para la acción de apagado.  <br /></td></tr>
 </table>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Programa de prueba para la gestión de interrupciones externas mediante botones. </p>
+<p>Este test verifica la respuesta inmediata del hardware ante señales de entrada externas (botones) utilizando las funciones de interrupción de Arduino/ESP32 para conmutar un LED sin intervención del lazo principal. </p><dl class="section author"><dt>Autor</dt><dd>Legion de Ohm </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
 <a id="a817f4d032bbcd8cd69c4096856d117ad" name="a817f4d032bbcd8cd69c4096856d117ad"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a817f4d032bbcd8cd69c4096856d117ad">&#9670;&#160;</a></span>handleOff()</h2>
 
@@ -132,6 +146,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>ISR para el apagado del LED. </p>
+<p>Se ejecuta inmediatamente al detectar un flanco ascendente en BTN_OFF. </p>
 
 </div>
 </div>
@@ -150,6 +167,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>ISR para el encendido del LED. </p>
+<p>Se ejecuta inmediatamente al detectar un flanco ascendente en BTN_ON. </p>
+
 </div>
 </div>
 <a id="afe461d27b9c48d5921c00d521181f12f" name="afe461d27b9c48d5921c00d521181f12f"></a>
@@ -166,6 +186,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Lazo principal. </p>
+<p>En este programa de prueba, el lazo se mantiene vacío ya que el control es gestionado íntegramente por hardware a través de las interrupciones. </p>
 
 </div>
 </div>
@@ -184,6 +207,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Configuración inicial del hardware de interrupciones. </p>
+<p>Define los modos de los pines y vincula los disparadores de interrupción por flanco de subida (RISING) a sus respectivas funciones controladoras. </p>
+
 </div>
 </div>
 <a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
@@ -199,6 +225,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Pin del botón asignado para la acción de apagado. </p>
+
 </div>
 </div>
 <a id="ad5ad2bae2adeebba035fd54481cd15f2" name="ad5ad2bae2adeebba035fd54481cd15f2"></a>
@@ -212,6 +240,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Pin del botón asignado para la acción de encendido. </p>
 
 </div>
 </div>
@@ -227,6 +257,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Pin del LED externo utilizado para la prueba. </p>
+
 </div>
 </div>
 <a id="aa8079ae3d08fedcadb8c8dc85eecccd3" name="aa8079ae3d08fedcadb8c8dc85eecccd3"></a>
@@ -240,6 +272,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Pin del LED interno de la placa. </p>
 
 </div>
 </div>

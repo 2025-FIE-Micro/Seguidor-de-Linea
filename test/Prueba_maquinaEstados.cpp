@@ -1,48 +1,81 @@
+/**
+ @file prueba_maquinaEstados.cpp
+ @brief Programa de prueba para la Máquina de Estados Finitos (FSM).
+ @details Este test valida la lógica de transiciones entre los estados STOP, ACEL y CONTROL 
+ utilizando señales de entrada simuladas por botones y feedback visual mediante LEDs.
+ @author Legion de Ohm
+ */
+
 #include <Arduino.h>
 
 // ===================== LEDs =====================
-const int LED_INTERNAL = 2, LED_EXTERNAL = 13;
+/** @brief Pin del LED interno de la placa. */
+const int LED_INTERNAL = 2;
+/** @brief Pin del LED externo para indicar el estado del sistema. */
+const int LED_EXTERNAL = 13;
 
 // ===================== Botones (pull-down) =====================
+/** @brief Pin del botón para activar el modo RUN (inicio). */
 const int BTN_ON  = 19; // RUN toggle
+/** @brief Pin del botón para simular la salida del setpoint (modo CONTROL). */
 const int BTN_SP  = 22; // SP toggle
 
 // ===================== Señales de control =====================
-volatile bool RUN = 0, SP  = 1;
+/** @brief Bandera volátil que indica si el sistema está activo. */
+volatile bool RUN = 0;
+/** @brief Bandera volátil que indica si el robot está en el setpoint (1) o fuera (0). */
+volatile bool SP  = 1;
 
 // ===================== Prototipos estados  =====================
 void estadoStop();
 void estadoAcel();
 void estadoControl();
 
-// Punteros a funciones de estado
+/** @brief Array de punteros a funciones que vincula los identificadores de estado con su lógica. */
 void (*acciones_estado[])() = { estadoStop, estadoAcel, estadoControl };
 
 // ===================== ISR =====================
-// MODO CORREDOR
+/**
+ @brief ISR para iniciar el modo corredor.
+ @details Activa RUN y restablece SP para comenzar en aceleración.
+ */
 void IRAM_ATTR handleRun() {
     RUN = true;
     SP = true;
 }
 
-// MODO CONTROL 
+/**
+ @brief ISR para simular el cambio a modo control.
+ @details Desactiva la bandera SP para forzar la transición a control PID.
+ */
 void IRAM_ATTR handleControl(){
     SP = false;
 }
 
+/** @enum estadoStop 
+ @brief Enumeración de los estados posibles y valores especiales de la tabla. 
+ */
 enum estadoStop { CUALQUIERA = -1, S, A, C, CANT_estadoStop };
 
-// función dummy
+/**
+ @brief Función dummy para transiciones que no ejecutan acciones adicionales.
+ @param c Valor de entrada.
+ @return int Siempre 0.
+ */
 int nada(int c) { return 0; }
 
+/**
+ @struct estado_t
+ @brief Estructura de la tabla de transiciones.
+ */
 typedef struct {
-    int recibo;               // combinación SP,RUN (00..11)
-    int (*transicion)(int);  // función acción (dummy)
-    int prox_estado;         // estado destino
+    int recibo;               ///< Valor de entrada esperado (combinación SP, RUN).
+    int (*transicion)(int);   ///< Puntero a función de transición.
+    int prox_estado;          ///< Siguiente estado tras la coincidencia.
 } estado_t;
 
 // ===================== TABLAS =====================
-// STOP
+/** @brief Transiciones desde el estado STOP (S). */
 estado_t stop[] = {
     {0, nada, S},
     {1, nada, A},
@@ -51,7 +84,7 @@ estado_t stop[] = {
     {CUALQUIERA, nada, S},
 };
 
-// ACELERAR
+/** @brief Transiciones desde el estado ACELERAR (A). */
 estado_t acel[] = {
     {0, nada, S},
     {1, nada, C},
@@ -60,7 +93,7 @@ estado_t acel[] = {
     {CUALQUIERA, nada, A},
 };
 
-// CONTROL
+/** @brief Transiciones desde el estado CONTROL (C). */
 estado_t control[] = {
     {0, nada, S},
     {1, nada, C},
@@ -69,19 +102,25 @@ estado_t control[] = {
     {CUALQUIERA, nada, C},
 };
 
-estado_t* tabla_de_estados[] = { stop, acel, control }; // tabla general
+/** @brief Tabla general que agrupa todas las tablas de estado. */
+estado_t* tabla_de_estados[] = { stop, acel, control };
 
-static int estadoActual = S;    // static - recuerda el valor entre llamadas
+/** @brief Variable estática que almacena el estado actual de la máquina. */
+static int estadoActual = S;
 
-
-// FUNCION TRANSICIONAR
+/**
+ @brief Procesa el cambio de estado basado en la entrada.
+ @details Busca en la tabla correspondiente al estado actual hasta hallar una coincidencia.
+ @param entrada Combinación binaria de 2 bits (SP | RUN).
+ @return int Identificador del nuevo estado.
+ */
 static int transicionar(int entrada) {
     estado_t* p = tabla_de_estados[estadoActual];
 
-    // busca el el recibo que coincida con la entrada
+    // busca el recibo que coincida con la entrada
     while (p->recibo != entrada && p->recibo != CUALQUIERA) p++;
 
-    //ejecuta las funciones de transicion - dummies
+    // ejecuta las funciones de transicion - dummies
     (p->transicion)(entrada);
     
     // actualizo el estado
@@ -93,40 +132,30 @@ static int transicionar(int entrada) {
     return estadoActual;
 }
 
-// ESTADO STOP
+/** @brief Lógica del estado STOP: Apaga LEDs y muestra mensaje. */
 void estadoStop() {
     digitalWrite(LED_INTERNAL, LOW);
     digitalWrite(LED_EXTERNAL, LOW);
     Serial.println("Estado: STOP");
-    // si RUN = 0   se queda en S
-    // si RUN = 1   pasa a A
-    // si SP=1      se queda en S
-    // si SP=0      se queda en C
 }
 
-// ESTADO ACEL
+/** @brief Lógica del estado ACEL: Enciende ambos LEDs y muestra mensaje. */
 void estadoAcel() {
     digitalWrite(LED_INTERNAL, HIGH);
     digitalWrite(LED_EXTERNAL, HIGH);
     Serial.println("Estado: ACEL");
-    // si RUN = 0   pasa a S
-    // si RUN = 1   se queda en A
-    // si SP=1      se queda en A
-    // si SP=0      pasa a C
 }
 
-// ESTADO CONTROL
+/** @brief Lógica del estado CONTROL: Enciende solo LED externo y muestra mensaje. */
 void estadoControl() {
     digitalWrite(LED_INTERNAL, LOW);
     digitalWrite(LED_EXTERNAL, HIGH);
     Serial.println("Estado: CONTROL");
-    // si RUN = 0 pasa a S
-    // si RUN = 1 se queda en c
-    // si SP=1, pasa a A
-    // si SP=0, se queda en C
 }
 
-// ===================== SETUP =====================
+/**
+ @brief Configuración inicial del test de FSM.
+ */
 void setup() {
     Serial.begin(115200);
 
@@ -142,11 +171,13 @@ void setup() {
     acciones_estado[estadoActual](); // estado inicial
 }
 
-// ===================== LOOP =====================
+/**
+ @brief Ciclo principal que calcula la entrada y ejecuta la transición.
+ */
 void loop() {
     // Entrada de 2 bits (SP RUN - 00, 01, 10, 11) → 0, 1, 2, 3
     uint8_t c = (SP << 1) | RUN;
-    static uint8_t c_prev = 255;
+    // static uint8_t c_prev = 255; // Variable no utilizada pero mantenida del original
 
     transicionar(c);
 

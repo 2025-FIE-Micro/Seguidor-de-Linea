@@ -101,31 +101,47 @@ $(function(){initNavTree('_prueba__lectura_8cpp.html','',''); });
   <div class="headertitle"><div class="title">Referencia del archivo Prueba_lectura.cpp</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Programa de prueba para la lectura y calibración de sensores QTR.  
+<a href="#details">Más...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &quot;QTRSensors.h&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
 defines</h2></td></tr>
 <tr class="memitem:a9ff0cc7629c4b34b68830042e89480e0" id="r_a9ff0cc7629c4b34b68830042e89480e0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ff0cc7629c4b34b68830042e89480e0">USE_RC</a></td></tr>
+<tr class="memdesc:a9ff0cc7629c4b34b68830042e89480e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define el tipo de sensor a utilizar. Si está definido usa RC, de lo contrario usa ADC.  <br /></td></tr>
 <tr class="memitem:a450a7c16ead7b3c7b882536b08f30a00" id="r_a450a7c16ead7b3c7b882536b08f30a00"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a450a7c16ead7b3c7b882536b08f30a00">LED_BUILTIN</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memdesc:a450a7c16ead7b3c7b882536b08f30a00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin del LED integrado para feedback visual de calibración.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Funciones</h2></td></tr>
 <tr class="memitem:a4fc01d736fe50cf5b977f755b675f11d" id="r_a4fc01d736fe50cf5b977f755b675f11d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d">setup</a> ()</td></tr>
+<tr class="memdesc:a4fc01d736fe50cf5b977f755b675f11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa el puerto serial y configura el tipo de sensores y pines.  <br /></td></tr>
 <tr class="memitem:afe461d27b9c48d5921c00d521181f12f" id="r_afe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe461d27b9c48d5921c00d521181f12f">loop</a> ()</td></tr>
+<tr class="memdesc:afe461d27b9c48d5921c00d521181f12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lazo principal de muestreo.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a3ac4073d185617435faaca724a413fec" id="r_a3ac4073d185617435faaca724a413fec"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ac4073d185617435faaca724a413fec">SensorCount</a> = 8</td></tr>
+<tr class="memdesc:a3ac4073d185617435faaca724a413fec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cantidad total de sensores en el array.  <br /></td></tr>
 <tr class="memitem:a60839c64d95207d4b55d0e6ddb9d9d1f" id="r_a60839c64d95207d4b55d0e6ddb9d9d1f"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60839c64d95207d4b55d0e6ddb9d9d1f">sensorPins</a> [<a class="el" href="#a3ac4073d185617435faaca724a413fec">SensorCount</a>] = {14, 27, 33, 32, 35, 34, 39, 36}</td></tr>
+<tr class="memdesc:a60839c64d95207d4b55d0e6ddb9d9d1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mapeo de pines GPIO para los 8 sensores reflectivos.  <br /></td></tr>
 <tr class="memitem:a908407702b8a9dbb612a617c21ce31ba" id="r_a908407702b8a9dbb612a617c21ce31ba"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a908407702b8a9dbb612a617c21ce31ba">sensorValues</a> [<a class="el" href="#a3ac4073d185617435faaca724a413fec">SensorCount</a>]</td></tr>
+<tr class="memdesc:a908407702b8a9dbb612a617c21ce31ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Almacena los valores normalizados leídos de cada sensor individual.  <br /></td></tr>
 <tr class="memitem:a6f14bde43ef12199f2d2ef07adb6c942" id="r_a6f14bde43ef12199f2d2ef07adb6c942"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f14bde43ef12199f2d2ef07adb6c942">position</a></td></tr>
-<tr class="memdesc:a6f14bde43ef12199f2d2ef07adb6c942"><td class="mdescLeft">&#160;</td><td class="mdescRight">Posición calculada de la línea. Es el valor de la salida del proceso (PV), usado como entrada para el controlador PID. Este valor se normaliza (ej. 0 a 4000) donde el centro es el punto de referencia (<span class="tt"><a class="el" href="pid_8hpp.html#a8b6f34837979e0ebe80423697c0250f8" title="Valor de referencia (punto de consigna) que representa la posición central sobre la línea.">setpoint</a></span>).  <br /></td></tr>
+<tr class="memdesc:a6f14bde43ef12199f2d2ef07adb6c942"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable para almacenar la posición calculada de la línea (0-7000).  <br /></td></tr>
 <tr class="memitem:a9e05607474a03ba0b5bd2ee27c003524" id="r_a9e05607474a03ba0b5bd2ee27c003524"><td class="memItemLeft" align="right" valign="top">QTRSensors&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e05607474a03ba0b5bd2ee27c003524">qtr</a></td></tr>
+<tr class="memdesc:a9e05607474a03ba0b5bd2ee27c003524"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instancia del objeto QTRSensors para gestionar el hardware.  <br /></td></tr>
 <tr class="memitem:a86027ad9c9159f02624d136fb63364fe" id="r_a86027ad9c9159f02624d136fb63364fe"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86027ad9c9159f02624d136fb63364fe">previousMillis</a> = 0</td></tr>
+<tr class="memdesc:a86027ad9c9159f02624d136fb63364fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable para el control de tiempo no bloqueante.  <br /></td></tr>
 <tr class="memitem:afab23e0ee85e56261dace1dba900e39e" id="r_afab23e0ee85e56261dace1dba900e39e"><td class="memItemLeft" align="right" valign="top">const long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afab23e0ee85e56261dace1dba900e39e">interval</a> = 10</td></tr>
+<tr class="memdesc:afab23e0ee85e56261dace1dba900e39e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Intervalo de muestreo entre lecturas en milisegundos.  <br /></td></tr>
 </table>
-<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Documentación de «define»</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Programa de prueba para la lectura y calibración de sensores QTR. </p>
+<p>Este test permite verificar la correcta recepción de datos de los 8 sensores, comparando el modo de lectura (RC o Analógico) y visualizando la posición calculada de la línea a través del monitor serial. </p><dl class="section author"><dt>Autor</dt><dd>Legion de Ohm </dd></dl>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Documentación de «define»</h2>
 <a id="a450a7c16ead7b3c7b882536b08f30a00" name="a450a7c16ead7b3c7b882536b08f30a00"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a450a7c16ead7b3c7b882536b08f30a00">&#9670;&#160;</a></span>LED_BUILTIN</h2>
 
@@ -137,6 +153,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Pin del LED integrado para feedback visual de calibración. </p>
 
 </div>
 </div>
@@ -151,6 +169,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Define el tipo de sensor a utilizar. Si está definido usa RC, de lo contrario usa ADC. </p>
 
 </div>
 </div>
@@ -170,6 +190,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Lazo principal de muestreo. </p>
+<p>Realiza la lectura de la línea cada 10ms. Si se usa RC, lee la línea negra; si se usa Analógico, lee la línea blanca. Imprime los valores brutos y la posición por serial. </p>
+
 </div>
 </div>
 <a id="a4fc01d736fe50cf5b977f755b675f11d" name="a4fc01d736fe50cf5b977f755b675f11d"></a>
@@ -187,6 +210,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Inicializa el puerto serial y configura el tipo de sensores y pines. </p>
+<p>Ejecuta una rutina de calibración de 400 ciclos (aprox. 10 segundos) indicando el inicio y fin mediante el LED interno. </p>
+
 </div>
 </div>
 <a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
@@ -202,6 +228,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Intervalo de muestreo entre lecturas en milisegundos. </p>
+
 </div>
 </div>
 <a id="a6f14bde43ef12199f2d2ef07adb6c942" name="a6f14bde43ef12199f2d2ef07adb6c942"></a>
@@ -216,7 +244,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Posición calculada de la línea. Es el valor de la salida del proceso (PV), usado como entrada para el controlador PID. Este valor se normaliza (ej. 0 a 4000) donde el centro es el punto de referencia (<span class="tt"><a class="el" href="pid_8hpp.html#a8b6f34837979e0ebe80423697c0250f8" title="Valor de referencia (punto de consigna) que representa la posición central sobre la línea.">setpoint</a></span>). </p>
+<p>Variable para almacenar la posición calculada de la línea (0-7000). </p>
 <p>Posición calculada de la línea. Es el valor de la salida del proceso (PV), usado como entrada para el controlador PID. Este valor se normaliza (ej. 0 a 4000) donde el centro es el punto de referencia (<span class="tt"><a class="el" href="pid_8hpp.html#a8b6f34837979e0ebe80423697c0250f8" title="Valor de referencia (punto de consigna) que representa la posición central sobre la línea.">setpoint</a></span>). </p>
 
 </div>
@@ -233,6 +261,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Variable para el control de tiempo no bloqueante. </p>
+
 </div>
 </div>
 <a id="a9e05607474a03ba0b5bd2ee27c003524" name="a9e05607474a03ba0b5bd2ee27c003524"></a>
@@ -246,6 +276,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Instancia del objeto QTRSensors para gestionar el hardware. </p>
 
 </div>
 </div>
@@ -261,6 +293,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Cantidad total de sensores en el array. </p>
+
 </div>
 </div>
 <a id="a60839c64d95207d4b55d0e6ddb9d9d1f" name="a60839c64d95207d4b55d0e6ddb9d9d1f"></a>
@@ -275,6 +309,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Mapeo de pines GPIO para los 8 sensores reflectivos. </p>
+
 </div>
 </div>
 <a id="a908407702b8a9dbb612a617c21ce31ba" name="a908407702b8a9dbb612a617c21ce31ba"></a>
@@ -288,6 +324,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Almacena los valores normalizados leídos de cada sensor individual. </p>
 
 </div>
 </div>

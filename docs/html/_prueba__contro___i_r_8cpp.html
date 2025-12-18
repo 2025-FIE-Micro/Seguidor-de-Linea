@@ -101,19 +101,30 @@ $(function(){initNavTree('_prueba__contro___i_r_8cpp.html','',''); });
   <div class="headertitle"><div class="title">Referencia del archivo Prueba_contro_IR.cpp</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Programa de prueba para el control dual (Botones e Infrarrojo) de un LED.  
+<a href="#details">Más...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &lt;IRremote.hpp&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
 defines</h2></td></tr>
 <tr class="memitem:a214f742fc735c29dbf970e16611a095f" id="r_a214f742fc735c29dbf970e16611a095f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a214f742fc735c29dbf970e16611a095f">LED_EXTERNAL</a>&#160;&#160;&#160;13</td></tr>
+<tr class="memdesc:a214f742fc735c29dbf970e16611a095f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin del LED externo de prueba.  <br /></td></tr>
 <tr class="memitem:add532b97f503429f7bd807c5731cfe53" id="r_add532b97f503429f7bd807c5731cfe53"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add532b97f503429f7bd807c5731cfe53">BTN_ON</a>&#160;&#160;&#160;19</td></tr>
+<tr class="memdesc:add532b97f503429f7bd807c5731cfe53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin del botón físico para encendido.  <br /></td></tr>
 <tr class="memitem:a1d46f05dd7b4d7c7a73237f20842b810" id="r_a1d46f05dd7b4d7c7a73237f20842b810"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d46f05dd7b4d7c7a73237f20842b810">BTN_OFF</a>&#160;&#160;&#160;22</td></tr>
+<tr class="memdesc:a1d46f05dd7b4d7c7a73237f20842b810"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin del botón físico para apagado.  <br /></td></tr>
 <tr class="memitem:a3b0a1d1d72b10a9c0c95adeb235d19f4" id="r_a3b0a1d1d72b10a9c0c95adeb235d19f4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b0a1d1d72b10a9c0c95adeb235d19f4">IR_PIN</a>&#160;&#160;&#160;4</td></tr>
+<tr class="memdesc:a3b0a1d1d72b10a9c0c95adeb235d19f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin de datos del receptor IR.  <br /></td></tr>
 <tr class="memitem:ad22b3834e4e8a59a072b1b630b2a0cb7" id="r_ad22b3834e4e8a59a072b1b630b2a0cb7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad22b3834e4e8a59a072b1b630b2a0cb7">CMD_ON</a>&#160;&#160;&#160;0x18</td></tr>
+<tr class="memdesc:ad22b3834e4e8a59a072b1b630b2a0cb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comando hexadecimal del botón ON en el control remoto.  <br /></td></tr>
 <tr class="memitem:a216d50141d4a94c1ce96eafd87cf8e1a" id="r_a216d50141d4a94c1ce96eafd87cf8e1a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a216d50141d4a94c1ce96eafd87cf8e1a">RAW_ON</a>&#160;&#160;&#160;0xE718FF00</td></tr>
+<tr class="memdesc:a216d50141d4a94c1ce96eafd87cf8e1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dato crudo (Raw) esperado para el comando ON.  <br /></td></tr>
 <tr class="memitem:a48422ade9d3e69812b682755ed27b51d" id="r_a48422ade9d3e69812b682755ed27b51d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48422ade9d3e69812b682755ed27b51d">CMD_OFF</a>&#160;&#160;&#160;0x1C</td></tr>
+<tr class="memdesc:a48422ade9d3e69812b682755ed27b51d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comando hexadecimal del botón OFF en el control remoto.  <br /></td></tr>
 <tr class="memitem:a8e348cdba02e89e70f98e16e283007e1" id="r_a8e348cdba02e89e70f98e16e283007e1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e348cdba02e89e70f98e16e283007e1">RAW_OFF</a>&#160;&#160;&#160;0xE31CFF00</td></tr>
+<tr class="memdesc:a8e348cdba02e89e70f98e16e283007e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dato crudo (Raw) esperado para el comando OFF.  <br /></td></tr>
 <tr class="memitem:a9eaf83e62ca1ec14900f44dd3b298a73" id="r_a9eaf83e62ca1ec14900f44dd3b298a73"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9eaf83e62ca1ec14900f44dd3b298a73">USAR_CONTROL_IR</a></td></tr>
 <tr class="memdesc:a9eaf83e62ca1ec14900f44dd3b298a73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bandera de compilación para habilitar la lógica de control remoto IR. Si no está definido, todo el código relacionado con la recepción IR se ignora.  <br /></td></tr>
 <tr class="memitem:a8851a0d6ef5edc9c7ebf030cfdc8500f" id="r_a8851a0d6ef5edc9c7ebf030cfdc8500f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8851a0d6ef5edc9c7ebf030cfdc8500f">control_ir</a>(IR)</td></tr>
@@ -121,15 +132,23 @@ defines</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Funciones</h2></td></tr>
 <tr class="memitem:a874207ed40332f6909664827e57ea070" id="r_a874207ed40332f6909664827e57ea070"><td class="memItemLeft" align="right" valign="top">void IRAM_ATTR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a874207ed40332f6909664827e57ea070">handleOn</a> ()</td></tr>
+<tr class="memdesc:a874207ed40332f6909664827e57ea070"><td class="mdescLeft">&#160;</td><td class="mdescRight">ISR para el botón de encendido. Cambia el estado a true.  <br /></td></tr>
 <tr class="memitem:a817f4d032bbcd8cd69c4096856d117ad" id="r_a817f4d032bbcd8cd69c4096856d117ad"><td class="memItemLeft" align="right" valign="top">void IRAM_ATTR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a817f4d032bbcd8cd69c4096856d117ad">handleOff</a> ()</td></tr>
+<tr class="memdesc:a817f4d032bbcd8cd69c4096856d117ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">ISR para el botón de apagado. Cambia el estado a false.  <br /></td></tr>
 <tr class="memitem:a4fc01d736fe50cf5b977f755b675f11d" id="r_a4fc01d736fe50cf5b977f755b675f11d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d">setup</a> ()</td></tr>
+<tr class="memdesc:a4fc01d736fe50cf5b977f755b675f11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuración inicial del test de control.  <br /></td></tr>
 <tr class="memitem:afe461d27b9c48d5921c00d521181f12f" id="r_afe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe461d27b9c48d5921c00d521181f12f">loop</a> ()</td></tr>
+<tr class="memdesc:afe461d27b9c48d5921c00d521181f12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lazo principal de la prueba.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a721652ea8495ead65724ceff69063b9a" id="r_a721652ea8495ead65724ceff69063b9a"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a721652ea8495ead65724ceff69063b9a">ledState</a> = false</td></tr>
+<tr class="memdesc:a721652ea8495ead65724ceff69063b9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estado lógico global del LED, modificado por ISR y decodificación IR.  <br /></td></tr>
 </table>
-<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Documentación de «define»</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Programa de prueba para el control dual (Botones e Infrarrojo) de un LED. </p>
+<p>Este test verifica la integración de la librería IRremote con interrupciones de hardware para conmutar el estado de un LED externo. </p><dl class="section author"><dt>Autor</dt><dd>Legion de Ohm </dd></dl>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Documentación de «define»</h2>
 <a id="a1d46f05dd7b4d7c7a73237f20842b810" name="a1d46f05dd7b4d7c7a73237f20842b810"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1d46f05dd7b4d7c7a73237f20842b810">&#9670;&#160;</a></span>BTN_OFF</h2>
 
@@ -141,6 +160,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Pin del botón físico para apagado. </p>
 
 </div>
 </div>
@@ -156,6 +177,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Pin del botón físico para encendido. </p>
+
 </div>
 </div>
 <a id="a48422ade9d3e69812b682755ed27b51d" name="a48422ade9d3e69812b682755ed27b51d"></a>
@@ -170,6 +193,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Comando hexadecimal del botón OFF en el control remoto. </p>
+
 </div>
 </div>
 <a id="ad22b3834e4e8a59a072b1b630b2a0cb7" name="ad22b3834e4e8a59a072b1b630b2a0cb7"></a>
@@ -183,6 +208,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Comando hexadecimal del botón ON en el control remoto. </p>
 
 </div>
 </div>
@@ -216,6 +243,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Pin de datos del receptor IR. </p>
+
 </div>
 </div>
 <a id="a214f742fc735c29dbf970e16611a095f" name="a214f742fc735c29dbf970e16611a095f"></a>
@@ -229,6 +258,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Pin del LED externo de prueba. </p>
 
 </div>
 </div>
@@ -244,6 +275,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Dato crudo (Raw) esperado para el comando OFF. </p>
+
 </div>
 </div>
 <a id="a216d50141d4a94c1ce96eafd87cf8e1a" name="a216d50141d4a94c1ce96eafd87cf8e1a"></a>
@@ -257,6 +290,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Dato crudo (Raw) esperado para el comando ON. </p>
 
 </div>
 </div>
@@ -273,6 +308,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Bandera de compilación para habilitar la lógica de control remoto IR. Si no está definido, todo el código relacionado con la recepción IR se ignora. </p>
+<p>Macro de configuración para habilitar o deshabilitar el bloque de control IR. </p>
 
 </div>
 </div>
@@ -292,6 +328,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>ISR para el botón de apagado. Cambia el estado a false. </p>
+
 </div>
 </div>
 <a id="a874207ed40332f6909664827e57ea070" name="a874207ed40332f6909664827e57ea070"></a>
@@ -308,6 +346,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>ISR para el botón de encendido. Cambia el estado a true. </p>
 
 </div>
 </div>
@@ -326,6 +366,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Lazo principal de la prueba. </p>
+<p>Procesa las señales infrarrojas recibidas, decodifica el protocolo y compara los comandos con los valores autorizados (RAW_ON/OFF). Actualiza el pin del LED según ledState. </p>
+
 </div>
 </div>
 <a id="a4fc01d736fe50cf5b977f755b675f11d" name="a4fc01d736fe50cf5b977f755b675f11d"></a>
@@ -343,6 +386,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Configuración inicial del test de control. </p>
+<p>Inicializa los periféricos, configura las interrupciones externas por flanco ascendente e inicializa el receptor IR con feedback visual. </p>
+
 </div>
 </div>
 <a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
@@ -357,6 +403,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Estado lógico global del LED, modificado por ISR y decodificación IR. </p>
 
 </div>
 </div>
