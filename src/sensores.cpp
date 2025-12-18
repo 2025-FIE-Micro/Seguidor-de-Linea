@@ -1,10 +1,10 @@
-/*
-    programa de lectura y setup de sensores QTR8A
-    * calibracion de sensores
-    * tipo de linea
-    * lectura de linea (B o N)
-    * setup - tipo de sensor analogico, pines y nro de sensores
-*/
+/**
+ @file sensores.cpp
+ @brief Implementación de la lectura y configuración de los sensores QTR-8A.
+ @details Maneja el objeto de la librería QTRSensors, el proceso de calibración inicial 
+ y la lógica de detección de posición según el color de la línea de competencia.
+ @author Legion de Ohm
+ */
 
 #include "sensores.hpp"
 #include "QTRSensors.h"
@@ -15,37 +15,42 @@
 // ============================
 // CONFIGURACIÓN QTR
 // ============================
-// Objeto estatico para manejar los sensores QTR - inicializa una sola vez y mantiene su valor
+
+/** @brief Objeto estático para manejar los sensores QTR. */
 static QTRSensors qtr;
 
-// Numero de sensores QTR (8 sensores en total, desde S1 a S8)
+/** @brief Número total de sensores configurados (8 en total). */
 static const uint8_t SensorCount = 8;
 
-// Definicion de los pines del sensor QTR (cada pin esta asignado a un sensor de la lista S1 a S8).
+/** @brief Array que mapea los pines físicos S1-S8 definidos en config.hpp. */
 static const uint8_t sensorPins[SensorCount] = {S8, S7, S6, S5, S4, S3, S2, S1};
 
-// Array para almacenar los valores de lectura de cada sensor QTR - 8 elementos c/u con valor de sensor individual.
+/** @brief Array para almacenar los valores brutos de lectura de cada sensor. */
 static uint16_t sensorValues[SensorCount];
 
-// Variable para almacenar la posición de la línea detectada por los sensores QTR
+/** @brief Variable global que almacena la última posición calculada de la línea. */
 uint16_t position;
 
 // ===================================
 // LINEA NEGRA o BLANCA - CAMBIAR EN PLATFORMIO.INI
 // ===================================
-/**
- @var linea_competencia
- @brief Almacena el modo de lectura actual (BLANCA o NEGRA) para el procesamiento de las señales.
- */
+
 #ifdef LINEA_NEGRA
+    /** @brief Configuración global para pista con línea negra sobre fondo blanco. */
     Linea linea_competencia = NEGRA;
 #else
+    /** @brief Configuración global para pista con línea blanca sobre fondo negro. */
     Linea linea_competencia = BLANCA;
 #endif 
 
 // ============================
 // SETUP DE SENSORES
 // ============================
+
+/**
+ @brief Configura el tipo de sensor y los pines asociados.
+ @details Establece el modo de lectura analógica y llama a la rutina de calibración.
+ */
 void setupSensores() {
     // Usaremos lectura analógica (ADC)
     qtr.setTypeAnalog();
@@ -60,6 +65,12 @@ void setupSensores() {
 // ============================
 // FUNCION CALIBRAR
 // ============================
+
+/**
+ @brief Ejecuta la rutina de calibración de los sensores.
+ @details Realiza 300 muestras de lectura para determinar los umbrales de blanco y negro. 
+ Proporciona feedback sonoro (buzzer) y visual (LED) durante el proceso.
+ */
 void calibrarSensores() {
     // Aviso sonoro de inicio de calibración (solo si mute está habilitado)
     mute(
@@ -92,6 +103,12 @@ void calibrarSensores() {
 // ============================
 // LECTURA DE POSICIÓN
 // ============================
+
+/**
+ @brief Obtiene la posición relativa del robot respecto a la línea.
+ @details Selecciona entre readLineWhite o readLineBlack según la variable linea_competencia.
+ @return uint16_t Valor normalizado entre 0 y 7000.
+ */
 uint16_t leerLinea() {
     // Dependiendo del color de la pista, se usa lectura inversa:
     if (linea_competencia == BLANCA)    position = qtr.readLineWhite(sensorValues);

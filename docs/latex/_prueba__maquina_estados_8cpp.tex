@@ -5,7 +5,7 @@
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structestado__t}{estado\+\_\+t}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Estructura que define una fila en la tabla de transiciones de un estado. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Enumeraciones}
 \begin{DoxyCompactItemize}
 \item 
@@ -26,7 +26,7 @@ void \mbox{\hyperlink{_prueba__maquina_estados_8cpp_aaff5fba0226931c3ad70a6d28b8
 void \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a088f0fc3ef27d7538fafe1ec168354e7}{estado\+Control}} ()
 \begin{DoxyCompactList}\small\item\em Acción ejecutada durante la fase de control activo (C). \end{DoxyCompactList}\item 
 void IRAM\+\_\+\+ATTR \mbox{\hyperlink{_prueba__maquina_estados_8cpp_ac43d7f08eeb67b32fc99e80cbe45b48f}{handle\+Run}} ()
-\begin{DoxyCompactList}\small\item\em Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo {\ttfamily IRAM\+\_\+\+ATTR} se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece {\ttfamily RUN = true;}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo {\ttfamily IRAM\+\_\+\+ATTR} se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece {\ttfamily \doxylink{interrupciones_8hpp_a081d22c8c0bb30d050a1a7c4505f00b9}{RUN} = true;}. \end{DoxyCompactList}\item 
 void IRAM\+\_\+\+ATTR \mbox{\hyperlink{_prueba__maquina_estados_8cpp_ac4760fa91d2516a12338d9ef62218eb4}{handle\+Control}} ()
 \item 
 int \mbox{\hyperlink{_prueba__maquina_estados_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}{nada}} (int c)
@@ -47,21 +47,23 @@ const int \mbox{\hyperlink{_prueba__maquina_estados_8cpp_ad5ad2bae2adeebba035fd5
 const int \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a05864874d1dfbd27df332c76ff068480}{BTN\+\_\+\+SP}} = 22
 \item 
 volatile bool \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a081d22c8c0bb30d050a1a7c4505f00b9}{RUN}} = 0
-\begin{DoxyCompactList}\small\item\em Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador {\ttfamily volatile} es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal ({\ttfamily loop}). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador {\ttfamily volatile} es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal ({\ttfamily \doxylink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}}). \end{DoxyCompactList}\item 
 volatile bool \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a54b97467d59263bb6140712f4ab9609e}{SP}} = 1
 \item 
-void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a75ca1f171787107103fec12fc9b031f8}{acciones\+\_\+estado}} \mbox{[}$\,$\mbox{]})() = \{ \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7}{estado\+Stop}}, \mbox{\hyperlink{main_8cpp_aaff5fba0226931c3ad70a6d28b8fad99}{estado\+Acel}}, \mbox{\hyperlink{main_8cpp_a088f0fc3ef27d7538fafe1ec168354e7}{estado\+Control}} \}
-\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a75ca1f171787107103fec12fc9b031f8}{acciones\+\_\+estado}} \mbox{[}$\,$\mbox{]})() = \{ \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7}{estado\+Stop}}, \mbox{\hyperlink{_prueba__maquina_estados_8cpp_aaff5fba0226931c3ad70a6d28b8fad99}{estado\+Acel}}, \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a088f0fc3ef27d7538fafe1ec168354e7}{estado\+Control}} \}
+\begin{DoxyCompactList}\small\item\em Punteros a las funciones de acción de cada estado, definidas externamente. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structestado__t}{estado\+\_\+t}} \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a069a28f6c0e81686e8cb3a9ef42e540c}{stop}} \mbox{[}$\,$\mbox{]}
 \item 
 \mbox{\hyperlink{structestado__t}{estado\+\_\+t}} \mbox{\hyperlink{_prueba__maquina_estados_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b}{acel}} \mbox{[}$\,$\mbox{]}
 \item 
 \mbox{\hyperlink{structestado__t}{estado\+\_\+t}} \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a4d31f5a8868cdbae7ffa8b386cfe7761}{control}} \mbox{[}$\,$\mbox{]}
 \item 
-\mbox{\hyperlink{structestado__t}{estado\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_prueba__maquina_estados_8cpp_abd88f3559bbd3b2b3ffd8eb3b3dbe1fc}{tabla\+\_\+de\+\_\+estados}} \mbox{[}$\,$\mbox{]} = \{ \mbox{\hyperlink{fsm_8cpp_a069a28f6c0e81686e8cb3a9ef42e540c}{stop}}, \mbox{\hyperlink{fsm_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b}{acel}}, \mbox{\hyperlink{fsm_8cpp_a4d31f5a8868cdbae7ffa8b386cfe7761}{control}} \}
+\mbox{\hyperlink{structestado__t}{estado\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_prueba__maquina_estados_8cpp_abd88f3559bbd3b2b3ffd8eb3b3dbe1fc}{tabla\+\_\+de\+\_\+estados}} \mbox{[}$\,$\mbox{]} = \{ \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a069a28f6c0e81686e8cb3a9ef42e540c}{stop}}, \mbox{\hyperlink{_prueba__maquina_estados_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b}{acel}}, \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a4d31f5a8868cdbae7ffa8b386cfe7761}{control}} \}
 \end{DoxyCompactItemize}
 
 
+\label{doc-enum-members}
+\Hypertarget{_prueba__maquina_estados_8cpp_doc-enum-members}
 \doxysubsection{Documentación de enumeraciones}
 \Hypertarget{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!estadoStop@{estadoStop}}
 \index{estadoStop@{estadoStop}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
@@ -93,6 +95,8 @@ CANT\+\_\+estado\+Stop&\\
 \end{DoxyEnumFields}
 
 
+\label{doc-func-members}
+\Hypertarget{_prueba__maquina_estados_8cpp_doc-func-members}
 \doxysubsection{Documentación de funciones}
 \Hypertarget{_prueba__maquina_estados_8cpp_aaff5fba0226931c3ad70a6d28b8fad99}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!estadoAcel@{estadoAcel}}
 \index{estadoAcel@{estadoAcel}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
@@ -105,9 +109,11 @@ void estado\+Acel (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 Acción ejecutada durante la fase de aceleración (A). 
 
 Aplica un perfil de velocidad creciente para romper la inercia inicial. \begin{DoxyReturn}{Devuelve}
-void 
+void
 \end{DoxyReturn}
-\Hypertarget{_prueba__maquina_estados_8cpp_a088f0fc3ef27d7538fafe1ec168354e7}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!estadoControl@{estadoControl}}
+Acción ejecutada durante la fase de aceleración (A).
+
+Realiza un incremento progresivo de la velocidad mientras el robot se encuentre dentro del setpoint para romper la inercia de manera suave. \Hypertarget{_prueba__maquina_estados_8cpp_a088f0fc3ef27d7538fafe1ec168354e7}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!estadoControl@{estadoControl}}
 \index{estadoControl@{estadoControl}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
 \doxysubsubsection{\texorpdfstring{estadoControl()}{estadoControl()}}
 {\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_a088f0fc3ef27d7538fafe1ec168354e7} 
@@ -118,9 +124,11 @@ void estado\+Control (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 Acción ejecutada durante la fase de control activo (C). 
 
 Ejecuta la lectura de sensores, cálculo de PID y ajuste de motores en tiempo real. \begin{DoxyReturn}{Devuelve}
-void 
+void
 \end{DoxyReturn}
-\Hypertarget{_prueba__maquina_estados_8cpp_ac4760fa91d2516a12338d9ef62218eb4}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!handleControl@{handleControl}}
+Acción ejecutada durante la fase de control activo (C).
+
+Ejecuta el algoritmo PID a intervalos fijos marcados por el temporizador para corregir la trayectoria del robot sobre la línea. \Hypertarget{_prueba__maquina_estados_8cpp_ac4760fa91d2516a12338d9ef62218eb4}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!handleControl@{handleControl}}
 \index{handleControl@{handleControl}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
 \doxysubsubsection{\texorpdfstring{handleControl()}{handleControl()}}
 {\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_ac4760fa91d2516a12338d9ef62218eb4} 
@@ -134,9 +142,11 @@ void IRAM\+\_\+\+ATTR handle\+Run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCap
 
 
 
-Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo {\ttfamily IRAM\+\_\+\+ATTR} se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece {\ttfamily RUN = true;}. 
+Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo {\ttfamily IRAM\+\_\+\+ATTR} se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece {\ttfamily \doxylink{interrupciones_8hpp_a081d22c8c0bb30d050a1a7c4505f00b9}{RUN} = true;}. 
 
-\Hypertarget{_prueba__maquina_estados_8cpp_afe461d27b9c48d5921c00d521181f12f}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!loop@{loop}}
+Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo {\ttfamily IRAM\+\_\+\+ATTR} se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece {\ttfamily \doxylink{interrupciones_8hpp_a081d22c8c0bb30d050a1a7c4505f00b9}{RUN} = true;}.
+
+Activa las banderas RUN y SETPOINT para iniciar la lógica de movimiento. \Hypertarget{_prueba__maquina_estados_8cpp_afe461d27b9c48d5921c00d521181f12f}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!loop@{loop}}
 \index{loop@{loop}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
 \doxysubsubsection{\texorpdfstring{loop()}{loop()}}
 {\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_afe461d27b9c48d5921c00d521181f12f} 
@@ -156,14 +166,20 @@ void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 
+\label{doc-var-members}
+\Hypertarget{_prueba__maquina_estados_8cpp_doc-var-members}
 \doxysubsection{Documentación de variables}
 \Hypertarget{_prueba__maquina_estados_8cpp_a75ca1f171787107103fec12fc9b031f8}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!acciones\_estado@{acciones\_estado}}
 \index{acciones\_estado@{acciones\_estado}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
 \doxysubsubsection{\texorpdfstring{acciones\_estado}{acciones\_estado}}
 {\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_a75ca1f171787107103fec12fc9b031f8} 
-void(\texorpdfstring{$\ast$}{*} acciones\+\_\+estado\mbox{[}$\,$\mbox{]})() (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) = \{ \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7}{estado\+Stop}}, \mbox{\hyperlink{main_8cpp_aaff5fba0226931c3ad70a6d28b8fad99}{estado\+Acel}}, \mbox{\hyperlink{main_8cpp_a088f0fc3ef27d7538fafe1ec168354e7}{estado\+Control}} \}}
+void(\texorpdfstring{$\ast$}{*} acciones\+\_\+estado\mbox{[}$\,$\mbox{]})() (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) = \{ \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7}{estado\+Stop}}, \mbox{\hyperlink{_prueba__maquina_estados_8cpp_aaff5fba0226931c3ad70a6d28b8fad99}{estado\+Acel}}, \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a088f0fc3ef27d7538fafe1ec168354e7}{estado\+Control}} \}}
 
-\Hypertarget{_prueba__maquina_estados_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!acel@{acel}}
+
+
+Punteros a las funciones de acción de cada estado, definidas externamente. 
+
+Punteros a las funciones de acción de cada estado, definidas externamente. \Hypertarget{_prueba__maquina_estados_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!acel@{acel}}
 \index{acel@{acel}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
 \doxysubsubsection{\texorpdfstring{acel}{acel}}
 {\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b} 
@@ -229,9 +245,9 @@ volatile bool RUN = 0}
 
 
 
-Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador {\ttfamily volatile} es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal ({\ttfamily loop}). 
+Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador {\ttfamily volatile} es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal ({\ttfamily \doxylink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}}). 
 
-\Hypertarget{_prueba__maquina_estados_8cpp_a54b97467d59263bb6140712f4ab9609e}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!SP@{SP}}
+Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador {\ttfamily volatile} es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal ({\ttfamily \doxylink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}}). \Hypertarget{_prueba__maquina_estados_8cpp_a54b97467d59263bb6140712f4ab9609e}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!SP@{SP}}
 \index{SP@{SP}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
 \doxysubsubsection{\texorpdfstring{SP}{SP}}
 {\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_a54b97467d59263bb6140712f4ab9609e} 
@@ -258,5 +274,5 @@ volatile bool SP = 1}
 \index{tabla\_de\_estados@{tabla\_de\_estados}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
 \doxysubsubsection{\texorpdfstring{tabla\_de\_estados}{tabla\_de\_estados}}
 {\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_abd88f3559bbd3b2b3ffd8eb3b3dbe1fc} 
-\mbox{\hyperlink{structestado__t}{estado\+\_\+t}}\texorpdfstring{$\ast$}{*} tabla\+\_\+de\+\_\+estados\mbox{[}$\,$\mbox{]} = \{ \mbox{\hyperlink{fsm_8cpp_a069a28f6c0e81686e8cb3a9ef42e540c}{stop}}, \mbox{\hyperlink{fsm_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b}{acel}}, \mbox{\hyperlink{fsm_8cpp_a4d31f5a8868cdbae7ffa8b386cfe7761}{control}} \}}
+\mbox{\hyperlink{structestado__t}{estado\+\_\+t}}\texorpdfstring{$\ast$}{*} tabla\+\_\+de\+\_\+estados\mbox{[}$\,$\mbox{]} = \{ \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a069a28f6c0e81686e8cb3a9ef42e540c}{stop}}, \mbox{\hyperlink{_prueba__maquina_estados_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b}{acel}}, \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a4d31f5a8868cdbae7ffa8b386cfe7761}{control}} \}}
 

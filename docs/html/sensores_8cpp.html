@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Seguidor de Línea: Referencia del archivo src/sensores.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
@@ -13,7 +13,6 @@
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
@@ -45,26 +44,20 @@ window.MathJax = {
 </table>
 </div>
 <!-- end header part -->
-<!-- Generado por Doxygen 1.13.2 -->
+<!-- Generado por Doxygen 1.15.0 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "search/",'.html');
-/* @license-end */
 </script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() { codefold.init(0); });
-/* @license-end */
+$(function() { codefold.init(); });
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('',true,false,'search.php','Buscar',true);
   $(function() { init_search(); });
 });
-/* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
@@ -79,10 +72,9 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('sensores_8cpp.html',''); initResizable(true); });
-/* @license-end */
+$(function(){initNavTree('sensores_8cpp.html','',''); });
 </script>
+<div id="container">
 <div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -106,39 +98,38 @@ $(function(){initNavTree('sensores_8cpp.html',''); initResizable(true); });
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#func-members">Funciones</a> &#124;
-<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">Referencia del archivo sensores.cpp</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementación de la lectura y configuración de los sensores QTR-8A.  
+<a href="#details">Más...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="sensores_8hpp_source.html">sensores.hpp</a>&quot;</code><br />
 <code>#include &quot;QTRSensors.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="config_8hpp_source.html">config.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="motores_8hpp_source.html">motores.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="buzzer_8hpp_source.html">buzzer.hpp</a>&quot;</code><br />
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Funciones</h2></td></tr>
 <tr class="memitem:ac6a9d020ad6205bf3a5890d2dc4df0e5" id="r_ac6a9d020ad6205bf3a5890d2dc4df0e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6a9d020ad6205bf3a5890d2dc4df0e5">setupSensores</a> ()</td></tr>
-<tr class="separator:ac6a9d020ad6205bf3a5890d2dc4df0e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ac6a9d020ad6205bf3a5890d2dc4df0e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configura el tipo de sensor y los pines asociados.  <br /></td></tr>
 <tr class="memitem:a087f5f49fa452708bb142e6af46d4b94" id="r_a087f5f49fa452708bb142e6af46d4b94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a087f5f49fa452708bb142e6af46d4b94">calibrarSensores</a> ()</td></tr>
-<tr class="memdesc:a087f5f49fa452708bb142e6af46d4b94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rutina de calibración de los sensores para adaptarse a las condiciones de la pista. Ejecuta un ciclo de calibración (ej. 2.5 segundos) para determinar los valores mínimo y máximo de blanco y negro, crucial para la lectura precisa de la línea.  <br /></td></tr>
-<tr class="separator:a087f5f49fa452708bb142e6af46d4b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a087f5f49fa452708bb142e6af46d4b94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ejecuta la rutina de calibración de los sensores.  <br /></td></tr>
 <tr class="memitem:a739ecba438965ecfcd4cea298b08d2ca" id="r_a739ecba438965ecfcd4cea298b08d2ca"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a739ecba438965ecfcd4cea298b08d2ca">leerLinea</a> ()</td></tr>
-<tr class="memdesc:a739ecba438965ecfcd4cea298b08d2ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lee los sensores y calcula la posición ponderada de la línea. Utiliza la función <code>readLine()</code> de la librería QTR para devolver un valor normalizado que indica el desplazamiento lateral respecto al centro del array.  <br /></td></tr>
-<tr class="separator:a739ecba438965ecfcd4cea298b08d2ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a739ecba438965ecfcd4cea298b08d2ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene la posición relativa del robot respecto a la línea.  <br /></td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a6f14bde43ef12199f2d2ef07adb6c942" id="r_a6f14bde43ef12199f2d2ef07adb6c942"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f14bde43ef12199f2d2ef07adb6c942">position</a></td></tr>
-<tr class="memdesc:a6f14bde43ef12199f2d2ef07adb6c942"><td class="mdescLeft">&#160;</td><td class="mdescRight">Posición calculada de la línea. Es el valor de la salida del proceso (PV), usado como entrada para el controlador PID. Este valor se normaliza (ej. 0 a 4000) donde el centro es el punto de referencia (<code>setpoint</code>).  <br /></td></tr>
-<tr class="separator:a6f14bde43ef12199f2d2ef07adb6c942"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a6f14bde43ef12199f2d2ef07adb6c942"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable global que almacena la última posición calculada de la línea.  <br /></td></tr>
 <tr class="memitem:ad41c7e6046107ea067785fa523ddab36" id="r_ad41c7e6046107ea067785fa523ddab36"><td class="memItemLeft" align="right" valign="top"><a class="el" href="sensores_8hpp.html#aa9b6c9070c996b54591a9d0fdf86e66d">Linea</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad41c7e6046107ea067785fa523ddab36">linea_competencia</a> = <a class="el" href="sensores_8hpp.html#aa9b6c9070c996b54591a9d0fdf86e66da637182e28b9d39bb102f3309c827c1e7">BLANCA</a></td></tr>
-<tr class="memdesc:ad41c7e6046107ea067785fa523ddab36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Almacena el modo de lectura actual (BLANCA o NEGRA) para el procesamiento de las señales.  <br /></td></tr>
-<tr class="separator:ad41c7e6046107ea067785fa523ddab36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ad41c7e6046107ea067785fa523ddab36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuración global para pista con línea blanca sobre fondo negro.  <br /></td></tr>
 </table>
-<h2 class="groupheader">Documentación de funciones</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Implementación de la lectura y configuración de los sensores QTR-8A. </p>
+<p>Maneja el objeto de la librería QTRSensors, el proceso de calibración inicial y la lógica de detección de posición según el color de la línea de competencia. </p><dl class="section author"><dt>Autor</dt><dd>Legion de Ohm </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
 <a id="a087f5f49fa452708bb142e6af46d4b94" name="a087f5f49fa452708bb142e6af46d4b94"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a087f5f49fa452708bb142e6af46d4b94">&#9670;&#160;</a></span>calibrarSensores()</h2>
 
@@ -154,8 +145,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Rutina de calibración de los sensores para adaptarse a las condiciones de la pista. Ejecuta un ciclo de calibración (ej. 2.5 segundos) para determinar los valores mínimo y máximo de blanco y negro, crucial para la lectura precisa de la línea. </p>
-<dl class="section return"><dt>Devuelve</dt><dd>void </dd></dl>
+<p>Ejecuta la rutina de calibración de los sensores. </p>
+<p>Rutina de calibración de los sensores para adaptarse a las condiciones de la pista. Ejecuta un ciclo de calibración (ej. 2.5 segundos) para determinar los valores mínimo y máximo de blanco y negro, crucial para la lectura precisa de la línea.</p>
+<p>Realiza 300 muestras de lectura para determinar los umbrales de blanco y negro. Proporciona feedback sonoro (buzzer) y visual (LED) durante el proceso. </p>
 
 </div>
 </div>
@@ -174,8 +166,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Lee los sensores y calcula la posición ponderada de la línea. Utiliza la función <code>readLine()</code> de la librería QTR para devolver un valor normalizado que indica el desplazamiento lateral respecto al centro del array. </p>
-<dl class="section return"><dt>Devuelve</dt><dd>uint16_t Posición calculada de la línea (ej. 0 a 4000). </dd></dl>
+<p>Obtiene la posición relativa del robot respecto a la línea. </p>
+<p>Lee los sensores y calcula la posición ponderada de la línea. Utiliza la función <span class="tt">readLine()</span> de la librería QTR para devolver un valor normalizado que indica el desplazamiento lateral respecto al centro del array.</p>
+<p>Selecciona entre readLineWhite o readLineBlack según la variable linea_competencia. </p><dl class="section return"><dt>Devuelve</dt><dd>uint16_t Valor normalizado entre 0 y 7000. </dd></dl>
 
 </div>
 </div>
@@ -194,9 +187,13 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Configura el tipo de sensor y los pines asociados. </p>
+<p>Inicializa el objeto QTRSensors con los pines de entrada/salida.</p>
+<p>Establece el modo de lectura analógica y llama a la rutina de calibración. </p>
+
 </div>
 </div>
-<h2 class="groupheader">Documentación de variables</h2>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
 <a id="ad41c7e6046107ea067785fa523ddab36" name="ad41c7e6046107ea067785fa523ddab36"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad41c7e6046107ea067785fa523ddab36">&#9670;&#160;</a></span>linea_competencia</h2>
 
@@ -209,7 +206,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Almacena el modo de lectura actual (BLANCA o NEGRA) para el procesamiento de las señales. </p>
+<p>Configuración global para pista con línea blanca sobre fondo negro. </p>
 
 </div>
 </div>
@@ -225,17 +222,26 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Posición calculada de la línea. Es el valor de la salida del proceso (PV), usado como entrada para el controlador PID. Este valor se normaliza (ej. 0 a 4000) donde el centro es el punto de referencia (<code>setpoint</code>). </p>
+<p>Variable global que almacena la última posición calculada de la línea. </p>
+<p>Posición calculada de la línea. Es el valor de la salida del proceso (PV), usado como entrada para el controlador PID. Este valor se normaliza (ej. 0 a 4000) donde el centro es el punto de referencia (<span class="tt"><a class="el" href="pid_8hpp.html#a8b6f34837979e0ebe80423697c0250f8" title="Valor de referencia (punto de consigna) que representa la posición central sobre la línea.">setpoint</a></span>). </p>
 
 </div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="sensores_8cpp.html">sensores.cpp</a></li>
-    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="sensores_8cpp.html">sensores.cpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
   </ul>
 </div>
 </body>

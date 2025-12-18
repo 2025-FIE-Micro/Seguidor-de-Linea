@@ -38,6 +38,8 @@ Legion de Ohm
 \end{DoxyAuthor}
 
 
+\label{doc-enum-members}
+\Hypertarget{fsm_8hpp_doc-enum-members}
 \doxysubsection{Documentación de enumeraciones}
 \Hypertarget{fsm_8hpp_a16933f9df95c0418037c4d7184797631}\index{fsm.hpp@{fsm.hpp}!estados@{estados}}
 \index{estados@{estados}!fsm.hpp@{fsm.hpp}}
@@ -73,6 +75,8 @@ CANT\+\_\+\+ESTADOS&Auxiliar para conocer el número total de estados definidos.
 \end{DoxyEnumFields}
 
 
+\label{doc-func-members}
+\Hypertarget{fsm_8hpp_doc-func-members}
 \doxysubsection{Documentación de funciones}
 \Hypertarget{fsm_8hpp_aaff5fba0226931c3ad70a6d28b8fad99}\index{fsm.hpp@{fsm.hpp}!estadoAcel@{estadoAcel}}
 \index{estadoAcel@{estadoAcel}!fsm.hpp@{fsm.hpp}}
@@ -85,9 +89,11 @@ void estado\+Acel (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 Acción ejecutada durante la fase de aceleración (A). 
 
 Aplica un perfil de velocidad creciente para romper la inercia inicial. \begin{DoxyReturn}{Devuelve}
-void 
+void
 \end{DoxyReturn}
-\Hypertarget{fsm_8hpp_a088f0fc3ef27d7538fafe1ec168354e7}\index{fsm.hpp@{fsm.hpp}!estadoControl@{estadoControl}}
+Acción ejecutada durante la fase de aceleración (A).
+
+Realiza un incremento progresivo de la velocidad mientras el robot se encuentre dentro del setpoint para romper la inercia de manera suave. \Hypertarget{fsm_8hpp_a088f0fc3ef27d7538fafe1ec168354e7}\index{fsm.hpp@{fsm.hpp}!estadoControl@{estadoControl}}
 \index{estadoControl@{estadoControl}!fsm.hpp@{fsm.hpp}}
 \doxysubsubsection{\texorpdfstring{estadoControl()}{estadoControl()}}
 {\footnotesize\ttfamily \label{fsm_8hpp_a088f0fc3ef27d7538fafe1ec168354e7} 
@@ -98,9 +104,11 @@ void estado\+Control (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 Acción ejecutada durante la fase de control activo (C). 
 
 Ejecuta la lectura de sensores, cálculo de PID y ajuste de motores en tiempo real. \begin{DoxyReturn}{Devuelve}
-void 
+void
 \end{DoxyReturn}
-\Hypertarget{fsm_8hpp_ab80847f836461323c4a0cc5d8f73f45e}\index{fsm.hpp@{fsm.hpp}!estadoStop@{estadoStop}}
+Acción ejecutada durante la fase de control activo (C).
+
+Ejecuta el algoritmo PID a intervalos fijos marcados por el temporizador para corregir la trayectoria del robot sobre la línea. \Hypertarget{fsm_8hpp_ab80847f836461323c4a0cc5d8f73f45e}\index{fsm.hpp@{fsm.hpp}!estadoStop@{estadoStop}}
 \index{estadoStop@{estadoStop}!fsm.hpp@{fsm.hpp}}
 \doxysubsubsection{\texorpdfstring{estadoStop()}{estadoStop()}}
 {\footnotesize\ttfamily \label{fsm_8hpp_ab80847f836461323c4a0cc5d8f73f45e} 
@@ -111,9 +119,11 @@ void \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939
 Acción ejecutada durante el estado de parada (S). 
 
 Detiene los motores y resetea variables de control si es necesario. \begin{DoxyReturn}{Devuelve}
-void 
+void
 \end{DoxyReturn}
-\Hypertarget{fsm_8hpp_a5c39de512c4b78d230676be9529635bd}\index{fsm.hpp@{fsm.hpp}!transicionar@{transicionar}}
+Acción ejecutada durante el estado de parada (S).
+
+Detiene los motores, apaga los LEDs de estado y reinicia la velocidad de aceleración. \Hypertarget{fsm_8hpp_a5c39de512c4b78d230676be9529635bd}\index{fsm.hpp@{fsm.hpp}!transicionar@{transicionar}}
 \index{transicionar@{transicionar}!fsm.hpp@{fsm.hpp}}
 \doxysubsubsection{\texorpdfstring{transicionar()}{transicionar()}}
 {\footnotesize\ttfamily \label{fsm_8hpp_a5c39de512c4b78d230676be9529635bd} 
@@ -129,5 +139,15 @@ Gestiona el cambio de estado basado en una entrada específica.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Devuelve}
-int El nuevo estado resultante después de la transición. 
+int El nuevo estado resultante después de la transición.
+\end{DoxyReturn}
+Gestiona el cambio de estado basado en una entrada específica.
+
+Busca en la tabla del estado actual una coincidencia con la entrada proporcionada. Si la encuentra, actualiza el estado y ejecuta la acción correspondiente al nuevo estado. 
+\begin{DoxyParams}{Parámetros}
+{\em entrada} & Valor entero que combina las señales de control para decidir la transición. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+int El nuevo estado después de procesar la entrada. 
 \end{DoxyReturn}

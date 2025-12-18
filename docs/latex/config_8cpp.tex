@@ -1,5 +1,10 @@
 \doxysection{Referencia del archivo src/config.cpp}
 \hypertarget{config_8cpp}{}\label{config_8cpp}\index{src/config.cpp@{src/config.cpp}}
+
+
+Implementación y asignación física de los pines del microcontrolador.  
+
+
 {\ttfamily \#include "{}config.\+hpp"{}}\newline
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -7,43 +12,65 @@
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_adb846a29dd2e116cc22e62ff323aa7eb}{pin\+Buzzer}} = 17
 \begin{DoxyCompactList}\small\item\em Pin GPIO asignado al zumbador. \end{DoxyCompactList}\item 
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_ad91ea72ca9ce6b1e1bbdc49ee34aed79}{led\+Motores}} = 13
-\begin{DoxyCompactList}\small\item\em LED indicador de estado de los motores. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em LED indicador para el estado de los motores. \end{DoxyCompactList}\item 
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_ab94a044ae6bf552465ae9ccfb9b27c04}{led\+Calibracion}} = 2
-\begin{DoxyCompactList}\small\item\em LED indicador durante el proceso de calibración. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em LED indicador de finalización de calibración y estado de setpoint. \end{DoxyCompactList}\item 
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_a7d757977cd48049afdb5f649ac99ecd0}{BTN\+\_\+\+RUN}} = 19
-\begin{DoxyCompactList}\small\item\em Pin del botón de inicio de carrera. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Pin del botón de inicio (SW par). \end{DoxyCompactList}\item 
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_a8c0f1ded83ee76d2d1c5e67d8382f6bd}{BTN\+\_\+\+STOP}} = 22
-\begin{DoxyCompactList}\small\item\em Pin del botón de parada de emergencia. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Pin del botón de parada (SW impar). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Pines Motor Izquierdo}\par
+{\em Pin reservado para el sensor infrarrojo (actualmente deshabilitado). }\begin{DoxyCompactItemize}
+\item 
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_a4d03a1ac4cb100ed914cdd80f01bc9e0}{motor\+Pin\+IN1\+\_\+\+Izq}} = 21
-\begin{DoxyCompactList}\small\item\em Entrada 1 del motor izquierdo. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Control de dirección IN1. \end{DoxyCompactList}\item 
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_a22407d1452bfe93994e837127f050014}{motor\+Pin\+IN2\+\_\+\+Izq}} = 18
-\begin{DoxyCompactList}\small\item\em Entrada 2 del motor izquierdo. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Control de dirección IN2. \end{DoxyCompactList}\item 
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_a01fb00c1c5583a04240a38b6adc3427e}{motor\+Pin\+Sleep\+\_\+\+Izq}} = 23
-\begin{DoxyCompactList}\small\item\em Pin de activación/reposo del motor izquierdo. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Pin de habilitación (Sleep). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Pines Motor Derecho}\par
+\begin{DoxyCompactItemize}
+\item 
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_a3b6af078ccca43a68dc57a346e8f5e5f}{motor\+Pin\+IN1\+\_\+\+Der}} = 26
-\begin{DoxyCompactList}\small\item\em Entrada 1 del motor derecho. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Control de dirección IN1. \end{DoxyCompactList}\item 
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_ade51c7ee976dbe0b0da9c3947c63b4e5}{motor\+Pin\+IN2\+\_\+\+Der}} = 25
-\begin{DoxyCompactList}\small\item\em Entrada 2 del motor derecho. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Control de dirección IN2. \end{DoxyCompactList}\item 
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_a168d8d68cf4e67da7ca572d428d48fb9}{motor\+Pin\+Sleep\+\_\+\+Der}} = 16
-\begin{DoxyCompactList}\small\item\em Pin de activación/reposo del motor derecho. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Pin de habilitación (Sleep). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Asignación de Pines Array QTR}\par
+\begin{DoxyCompactItemize}
+\item 
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_a7bbdb12018674ed5c695af86b5d217c4}{S8}} = 14
-\begin{DoxyCompactList}\small\item\em Pin sensor 8 (Extremo). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Sensor 8. \end{DoxyCompactList}\item 
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_aacecf1551eda779cc1c6e09a6eef764b}{S7}} = 27
-\begin{DoxyCompactList}\small\item\em Pin sensor 7. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Sensor 7. \end{DoxyCompactList}\item 
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_a7983d910b22a2f02f3a4ed595b8ccc13}{S6}} = 33
-\begin{DoxyCompactList}\small\item\em Pin sensor 6. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Sensor 6. \end{DoxyCompactList}\item 
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_a9f27d21e6a2077b0ec64dd2c19f73cf4}{S5}} = 32
-\begin{DoxyCompactList}\small\item\em Pin sensor 5 (Centro). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Sensor 5. \end{DoxyCompactList}\item 
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_acde777eb76d961291dbb04407339c2e2}{S4}} = 35
-\begin{DoxyCompactList}\small\item\em Pin sensor 4 (Centro). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Sensor 4. \end{DoxyCompactList}\item 
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_a774691cda50d8d29d88775f91df8fa90}{S3}} = 34
-\begin{DoxyCompactList}\small\item\em Pin sensor 3. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Sensor 3. \end{DoxyCompactList}\item 
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_a639d36256a336a55cadffeb11c014e34}{S2}} = 39
-\begin{DoxyCompactList}\small\item\em Pin sensor 2. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Sensor 2. \end{DoxyCompactList}\item 
 const uint8\+\_\+t \mbox{\hyperlink{config_8cpp_a00aaec5f953e5f8be262fd49ed007d76}{S1}} = 36
-\begin{DoxyCompactList}\small\item\em Pin sensor 1 (Extremo). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sensor 1. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
 
 
+\doxysubsection{Descripción detallada}
+Implementación y asignación física de los pines del microcontrolador. 
+
+Define la conexión de periféricos de interfaz, motores y el array de sensores. \begin{DoxyAuthor}{Autor}
+Legion de Ohm 
+\end{DoxyAuthor}
+
+
+\label{doc-var-members}
+\Hypertarget{config_8cpp_doc-var-members}
 \doxysubsection{Documentación de variables}
 \Hypertarget{config_8cpp_a7d757977cd48049afdb5f649ac99ecd0}\index{config.cpp@{config.cpp}!BTN\_RUN@{BTN\_RUN}}
 \index{BTN\_RUN@{BTN\_RUN}!config.cpp@{config.cpp}}
@@ -53,9 +80,9 @@ const uint8\+\_\+t BTN\+\_\+\+RUN = 19}
 
 
 
-Pin del botón de inicio de carrera. 
+Pin del botón de inicio (SW par). 
 
-\Hypertarget{config_8cpp_a8c0f1ded83ee76d2d1c5e67d8382f6bd}\index{config.cpp@{config.cpp}!BTN\_STOP@{BTN\_STOP}}
+Pin del botón de inicio de carrera. \Hypertarget{config_8cpp_a8c0f1ded83ee76d2d1c5e67d8382f6bd}\index{config.cpp@{config.cpp}!BTN\_STOP@{BTN\_STOP}}
 \index{BTN\_STOP@{BTN\_STOP}!config.cpp@{config.cpp}}
 \doxysubsubsection{\texorpdfstring{BTN\_STOP}{BTN\_STOP}}
 {\footnotesize\ttfamily \label{config_8cpp_a8c0f1ded83ee76d2d1c5e67d8382f6bd} 
@@ -63,9 +90,9 @@ const uint8\+\_\+t BTN\+\_\+\+STOP = 22}
 
 
 
-Pin del botón de parada de emergencia. 
+Pin del botón de parada (SW impar). 
 
-\Hypertarget{config_8cpp_ab94a044ae6bf552465ae9ccfb9b27c04}\index{config.cpp@{config.cpp}!ledCalibracion@{ledCalibracion}}
+Pin del botón de parada de emergencia. \Hypertarget{config_8cpp_ab94a044ae6bf552465ae9ccfb9b27c04}\index{config.cpp@{config.cpp}!ledCalibracion@{ledCalibracion}}
 \index{ledCalibracion@{ledCalibracion}!config.cpp@{config.cpp}}
 \doxysubsubsection{\texorpdfstring{ledCalibracion}{ledCalibracion}}
 {\footnotesize\ttfamily \label{config_8cpp_ab94a044ae6bf552465ae9ccfb9b27c04} 
@@ -73,9 +100,9 @@ const uint8\+\_\+t led\+Calibracion = 2}
 
 
 
-LED indicador durante el proceso de calibración. 
+LED indicador de finalización de calibración y estado de setpoint. 
 
-\Hypertarget{config_8cpp_ad91ea72ca9ce6b1e1bbdc49ee34aed79}\index{config.cpp@{config.cpp}!ledMotores@{ledMotores}}
+LED indicador durante el proceso de calibración. \Hypertarget{config_8cpp_ad91ea72ca9ce6b1e1bbdc49ee34aed79}\index{config.cpp@{config.cpp}!ledMotores@{ledMotores}}
 \index{ledMotores@{ledMotores}!config.cpp@{config.cpp}}
 \doxysubsubsection{\texorpdfstring{ledMotores}{ledMotores}}
 {\footnotesize\ttfamily \label{config_8cpp_ad91ea72ca9ce6b1e1bbdc49ee34aed79} 
@@ -83,9 +110,9 @@ const uint8\+\_\+t led\+Motores = 13}
 
 
 
-LED indicador de estado de los motores. 
+LED indicador para el estado de los motores. 
 
-\Hypertarget{config_8cpp_a3b6af078ccca43a68dc57a346e8f5e5f}\index{config.cpp@{config.cpp}!motorPinIN1\_Der@{motorPinIN1\_Der}}
+LED indicador de estado de los motores. \Hypertarget{config_8cpp_a3b6af078ccca43a68dc57a346e8f5e5f}\index{config.cpp@{config.cpp}!motorPinIN1\_Der@{motorPinIN1\_Der}}
 \index{motorPinIN1\_Der@{motorPinIN1\_Der}!config.cpp@{config.cpp}}
 \doxysubsubsection{\texorpdfstring{motorPinIN1\_Der}{motorPinIN1\_Der}}
 {\footnotesize\ttfamily \label{config_8cpp_a3b6af078ccca43a68dc57a346e8f5e5f} 
@@ -93,9 +120,9 @@ const uint8\+\_\+t motor\+Pin\+IN1\+\_\+\+Der = 26}
 
 
 
-Entrada 1 del motor derecho. 
+Control de dirección IN1. 
 
-\Hypertarget{config_8cpp_a4d03a1ac4cb100ed914cdd80f01bc9e0}\index{config.cpp@{config.cpp}!motorPinIN1\_Izq@{motorPinIN1\_Izq}}
+Entrada 1 del motor derecho. \Hypertarget{config_8cpp_a4d03a1ac4cb100ed914cdd80f01bc9e0}\index{config.cpp@{config.cpp}!motorPinIN1\_Izq@{motorPinIN1\_Izq}}
 \index{motorPinIN1\_Izq@{motorPinIN1\_Izq}!config.cpp@{config.cpp}}
 \doxysubsubsection{\texorpdfstring{motorPinIN1\_Izq}{motorPinIN1\_Izq}}
 {\footnotesize\ttfamily \label{config_8cpp_a4d03a1ac4cb100ed914cdd80f01bc9e0} 
@@ -103,9 +130,9 @@ const uint8\+\_\+t motor\+Pin\+IN1\+\_\+\+Izq = 21}
 
 
 
-Entrada 1 del motor izquierdo. 
+Control de dirección IN1. 
 
-\Hypertarget{config_8cpp_ade51c7ee976dbe0b0da9c3947c63b4e5}\index{config.cpp@{config.cpp}!motorPinIN2\_Der@{motorPinIN2\_Der}}
+Entrada 1 del motor izquierdo. \Hypertarget{config_8cpp_ade51c7ee976dbe0b0da9c3947c63b4e5}\index{config.cpp@{config.cpp}!motorPinIN2\_Der@{motorPinIN2\_Der}}
 \index{motorPinIN2\_Der@{motorPinIN2\_Der}!config.cpp@{config.cpp}}
 \doxysubsubsection{\texorpdfstring{motorPinIN2\_Der}{motorPinIN2\_Der}}
 {\footnotesize\ttfamily \label{config_8cpp_ade51c7ee976dbe0b0da9c3947c63b4e5} 
@@ -113,9 +140,9 @@ const uint8\+\_\+t motor\+Pin\+IN2\+\_\+\+Der = 25}
 
 
 
-Entrada 2 del motor derecho. 
+Control de dirección IN2. 
 
-\Hypertarget{config_8cpp_a22407d1452bfe93994e837127f050014}\index{config.cpp@{config.cpp}!motorPinIN2\_Izq@{motorPinIN2\_Izq}}
+Entrada 2 del motor derecho. \Hypertarget{config_8cpp_a22407d1452bfe93994e837127f050014}\index{config.cpp@{config.cpp}!motorPinIN2\_Izq@{motorPinIN2\_Izq}}
 \index{motorPinIN2\_Izq@{motorPinIN2\_Izq}!config.cpp@{config.cpp}}
 \doxysubsubsection{\texorpdfstring{motorPinIN2\_Izq}{motorPinIN2\_Izq}}
 {\footnotesize\ttfamily \label{config_8cpp_a22407d1452bfe93994e837127f050014} 
@@ -123,9 +150,9 @@ const uint8\+\_\+t motor\+Pin\+IN2\+\_\+\+Izq = 18}
 
 
 
-Entrada 2 del motor izquierdo. 
+Control de dirección IN2. 
 
-\Hypertarget{config_8cpp_a168d8d68cf4e67da7ca572d428d48fb9}\index{config.cpp@{config.cpp}!motorPinSleep\_Der@{motorPinSleep\_Der}}
+Entrada 2 del motor izquierdo. \Hypertarget{config_8cpp_a168d8d68cf4e67da7ca572d428d48fb9}\index{config.cpp@{config.cpp}!motorPinSleep\_Der@{motorPinSleep\_Der}}
 \index{motorPinSleep\_Der@{motorPinSleep\_Der}!config.cpp@{config.cpp}}
 \doxysubsubsection{\texorpdfstring{motorPinSleep\_Der}{motorPinSleep\_Der}}
 {\footnotesize\ttfamily \label{config_8cpp_a168d8d68cf4e67da7ca572d428d48fb9} 
@@ -133,9 +160,9 @@ const uint8\+\_\+t motor\+Pin\+Sleep\+\_\+\+Der = 16}
 
 
 
-Pin de activación/reposo del motor derecho. 
+Pin de habilitación (Sleep). 
 
-\Hypertarget{config_8cpp_a01fb00c1c5583a04240a38b6adc3427e}\index{config.cpp@{config.cpp}!motorPinSleep\_Izq@{motorPinSleep\_Izq}}
+Pin de activación/reposo del motor derecho. \Hypertarget{config_8cpp_a01fb00c1c5583a04240a38b6adc3427e}\index{config.cpp@{config.cpp}!motorPinSleep\_Izq@{motorPinSleep\_Izq}}
 \index{motorPinSleep\_Izq@{motorPinSleep\_Izq}!config.cpp@{config.cpp}}
 \doxysubsubsection{\texorpdfstring{motorPinSleep\_Izq}{motorPinSleep\_Izq}}
 {\footnotesize\ttfamily \label{config_8cpp_a01fb00c1c5583a04240a38b6adc3427e} 
@@ -143,9 +170,9 @@ const uint8\+\_\+t motor\+Pin\+Sleep\+\_\+\+Izq = 23}
 
 
 
-Pin de activación/reposo del motor izquierdo. 
+Pin de habilitación (Sleep). 
 
-\Hypertarget{config_8cpp_adb846a29dd2e116cc22e62ff323aa7eb}\index{config.cpp@{config.cpp}!pinBuzzer@{pinBuzzer}}
+Pin de activación/reposo del motor izquierdo. \Hypertarget{config_8cpp_adb846a29dd2e116cc22e62ff323aa7eb}\index{config.cpp@{config.cpp}!pinBuzzer@{pinBuzzer}}
 \index{pinBuzzer@{pinBuzzer}!config.cpp@{config.cpp}}
 \doxysubsubsection{\texorpdfstring{pinBuzzer}{pinBuzzer}}
 {\footnotesize\ttfamily \label{config_8cpp_adb846a29dd2e116cc22e62ff323aa7eb} 
@@ -163,9 +190,9 @@ const uint8\+\_\+t S1 = 36}
 
 
 
-Pin sensor 1 (Extremo). 
+Sensor 1. 
 
-\Hypertarget{config_8cpp_a639d36256a336a55cadffeb11c014e34}\index{config.cpp@{config.cpp}!S2@{S2}}
+Pin sensor 1 (Extremo). \Hypertarget{config_8cpp_a639d36256a336a55cadffeb11c014e34}\index{config.cpp@{config.cpp}!S2@{S2}}
 \index{S2@{S2}!config.cpp@{config.cpp}}
 \doxysubsubsection{\texorpdfstring{S2}{S2}}
 {\footnotesize\ttfamily \label{config_8cpp_a639d36256a336a55cadffeb11c014e34} 
@@ -173,9 +200,9 @@ const uint8\+\_\+t S2 = 39}
 
 
 
-Pin sensor 2. 
+Sensor 2. 
 
-\Hypertarget{config_8cpp_a774691cda50d8d29d88775f91df8fa90}\index{config.cpp@{config.cpp}!S3@{S3}}
+Pin sensor 2. \Hypertarget{config_8cpp_a774691cda50d8d29d88775f91df8fa90}\index{config.cpp@{config.cpp}!S3@{S3}}
 \index{S3@{S3}!config.cpp@{config.cpp}}
 \doxysubsubsection{\texorpdfstring{S3}{S3}}
 {\footnotesize\ttfamily \label{config_8cpp_a774691cda50d8d29d88775f91df8fa90} 
@@ -183,9 +210,9 @@ const uint8\+\_\+t S3 = 34}
 
 
 
-Pin sensor 3. 
+Sensor 3. 
 
-\Hypertarget{config_8cpp_acde777eb76d961291dbb04407339c2e2}\index{config.cpp@{config.cpp}!S4@{S4}}
+Pin sensor 3. \Hypertarget{config_8cpp_acde777eb76d961291dbb04407339c2e2}\index{config.cpp@{config.cpp}!S4@{S4}}
 \index{S4@{S4}!config.cpp@{config.cpp}}
 \doxysubsubsection{\texorpdfstring{S4}{S4}}
 {\footnotesize\ttfamily \label{config_8cpp_acde777eb76d961291dbb04407339c2e2} 
@@ -193,9 +220,9 @@ const uint8\+\_\+t S4 = 35}
 
 
 
-Pin sensor 4 (Centro). 
+Sensor 4. 
 
-\Hypertarget{config_8cpp_a9f27d21e6a2077b0ec64dd2c19f73cf4}\index{config.cpp@{config.cpp}!S5@{S5}}
+Pin sensor 4 (Centro). \Hypertarget{config_8cpp_a9f27d21e6a2077b0ec64dd2c19f73cf4}\index{config.cpp@{config.cpp}!S5@{S5}}
 \index{S5@{S5}!config.cpp@{config.cpp}}
 \doxysubsubsection{\texorpdfstring{S5}{S5}}
 {\footnotesize\ttfamily \label{config_8cpp_a9f27d21e6a2077b0ec64dd2c19f73cf4} 
@@ -203,9 +230,9 @@ const uint8\+\_\+t S5 = 32}
 
 
 
-Pin sensor 5 (Centro). 
+Sensor 5. 
 
-\Hypertarget{config_8cpp_a7983d910b22a2f02f3a4ed595b8ccc13}\index{config.cpp@{config.cpp}!S6@{S6}}
+Pin sensor 5 (Centro). \Hypertarget{config_8cpp_a7983d910b22a2f02f3a4ed595b8ccc13}\index{config.cpp@{config.cpp}!S6@{S6}}
 \index{S6@{S6}!config.cpp@{config.cpp}}
 \doxysubsubsection{\texorpdfstring{S6}{S6}}
 {\footnotesize\ttfamily \label{config_8cpp_a7983d910b22a2f02f3a4ed595b8ccc13} 
@@ -213,9 +240,9 @@ const uint8\+\_\+t S6 = 33}
 
 
 
-Pin sensor 6. 
+Sensor 6. 
 
-\Hypertarget{config_8cpp_aacecf1551eda779cc1c6e09a6eef764b}\index{config.cpp@{config.cpp}!S7@{S7}}
+Pin sensor 6. \Hypertarget{config_8cpp_aacecf1551eda779cc1c6e09a6eef764b}\index{config.cpp@{config.cpp}!S7@{S7}}
 \index{S7@{S7}!config.cpp@{config.cpp}}
 \doxysubsubsection{\texorpdfstring{S7}{S7}}
 {\footnotesize\ttfamily \label{config_8cpp_aacecf1551eda779cc1c6e09a6eef764b} 
@@ -223,9 +250,9 @@ const uint8\+\_\+t S7 = 27}
 
 
 
-Pin sensor 7. 
+Sensor 7. 
 
-\Hypertarget{config_8cpp_a7bbdb12018674ed5c695af86b5d217c4}\index{config.cpp@{config.cpp}!S8@{S8}}
+Pin sensor 7. \Hypertarget{config_8cpp_a7bbdb12018674ed5c695af86b5d217c4}\index{config.cpp@{config.cpp}!S8@{S8}}
 \index{S8@{S8}!config.cpp@{config.cpp}}
 \doxysubsubsection{\texorpdfstring{S8}{S8}}
 {\footnotesize\ttfamily \label{config_8cpp_a7bbdb12018674ed5c695af86b5d217c4} 
@@ -233,5 +260,6 @@ const uint8\+\_\+t S8 = 14}
 
 
 
-Pin sensor 8 (Extremo). 
+Sensor 8. 
 
+Pin sensor 8 (Extremo). 

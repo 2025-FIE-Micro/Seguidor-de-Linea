@@ -6,7 +6,6 @@ var sensores_8hpp =
     ] ],
     [ "calibrarSensores", "sensores_8hpp.html#a087f5f49fa452708bb142e6af46d4b94", null ],
     [ "leerLinea", "sensores_8hpp.html#a739ecba438965ecfcd4cea298b08d2ca", null ],
-    [ "setupSensores", "sensores_8hpp.html#a2f219266814710460b32105d03655688", null ],
-    [ "linea_competencia", "sensores_8hpp.html#ad41c7e6046107ea067785fa523ddab36", null ],
+    [ "setupSensores", "sensores_8hpp.html#ac6a9d020ad6205bf3a5890d2dc4df0e5", null ],
     [ "position", "sensores_8hpp.html#a6f14bde43ef12199f2d2ef07adb6c942", null ]
 ];

@@ -1,33 +1,48 @@
 \doxysection{Referencia del archivo src/fsm.cpp}
 \hypertarget{fsm_8cpp}{}\label{fsm_8cpp}\index{src/fsm.cpp@{src/fsm.cpp}}
+
+
+Implementación de la Máquina de Estados Finitos (FSM).  
+
+
 {\ttfamily \#include "{}fsm.\+hpp"{}}\newline
 \doxysubsubsection*{Clases}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structestado__t}{estado\+\_\+t}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Estructura que define una fila en la tabla de transiciones de un estado. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Funciones}
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{fsm_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}{nada}} (int c)
-\item 
+\begin{DoxyCompactList}\small\item\em Función de acción nula (dummy) utilizada para transiciones que no requieren lógica adicional. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{fsm_8cpp_a5c39de512c4b78d230676be9529635bd}{transicionar}} (int entrada)
-\begin{DoxyCompactList}\small\item\em Gestiona el cambio de estado basado en una entrada específica. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Ejecuta la lógica de transición de la máquina de estados. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structestado__t}{estado\+\_\+t}} \mbox{\hyperlink{fsm_8cpp_a069a28f6c0e81686e8cb3a9ef42e540c}{stop}} \mbox{[}$\,$\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em Tabla de transiciones para el estado STOP (S). \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structestado__t}{estado\+\_\+t}} \mbox{\hyperlink{fsm_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b}{acel}} \mbox{[}$\,$\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em Tabla de transiciones para el estado ACELERAR (A). \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structestado__t}{estado\+\_\+t}} \mbox{\hyperlink{fsm_8cpp_a4d31f5a8868cdbae7ffa8b386cfe7761}{control}} \mbox{[}$\,$\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em Tabla de transiciones para el estado CONTROL (C). \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structestado__t}{estado\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{fsm_8cpp_abd88f3559bbd3b2b3ffd8eb3b3dbe1fc}{tabla\+\_\+de\+\_\+estados}} \mbox{[}$\,$\mbox{]} = \{ \mbox{\hyperlink{fsm_8cpp_a069a28f6c0e81686e8cb3a9ef42e540c}{stop}}, \mbox{\hyperlink{fsm_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b}{acel}}, \mbox{\hyperlink{fsm_8cpp_a4d31f5a8868cdbae7ffa8b386cfe7761}{control}} \}
-\item 
+\begin{DoxyCompactList}\small\item\em Tabla general que agrupa los punteros a las tablas de cada estado. \end{DoxyCompactList}\item 
 void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{fsm_8cpp_a75ca1f171787107103fec12fc9b031f8}{acciones\+\_\+estado}} \mbox{[}$\,$\mbox{]})()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Punteros a las funciones de acción de cada estado, definidas externamente. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
+\doxysubsection{Descripción detallada}
+Implementación de la Máquina de Estados Finitos (FSM). 
+
+Controla el flujo de operación del robot entre los estados de parada, aceleración y control PID mediante tablas de transición basadas en las banderas de RUN y SETPOINT. \begin{DoxyAuthor}{Autor}
+Legion de Ohm 
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{fsm_8cpp_doc-func-members}
 \doxysubsection{Documentación de funciones}
 \Hypertarget{fsm_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}\index{fsm.cpp@{fsm.cpp}!nada@{nada}}
 \index{nada@{nada}!fsm.cpp@{fsm.cpp}}
@@ -35,6 +50,18 @@ void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{fsm_8cpp_a75ca1f171787107103fec
 {\footnotesize\ttfamily \label{fsm_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7} 
 int nada (\begin{DoxyParamCaption}\item[{int}]{c}{}\end{DoxyParamCaption})}
 
+
+
+Función de acción nula (dummy) utilizada para transiciones que no requieren lógica adicional. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em c} & Código de entrada. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+int Siempre retorna 0. 
+\end{DoxyReturn}
 \Hypertarget{fsm_8cpp_a5c39de512c4b78d230676be9529635bd}\index{fsm.cpp@{fsm.cpp}!transicionar@{transicionar}}
 \index{transicionar@{transicionar}!fsm.cpp@{fsm.cpp}}
 \doxysubsubsection{\texorpdfstring{transicionar()}{transicionar()}}
@@ -43,18 +70,22 @@ int transicionar (\begin{DoxyParamCaption}\item[{int}]{entrada}{}\end{DoxyParamC
 
 
 
-Gestiona el cambio de estado basado en una entrada específica. 
+Ejecuta la lógica de transición de la máquina de estados. 
 
+Gestiona el cambio de estado basado en una entrada específica.
 
+Busca en la tabla del estado actual una coincidencia con la entrada proporcionada. Si la encuentra, actualiza el estado y ejecuta la acción correspondiente al nuevo estado. 
 \begin{DoxyParams}{Parámetros}
-{\em entrada} & Valor entero que representa el evento o condición de disparo. \\
+{\em entrada} & Valor entero que combina las señales de control para decidir la transición. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Devuelve}
-int El nuevo estado resultante después de la transición. 
+int El nuevo estado después de procesar la entrada. 
 \end{DoxyReturn}
 
 
+\label{doc-var-members}
+\Hypertarget{fsm_8cpp_doc-var-members}
 \doxysubsection{Documentación de variables}
 \Hypertarget{fsm_8cpp_a75ca1f171787107103fec12fc9b031f8}\index{fsm.cpp@{fsm.cpp}!acciones\_estado@{acciones\_estado}}
 \index{acciones\_estado@{acciones\_estado}!fsm.cpp@{fsm.cpp}}
@@ -62,7 +93,11 @@ int El nuevo estado resultante después de la transición.
 {\footnotesize\ttfamily \label{fsm_8cpp_a75ca1f171787107103fec12fc9b031f8} 
 void(\texorpdfstring{$\ast$}{*} acciones\+\_\+estado\mbox{[}$\,$\mbox{]})() (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
-\Hypertarget{fsm_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b}\index{fsm.cpp@{fsm.cpp}!acel@{acel}}
+
+
+Punteros a las funciones de acción de cada estado, definidas externamente. 
+
+Punteros a las funciones de acción de cada estado, definidas externamente. \Hypertarget{fsm_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b}\index{fsm.cpp@{fsm.cpp}!acel@{acel}}
 \index{acel@{acel}!fsm.cpp@{fsm.cpp}}
 \doxysubsubsection{\texorpdfstring{acel}{acel}}
 {\footnotesize\ttfamily \label{fsm_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b} 
@@ -79,6 +114,10 @@ void(\texorpdfstring{$\ast$}{*} acciones\+\_\+estado\mbox{[}$\,$\mbox{]})() (\be
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}
+
+
+Tabla de transiciones para el estado ACELERAR (A). 
+
 \Hypertarget{fsm_8cpp_a4d31f5a8868cdbae7ffa8b386cfe7761}\index{fsm.cpp@{fsm.cpp}!control@{control}}
 \index{control@{control}!fsm.cpp@{fsm.cpp}}
 \doxysubsubsection{\texorpdfstring{control}{control}}
@@ -96,6 +135,10 @@ void(\texorpdfstring{$\ast$}{*} acciones\+\_\+estado\mbox{[}$\,$\mbox{]})() (\be
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}
+
+
+Tabla de transiciones para el estado CONTROL (C). 
+
 \Hypertarget{fsm_8cpp_a069a28f6c0e81686e8cb3a9ef42e540c}\index{fsm.cpp@{fsm.cpp}!stop@{stop}}
 \index{stop@{stop}!fsm.cpp@{fsm.cpp}}
 \doxysubsubsection{\texorpdfstring{stop}{stop}}
@@ -113,9 +156,17 @@ void(\texorpdfstring{$\ast$}{*} acciones\+\_\+estado\mbox{[}$\,$\mbox{]})() (\be
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}
+
+
+Tabla de transiciones para el estado STOP (S). 
+
 \Hypertarget{fsm_8cpp_abd88f3559bbd3b2b3ffd8eb3b3dbe1fc}\index{fsm.cpp@{fsm.cpp}!tabla\_de\_estados@{tabla\_de\_estados}}
 \index{tabla\_de\_estados@{tabla\_de\_estados}!fsm.cpp@{fsm.cpp}}
 \doxysubsubsection{\texorpdfstring{tabla\_de\_estados}{tabla\_de\_estados}}
 {\footnotesize\ttfamily \label{fsm_8cpp_abd88f3559bbd3b2b3ffd8eb3b3dbe1fc} 
 \mbox{\hyperlink{structestado__t}{estado\+\_\+t}}\texorpdfstring{$\ast$}{*} tabla\+\_\+de\+\_\+estados\mbox{[}$\,$\mbox{]} = \{ \mbox{\hyperlink{fsm_8cpp_a069a28f6c0e81686e8cb3a9ef42e540c}{stop}}, \mbox{\hyperlink{fsm_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b}{acel}}, \mbox{\hyperlink{fsm_8cpp_a4d31f5a8868cdbae7ffa8b386cfe7761}{control}} \}}
+
+
+
+Tabla general que agrupa los punteros a las tablas de cada estado. 
 

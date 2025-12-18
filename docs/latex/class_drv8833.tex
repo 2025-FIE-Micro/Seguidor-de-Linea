@@ -27,6 +27,8 @@ void \mbox{\hyperlink{class_drv8833_abc7d60f6a11b79fe1ff5ce59c3f11cc7}{stop}} ()
 \doxysubsection{Descripción detallada}
 Clase para drivers de motores DRV8833. Incluye funciones que permiten configurar sus pines, ajustar el PWM y el movimiento de los motores. 
 
+\label{doc-constructors}
+\Hypertarget{class_drv8833_doc-constructors}
 \doxysubsection{Documentación de constructores y destructores}
 \Hypertarget{class_drv8833_aa56746ae518b37ed1ab33885bba82da0}\index{Drv8833@{Drv8833}!Drv8833@{Drv8833}}
 \index{Drv8833@{Drv8833}!Drv8833@{Drv8833}}
@@ -38,8 +40,10 @@ Drv8833\+::\+Drv8833 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 Constructor de la clase \doxylink{class_drv8833}{Drv8833}. Inicializa el objeto y prepara la habilitación de los motores. 
 
+Constructor vacío de la clase \doxylink{class_drv8833}{Drv8833}. 
 
-
+\label{doc-func-members}
+\Hypertarget{class_drv8833_doc-func-members}
 \doxysubsection{Documentación de funciones miembro}
 \Hypertarget{class_drv8833_a8967dc4a73f58ba459dd2aefd1822a79}\index{Drv8833@{Drv8833}!forward@{forward}}
 \index{forward@{forward}!Drv8833@{Drv8833}}
@@ -51,14 +55,21 @@ void Drv8833\+::forward (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{p\+PWM}{}
 
 Mueve el motor hacia adelante con una potencia específica. 
 
+Mueve el motor hacia adelante.
+
 
 \begin{DoxyParams}{Parámetros}
 {\em p\+PWM} & Porcentaje de potencia a aplicar \mbox{[}0 a 100\mbox{]} \%. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Devuelve}
-void 
+void
 \end{DoxyReturn}
+Desvincula el pin IN2 del PWM y lo pone en LOW, mientras vincula IN1 al canal PWM. 
+\begin{DoxyParams}{Parámetros}
+{\em p\+PWM} & Porcentaje de potencia \mbox{[}0-\/100\mbox{]}. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{class_drv8833_a672ca702073512e3d8251fec005f3c44}\index{Drv8833@{Drv8833}!reverse@{reverse}}
 \index{reverse@{reverse}!Drv8833@{Drv8833}}
 \doxysubsubsection{\texorpdfstring{reverse()}{reverse()}}
@@ -69,14 +80,21 @@ void Drv8833\+::reverse (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{p\+PWM}{}
 
 Mueve el motor hacia atrás con una potencia específica. 
 
+Mueve el motor hacia atrás.
+
 
 \begin{DoxyParams}{Parámetros}
 {\em p\+PWM} & Porcentaje de potencia a aplicar \mbox{[}0 a 100\mbox{]} \%. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Devuelve}
-void 
+void
 \end{DoxyReturn}
+Desvincula el pin IN1 del PWM y lo pone en LOW, mientras vincula IN2 al canal PWM. 
+\begin{DoxyParams}{Parámetros}
+{\em p\+PWM} & Porcentaje de potencia \mbox{[}0-\/100\mbox{]}. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{class_drv8833_aaa709b8d35a36bcc162402f362c0ee96}\index{Drv8833@{Drv8833}!setup@{setup}}
 \index{setup@{setup}!Drv8833@{Drv8833}}
 \doxysubsubsection{\texorpdfstring{setup()}{setup()}}
@@ -86,6 +104,8 @@ void Drv8833\+::setup (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{pin\+IN1}{,
 
 
 Configura los pines de control del motor y los parámetros del PWM. 
+
+Configura los pines de hardware y el periférico PWM del driver.
 
 
 \begin{DoxyParams}{Parámetros}
@@ -103,8 +123,23 @@ Configura los pines de control del motor y los parámetros del PWM.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Devuelve}
-void 
+void
 \end{DoxyReturn}
+
+\begin{DoxyParams}{Parámetros}
+{\em pin\+IN1} & Pin de dirección 1. \\
+\hline
+{\em pin\+IN2} & Pin de dirección 2. \\
+\hline
+{\em pin\+Sleep} & Pin de activación del driver. \\
+\hline
+{\em ch\+PWM} & Canal ledc asignado. \\
+\hline
+{\em freq\+PWM} & Frecuencia del PWM. \\
+\hline
+{\em res\+PWM} & Resolución en bits del PWM. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{class_drv8833_abc7d60f6a11b79fe1ff5ce59c3f11cc7}\index{Drv8833@{Drv8833}!stop@{stop}}
 \index{stop@{stop}!Drv8833@{Drv8833}}
 \doxysubsubsection{\texorpdfstring{stop()}{stop()}}
@@ -114,6 +149,8 @@ void Drv8833\+::stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 Detiene el motor por completo. 
+
+Detiene el motor desvinculando ambos pines del PWM y poniéndolos en LOW.
 
 \begin{DoxyReturn}{Devuelve}
 void 

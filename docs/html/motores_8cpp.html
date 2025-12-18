@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Seguidor de Línea: Referencia del archivo src/motores.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
@@ -13,7 +13,6 @@
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
@@ -45,26 +44,20 @@ window.MathJax = {
 </table>
 </div>
 <!-- end header part -->
-<!-- Generado por Doxygen 1.13.2 -->
+<!-- Generado por Doxygen 1.15.0 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "search/",'.html');
-/* @license-end */
 </script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() { codefold.init(0); });
-/* @license-end */
+$(function() { codefold.init(); });
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('',true,false,'search.php','Buscar',true);
   $(function() { init_search(); });
 });
-/* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
@@ -79,10 +72,9 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('motores_8cpp.html',''); initResizable(true); });
-/* @license-end */
+$(function(){initNavTree('motores_8cpp.html','',''); });
 </script>
+<div id="container">
 <div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -106,12 +98,12 @@ $(function(){initNavTree('motores_8cpp.html',''); initResizable(true); });
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#func-members">Funciones</a> &#124;
-<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">Referencia del archivo motores.cpp</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementación de la capa de control de motores y manejo del driver DRV8833.  
+<a href="#details">Más...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="sensores_8hpp_source.html">sensores.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="config_8hpp_source.html">config.hpp</a>&quot;</code><br />
@@ -119,34 +111,30 @@ $(function(){initNavTree('motores_8cpp.html',''); initResizable(true); });
 <code>#include &quot;<a class="el" href="pid_8hpp_source.html">pid.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="interrupciones_8hpp_source.html">interrupciones.hpp</a>&quot;</code><br />
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Funciones</h2></td></tr>
 <tr class="memitem:a6776412dc1eb9b05853ba2566af78500" id="r_a6776412dc1eb9b05853ba2566af78500"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6776412dc1eb9b05853ba2566af78500">setupMotores</a> ()</td></tr>
-<tr class="memdesc:a6776412dc1eb9b05853ba2566af78500"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa los objetos de los motores y configura sus periféricos.  <br /></td></tr>
-<tr class="separator:a6776412dc1eb9b05853ba2566af78500"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a6776412dc1eb9b05853ba2566af78500"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa el hardware de ambos motores y los detiene inicialmente.  <br /></td></tr>
 <tr class="memitem:a9d98237426c9fb3c44711508dd0bdd3e" id="r_a9d98237426c9fb3c44711508dd0bdd3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d98237426c9fb3c44711508dd0bdd3e">moverMotores</a> (int32_t <a class="el" href="#a6abf0890e5cb283ee239088e602420c6">motorSpeedIzq</a>, int32_t <a class="el" href="#a9bafa76643a24230be378bcd0ddf03ba">motorSpeedDer</a>)</td></tr>
-<tr class="memdesc:a9d98237426c9fb3c44711508dd0bdd3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mueve los motores aplicando directamente los valores de velocidad. Esta función es la interfaz de bajo nivel que llama a las funciones <code>forward</code> / <code>reverse</code>.  <br /></td></tr>
-<tr class="separator:a9d98237426c9fb3c44711508dd0bdd3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a9d98237426c9fb3c44711508dd0bdd3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aplica las velocidades a los motores traduciéndolas a comandos del driver.  <br /></td></tr>
 <tr class="memitem:a58db9358a9523f93d0f2a138dc5f832d" id="r_a58db9358a9523f93d0f2a138dc5f832d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58db9358a9523f93d0f2a138dc5f832d">detenerMotores</a> ()</td></tr>
-<tr class="memdesc:a58db9358a9523f93d0f2a138dc5f832d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detiene ambos motores de forma inmediata enviando una señal de parada a los drivers.  <br /></td></tr>
-<tr class="separator:a58db9358a9523f93d0f2a138dc5f832d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a58db9358a9523f93d0f2a138dc5f832d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Envía la señal de parada a ambos motores.  <br /></td></tr>
 <tr class="memitem:a3a34de80ed478cc6153902b826ed10b4" id="r_a3a34de80ed478cc6153902b826ed10b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a34de80ed478cc6153902b826ed10b4">actualizarSP</a> (uint16_t pos)</td></tr>
-<tr class="memdesc:a3a34de80ed478cc6153902b826ed10b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza el SetPoint (punto de referencia) del sistema de control según la posición actual del robot.  <br /></td></tr>
-<tr class="separator:a3a34de80ed478cc6153902b826ed10b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a3a34de80ed478cc6153902b826ed10b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza la bandera de Setpoint basada en la proximidad de la posición al centro.  <br /></td></tr>
 <tr class="memitem:adcfe68224198cf968169275300dec7f4" id="r_adcfe68224198cf968169275300dec7f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adcfe68224198cf968169275300dec7f4">controlMotores</a> (float correcion)</td></tr>
-<tr class="memdesc:adcfe68224198cf968169275300dec7f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función principal de control que calcula la velocidad final de cada motor basándose en la corrección PID.  <br /></td></tr>
-<tr class="separator:adcfe68224198cf968169275300dec7f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:adcfe68224198cf968169275300dec7f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula las velocidades individuales aplicando la corrección diferencial.  <br /></td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a6abf0890e5cb283ee239088e602420c6" id="r_a6abf0890e5cb283ee239088e602420c6"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6abf0890e5cb283ee239088e602420c6">motorSpeedIzq</a> = 0</td></tr>
-<tr class="memdesc:a6abf0890e5cb283ee239088e602420c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Velocidad final del motor izquierdo calculada tras el PID. Positivo = avance, Negativo = reversa.  <br /></td></tr>
-<tr class="separator:a6abf0890e5cb283ee239088e602420c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a6abf0890e5cb283ee239088e602420c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Almacena la velocidad calculada para el motor izquierdo.  <br /></td></tr>
 <tr class="memitem:a9bafa76643a24230be378bcd0ddf03ba" id="r_a9bafa76643a24230be378bcd0ddf03ba"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9bafa76643a24230be378bcd0ddf03ba">motorSpeedDer</a> = 0</td></tr>
-<tr class="memdesc:a9bafa76643a24230be378bcd0ddf03ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Velocidad final del motor derecho calculada tras el PID. Positivo = avance, Negativo = reversa.  <br /></td></tr>
-<tr class="separator:a9bafa76643a24230be378bcd0ddf03ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a9bafa76643a24230be378bcd0ddf03ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Almacena la velocidad calculada para el motor derecho.  <br /></td></tr>
 </table>
-<h2 class="groupheader">Documentación de funciones</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Implementación de la capa de control de motores y manejo del driver DRV8833. </p>
+<p>Contiene la lógica para el control PWM de los motores, la gestión de dirección (avance/reversa) y el cálculo de velocidades diferenciales basadas en la corrección PID. </p><dl class="section author"><dt>Autor</dt><dd>Legion de Ohm </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
 <a id="a3a34de80ed478cc6153902b826ed10b4" name="a3a34de80ed478cc6153902b826ed10b4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3a34de80ed478cc6153902b826ed10b4">&#9670;&#160;</a></span>actualizarSP()</h2>
 
@@ -162,14 +150,14 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Actualiza el SetPoint (punto de referencia) del sistema de control según la posición actual del robot. </p>
+<p>Actualiza la bandera de Setpoint basada en la proximidad de la posición al centro. </p>
+<p>Actualiza el SetPoint (punto de referencia) del sistema de control según la posición actual del robot.</p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pos</td><td>Posición actual leída por la barra de sensores. </td></tr>
+    <tr><td class="paramname">pos</td><td>Posición actual detectada por los sensores. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Devuelve</dt><dd>void </dd></dl>
 
 </div>
 </div>
@@ -188,14 +176,14 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Función principal de control que calcula la velocidad final de cada motor basándose en la corrección PID. </p>
-<dl class="params"><dt>Parámetros</dt><dd>
+<p>Calcula las velocidades individuales aplicando la corrección diferencial. </p>
+<p>Función principal de control que calcula la velocidad final de cada motor basándose en la corrección PID.</p>
+<p>Si el robot está fuera de la zona muerta, ajusta las velocidades base sumando o restando la corrección y limita los valores al rango \( \pm \)maxSpeed. </p><dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">correcion</td><td>Valor de salida del algoritmo PID (error corregido). </td></tr>
+    <tr><td class="paramname">correcion</td><td>Valor de corrección obtenido del PID. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Devuelve</dt><dd>void </dd></dl>
 
 </div>
 </div>
@@ -214,8 +202,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Envía la señal de parada a ambos motores. </p>
 <p>Detiene ambos motores de forma inmediata enviando una señal de parada a los drivers. </p>
-<dl class="section return"><dt>Devuelve</dt><dd>void </dd></dl>
 
 </div>
 </div>
@@ -238,15 +226,15 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Mueve los motores aplicando directamente los valores de velocidad. Esta función es la interfaz de bajo nivel que llama a las funciones <code>forward</code> / <code>reverse</code>. </p>
-<dl class="params"><dt>Parámetros</dt><dd>
+<p>Aplica las velocidades a los motores traduciéndolas a comandos del driver. </p>
+<p>Mueve los motores aplicando directamente los valores de velocidad. Esta función es la interfaz de bajo nivel que llama a las funciones <span class="tt">forward</span> / <span class="tt">reverse</span>.</p>
+<p>Evalúa el signo de la velocidad para decidir si aplicar forward, reverse o stop. </p><dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">motorSpeedIzq</td><td>Velocidad (PWM) final para el motor izquierdo. </td></tr>
-    <tr><td class="paramname">motorSpeedDer</td><td>Velocidad (PWM) final para el motor derecho. </td></tr>
+    <tr><td class="paramname">motorSpeedIzq</td><td>Velocidad para el motor izquierdo (positivo = avance). </td></tr>
+    <tr><td class="paramname">motorSpeedDer</td><td>Velocidad para el motor derecho (positivo = avance). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Devuelve</dt><dd>void </dd></dl>
 
 </div>
 </div>
@@ -265,12 +253,12 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Inicializa el hardware de ambos motores y los detiene inicialmente. </p>
 <p>Inicializa los objetos de los motores y configura sus periféricos. </p>
-<dl class="section return"><dt>Devuelve</dt><dd>void </dd></dl>
 
 </div>
 </div>
-<h2 class="groupheader">Documentación de variables</h2>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
 <a id="a9bafa76643a24230be378bcd0ddf03ba" name="a9bafa76643a24230be378bcd0ddf03ba"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9bafa76643a24230be378bcd0ddf03ba">&#9670;&#160;</a></span>motorSpeedDer</h2>
 
@@ -283,6 +271,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Almacena la velocidad calculada para el motor derecho. </p>
 <p>Velocidad final del motor derecho calculada tras el PID. Positivo = avance, Negativo = reversa. </p>
 
 </div>
@@ -299,17 +288,26 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Almacena la velocidad calculada para el motor izquierdo. </p>
 <p>Velocidad final del motor izquierdo calculada tras el PID. Positivo = avance, Negativo = reversa. </p>
 
 </div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="motores_8cpp.html">motores.cpp</a></li>
-    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="motores_8cpp.html">motores.cpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
   </ul>
 </div>
 </body>

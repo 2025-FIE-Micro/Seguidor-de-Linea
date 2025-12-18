@@ -3,9 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Seguidor de Línea: Página principal</title>
+<title>Seguidor de Línea: Documentación del Proyecto: Seguidor de Línea</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -13,7 +13,6 @@
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
@@ -45,26 +44,20 @@ window.MathJax = {
 </table>
 </div>
 <!-- end header part -->
-<!-- Generado por Doxygen 1.13.2 -->
+<!-- Generado por Doxygen 1.15.0 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "search/",'.html');
-/* @license-end */
 </script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() { codefold.init(0); });
-/* @license-end */
+$(function() { codefold.init(); });
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('',true,false,'search.php','Buscar',true);
   $(function() { init_search(); });
 });
-/* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
@@ -79,10 +72,9 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('index.html',''); initResizable(true); });
-/* @license-end */
+$(function(){initNavTree('index.html','',''); });
 </script>
+<div id="container">
 <div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -105,17 +97,35 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Documentación de Seguidor de Línea</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Documentación del Proyecto: Seguidor de Línea </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><h1 class="doxsection"><a class="anchor" id="intro_sec"></a>
+Introducción</h1>
+<p>Este proyecto consiste en un controlador de movimiento para un robot <b>Seguidor de Línea</b> de alta velocidad, diseñado para competencias de robótica. Utiliza un algoritmo de control PID (Proporcional, Integral y Derivativo) para mantener una trayectoria óptima.</p>
+<h1 class="doxsection"><a class="anchor" id="features_sec"></a>
+Características Principales</h1>
+<ul>
+<li><b>Control PID:</b> Algoritmo sintonizado mediante el método de Ziegler-Nichols.</li>
+<li><b>FSM (Máquina de Estados):</b> Gestión robusta de estados (STOP, ACEL, CONTROL).</li>
+<li><b>Sensores QTR:</b> Lectura reflectiva de alta precisión con calibración dinámica.</li>
+<li><b>Configuración Flexible:</b> Perfiles de corredor seleccionables (Nightfall, Argentum, Diego).</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="setup_sec"></a>
+Configuración del Hardware</h1>
+<p>El sistema está basado en un microcontrolador <b>ESP32</b>, utilizando el periférico LEDC para el control PWM de los motores y timers de hardware para el tiempo de control.</p>
+<dl class="section author"><dt>Autor</dt><dd>Legion de Ohm </dd></dl>
+<dl class="section date"><dt>Fecha</dt><dd>2025 </dd></dl>
+</div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
 </div><!-- doc-content -->
+</div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
   </ul>
 </div>
 </body>

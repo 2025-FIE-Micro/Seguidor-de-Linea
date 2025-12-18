@@ -1,9 +1,10 @@
-/*
-    Interrupciones físicas y por timer:
-    * Botón RUN: inicia ciclo y habilita control
-    * Botón STOP: detiene ciclo
-    * Timer: marca paso de tiempo fijo (deltaT)
-*/
+/**
+ @file interrupciones.cpp
+ @brief Implementación de la gestión de interrupciones externas y de temporizador.
+ @details Configura las ISR para los botones de control y el temporizador de hardware 
+ para garantizar un tiempo de muestreo constante en el lazo de control.
+ @author Legion de Ohm
+ */
 
 #include "interrupciones.hpp"
 #include "config.hpp"
@@ -11,24 +12,35 @@
 // ============================
 // FLAGS
 // ============================
+/** @brief Bandera volátil que indica si el sistema está en ejecución. */
 volatile bool RUN = false;
+
+/** @brief Bandera volátil para la gestión del estado de setpoint. */
 volatile bool SETPOINT = true;
+
+/** @brief Bandera volátil que señaliza el vencimiento del periodo del temporizador. */
 volatile bool has_expired = false;
 
 // ============================
 // TIMER
 // ============================
-// Timer del ESP32
+/** @brief Puntero al objeto del temporizador de hardware del ESP32. */
 static hw_timer_t *timer = NULL;
 
-// Tiempo base del control
-const int32_t TIEMPO_TIMER = 6000;              // unidad en us
-const float FIXED_DT_S = TIEMPO_TIMER * 1e-6f;  // unidad en s
+/** @brief Periodo del temporizador en microsegundos (6000 us = 6ms). */
+const int32_t TIEMPO_TIMER = 6000;              
+
+/** @brief Tiempo diferencial fijo calculado en segundos para el PID. */
+const float FIXED_DT_S = TIEMPO_TIMER * 1e-6f;  
 
 // ============================
 // ISR TIMER
 // ============================
-// ISR del Timer: solo señaliza el evento
+/**
+ @brief ISR del Timer.
+ @details Solo señaliza que el tiempo ha expirado activando la bandera has_expired. 
+ Se ejecuta en IRAM para minimizar latencias.
+ */
 void IRAM_ATTR timerInterrupcion() {
     has_expired = true;
 }
@@ -36,13 +48,19 @@ void IRAM_ATTR timerInterrupcion() {
 // ============================
 // ISR BOTONES
 // ============================
-// ISR Botón RUN: pasa a modo corredor (Acelerar o Control)
+/**
+ @brief ISR asociada al botón RUN.
+ @details Activa las banderas RUN y SETPOINT para iniciar la lógica de movimiento.
+ */
 void IRAM_ATTR handleRun() {
     RUN = true;
     SETPOINT = true;
 }
 
-// ISR Botón STOP: deshabilita ejecución
+/**
+ @brief ISR asociada al botón STOP.
+ @details Desactiva la bandera RUN para detener inmediatamente la ejecución.
+ */
 void IRAM_ATTR handleStop() {
     RUN = false;
 }
@@ -50,7 +68,11 @@ void IRAM_ATTR handleStop() {
 // ============================
 // SETUP INTERRUPCIONES
 // ============================
-// Funcion para iniciar interrupciones y el timer
+/**
+ @brief Configura el hardware de interrupciones y el temporizador.
+ @details Asocia los pines de los botones a sus ISR correspondientes y 
+ configura el Timer 0 del ESP32 con un prescaler de 80 para contar en microsegundos.
+ */
 void setupInterrupciones() {
     // Interrupciones FISICAS de arranque y parada
     attachInterrupt(digitalPinToInterrupt(BTN_RUN), handleRun, RISING);

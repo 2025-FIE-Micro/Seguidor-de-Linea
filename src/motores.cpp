@@ -1,9 +1,10 @@
-/*
-    programa de direccion y control de motores
-    * movimiento con correcion para atras
-    * movimiento con correcion solamente recta
-    * control de motores - setpoint o pid
-*/
+/**
+ @file motores.cpp
+ @brief Implementación de la capa de control de motores y manejo del driver DRV8833.
+ @details Contiene la lógica para el control PWM de los motores, la gestión de dirección 
+ (avance/reversa) y el cálculo de velocidades diferenciales basadas en la corrección PID.
+ @author Legion de Ohm
+ */
 
 #include <Arduino.h>
 #include "sensores.hpp"
@@ -12,10 +13,21 @@
 #include "pid.hpp"
 #include "interrupciones.hpp"
 
+/**
+ @brief Constructor vacío de la clase Drv8833.
+ */
 Drv8833::Drv8833() {}
 
+/**
+ @brief Configura los pines de hardware y el periférico PWM del driver.
+ @param pinIN1 Pin de dirección 1.
+ @param pinIN2 Pin de dirección 2.
+ @param pinSleep Pin de activación del driver.
+ @param chPWM Canal ledc asignado.
+ @param freqPWM Frecuencia del PWM.
+ @param resPWM Resolución en bits del PWM.
+ */
 void Drv8833::setup(uint8_t pinIN1, uint8_t pinIN2, uint8_t pinSleep, uint8_t chPWM, uint32_t freqPWM, uint8_t resPWM) {
-    // Ajuste de variables
     _pinIN1 = pinIN1;
     _pinIN2 = pinIN2;
     _pinSleep = pinSleep;
@@ -23,30 +35,37 @@ void Drv8833::setup(uint8_t pinIN1, uint8_t pinIN2, uint8_t pinSleep, uint8_t ch
     _freqPWM = freqPWM;
     _resPWM = resPWM;
 
-    // Configuración de pines.
     pinMode(_pinIN1, OUTPUT);
     pinMode(_pinIN2, OUTPUT);
     pinMode(_pinSleep, OUTPUT);
 
     digitalWrite(_pinSleep, HIGH); // Habilitar driver
 
-    // Ajuste de PWM del canal
     ledcSetup(_chPWM, _freqPWM, _resPWM);
 }
 
+/**
+ @brief Mueve el motor hacia adelante.
+ @details Desvincula el pin IN2 del PWM y lo pone en LOW, mientras vincula IN1 al canal PWM.
+ @param pPWM Porcentaje de potencia [0-100].
+ */
 void Drv8833::forward(uint8_t pPWM) {
     ledcDetachPin(_pinIN2); 
     digitalWrite(_pinIN2, LOW);      
 
     ledcAttachPin(_pinIN1, _chPWM);
 
-    // Cálculo correcto del duty
     uint16_t maxDuty = (1 << _resPWM) - 1;
     uint16_t pwmDutyCycle = (maxDuty * pPWM) / 100;
 
     ledcWrite(_chPWM, pwmDutyCycle);  
 }
 
+/**
+ @brief Mueve el motor hacia atrás.
+ @details Desvincula el pin IN1 del PWM y lo pone en LOW, mientras vincula IN2 al canal PWM.
+ @param pPWM Porcentaje de potencia [0-100].
+ */
 void Drv8833::reverse(uint8_t pPWM) {
     ledcDetachPin(_pinIN1);
     digitalWrite(_pinIN1, LOW);
@@ -59,6 +78,9 @@ void Drv8833::reverse(uint8_t pPWM) {
     ledcWrite(_chPWM, pwmDutyCycle);
 }
 
+/**
+ @brief Detiene el motor desvinculando ambos pines del PWM y poniéndolos en LOW.
+ */
 void Drv8833::stop() {
     ledcDetachPin(_pinIN1);
     ledcDetachPin(_pinIN2);
@@ -71,24 +93,29 @@ void Drv8833::stop() {
 // CONFIGURACIÓN DE MOTORES
 // ============================
 
-// Objetos de motores (visibles solo en este modulo)
+/** @brief Instancia estática para el motor izquierdo. */
 static Drv8833 motorIzq;
+/** @brief Instancia estática para el motor derecho. */
 static Drv8833 motorDer;
 
-// Canales PWM usados por cada motor
+/** @brief Canal PWM para motor izquierdo. */
 static const uint8_t motorPWM_Izq = 0;
+/** @brief Canal PWM para motor derecho. */
 static const uint8_t motorPWM_Der = 1;
 
-// Parámetros de PWM
-static const uint32_t freqPWM = 20000; // 20 kHz
-static const uint8_t  resPWM  = 8;     // 8 bits (0..255)
+/** @brief Frecuencia de trabajo del PWM (20 kHz). */
+static const uint32_t freqPWM = 20000; 
+/** @brief Resolución del PWM (8 bits). */
+static const uint8_t  resPWM  = 8;     
 
-// Velocidades actuales
+/** @brief Almacena la velocidad calculada para el motor izquierdo. */
 int32_t motorSpeedIzq = 0;
+/** @brief Almacena la velocidad calculada para el motor derecho. */
 int32_t motorSpeedDer = 0;
 
-
-// INICIACION DE MOTORES
+/**
+ @brief Inicializa el hardware de ambos motores y los detiene inicialmente.
+ */
 void setupMotores() {
     motorDer.setup(motorPinIN1_Der, motorPinIN2_Der,
                    motorPinSleep_Der, motorPWM_Der,
@@ -101,13 +128,12 @@ void setupMotores() {
     detenerMotores();
 }
 
-
-// ============================
-// FUNCION PARA MOVER MOTORES
-// ============================
-// Aplica las velocidades calculadas a cada motor.
-// Valores positivos hacen avanzar el motor,
-// valores negativos lo hacen girar en reversa.
+/**
+ @brief Aplica las velocidades a los motores traduciéndolas a comandos del driver.
+ @details Evalúa el signo de la velocidad para decidir si aplicar forward, reverse o stop.
+ @param motorSpeedIzq Velocidad para el motor izquierdo (positivo = avance).
+ @param motorSpeedDer Velocidad para el motor derecho (positivo = avance).
+ */
 void moverMotores(int32_t motorSpeedIzq, int32_t motorSpeedDer) {
     deb(Serial.printf("MotorIzq=%d\n", motorSpeedIzq);)
     deb(Serial.printf("MotorDer=%d\n", motorSpeedDer);)
@@ -121,39 +147,37 @@ void moverMotores(int32_t motorSpeedIzq, int32_t motorSpeedDer) {
     else                        {   motorDer.stop();    }   
 }
 
-// Detener ambos motores
+/**
+ @brief Envía la señal de parada a ambos motores.
+ */
 void detenerMotores(){
     motorIzq.stop();
     motorDer.stop();
 }
 
-
-// Determina si el robot se encuentra dentro de la zona muerta del setpoint.
-// Actualiza la bandera SETPOINT usada por la FSM.
+/**
+ @brief Actualiza la bandera de Setpoint basada en la proximidad de la posición al centro.
+ @param pos Posición actual detectada por los sensores.
+ */
 void actualizarSP(uint16_t pos) {
     SETPOINT = (abs(pos - setpoint) < zonaMuerta);
 }
 
-
-// ============================
-// FUNCION CONTROL MOTORES
-// ============================
-// Calcula las velocidades de los motores a partir de la corrección del PID.
-// Si el robot no está en el setpoint, aplica corrección diferencial.
-// En el setpoint, mantiene el estado sin corrección.
+/**
+ @brief Calcula las velocidades individuales aplicando la corrección diferencial.
+ @details Si el robot está fuera de la zona muerta, ajusta las velocidades base 
+ sumando o restando la corrección y limita los valores al rango @f$ \pm @f$maxSpeed.
+ @param correcion Valor de corrección obtenido del PID.
+ */
 void controlMotores(float correcion) {
-    // Si NO estoy en Zona muerta solo controlo
     if ( !SETPOINT ) {
-        // Calcular velocidad motores
         motorSpeedIzq = baseSpeed - correcion;
         motorSpeedDer = baseSpeed + correcion;
 
-        // Limitar a rango válido incluyendo negativos
         motorSpeedIzq = constrain(motorSpeedIzq, -maxSpeed, maxSpeed);
         motorSpeedDer = constrain(motorSpeedDer, -maxSpeed, maxSpeed);
         return;
     }
 
-    // se encuentra en el setpoint
     SETPOINT = true;
 }

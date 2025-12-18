@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "Seguidor de Línea", "index.html", [
+    [ "Documentación del Proyecto: Seguidor de Línea", "index.html", "index" ],
     [ "Clases", "annotated.html", [
       [ "Lista de clases", "annotated.html", "annotated_dup" ],
       [ "Índice de clases", "classes.html", null ],
@@ -50,9 +51,10 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_prueba__maquina_estados_8cpp.html",
-"prueba__contro___i_r_8cpp.html#a8e348cdba02e89e70f98e16e283007e1"
+"_prueba__contro___i_r_8cpp.html",
+"motores_8hpp.html#a6abf0890e5cb283ee239088e602420c6"
 ];
 
 var SYNCONMSG = 'pulsar para deshabilitar sincronización';
 var SYNCOFFMSG = 'pulsar para habilitar sincronización';
+var LISTOFALLMEMBERS = 'Lista de todos los miembros';

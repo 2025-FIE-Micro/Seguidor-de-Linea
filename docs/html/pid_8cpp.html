@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Seguidor de Línea: Referencia del archivo src/pid.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
@@ -13,7 +13,6 @@
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
@@ -45,26 +44,20 @@ window.MathJax = {
 </table>
 </div>
 <!-- end header part -->
-<!-- Generado por Doxygen 1.13.2 -->
+<!-- Generado por Doxygen 1.15.0 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "search/",'.html');
-/* @license-end */
 </script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() { codefold.init(0); });
-/* @license-end */
+$(function() { codefold.init(); });
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('',true,false,'search.php','Buscar',true);
   $(function() { init_search(); });
 });
-/* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
@@ -79,10 +72,9 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('pid_8cpp.html',''); initResizable(true); });
-/* @license-end */
+$(function(){initNavTree('pid_8cpp.html','',''); });
 </script>
+<div id="container">
 <div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -106,53 +98,48 @@ $(function(){initNavTree('pid_8cpp.html',''); initResizable(true); });
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#func-members">Funciones</a> &#124;
-<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">Referencia del archivo pid.cpp</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementación del controlador Proporcional-Integral-Derivativo (PID).  
+<a href="#details">Más...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="config_8hpp_source.html">config.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="pid_8hpp_source.html">pid.hpp</a>&quot;</code><br />
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Funciones</h2></td></tr>
 <tr class="memitem:aaa3441d50a3a4f31e76e5014882b3a95" id="r_aaa3441d50a3a4f31e76e5014882b3a95"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa3441d50a3a4f31e76e5014882b3a95">calculo_pid</a> (uint16_t pos, float deltaTime)</td></tr>
-<tr class="memdesc:aaa3441d50a3a4f31e76e5014882b3a95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula la corrección necesaria para el sistema usando la fórmula PID.  <br /></td></tr>
-<tr class="separator:aaa3441d50a3a4f31e76e5014882b3a95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:aaa3441d50a3a4f31e76e5014882b3a95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza el cálculo del algoritmo PID.  <br /></td></tr>
 <tr class="memitem:a02e48c71c98d7a877bf3f9d37b6d4c39" id="r_a02e48c71c98d7a877bf3f9d37b6d4c39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02e48c71c98d7a877bf3f9d37b6d4c39">reiniciar_pid</a> ()</td></tr>
-<tr class="memdesc:a02e48c71c98d7a877bf3f9d37b6d4c39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resetea las variables internas del controlador (error acumulado y error anterior).  <br /></td></tr>
-<tr class="separator:a02e48c71c98d7a877bf3f9d37b6d4c39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a02e48c71c98d7a877bf3f9d37b6d4c39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reinicia las variables de estado del controlador.  <br /></td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:aa816869ccf685e5813827a4dae362891" id="r_aa816869ccf685e5813827a4dae362891"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa816869ccf685e5813827a4dae362891">lastError</a> = 0</td></tr>
-<tr class="separator:aa816869ccf685e5813827a4dae362891"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:aa816869ccf685e5813827a4dae362891"><td class="mdescLeft">&#160;</td><td class="mdescRight">Almacena el error de la iteración anterior para el cálculo de la parte derivativa.  <br /></td></tr>
 <tr class="memitem:a1174af01b8a329a6d465ea6e0951b3e5" id="r_a1174af01b8a329a6d465ea6e0951b3e5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1174af01b8a329a6d465ea6e0951b3e5">integral</a> = 0</td></tr>
-<tr class="separator:a1174af01b8a329a6d465ea6e0951b3e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a1174af01b8a329a6d465ea6e0951b3e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acumulador del error en el tiempo para el cálculo de la parte integral.  <br /></td></tr>
 <tr class="memitem:ae6951301aef881b2aafcbe3538a45148" id="r_ae6951301aef881b2aafcbe3538a45148"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6951301aef881b2aafcbe3538a45148">lastTime</a> = 0</td></tr>
-<tr class="separator:ae6951301aef881b2aafcbe3538a45148"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ae6951301aef881b2aafcbe3538a45148"><td class="mdescLeft">&#160;</td><td class="mdescRight">Almacena la marca de tiempo de la última ejecución (no utilizado en la versión actual).  <br /></td></tr>
 <tr class="memitem:ab2b0c78a81e045d7a8f28be307b8c61b" id="r_ab2b0c78a81e045d7a8f28be307b8c61b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2b0c78a81e045d7a8f28be307b8c61b">baseSpeed</a> = 70</td></tr>
-<tr class="memdesc:ab2b0c78a81e045d7a8f28be307b8c61b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Velocidad crucero nominal de los motores cuando el error es mayor a la zona muerta.  <br /></td></tr>
-<tr class="separator:ab2b0c78a81e045d7a8f28be307b8c61b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ab2b0c78a81e045d7a8f28be307b8c61b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Velocidad crucero para NIGHTFALL (0-100%).  <br /></td></tr>
 <tr class="memitem:ae0fd140825889f1a7ed103b66c28ce38" id="r_ae0fd140825889f1a7ed103b66c28ce38"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0fd140825889f1a7ed103b66c28ce38">Ku</a> = 0.065</td></tr>
-<tr class="memdesc:ae0fd140825889f1a7ed103b66c28ce38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ganancia última (Ultimate Gain).  <br /></td></tr>
-<tr class="separator:ae0fd140825889f1a7ed103b66c28ce38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ae0fd140825889f1a7ed103b66c28ce38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ganancia última para NIGHTFALL.  <br /></td></tr>
 <tr class="memitem:a38eca5301b0c8380eaea74f460237a09" id="r_a38eca5301b0c8380eaea74f460237a09"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38eca5301b0c8380eaea74f460237a09">Tu</a> = 0.350</td></tr>
-<tr class="memdesc:a38eca5301b0c8380eaea74f460237a09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Periodo de oscilación última (Ultimate Period).  <br /></td></tr>
-<tr class="separator:a38eca5301b0c8380eaea74f460237a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a38eca5301b0c8380eaea74f460237a09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Periodo último para NIGHTFALL.  <br /></td></tr>
 <tr class="memitem:a790f9df599f1d6c92855645c65a0cccc" id="r_a790f9df599f1d6c92855645c65a0cccc"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a790f9df599f1d6c92855645c65a0cccc">Kp</a> = 0.6 * <a class="el" href="#ae0fd140825889f1a7ed103b66c28ce38">Ku</a></td></tr>
-<tr class="memdesc:a790f9df599f1d6c92855645c65a0cccc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constante Proporcional.  <br /></td></tr>
-<tr class="separator:a790f9df599f1d6c92855645c65a0cccc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a790f9df599f1d6c92855645c65a0cccc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ganancia Proporcional según sintonización clásica de Ziegler-Nichols (0.6 * Ku).  <br /></td></tr>
 <tr class="memitem:a0534f74e5e04a4433256a6d9bb982d2e" id="r_a0534f74e5e04a4433256a6d9bb982d2e"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0534f74e5e04a4433256a6d9bb982d2e">Ki</a> = 2 * <a class="el" href="#a790f9df599f1d6c92855645c65a0cccc">Kp</a> / <a class="el" href="#a38eca5301b0c8380eaea74f460237a09">Tu</a></td></tr>
-<tr class="memdesc:a0534f74e5e04a4433256a6d9bb982d2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constante Integral.  <br /></td></tr>
-<tr class="separator:a0534f74e5e04a4433256a6d9bb982d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a0534f74e5e04a4433256a6d9bb982d2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ganancia Integral calculada como \( 2 \cdot K_p / T_u \).  <br /></td></tr>
 <tr class="memitem:ad76756e0056f2f5ec10057052cbed3c9" id="r_ad76756e0056f2f5ec10057052cbed3c9"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad76756e0056f2f5ec10057052cbed3c9">Kd</a> = <a class="el" href="#a790f9df599f1d6c92855645c65a0cccc">Kp</a> * <a class="el" href="#a38eca5301b0c8380eaea74f460237a09">Tu</a> / 8</td></tr>
-<tr class="memdesc:ad76756e0056f2f5ec10057052cbed3c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constante Derivativa.  <br /></td></tr>
-<tr class="separator:ad76756e0056f2f5ec10057052cbed3c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ad76756e0056f2f5ec10057052cbed3c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ganancia Derivativa calculada como \( K_p \cdot T_u / 8 \).  <br /></td></tr>
 </table>
-<h2 class="groupheader">Documentación de funciones</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Implementación del controlador Proporcional-Integral-Derivativo (PID). </p>
+<p>Gestiona la selección de constantes por perfil de corredor y realiza el cálculo de la salida del controlador basándose en el error de posición de la línea. </p><dl class="section author"><dt>Autor</dt><dd>Legion de Ohm </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
 <a id="aaa3441d50a3a4f31e76e5014882b3a95" name="aaa3441d50a3a4f31e76e5014882b3a95"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaa3441d50a3a4f31e76e5014882b3a95">&#9670;&#160;</a></span>calculo_pid()</h2>
 
@@ -172,18 +159,16 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Calcula la corrección necesaria para el sistema usando la fórmula PID. </p>
-<p>La salida es la corrección que se suma o resta de la velocidad base de los motores. La fórmula general aplicada es: </p><p class="formulaDsp">
-\[ \text{Salida} = K_p \cdot \text{Error} + K_i \cdot \int \text{Error} \, dt + K_d \cdot \frac{d\text{Error}}{dt} \]
-</p>
- <dl class="params"><dt>Parámetros</dt><dd>
+<p>Realiza el cálculo del algoritmo PID. </p>
+<p>Calcula la corrección necesaria para el sistema usando la fórmula PID.</p>
+<p>Calcula el error respecto al setpoint, la tasa de cambio (derivada) y la acumulación del error (integral) para generar la señal de salida. </p><dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pos</td><td>Posición actual leída por los sensores. </td></tr>
-    <tr><td class="paramname">deltaTime</td><td>Tiempo transcurrido ( \( \Delta T \)) desde la última ejecución en segundos. </td></tr>
+    <tr><td class="paramname">pos</td><td>Posición actual leída por el array de sensores. </td></tr>
+    <tr><td class="paramname">deltaTime</td><td>Tiempo transcurrido desde la última ejecución en segundos ( \( \Delta T \)). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Devuelve</dt><dd>float Valor de corrección PID a aplicar a las velocidades de los motores. </dd></dl>
+<dl class="section return"><dt>Devuelve</dt><dd>float Señal de corrección resultante de la suma ponderada de los tres términos. </dd></dl>
 
 </div>
 </div>
@@ -202,12 +187,13 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Resetea las variables internas del controlador (error acumulado y error anterior). </p>
-<p>Es fundamental llamar a esta función al reiniciar la marcha o tras una parada para evitar el "Windup" de la parte integral. </p><dl class="section return"><dt>Devuelve</dt><dd>void </dd></dl>
+<p>Reinicia las variables de estado del controlador. </p>
+<p>Resetea las variables internas del controlador (error acumulado y error anterior).</p>
+<p>Pone a cero el error previo y el acumulador integral para evitar efectos de arrastre en nuevas activaciones del control. </p>
 
 </div>
 </div>
-<h2 class="groupheader">Documentación de variables</h2>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
 <a id="ab2b0c78a81e045d7a8f28be307b8c61b" name="ab2b0c78a81e045d7a8f28be307b8c61b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab2b0c78a81e045d7a8f28be307b8c61b">&#9670;&#160;</a></span>baseSpeed</h2>
 
@@ -220,6 +206,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Velocidad crucero para NIGHTFALL (0-100%). </p>
 <p>Velocidad crucero nominal de los motores cuando el error es mayor a la zona muerta. </p>
 
 </div>
@@ -236,6 +223,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Acumulador del error en el tiempo para el cálculo de la parte integral. </p>
+
 </div>
 </div>
 <a id="ad76756e0056f2f5ec10057052cbed3c9" name="ad76756e0056f2f5ec10057052cbed3c9"></a>
@@ -250,6 +239,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Ganancia Derivativa calculada como \( K_p \cdot T_u / 8 \). </p>
 <p>Constante Derivativa. </p>
 
 </div>
@@ -266,6 +256,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Ganancia Integral calculada como \( 2 \cdot K_p / T_u \). </p>
 <p>Constante Integral. </p>
 
 </div>
@@ -282,6 +273,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Ganancia Proporcional según sintonización clásica de Ziegler-Nichols (0.6 * Ku). </p>
 <p>Constante Proporcional. </p>
 
 </div>
@@ -298,6 +290,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Ganancia última para NIGHTFALL. </p>
 <p>Ganancia última (Ultimate Gain). </p>
 
 </div>
@@ -314,6 +307,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Almacena el error de la iteración anterior para el cálculo de la parte derivativa. </p>
+
 </div>
 </div>
 <a id="ae6951301aef881b2aafcbe3538a45148" name="ae6951301aef881b2aafcbe3538a45148"></a>
@@ -327,6 +322,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Almacena la marca de tiempo de la última ejecución (no utilizado en la versión actual). </p>
 
 </div>
 </div>
@@ -342,17 +339,26 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Periodo último para NIGHTFALL. </p>
 <p>Periodo de oscilación última (Ultimate Period). </p>
 
 </div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="pid_8cpp.html">pid.cpp</a></li>
-    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="pid_8cpp.html">pid.cpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
   </ul>
 </div>
 </body>

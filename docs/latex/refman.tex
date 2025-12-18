@@ -13,14 +13,6 @@
   \fi
   % Set document class depending on configuration
   \documentclass[twoside]{book}
-  %% moved from doxygen.sty due to workaround for LaTex 2019 version and unmaintained tabu package
-  \usepackage{ifthen}
-  \ifx\requestedLaTeXdate\undefined
-    \usepackage{array}
-  \else
-    \usepackage{array}[=2016-10-06]
-  \fi
-  %%
   % Packages required by doxygen
   \makeatletter
   \providecommand\IfFormatAtLeastTF{\@ifl@t@r\fmtversion}
@@ -222,7 +214,7 @@
   \begin{center}%
   {\Large Seguidor de Línea}\\
   \vspace*{1cm}
-  {\large Generado por Doxygen 1.13.2}\\
+  {\large Generado por Doxygen 1.15.0}\\
   \end{center}
   \end{titlepage}
   \clearemptydoublepage
@@ -233,10 +225,17 @@
   % re-enable anchors again
   \hypersetup{pageanchor=true}
 %--- Begin generated contents ---
+\input{index}
+\chapter{Jerarquía de directorios}
+\input{dirs}
 \chapter{Índice de clases}
 \input{annotated}
 \chapter{Índice de archivos}
 \input{files}
+\chapter{Documentación de directorios}
+\input{dir_d44c64559bbebec7f509842c48db8b23}
+\input{dir_68267d1309a1af8e8297ef4c3efbcdba}
+\input{dir_13e138d54eb8818da29c3992edef070a}
 \chapter{Documentación de clases}
 \input{class_buzzer}
 \input{class_drv8833}
@@ -250,6 +249,7 @@
 \input{fsm_8hpp_source}
 \input{interrupciones_8hpp}
 \input{interrupciones_8hpp_source}
+\input{_mainpage_8dox}
 \input{motores_8hpp}
 \input{motores_8hpp_source}
 \input{pid_8hpp}
@@ -264,9 +264,9 @@
 \input{motores_8cpp}
 \input{pid_8cpp}
 \input{sensores_8cpp}
-\input{prueba__contro___i_r_8cpp}
-\input{prueba__interrupciones_8cpp}
-\input{prueba__lectura_8cpp}
+\input{_prueba__contro___i_r_8cpp}
+\input{_prueba__interrupciones_8cpp}
+\input{_prueba__lectura_8cpp}
 \input{_prueba__maquina_estados_8cpp}
 %--- End generated contents ---
 % Index

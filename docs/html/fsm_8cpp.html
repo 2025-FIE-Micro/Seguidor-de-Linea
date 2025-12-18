@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Seguidor de Línea: Referencia del archivo src/fsm.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
@@ -13,7 +13,6 @@
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
@@ -45,26 +44,20 @@ window.MathJax = {
 </table>
 </div>
 <!-- end header part -->
-<!-- Generado por Doxygen 1.13.2 -->
+<!-- Generado por Doxygen 1.15.0 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "search/",'.html');
-/* @license-end */
 </script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() { codefold.init(0); });
-/* @license-end */
+$(function() { codefold.init(); });
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('',true,false,'search.php','Buscar',true);
   $(function() { init_search(); });
 });
-/* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
@@ -79,10 +72,9 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('fsm_8cpp.html',''); initResizable(true); });
-/* @license-end */
+$(function(){initNavTree('fsm_8cpp.html','',''); });
 </script>
+<div id="container">
 <div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -106,42 +98,43 @@ $(function(){initNavTree('fsm_8cpp.html',''); initResizable(true); });
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#nested-classes">Clases</a> &#124;
-<a href="#func-members">Funciones</a> &#124;
-<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">Referencia del archivo fsm.cpp</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementación de la Máquina de Estados Finitos (FSM).  
+<a href="#details">Más...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="fsm_8hpp_source.html">fsm.hpp</a>&quot;</code><br />
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Clases</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structestado__t.html">estado_t</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:estado_5Ft" id="r_estado_5Ft"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structestado__t.html">estado_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estructura que define una fila en la tabla de transiciones de un estado.  <a href="structestado__t.html#details">Más...</a><br /></td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Funciones</h2></td></tr>
 <tr class="memitem:acd0d099ac54b24e9fcd0a9e2ea12c4a7" id="r_acd0d099ac54b24e9fcd0a9e2ea12c4a7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd0d099ac54b24e9fcd0a9e2ea12c4a7">nada</a> (int c)</td></tr>
-<tr class="separator:acd0d099ac54b24e9fcd0a9e2ea12c4a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:acd0d099ac54b24e9fcd0a9e2ea12c4a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función de acción nula (dummy) utilizada para transiciones que no requieren lógica adicional.  <br /></td></tr>
 <tr class="memitem:a5c39de512c4b78d230676be9529635bd" id="r_a5c39de512c4b78d230676be9529635bd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c39de512c4b78d230676be9529635bd">transicionar</a> (int entrada)</td></tr>
-<tr class="memdesc:a5c39de512c4b78d230676be9529635bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gestiona el cambio de estado basado en una entrada específica.  <br /></td></tr>
-<tr class="separator:a5c39de512c4b78d230676be9529635bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a5c39de512c4b78d230676be9529635bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ejecuta la lógica de transición de la máquina de estados.  <br /></td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a069a28f6c0e81686e8cb3a9ef42e540c" id="r_a069a28f6c0e81686e8cb3a9ef42e540c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structestado__t.html">estado_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a069a28f6c0e81686e8cb3a9ef42e540c">stop</a> []</td></tr>
-<tr class="separator:a069a28f6c0e81686e8cb3a9ef42e540c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a069a28f6c0e81686e8cb3a9ef42e540c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tabla de transiciones para el estado STOP (S).  <br /></td></tr>
 <tr class="memitem:acfa49cb38c51dc041b36385d4b1d7b1b" id="r_acfa49cb38c51dc041b36385d4b1d7b1b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structestado__t.html">estado_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfa49cb38c51dc041b36385d4b1d7b1b">acel</a> []</td></tr>
-<tr class="separator:acfa49cb38c51dc041b36385d4b1d7b1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:acfa49cb38c51dc041b36385d4b1d7b1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tabla de transiciones para el estado ACELERAR (A).  <br /></td></tr>
 <tr class="memitem:a4d31f5a8868cdbae7ffa8b386cfe7761" id="r_a4d31f5a8868cdbae7ffa8b386cfe7761"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structestado__t.html">estado_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d31f5a8868cdbae7ffa8b386cfe7761">control</a> []</td></tr>
-<tr class="separator:a4d31f5a8868cdbae7ffa8b386cfe7761"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a4d31f5a8868cdbae7ffa8b386cfe7761"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tabla de transiciones para el estado CONTROL (C).  <br /></td></tr>
 <tr class="memitem:abd88f3559bbd3b2b3ffd8eb3b3dbe1fc" id="r_abd88f3559bbd3b2b3ffd8eb3b3dbe1fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structestado__t.html">estado_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd88f3559bbd3b2b3ffd8eb3b3dbe1fc">tabla_de_estados</a> [] = { <a class="el" href="#a069a28f6c0e81686e8cb3a9ef42e540c">stop</a>, <a class="el" href="#acfa49cb38c51dc041b36385d4b1d7b1b">acel</a>, <a class="el" href="#a4d31f5a8868cdbae7ffa8b386cfe7761">control</a> }</td></tr>
-<tr class="separator:abd88f3559bbd3b2b3ffd8eb3b3dbe1fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:abd88f3559bbd3b2b3ffd8eb3b3dbe1fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tabla general que agrupa los punteros a las tablas de cada estado.  <br /></td></tr>
 <tr class="memitem:a75ca1f171787107103fec12fc9b031f8" id="r_a75ca1f171787107103fec12fc9b031f8"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75ca1f171787107103fec12fc9b031f8">acciones_estado</a> [])()</td></tr>
-<tr class="separator:a75ca1f171787107103fec12fc9b031f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a75ca1f171787107103fec12fc9b031f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Punteros a las funciones de acción de cada estado, definidas externamente.  <br /></td></tr>
 </table>
-<h2 class="groupheader">Documentación de funciones</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Implementación de la Máquina de Estados Finitos (FSM). </p>
+<p>Controla el flujo de operación del robot entre los estados de parada, aceleración y control PID mediante tablas de transición basadas en las banderas de RUN y SETPOINT. </p><dl class="section author"><dt>Autor</dt><dd>Legion de Ohm </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
 <a id="acd0d099ac54b24e9fcd0a9e2ea12c4a7" name="acd0d099ac54b24e9fcd0a9e2ea12c4a7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acd0d099ac54b24e9fcd0a9e2ea12c4a7">&#9670;&#160;</a></span>nada()</h2>
 
@@ -156,6 +149,15 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Función de acción nula (dummy) utilizada para transiciones que no requieren lógica adicional. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>Código de entrada. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>int Siempre retorna 0. </dd></dl>
 
 </div>
 </div>
@@ -174,18 +176,19 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gestiona el cambio de estado basado en una entrada específica. </p>
-<dl class="params"><dt>Parámetros</dt><dd>
+<p>Ejecuta la lógica de transición de la máquina de estados. </p>
+<p>Gestiona el cambio de estado basado en una entrada específica.</p>
+<p>Busca en la tabla del estado actual una coincidencia con la entrada proporcionada. Si la encuentra, actualiza el estado y ejecuta la acción correspondiente al nuevo estado. </p><dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">entrada</td><td>Valor entero que representa el evento o condición de disparo. </td></tr>
+    <tr><td class="paramname">entrada</td><td>Valor entero que combina las señales de control para decidir la transición. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Devuelve</dt><dd>int El nuevo estado resultante después de la transición. </dd></dl>
+<dl class="section return"><dt>Devuelve</dt><dd>int El nuevo estado después de procesar la entrada. </dd></dl>
 
 </div>
 </div>
-<h2 class="groupheader">Documentación de variables</h2>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
 <a id="a75ca1f171787107103fec12fc9b031f8" name="a75ca1f171787107103fec12fc9b031f8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a75ca1f171787107103fec12fc9b031f8">&#9670;&#160;</a></span>acciones_estado</h2>
 
@@ -209,6 +212,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Punteros a las funciones de acción de cada estado, definidas externamente. </p>
+<p>Punteros a las funciones de acción de cada estado, definidas externamente. </p>
+
 </div>
 </div>
 <a id="acfa49cb38c51dc041b36385d4b1d7b1b" name="acfa49cb38c51dc041b36385d4b1d7b1b"></a>
@@ -229,12 +235,14 @@ Variables</h2></td></tr>
 <div class="line">    {3, <a class="code hl_function" href="#acd0d099ac54b24e9fcd0a9e2ea12c4a7">nada</a>, <a class="code hl_enumvalue" href="fsm_8hpp.html#a16933f9df95c0418037c4d7184797631a42a4ade1acd55a49164099104990e09f">A</a>},</div>
 <div class="line">    {<a class="code hl_enumvalue" href="fsm_8hpp.html#a16933f9df95c0418037c4d7184797631aea15d1f110a11dbe706b2e0113108061">CUALQUIERA</a>, <a class="code hl_function" href="#acd0d099ac54b24e9fcd0a9e2ea12c4a7">nada</a>, <a class="code hl_enumvalue" href="fsm_8hpp.html#a16933f9df95c0418037c4d7184797631a42a4ade1acd55a49164099104990e09f">A</a>},</div>
 <div class="line">}</div>
-<div class="ttc" id="afsm_8cpp_html_acd0d099ac54b24e9fcd0a9e2ea12c4a7"><div class="ttname"><a href="#acd0d099ac54b24e9fcd0a9e2ea12c4a7">nada</a></div><div class="ttdeci">int nada(int c)</div><div class="ttdef"><b>Definition</b> fsm.cpp:11</div></div>
+<div class="ttc" id="afsm_8cpp_html_acd0d099ac54b24e9fcd0a9e2ea12c4a7"><div class="ttname"><a href="#acd0d099ac54b24e9fcd0a9e2ea12c4a7">nada</a></div><div class="ttdeci">int nada(int c)</div><div class="ttdoc">Función de acción nula (dummy) utilizada para transiciones que no requieren lógica adicional.</div><div class="ttdef"><b>Definition</b> fsm.cpp:16</div></div>
 <div class="ttc" id="afsm_8hpp_html_a16933f9df95c0418037c4d7184797631a42a4ade1acd55a49164099104990e09f"><div class="ttname"><a href="fsm_8hpp.html#a16933f9df95c0418037c4d7184797631a42a4ade1acd55a49164099104990e09f">A</a></div><div class="ttdeci">@ A</div><div class="ttdoc">Estado ACEL: Fase de arranque o aceleración inicial.</div><div class="ttdef"><b>Definition</b> fsm.hpp:16</div></div>
 <div class="ttc" id="afsm_8hpp_html_a16933f9df95c0418037c4d7184797631a739ce3f516592d245d16fd8a3893472c"><div class="ttname"><a href="fsm_8hpp.html#a16933f9df95c0418037c4d7184797631a739ce3f516592d245d16fd8a3893472c">C</a></div><div class="ttdeci">@ C</div><div class="ttdoc">Estado CONTROL: Fase de seguimiento de línea con PID activo.</div><div class="ttdef"><b>Definition</b> fsm.hpp:17</div></div>
 <div class="ttc" id="afsm_8hpp_html_a16933f9df95c0418037c4d7184797631aea15d1f110a11dbe706b2e0113108061"><div class="ttname"><a href="fsm_8hpp.html#a16933f9df95c0418037c4d7184797631aea15d1f110a11dbe706b2e0113108061">CUALQUIERA</a></div><div class="ttdeci">@ CUALQUIERA</div><div class="ttdoc">Estado para transiciones genéricas.</div><div class="ttdef"><b>Definition</b> fsm.hpp:14</div></div>
 <div class="ttc" id="afsm_8hpp_html_a16933f9df95c0418037c4d7184797631af1ce01387d2348f8b858721a7db81670"><div class="ttname"><a href="fsm_8hpp.html#a16933f9df95c0418037c4d7184797631af1ce01387d2348f8b858721a7db81670">S</a></div><div class="ttdeci">@ S</div><div class="ttdoc">Estado STOP: Robot detenido y a la espera.</div><div class="ttdef"><b>Definition</b> fsm.hpp:15</div></div>
 </div><!-- fragment -->
+<p>Tabla de transiciones para el estado ACELERAR (A). </p>
+
 </div>
 </div>
 <a id="a4d31f5a8868cdbae7ffa8b386cfe7761" name="a4d31f5a8868cdbae7ffa8b386cfe7761"></a>
@@ -256,6 +264,8 @@ Variables</h2></td></tr>
 <div class="line">    {<a class="code hl_enumvalue" href="fsm_8hpp.html#a16933f9df95c0418037c4d7184797631aea15d1f110a11dbe706b2e0113108061">CUALQUIERA</a>, <a class="code hl_function" href="#acd0d099ac54b24e9fcd0a9e2ea12c4a7">nada</a>, <a class="code hl_enumvalue" href="fsm_8hpp.html#a16933f9df95c0418037c4d7184797631a739ce3f516592d245d16fd8a3893472c">C</a>},</div>
 <div class="line">}</div>
 </div><!-- fragment -->
+<p>Tabla de transiciones para el estado CONTROL (C). </p>
+
 </div>
 </div>
 <a id="a069a28f6c0e81686e8cb3a9ef42e540c" name="a069a28f6c0e81686e8cb3a9ef42e540c"></a>
@@ -277,6 +287,8 @@ Variables</h2></td></tr>
 <div class="line">    {<a class="code hl_enumvalue" href="fsm_8hpp.html#a16933f9df95c0418037c4d7184797631aea15d1f110a11dbe706b2e0113108061">CUALQUIERA</a>, <a class="code hl_function" href="#acd0d099ac54b24e9fcd0a9e2ea12c4a7">nada</a>, <a class="code hl_enumvalue" href="fsm_8hpp.html#a16933f9df95c0418037c4d7184797631af1ce01387d2348f8b858721a7db81670">S</a>},</div>
 <div class="line">}</div>
 </div><!-- fragment -->
+<p>Tabla de transiciones para el estado STOP (S). </p>
+
 </div>
 </div>
 <a id="abd88f3559bbd3b2b3ffd8eb3b3dbe1fc" name="abd88f3559bbd3b2b3ffd8eb3b3dbe1fc"></a>
@@ -291,15 +303,25 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Tabla general que agrupa los punteros a las tablas de cada estado. </p>
+
 </div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="fsm_8cpp.html">fsm.cpp</a></li>
-    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="fsm_8cpp.html">fsm.cpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
   </ul>
 </div>
 </body>

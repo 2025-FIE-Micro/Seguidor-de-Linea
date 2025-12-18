@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Seguidor de Línea: Referencia de la clase Buzzer</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
@@ -13,7 +13,6 @@
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
@@ -45,26 +44,20 @@ window.MathJax = {
 </table>
 </div>
 <!-- end header part -->
-<!-- Generado por Doxygen 1.13.2 -->
+<!-- Generado por Doxygen 1.15.0 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "search/",'.html');
-/* @license-end */
 </script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() { codefold.init(0); });
-/* @license-end */
+$(function() { codefold.init(); });
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('',true,false,'search.php','Buscar',true);
   $(function() { init_search(); });
 });
-/* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
@@ -79,10 +72,9 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('class_buzzer.html',''); initResizable(true); });
-/* @license-end */
+$(function(){initNavTree('class_buzzer.html','','class_buzzer-members'); });
 </script>
+<div id="container">
 <div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -106,36 +98,29 @@ $(function(){initNavTree('class_buzzer.html',''); initResizable(true); });
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#pub-methods">Métodos públicos</a> &#124;
-<a href="class_buzzer-members.html">Lista de todos los miembros</a>  </div>
   <div class="headertitle"><div class="title">Referencia de la clase Buzzer</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Clase para controlar el zumbador (buzzer) mediante la generación de tonos por PWM. Utiliza las funciones <code>ledc</code> del ESP32 para generar tonos precisos sin bloquear el <code>delay()</code>.  
+<p>Clase para controlar el zumbador (buzzer) mediante la generación de tonos por PWM. Utiliza las funciones <span class="tt">ledc</span> del ESP32 para generar tonos precisos sin bloquear el <span class="tt">delay()</span>.  
  <a href="#details">Más...</a></p>
 
 <p><code>#include &lt;<a class="el" href="buzzer_8hpp_source.html">buzzer.hpp</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Métodos públicos</h2></td></tr>
 <tr class="memitem:a21b00938b8ce6ed9eae580913df69996" id="r_a21b00938b8ce6ed9eae580913df69996"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21b00938b8ce6ed9eae580913df69996">Buzzer</a> (uint8_t buzzerPin, uint8_t pwmChannel)</td></tr>
 <tr class="memdesc:a21b00938b8ce6ed9eae580913df69996"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor de la clase <a class="el" href="class_buzzer.html" title="Clase para controlar el zumbador (buzzer) mediante la generación de tonos por PWM....">Buzzer</a>.  <br /></td></tr>
-<tr class="separator:a21b00938b8ce6ed9eae580913df69996"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01a965482698ccd0406b0018565895d1" id="r_a01a965482698ccd0406b0018565895d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01a965482698ccd0406b0018565895d1">begin</a> (uint16_t freq=2000, uint8_t resolution=8)</td></tr>
 <tr class="memdesc:a01a965482698ccd0406b0018565895d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa el periférico PWM (ledc) y lo asocia al pin del buzzer.  <br /></td></tr>
-<tr class="separator:a01a965482698ccd0406b0018565895d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15877cd206c99d7fba9304275c27f5c3" id="r_a15877cd206c99d7fba9304275c27f5c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15877cd206c99d7fba9304275c27f5c3">play</a> (uint16_t freq)</td></tr>
 <tr class="memdesc:a15877cd206c99d7fba9304275c27f5c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Genera un tono con una frecuencia específica.  <br /></td></tr>
-<tr class="separator:a15877cd206c99d7fba9304275c27f5c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbb32df95ae1af7d4ba9bb01dc9e3b20" id="r_acbb32df95ae1af7d4ba9bb01dc9e3b20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acbb32df95ae1af7d4ba9bb01dc9e3b20">stop</a> ()</td></tr>
 <tr class="memdesc:acbb32df95ae1af7d4ba9bb01dc9e3b20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detiene la generación de señal PWM, silenciando el zumbador.  <br /></td></tr>
-<tr class="separator:acbb32df95ae1af7d4ba9bb01dc9e3b20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
-<div class="textblock"><p>Clase para controlar el zumbador (buzzer) mediante la generación de tonos por PWM. Utiliza las funciones <code>ledc</code> del ESP32 para generar tonos precisos sin bloquear el <code>delay()</code>. </p>
-</div><h2 class="groupheader">Documentación de constructores y destructores</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Clase para controlar el zumbador (buzzer) mediante la generación de tonos por PWM. Utiliza las funciones <span class="tt">ledc</span> del ESP32 para generar tonos precisos sin bloquear el <span class="tt">delay()</span>. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Documentación de constructores y destructores</h2>
 <a id="a21b00938b8ce6ed9eae580913df69996" name="a21b00938b8ce6ed9eae580913df69996"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a21b00938b8ce6ed9eae580913df69996">&#9670;&#160;</a></span>Buzzer()</h2>
 
@@ -159,14 +144,16 @@ Métodos públicos</h2></td></tr>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
     <tr><td class="paramname">buzzerPin</td><td>Pin GPIO al que está conectado el zumbador. </td></tr>
-    <tr><td class="paramname">pwmChannel</td><td>Canal ledc del ESP32 a utilizar. </td></tr>
+    <tr><td class="paramname">pwmChannel</td><td>Canal ledc del ESP32 a utilizar.</td></tr>
+    <tr><td class="paramname">buzzerPin</td><td>Pin GPIO asignado al hardware del zumbador. </td></tr>
+    <tr><td class="paramname">pwmChannel</td><td>Canal del periférico ledc a utilizar. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<h2 class="groupheader">Documentación de funciones miembro</h2>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones miembro</h2>
 <a id="a01a965482698ccd0406b0018565895d1" name="a01a965482698ccd0406b0018565895d1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a01a965482698ccd0406b0018565895d1">&#9670;&#160;</a></span>begin()</h2>
 
@@ -187,6 +174,7 @@ Métodos públicos</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Inicializa el periférico PWM (ledc) y lo asocia al pin del buzzer. </p>
+<p>Configura el periférico PWM para el zumbador.</p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
     <tr><td class="paramname">freq</td><td>Frecuencia base inicial del PWM en Hz (por defecto: 2000). </td></tr>
@@ -194,7 +182,14 @@ Métodos públicos</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Devuelve</dt><dd>void </dd></dl>
+<dl class="section return"><dt>Devuelve</dt><dd>void</dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">freq</td><td>Frecuencia inicial de la señal. </td></tr>
+    <tr><td class="paramname">resolution</td><td>Resolución en bits para el control del duty cycle. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -214,13 +209,20 @@ Métodos públicos</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Genera un tono con una frecuencia específica. </p>
+<p>Genera un tono continuo en el canal configurado.</p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
     <tr><td class="paramname">freq</td><td>Frecuencia de la nota en Hercios (Hz). Pasar 0 para silenciar. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Devuelve</dt><dd>void </dd></dl>
+<dl class="section return"><dt>Devuelve</dt><dd>void</dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">freq</td><td>Frecuencia del tono en Hercios (Hz). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -240,6 +242,7 @@ Métodos públicos</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Detiene la generación de señal PWM, silenciando el zumbador. </p>
+<p>Detiene la generación de tono enviando una frecuencia de 0.</p>
 <dl class="section return"><dt>Devuelve</dt><dd>void </dd></dl>
 
 </div>
@@ -250,11 +253,19 @@ Métodos públicos</h2></td></tr>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="class_buzzer.html">Buzzer</a></li>
-    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="navelem"><a href="class_buzzer.html">Buzzer</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
   </ul>
 </div>
 </body>

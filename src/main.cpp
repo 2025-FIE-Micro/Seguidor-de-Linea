@@ -1,4 +1,10 @@
-/* MAIN.CPP - CORREDOR PID COMPETENCIA ROBOTICA */
+/**
+ @file main.cpp
+ @brief Archivo principal del Seguidor de Línea Competencia Robótica.
+ @details Contiene el flujo principal del programa, la inicialización del hardware, 
+ el lazo de control (loop) y las definiciones de las funciones de estado de la FSM.
+ @author Legion de Ohm
+ */
 
 #include <Arduino.h>
 //#include <IRremote.hpp>
@@ -11,12 +17,18 @@
 #include "fsm.hpp"
 
 // VELOCIDADES  - PORCENTAJE DE PWM (0-100%)
-const int32_t maxSpeed  = 90;   // Límite de velocidad - usada para la max correccion y para acelerar  
-int32_t velocidadAcel = 50;     // arranca suave 50% sube hasta maxSpeed
+/** @brief Límite máximo de velocidad de los motores (PWM %). */
+const int32_t maxSpeed  = 90;  
+
+/** @brief Velocidad variable para la rampa de aceleración inicial. */
+int32_t velocidadAcel = 50;     
 
 // SETPOINT y ZONA MUERTA
-uint16_t setpoint = 3500;       // mitad de lectura de sensores - es decir pararnos sobre la linea
-uint16_t zonaMuerta = 50;      // zona de mas y menos del setpoint para el estado acelerar 
+/** @brief Valor objetivo de lectura para estar centrado sobre la línea. */
+uint16_t setpoint = 3500;       
+
+/** @brief Margen de error aceptable alrededor del setpoint. */
+uint16_t zonaMuerta = 50;      
 
 /* // CONTROL IR - comentado por ahora
 // ============================
@@ -40,14 +52,21 @@ void leer_IR() {
     }
 }*/
 
-// Punteros a funciones de estado 
+/** @brief Array de punteros a funciones que vincula los estados con sus acciones. */
 void (*acciones_estado[])() = { estadoStop, estadoAcel, estadoControl };
-bool stop_done = false;         // recuerda si ejecutamos stop
+
+/** @brief Bandera para asegurar que la lógica de parada se ejecute una sola vez. */
+bool stop_done = false;         
 
 
 // ============================
 // SETUP
 // ============================
+/**
+ @brief Configuración inicial del microcontrolador.
+ @details Inicializa periféricos (Serial, Buzzer, Motores, Sensores) y configura 
+ las interrupciones y modos de pines.
+ */
 void setup() {
     // Inicializar Serial, Control-IR SOLOS SI se habilitaron en el PLATFORMIO.INI
     deb(Serial.begin(115200);)
@@ -76,6 +95,11 @@ void setup() {
 // ============================
 // LOOP
 // ============================
+/**
+ @brief Bucle principal del programa.
+ @details Calcula la entrada combinada (RUN y SETPOINT) y llama a la FSM para 
+ transicionar y ejecutar el estado correspondiente.
+ */
 void loop() {
     // Entrada de 2 bits (SETPOINT RUN - 00, 01, 10, 11) → 0, 1, 2, 3
     uint8_t c = (SETPOINT << 1) | RUN;
@@ -86,12 +110,11 @@ void loop() {
 
 
 // ESTADO STOP - FUNCION DETENIDO
+/**
+ @brief Acción ejecutada en el estado de parada (STOP).
+ @details Detiene los motores, apaga los LEDs de estado y reinicia la velocidad de aceleración.
+ */
 void estadoStop() {
-    // si RUN = 0   se queda en S
-    // si RUN = 1   pasa a A
-    // si SP=1      se queda en S
-    // si SP=0      se queda en C
-
     if (!stop_done) {                  // solo ejecuta una vez
         deb(Serial.println("Estado: STOP");)
 
@@ -109,12 +132,12 @@ void estadoStop() {
 
 
 // ESTADO ACEL - FUNCION ACELERAR EN LINEA
+/**
+ @brief Acción ejecutada en el estado de aceleración (ACEL).
+ @details Realiza un incremento progresivo de la velocidad mientras el robot se encuentre 
+ dentro del setpoint para romper la inercia de manera suave.
+ */
 void estadoAcel() {
-    // si RUN = 0   pasa a S
-    // si RUN = 1   se queda en A
-    // si SP=1      se queda en A
-    // si SP=0      pasa a C
-
     deb(Serial.println("Estado: ACEL");)
     stop_done = false; // para que cuando vuelva a STOP se ejecute 1 vez
     
@@ -142,12 +165,12 @@ void estadoAcel() {
 
 
 // ESTADO CONTROL - FUNCION CONTROL EN LINEA
+/**
+ @brief Acción ejecutada en el estado de control activo (CONTROL).
+ @details Ejecuta el algoritmo PID a intervalos fijos marcados por el temporizador 
+ para corregir la trayectoria del robot sobre la línea.
+ */
 void estadoControl() {
-    // si RUN = 0 pasa a S
-    // si RUN = 1 se queda en c
-    // si SP=1, pasa a A
-    // si SP=0, se queda en C
-
     // Ejecutar solo cuando el timer indique el tick
     if (!has_expired) return;
 

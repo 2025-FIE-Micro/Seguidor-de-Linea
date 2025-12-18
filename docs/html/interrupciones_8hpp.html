@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Seguidor de Línea: Referencia del archivo include/interrupciones.hpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
@@ -13,7 +13,6 @@
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
@@ -45,26 +44,20 @@ window.MathJax = {
 </table>
 </div>
 <!-- end header part -->
-<!-- Generado por Doxygen 1.13.2 -->
+<!-- Generado por Doxygen 1.15.0 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "search/",'.html');
-/* @license-end */
 </script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() { codefold.init(0); });
-/* @license-end */
+$(function() { codefold.init(); });
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('',true,false,'search.php','Buscar',true);
   $(function() { init_search(); });
 });
-/* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
@@ -79,10 +72,9 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('interrupciones_8hpp.html',''); initResizable(true); });
-/* @license-end */
+$(function(){initNavTree('interrupciones_8hpp.html','',''); });
 </script>
+<div id="container">
 <div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -106,9 +98,6 @@ $(function(){initNavTree('interrupciones_8hpp.html',''); initResizable(true); })
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#func-members">Funciones</a> &#124;
-<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">Referencia del archivo interrupciones.hpp</div></div>
 </div><!--header-->
 <div class="contents">
@@ -119,42 +108,34 @@ $(function(){initNavTree('interrupciones_8hpp.html',''); initResizable(true); })
 </div>
 <p><a href="interrupciones_8hpp_source.html">Ir al código fuente de este archivo.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Funciones</h2></td></tr>
 <tr class="memitem:ac53dd4166bbabe4a14d5b971c70a1782" id="r_ac53dd4166bbabe4a14d5b971c70a1782"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac53dd4166bbabe4a14d5b971c70a1782">setupInterrupciones</a> ()</td></tr>
-<tr class="separator:ac53dd4166bbabe4a14d5b971c70a1782"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ac53dd4166bbabe4a14d5b971c70a1782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configura el hardware de interrupciones y el temporizador.  <br /></td></tr>
 <tr class="memitem:ac43d7f08eeb67b32fc99e80cbe45b48f" id="r_ac43d7f08eeb67b32fc99e80cbe45b48f"><td class="memItemLeft" align="right" valign="top">void IRAM_ATTR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac43d7f08eeb67b32fc99e80cbe45b48f">handleRun</a> ()</td></tr>
-<tr class="memdesc:ac43d7f08eeb67b32fc99e80cbe45b48f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo <code>IRAM_ATTR</code> se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece <code>RUN = true;</code>.  <br /></td></tr>
-<tr class="separator:ac43d7f08eeb67b32fc99e80cbe45b48f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ac43d7f08eeb67b32fc99e80cbe45b48f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo <span class="tt">IRAM_ATTR</span> se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece <span class="tt"><a class="el" href="#a081d22c8c0bb30d050a1a7c4505f00b9" title="Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador volati...">RUN</a> = true;</span>.  <br /></td></tr>
 <tr class="memitem:ad381aa5df28fccb991bc49fcb5856b43" id="r_ad381aa5df28fccb991bc49fcb5856b43"><td class="memItemLeft" align="right" valign="top">void IRAM_ATTR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad381aa5df28fccb991bc49fcb5856b43">handleStop</a> ()</td></tr>
-<tr class="memdesc:ad381aa5df28fccb991bc49fcb5856b43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función de servicio de interrupción (ISR) para detener la rutina principal. Se ejecuta cuando se detecta el evento de detención en el pin de interrupción. Esta función probablemente establece <code>RUN = false;</code>.  <br /></td></tr>
-<tr class="separator:ad381aa5df28fccb991bc49fcb5856b43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ad381aa5df28fccb991bc49fcb5856b43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función de servicio de interrupción (ISR) para detener la rutina principal. Se ejecuta cuando se detecta el evento de detención en el pin de interrupción. Esta función probablemente establece <span class="tt"><a class="el" href="#a081d22c8c0bb30d050a1a7c4505f00b9" title="Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador volati...">RUN</a> = false;</span>.  <br /></td></tr>
 <tr class="memitem:acf66a057f87b336c4cf02522f7ceffe6" id="r_acf66a057f87b336c4cf02522f7ceffe6"><td class="memItemLeft" align="right" valign="top">void IRAM_ATTR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf66a057f87b336c4cf02522f7ceffe6">timerInterrupcion</a> ()</td></tr>
 <tr class="memdesc:acf66a057f87b336c4cf02522f7ceffe6"><td class="mdescLeft">&#160;</td><td class="mdescRight">ISR del temporizador de hardware.  <br /></td></tr>
-<tr class="separator:acf66a057f87b336c4cf02522f7ceffe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a081d22c8c0bb30d050a1a7c4505f00b9" id="r_a081d22c8c0bb30d050a1a7c4505f00b9"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a081d22c8c0bb30d050a1a7c4505f00b9">RUN</a></td></tr>
-<tr class="memdesc:a081d22c8c0bb30d050a1a7c4505f00b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador <code>volatile</code> es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal (<code>loop</code>).  <br /></td></tr>
-<tr class="separator:a081d22c8c0bb30d050a1a7c4505f00b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a081d22c8c0bb30d050a1a7c4505f00b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador <span class="tt">volatile</span> es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal (<span class="tt"><a class="el" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del programa.">loop</a></span>).  <br /></td></tr>
 <tr class="memitem:a7f58a663d672fc7724b47068352249df" id="r_a7f58a663d672fc7724b47068352249df"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f58a663d672fc7724b47068352249df">SETPOINT</a></td></tr>
 <tr class="memdesc:a7f58a663d672fc7724b47068352249df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bandera volátil que indica si el robot ha alcanzado o debe buscar el punto de consigna (setpoint).  <br /></td></tr>
-<tr class="separator:a7f58a663d672fc7724b47068352249df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19e9ff7a81b67d662134bed2ba41a3b3" id="r_a19e9ff7a81b67d662134bed2ba41a3b3"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19e9ff7a81b67d662134bed2ba41a3b3">has_expired</a></td></tr>
 <tr class="memdesc:a19e9ff7a81b67d662134bed2ba41a3b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bandera de sincronización utilizada por el temporizador para indicar que un periodo de tiempo ha finalizado.  <br /></td></tr>
-<tr class="separator:a19e9ff7a81b67d662134bed2ba41a3b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10d4f5ea5fffb797d3564654ccefedf8" id="r_a10d4f5ea5fffb797d3564654ccefedf8"><td class="memItemLeft" align="right" valign="top">const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10d4f5ea5fffb797d3564654ccefedf8">TIEMPO_TIMER</a></td></tr>
 <tr class="memdesc:a10d4f5ea5fffb797d3564654ccefedf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Periodo del temporizador de control expresado en microsegundos (us).  <br /></td></tr>
-<tr class="separator:a10d4f5ea5fffb797d3564654ccefedf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60293d5cdd547df044662b56d8d91508" id="r_a60293d5cdd547df044662b56d8d91508"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60293d5cdd547df044662b56d8d91508">FIXED_DT_S</a></td></tr>
 <tr class="memdesc:a60293d5cdd547df044662b56d8d91508"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tiempo diferencial fijo (Delta T) expresado en segundos (s) para los cálculos del PID.  <br /></td></tr>
-<tr class="separator:a60293d5cdd547df044662b56d8d91508"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
 <div class="textblock"><p>Cabecera para la gestión de las interrupciones externas (ISR). Este módulo maneja la lógica de inicio y detención de la rutina principal del robot a través de un pin de interrupción (ej. un botón o jumper de seguridad). </p>
 <dl class="section author"><dt>Autor</dt><dd>Legion de Ohm </dd></dl>
-</div><h2 class="groupheader">Documentación de funciones</h2>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
 <a id="ac43d7f08eeb67b32fc99e80cbe45b48f" name="ac43d7f08eeb67b32fc99e80cbe45b48f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac43d7f08eeb67b32fc99e80cbe45b48f">&#9670;&#160;</a></span>handleRun()</h2>
 
@@ -170,7 +151,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo <code>IRAM_ATTR</code> se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece <code>RUN = true;</code>. </p>
+<p>Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo <span class="tt">IRAM_ATTR</span> se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece <span class="tt"><a class="el" href="#a081d22c8c0bb30d050a1a7c4505f00b9" title="Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador volati...">RUN</a> = true;</span>. </p>
+<p>Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo <span class="tt">IRAM_ATTR</span> se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece <span class="tt"><a class="el" href="#a081d22c8c0bb30d050a1a7c4505f00b9" title="Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador volati...">RUN</a> = true;</span>.</p>
+<p>Activa las banderas RUN y SETPOINT para iniciar la lógica de movimiento. </p>
 
 </div>
 </div>
@@ -189,7 +172,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Función de servicio de interrupción (ISR) para detener la rutina principal. Se ejecuta cuando se detecta el evento de detención en el pin de interrupción. Esta función probablemente establece <code>RUN = false;</code>. </p>
+<p>Función de servicio de interrupción (ISR) para detener la rutina principal. Se ejecuta cuando se detecta el evento de detención en el pin de interrupción. Esta función probablemente establece <span class="tt"><a class="el" href="#a081d22c8c0bb30d050a1a7c4505f00b9" title="Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador volati...">RUN</a> = false;</span>. </p>
+<p>Función de servicio de interrupción (ISR) para detener la rutina principal. Se ejecuta cuando se detecta el evento de detención en el pin de interrupción. Esta función probablemente establece <span class="tt"><a class="el" href="#a081d22c8c0bb30d050a1a7c4505f00b9" title="Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador volati...">RUN</a> = false;</span>.</p>
+<p>Desactiva la bandera RUN para detener inmediatamente la ejecución. </p>
 
 </div>
 </div>
@@ -207,6 +192,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Configura el hardware de interrupciones y el temporizador. </p>
+<p>Asocia los pines de los botones a sus ISR correspondientes y configura el Timer 0 del ESP32 con un prescaler de 80 para contar en microsegundos. </p>
 
 </div>
 </div>
@@ -226,11 +214,13 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>ISR del temporizador de hardware. </p>
-<p>Se ejecuta periódicamente para gestionar tareas de tiempo real, como el refresco del cálculo PID. Utiliza <code>IRAM_ATTR</code> para máxima velocidad de respuesta. </p>
+<p>Se ejecuta periódicamente para gestionar tareas de tiempo real, como el refresco del cálculo PID. Utiliza <span class="tt">IRAM_ATTR</span> para máxima velocidad de respuesta.</p>
+<p>ISR del temporizador de hardware.</p>
+<p>Solo señaliza que el tiempo ha expirado activando la bandera has_expired. Se ejecuta en IRAM para minimizar latencias. </p>
 
 </div>
 </div>
-<h2 class="groupheader">Documentación de variables</h2>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
 <a id="a60293d5cdd547df044662b56d8d91508" name="a60293d5cdd547df044662b56d8d91508"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a60293d5cdd547df044662b56d8d91508">&#9670;&#160;</a></span>FIXED_DT_S</h2>
 
@@ -251,6 +241,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Tiempo diferencial fijo (Delta T) expresado en segundos (s) para los cálculos del PID. </p>
 <p>Tiempo diferencial fijo (Delta T) expresado en segundos (s) para los cálculos del PID. </p>
 
 </div>
@@ -276,6 +267,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Bandera de sincronización utilizada por el temporizador para indicar que un periodo de tiempo ha finalizado. </p>
+<p>Bandera de sincronización utilizada por el temporizador para indicar que un periodo de tiempo ha finalizado. </p>
 
 </div>
 </div>
@@ -299,7 +291,8 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador <code>volatile</code> es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal (<code>loop</code>). </p>
+<p>Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador <span class="tt">volatile</span> es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal (<span class="tt"><a class="el" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del programa.">loop</a></span>). </p>
+<p>Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador <span class="tt">volatile</span> es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal (<span class="tt"><a class="el" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Bucle principal del programa.">loop</a></span>). </p>
 
 </div>
 </div>
@@ -323,6 +316,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Bandera volátil que indica si el robot ha alcanzado o debe buscar el punto de consigna (setpoint). </p>
 <p>Bandera volátil que indica si el robot ha alcanzado o debe buscar el punto de consigna (setpoint). </p>
 
 </div>
@@ -348,16 +342,25 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Periodo del temporizador de control expresado en microsegundos (us). </p>
+<p>Periodo del temporizador de control expresado en microsegundos (us). </p>
 
 </div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="interrupciones_8hpp.html">interrupciones.hpp</a></li>
-    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="interrupciones_8hpp.html">interrupciones.hpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
   </ul>
 </div>
 </body>

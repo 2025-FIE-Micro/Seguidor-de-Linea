@@ -1,0 +1,19 @@
+\chapter{Documentación del Proyecto\+: Seguidor de Línea }
+\hypertarget{index}{}\label{index}\index{Documentación del Proyecto: Seguidor de Línea@{Documentación del Proyecto: Seguidor de Línea}}
+\hypertarget{index_intro_sec}{}\doxysection{\texorpdfstring{Introducción}{Introducción}}\label{index_intro_sec}
+Este proyecto consiste en un controlador de movimiento para un robot {\bfseries{Seguidor de Línea}} de alta velocidad, diseñado para competencias de robótica. Utiliza un algoritmo de control PID (Proporcional, Integral y Derivativo) para mantener una trayectoria óptima.\hypertarget{index_features_sec}{}\doxysection{\texorpdfstring{Características Principales}{Características Principales}}\label{index_features_sec}
+
+\begin{DoxyItemize}
+\item {\bfseries{Control PID\+:}} Algoritmo sintonizado mediante el método de Ziegler-\/\+Nichols.
+\item {\bfseries{FSM (Máquina de Estados)\+:}} Gestión robusta de estados (STOP, ACEL, CONTROL).
+\item {\bfseries{Sensores QTR\+:}} Lectura reflectiva de alta precisión con calibración dinámica.
+\item {\bfseries{Configuración Flexible\+:}} Perfiles de corredor seleccionables (Nightfall, Argentum, Diego).
+\end{DoxyItemize}\hypertarget{index_setup_sec}{}\doxysection{\texorpdfstring{Configuración del Hardware}{Configuración del Hardware}}\label{index_setup_sec}
+El sistema está basado en un microcontrolador {\bfseries{ESP32}}, utilizando el periférico LEDC para el control PWM de los motores y timers de hardware para el tiempo de control.
+
+\begin{DoxyAuthor}{Autor}
+Legion de Ohm 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Fecha}
+2025 
+\end{DoxyDate}

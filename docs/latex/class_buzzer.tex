@@ -25,6 +25,8 @@ void \mbox{\hyperlink{class_buzzer_acbb32df95ae1af7d4ba9bb01dc9e3b20}{stop}} ()
 \doxysubsection{Descripción detallada}
 Clase para controlar el zumbador (buzzer) mediante la generación de tonos por PWM. Utiliza las funciones {\ttfamily ledc} del ESP32 para generar tonos precisos sin bloquear el {\ttfamily delay()}. 
 
+\label{doc-constructors}
+\Hypertarget{class_buzzer_doc-constructors}
 \doxysubsection{Documentación de constructores y destructores}
 \Hypertarget{class_buzzer_a21b00938b8ce6ed9eae580913df69996}\index{Buzzer@{Buzzer}!Buzzer@{Buzzer}}
 \index{Buzzer@{Buzzer}!Buzzer@{Buzzer}}
@@ -40,11 +42,17 @@ Constructor de la clase \doxylink{class_buzzer}{Buzzer}.
 \begin{DoxyParams}{Parámetros}
 {\em buzzer\+Pin} & Pin GPIO al que está conectado el zumbador. \\
 \hline
-{\em pwm\+Channel} & Canal ledc del ESP32 a utilizar. \\
+{\em pwm\+Channel} & Canal ledc del ESP32 a utilizar.\\
+\hline
+{\em buzzer\+Pin} & Pin GPIO asignado al hardware del zumbador. \\
+\hline
+{\em pwm\+Channel} & Canal del periférico ledc a utilizar. \\
 \hline
 \end{DoxyParams}
 
 
+\label{doc-func-members}
+\Hypertarget{class_buzzer_doc-func-members}
 \doxysubsection{Documentación de funciones miembro}
 \Hypertarget{class_buzzer_a01a965482698ccd0406b0018565895d1}\index{Buzzer@{Buzzer}!begin@{begin}}
 \index{begin@{begin}!Buzzer@{Buzzer}}
@@ -56,6 +64,8 @@ void Buzzer\+::begin (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{freq}{ = {\
 
 Inicializa el periférico PWM (ledc) y lo asocia al pin del buzzer. 
 
+Configura el periférico PWM para el zumbador.
+
 
 \begin{DoxyParams}{Parámetros}
 {\em freq} & Frecuencia base inicial del PWM en Hz (por defecto\+: 2000). \\
@@ -64,8 +74,15 @@ Inicializa el periférico PWM (ledc) y lo asocia al pin del buzzer.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Devuelve}
-void 
+void
 \end{DoxyReturn}
+
+\begin{DoxyParams}{Parámetros}
+{\em freq} & Frecuencia inicial de la señal. \\
+\hline
+{\em resolution} & Resolución en bits para el control del duty cycle. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{class_buzzer_a15877cd206c99d7fba9304275c27f5c3}\index{Buzzer@{Buzzer}!play@{play}}
 \index{play@{play}!Buzzer@{Buzzer}}
 \doxysubsubsection{\texorpdfstring{play()}{play()}}
@@ -76,14 +93,21 @@ void Buzzer\+::play (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{freq}{}\end{
 
 Genera un tono con una frecuencia específica. 
 
+Genera un tono continuo en el canal configurado.
+
 
 \begin{DoxyParams}{Parámetros}
 {\em freq} & Frecuencia de la nota en Hercios (Hz). Pasar 0 para silenciar. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Devuelve}
-void 
+void
 \end{DoxyReturn}
+
+\begin{DoxyParams}{Parámetros}
+{\em freq} & Frecuencia del tono en Hercios (Hz). \\
+\hline
+\end{DoxyParams}
 \Hypertarget{class_buzzer_acbb32df95ae1af7d4ba9bb01dc9e3b20}\index{Buzzer@{Buzzer}!stop@{stop}}
 \index{stop@{stop}!Buzzer@{Buzzer}}
 \doxysubsubsection{\texorpdfstring{stop()}{stop()}}
@@ -93,6 +117,8 @@ void Buzzer\+::stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 Detiene la generación de señal PWM, silenciando el zumbador. 
+
+Detiene la generación de tono enviando una frecuencia de 0.
 
 \begin{DoxyReturn}{Devuelve}
 void 

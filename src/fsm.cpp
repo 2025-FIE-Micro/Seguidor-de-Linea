@@ -1,24 +1,34 @@
-/*
-    Maquina de estados:
-    * inicia en uno stop y se queda ahi hasta que no cambie RUN
-    * cuando RUN = true pasamos a acel en setpoint, en setpoint pasamos a seguirLinea y fuera a ac 
-    * nos quedamos en seguirLinea cada timerIsr. Pero cuando pasamos a run = 0 volvemos a stop.  
-*/
+/**
+ @file fsm.cpp
+ @brief Implementación de la Máquina de Estados Finitos (FSM).
+ @details Controla el flujo de operación del robot entre los estados de parada, aceleración y control PID 
+ mediante tablas de transición basadas en las banderas de RUN y SETPOINT.
+ @author Legion de Ohm
+ */
 
 #include "fsm.hpp"
 
-// función dummy
+/**
+ @brief Función de acción nula (dummy) utilizada para transiciones que no requieren lógica adicional.
+ @param c Código de entrada.
+ @return int Siempre retorna 0.
+ */
 int nada(int c) { return 0; }
 
-// estructura de estado 
+/**
+ @struct estado_t
+ @brief Estructura que define una fila en la tabla de transiciones de un estado.
+ */
 typedef struct {
-    int recibo;               // combinación SP,RUN (00..11)
-    int (*transicion)(int);  // función acción (dummy)
-    int prox_estado;         // estado destino
+    int recibo;               ///< Combinación binaria de señales de entrada (SP, RUN).
+    int (*transicion)(int);   ///< Puntero a función de acción de transición (dummy).
+    int prox_estado;          ///< Identificador del siguiente estado.
 } estado_t;
 
 // ===================== TABLAS =====================
-// STOP
+
+/** @brief Tabla de transiciones para el estado STOP (S). 
+ */
 estado_t stop[] = {
     {0, nada, S},
     {1, nada, A},
@@ -27,7 +37,8 @@ estado_t stop[] = {
     {CUALQUIERA, nada, S},
 };
 
-// ACELERAR
+/** @brief Tabla de transiciones para el estado ACELERAR (A). 
+ */
 estado_t acel[] = {
     {0, nada, S},
     {1, nada, C},
@@ -36,7 +47,8 @@ estado_t acel[] = {
     {CUALQUIERA, nada, A},
 };
 
-// CONTROL
+/** @brief Tabla de transiciones para el estado CONTROL (C). 
+ */
 estado_t control[] = {
     {0, nada, S},
     {1, nada, C},
@@ -45,20 +57,31 @@ estado_t control[] = {
     {CUALQUIERA, nada, C},
 };
 
-// tabla general
+/** @brief Tabla general que agrupa los punteros a las tablas de cada estado. 
+ */
 estado_t* tabla_de_estados[] = { stop, acel, control };
 
-// Punteros a funciones de estado (prototipos vienen de fsm.hpp)
+/** @brief Punteros a las funciones de acción de cada estado, definidas externamente. 
+ */
 extern void (*acciones_estado[])();
 
-// Estado actual
+/** @brief Variable estática que mantiene el rastro del estado actual de la FSM. 
+ */
 static int estadoActual = S;
 
 // ==================== FUNCION FSM ====================
+
+/**
+ @brief Ejecuta la lógica de transición de la máquina de estados.
+ @details Busca en la tabla del estado actual una coincidencia con la entrada proporcionada. 
+ Si la encuentra, actualiza el estado y ejecuta la acción correspondiente al nuevo estado.
+ @param entrada Valor entero que combina las señales de control para decidir la transición.
+ @return int El nuevo estado después de procesar la entrada.
+ */
 int transicionar(int entrada) {
     estado_t* p = tabla_de_estados[estadoActual];
 
-    // busca el el recibo que coincida con la entrada
+    // busca el recibo que coincida con la entrada
     while (p->recibo != entrada && p->recibo != CUALQUIERA) p++;
 
     // ejecuta las funciones de transicion - dummies (como no las ejecutamos lo dejaremos comentado)

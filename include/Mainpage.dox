@@ -1,0 +1,20 @@
+/**
+ @mainpage Documentación del Proyecto: Seguidor de Línea
+ 
+ @section intro_sec Introducción
+ Este proyecto consiste en un controlador de movimiento para un robot **Seguidor de Línea** de alta velocidad, diseñado para competencias de robótica. Utiliza un algoritmo de 
+ control PID (Proporcional, Integral y Derivativo) para mantener una trayectoria óptima.
+
+ @section features_sec Características Principales
+ - **Control PID:** Algoritmo sintonizado mediante el método de Ziegler-Nichols.
+ - **FSM (Máquina de Estados):** Gestión robusta de estados (STOP, ACEL, CONTROL).
+ - **Sensores QTR:** Lectura reflectiva de alta precisión con calibración dinámica.
+ - **Configuración Flexible:** Perfiles de corredor seleccionables (Nightfall, Argentum, Diego).
+
+ @section setup_sec Configuración del Hardware
+ El sistema está basado en un microcontrolador **ESP32**, utilizando el periférico 
+ LEDC para el control PWM de los motores y timers de hardware para el tiempo de control.
+
+ @author Legion de Ohm
+ @date 2025
+ */
