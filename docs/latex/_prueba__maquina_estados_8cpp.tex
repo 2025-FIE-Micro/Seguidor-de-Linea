@@ -1,0 +1,262 @@
+\doxysection{Referencia del archivo test/\+Prueba\+\_\+maquina\+Estados.cpp}
+\hypertarget{_prueba__maquina_estados_8cpp}{}\label{_prueba__maquina_estados_8cpp}\index{test/Prueba\_maquinaEstados.cpp@{test/Prueba\_maquinaEstados.cpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+\doxysubsubsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structestado__t}{estado\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumeraciones}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7}{estado\+Stop}} \{ \newline
+\mbox{\hyperlink{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7aea15d1f110a11dbe706b2e0113108061}{CUALQUIERA}} = -\/1
+, \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7af1ce01387d2348f8b858721a7db81670}{S}}
+, \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7a42a4ade1acd55a49164099104990e09f}{A}}
+, \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7a739ce3f516592d245d16fd8a3893472c}{C}}
+, \newline
+\mbox{\hyperlink{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7ad9eaacf742e7d95d4388fbacee83dfe7}{CANT\+\_\+estado\+Stop}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_prueba__maquina_estados_8cpp_aaff5fba0226931c3ad70a6d28b8fad99}{estado\+Acel}} ()
+\begin{DoxyCompactList}\small\item\em Acción ejecutada durante la fase de aceleración (A). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a088f0fc3ef27d7538fafe1ec168354e7}{estado\+Control}} ()
+\begin{DoxyCompactList}\small\item\em Acción ejecutada durante la fase de control activo (C). \end{DoxyCompactList}\item 
+void IRAM\+\_\+\+ATTR \mbox{\hyperlink{_prueba__maquina_estados_8cpp_ac43d7f08eeb67b32fc99e80cbe45b48f}{handle\+Run}} ()
+\begin{DoxyCompactList}\small\item\em Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo {\ttfamily IRAM\+\_\+\+ATTR} se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece {\ttfamily RUN = true;}. \end{DoxyCompactList}\item 
+void IRAM\+\_\+\+ATTR \mbox{\hyperlink{_prueba__maquina_estados_8cpp_ac4760fa91d2516a12338d9ef62218eb4}{handle\+Control}} ()
+\item 
+int \mbox{\hyperlink{_prueba__maquina_estados_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}{nada}} (int c)
+\item 
+void \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\item 
+void \mbox{\hyperlink{_prueba__maquina_estados_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{_prueba__maquina_estados_8cpp_aa8079ae3d08fedcadb8c8dc85eecccd3}{LED\+\_\+\+INTERNAL}} = 2
+\item 
+const int \mbox{\hyperlink{_prueba__maquina_estados_8cpp_acf230a96ef202ec239456472f789565a}{LED\+\_\+\+EXTERNAL}} = 13
+\item 
+const int \mbox{\hyperlink{_prueba__maquina_estados_8cpp_ad5ad2bae2adeebba035fd54481cd15f2}{BTN\+\_\+\+ON}} = 19
+\item 
+const int \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a05864874d1dfbd27df332c76ff068480}{BTN\+\_\+\+SP}} = 22
+\item 
+volatile bool \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a081d22c8c0bb30d050a1a7c4505f00b9}{RUN}} = 0
+\begin{DoxyCompactList}\small\item\em Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador {\ttfamily volatile} es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal ({\ttfamily loop}). \end{DoxyCompactList}\item 
+volatile bool \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a54b97467d59263bb6140712f4ab9609e}{SP}} = 1
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a75ca1f171787107103fec12fc9b031f8}{acciones\+\_\+estado}} \mbox{[}$\,$\mbox{]})() = \{ \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7}{estado\+Stop}}, \mbox{\hyperlink{main_8cpp_aaff5fba0226931c3ad70a6d28b8fad99}{estado\+Acel}}, \mbox{\hyperlink{main_8cpp_a088f0fc3ef27d7538fafe1ec168354e7}{estado\+Control}} \}
+\item 
+\mbox{\hyperlink{structestado__t}{estado\+\_\+t}} \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a069a28f6c0e81686e8cb3a9ef42e540c}{stop}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{structestado__t}{estado\+\_\+t}} \mbox{\hyperlink{_prueba__maquina_estados_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b}{acel}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{structestado__t}{estado\+\_\+t}} \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a4d31f5a8868cdbae7ffa8b386cfe7761}{control}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{structestado__t}{estado\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_prueba__maquina_estados_8cpp_abd88f3559bbd3b2b3ffd8eb3b3dbe1fc}{tabla\+\_\+de\+\_\+estados}} \mbox{[}$\,$\mbox{]} = \{ \mbox{\hyperlink{fsm_8cpp_a069a28f6c0e81686e8cb3a9ef42e540c}{stop}}, \mbox{\hyperlink{fsm_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b}{acel}}, \mbox{\hyperlink{fsm_8cpp_a4d31f5a8868cdbae7ffa8b386cfe7761}{control}} \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentación de enumeraciones}
+\Hypertarget{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!estadoStop@{estadoStop}}
+\index{estadoStop@{estadoStop}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{estadoStop}{estadoStop}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7} 
+enum void \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7}{estado\+Stop}}}
+
+\begin{DoxyEnumFields}[2]{Valores de enumeraciones}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CUALQUIERA@{CUALQUIERA}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!CUALQUIERA@{CUALQUIERA}}}\Hypertarget{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7aea15d1f110a11dbe706b2e0113108061}\label{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7aea15d1f110a11dbe706b2e0113108061} 
+CUALQUIERA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S@{S}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!S@{S}}}\Hypertarget{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7af1ce01387d2348f8b858721a7db81670}\label{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7af1ce01387d2348f8b858721a7db81670} 
+S&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{A@{A}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!A@{A}}}\Hypertarget{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7a42a4ade1acd55a49164099104990e09f}\label{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7a42a4ade1acd55a49164099104990e09f} 
+A&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C@{C}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!C@{C}}}\Hypertarget{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7a739ce3f516592d245d16fd8a3893472c}\label{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7a739ce3f516592d245d16fd8a3893472c} 
+C&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CANT\_estadoStop@{CANT\_estadoStop}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!CANT\_estadoStop@{CANT\_estadoStop}}}\Hypertarget{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7ad9eaacf742e7d95d4388fbacee83dfe7}\label{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7ad9eaacf742e7d95d4388fbacee83dfe7} 
+CANT\+\_\+estado\+Stop&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Documentación de funciones}
+\Hypertarget{_prueba__maquina_estados_8cpp_aaff5fba0226931c3ad70a6d28b8fad99}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!estadoAcel@{estadoAcel}}
+\index{estadoAcel@{estadoAcel}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{estadoAcel()}{estadoAcel()}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_aaff5fba0226931c3ad70a6d28b8fad99} 
+void estado\+Acel (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Acción ejecutada durante la fase de aceleración (A). 
+
+Aplica un perfil de velocidad creciente para romper la inercia inicial. \begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{_prueba__maquina_estados_8cpp_a088f0fc3ef27d7538fafe1ec168354e7}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!estadoControl@{estadoControl}}
+\index{estadoControl@{estadoControl}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{estadoControl()}{estadoControl()}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_a088f0fc3ef27d7538fafe1ec168354e7} 
+void estado\+Control (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Acción ejecutada durante la fase de control activo (C). 
+
+Ejecuta la lectura de sensores, cálculo de PID y ajuste de motores en tiempo real. \begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{_prueba__maquina_estados_8cpp_ac4760fa91d2516a12338d9ef62218eb4}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!handleControl@{handleControl}}
+\index{handleControl@{handleControl}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{handleControl()}{handleControl()}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_ac4760fa91d2516a12338d9ef62218eb4} 
+void IRAM\+\_\+\+ATTR handle\+Control (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_prueba__maquina_estados_8cpp_ac43d7f08eeb67b32fc99e80cbe45b48f}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!handleRun@{handleRun}}
+\index{handleRun@{handleRun}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{handleRun()}{handleRun()}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_ac43d7f08eeb67b32fc99e80cbe45b48f} 
+void IRAM\+\_\+\+ATTR handle\+Run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo {\ttfamily IRAM\+\_\+\+ATTR} se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece {\ttfamily RUN = true;}. 
+
+\Hypertarget{_prueba__maquina_estados_8cpp_afe461d27b9c48d5921c00d521181f12f}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!loop@{loop}}
+\index{loop@{loop}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_afe461d27b9c48d5921c00d521181f12f} 
+void loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_prueba__maquina_estados_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!nada@{nada}}
+\index{nada@{nada}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{nada()}{nada()}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7} 
+int nada (\begin{DoxyParamCaption}\item[{int}]{c}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_prueba__maquina_estados_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!setup@{setup}}
+\index{setup@{setup}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_a4fc01d736fe50cf5b977f755b675f11d} 
+void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Documentación de variables}
+\Hypertarget{_prueba__maquina_estados_8cpp_a75ca1f171787107103fec12fc9b031f8}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!acciones\_estado@{acciones\_estado}}
+\index{acciones\_estado@{acciones\_estado}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{acciones\_estado}{acciones\_estado}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_a75ca1f171787107103fec12fc9b031f8} 
+void(\texorpdfstring{$\ast$}{*} acciones\+\_\+estado\mbox{[}$\,$\mbox{]})() (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) = \{ \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7}{estado\+Stop}}, \mbox{\hyperlink{main_8cpp_aaff5fba0226931c3ad70a6d28b8fad99}{estado\+Acel}}, \mbox{\hyperlink{main_8cpp_a088f0fc3ef27d7538fafe1ec168354e7}{estado\+Control}} \}}
+
+\Hypertarget{_prueba__maquina_estados_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!acel@{acel}}
+\index{acel@{acel}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{acel}{acel}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b} 
+\mbox{\hyperlink{structestado__t}{estado\+\_\+t}} acel\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Valor inicial\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{0,\ \mbox{\hyperlink{fsm_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}{nada}},\ \mbox{\hyperlink{fsm_8hpp_a16933f9df95c0418037c4d7184797631af1ce01387d2348f8b858721a7db81670}{S}}\},}
+\DoxyCodeLine{\ \ \ \ \{1,\ \mbox{\hyperlink{fsm_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}{nada}},\ \mbox{\hyperlink{fsm_8hpp_a16933f9df95c0418037c4d7184797631a739ce3f516592d245d16fd8a3893472c}{C}}\},}
+\DoxyCodeLine{\ \ \ \ \{2,\ \mbox{\hyperlink{fsm_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}{nada}},\ \mbox{\hyperlink{fsm_8hpp_a16933f9df95c0418037c4d7184797631af1ce01387d2348f8b858721a7db81670}{S}}\},}
+\DoxyCodeLine{\ \ \ \ \{3,\ \mbox{\hyperlink{fsm_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}{nada}},\ \mbox{\hyperlink{fsm_8hpp_a16933f9df95c0418037c4d7184797631a42a4ade1acd55a49164099104990e09f}{A}}\},}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{fsm_8hpp_a16933f9df95c0418037c4d7184797631aea15d1f110a11dbe706b2e0113108061}{CUALQUIERA}},\ \mbox{\hyperlink{fsm_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}{nada}},\ \mbox{\hyperlink{fsm_8hpp_a16933f9df95c0418037c4d7184797631a42a4ade1acd55a49164099104990e09f}{A}}\},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{_prueba__maquina_estados_8cpp_ad5ad2bae2adeebba035fd54481cd15f2}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!BTN\_ON@{BTN\_ON}}
+\index{BTN\_ON@{BTN\_ON}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{BTN\_ON}{BTN\_ON}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_ad5ad2bae2adeebba035fd54481cd15f2} 
+const int BTN\+\_\+\+ON = 19}
+
+\Hypertarget{_prueba__maquina_estados_8cpp_a05864874d1dfbd27df332c76ff068480}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!BTN\_SP@{BTN\_SP}}
+\index{BTN\_SP@{BTN\_SP}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{BTN\_SP}{BTN\_SP}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_a05864874d1dfbd27df332c76ff068480} 
+const int BTN\+\_\+\+SP = 22}
+
+\Hypertarget{_prueba__maquina_estados_8cpp_a4d31f5a8868cdbae7ffa8b386cfe7761}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!control@{control}}
+\index{control@{control}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{control}{control}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_a4d31f5a8868cdbae7ffa8b386cfe7761} 
+\mbox{\hyperlink{structestado__t}{estado\+\_\+t}} control\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Valor inicial\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{0,\ \mbox{\hyperlink{fsm_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}{nada}},\ \mbox{\hyperlink{fsm_8hpp_a16933f9df95c0418037c4d7184797631af1ce01387d2348f8b858721a7db81670}{S}}\},}
+\DoxyCodeLine{\ \ \ \ \{1,\ \mbox{\hyperlink{fsm_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}{nada}},\ \mbox{\hyperlink{fsm_8hpp_a16933f9df95c0418037c4d7184797631a739ce3f516592d245d16fd8a3893472c}{C}}\},}
+\DoxyCodeLine{\ \ \ \ \{2,\ \mbox{\hyperlink{fsm_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}{nada}},\ \mbox{\hyperlink{fsm_8hpp_a16933f9df95c0418037c4d7184797631af1ce01387d2348f8b858721a7db81670}{S}}\},}
+\DoxyCodeLine{\ \ \ \ \{3,\ \mbox{\hyperlink{fsm_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}{nada}},\ \mbox{\hyperlink{fsm_8hpp_a16933f9df95c0418037c4d7184797631a42a4ade1acd55a49164099104990e09f}{A}}\},}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{fsm_8hpp_a16933f9df95c0418037c4d7184797631aea15d1f110a11dbe706b2e0113108061}{CUALQUIERA}},\ \mbox{\hyperlink{fsm_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}{nada}},\ \mbox{\hyperlink{fsm_8hpp_a16933f9df95c0418037c4d7184797631a739ce3f516592d245d16fd8a3893472c}{C}}\},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{_prueba__maquina_estados_8cpp_acf230a96ef202ec239456472f789565a}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!LED\_EXTERNAL@{LED\_EXTERNAL}}
+\index{LED\_EXTERNAL@{LED\_EXTERNAL}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{LED\_EXTERNAL}{LED\_EXTERNAL}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_acf230a96ef202ec239456472f789565a} 
+const int LED\+\_\+\+EXTERNAL = 13}
+
+\Hypertarget{_prueba__maquina_estados_8cpp_aa8079ae3d08fedcadb8c8dc85eecccd3}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!LED\_INTERNAL@{LED\_INTERNAL}}
+\index{LED\_INTERNAL@{LED\_INTERNAL}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{LED\_INTERNAL}{LED\_INTERNAL}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_aa8079ae3d08fedcadb8c8dc85eecccd3} 
+const int LED\+\_\+\+INTERNAL = 2}
+
+\Hypertarget{_prueba__maquina_estados_8cpp_a081d22c8c0bb30d050a1a7c4505f00b9}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!RUN@{RUN}}
+\index{RUN@{RUN}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{RUN}{RUN}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_a081d22c8c0bb30d050a1a7c4505f00b9} 
+volatile bool RUN = 0}
+
+
+
+Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador {\ttfamily volatile} es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal ({\ttfamily loop}). 
+
+\Hypertarget{_prueba__maquina_estados_8cpp_a54b97467d59263bb6140712f4ab9609e}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!SP@{SP}}
+\index{SP@{SP}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{SP}{SP}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_a54b97467d59263bb6140712f4ab9609e} 
+volatile bool SP = 1}
+
+\Hypertarget{_prueba__maquina_estados_8cpp_a069a28f6c0e81686e8cb3a9ef42e540c}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!stop@{stop}}
+\index{stop@{stop}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{stop}{stop}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_a069a28f6c0e81686e8cb3a9ef42e540c} 
+\mbox{\hyperlink{structestado__t}{estado\+\_\+t}} stop\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Valor inicial\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{0,\ \mbox{\hyperlink{fsm_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}{nada}},\ \mbox{\hyperlink{fsm_8hpp_a16933f9df95c0418037c4d7184797631af1ce01387d2348f8b858721a7db81670}{S}}\},}
+\DoxyCodeLine{\ \ \ \ \{1,\ \mbox{\hyperlink{fsm_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}{nada}},\ \mbox{\hyperlink{fsm_8hpp_a16933f9df95c0418037c4d7184797631a42a4ade1acd55a49164099104990e09f}{A}}\},}
+\DoxyCodeLine{\ \ \ \ \{2,\ \mbox{\hyperlink{fsm_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}{nada}},\ \mbox{\hyperlink{fsm_8hpp_a16933f9df95c0418037c4d7184797631af1ce01387d2348f8b858721a7db81670}{S}}\},}
+\DoxyCodeLine{\ \ \ \ \{3,\ \mbox{\hyperlink{fsm_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}{nada}},\ \mbox{\hyperlink{fsm_8hpp_a16933f9df95c0418037c4d7184797631a42a4ade1acd55a49164099104990e09f}{A}}\},}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{fsm_8hpp_a16933f9df95c0418037c4d7184797631aea15d1f110a11dbe706b2e0113108061}{CUALQUIERA}},\ \mbox{\hyperlink{fsm_8cpp_acd0d099ac54b24e9fcd0a9e2ea12c4a7}{nada}},\ \mbox{\hyperlink{fsm_8hpp_a16933f9df95c0418037c4d7184797631af1ce01387d2348f8b858721a7db81670}{S}}\},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{_prueba__maquina_estados_8cpp_abd88f3559bbd3b2b3ffd8eb3b3dbe1fc}\index{Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}!tabla\_de\_estados@{tabla\_de\_estados}}
+\index{tabla\_de\_estados@{tabla\_de\_estados}!Prueba\_maquinaEstados.cpp@{Prueba\_maquinaEstados.cpp}}
+\doxysubsubsection{\texorpdfstring{tabla\_de\_estados}{tabla\_de\_estados}}
+{\footnotesize\ttfamily \label{_prueba__maquina_estados_8cpp_abd88f3559bbd3b2b3ffd8eb3b3dbe1fc} 
+\mbox{\hyperlink{structestado__t}{estado\+\_\+t}}\texorpdfstring{$\ast$}{*} tabla\+\_\+de\+\_\+estados\mbox{[}$\,$\mbox{]} = \{ \mbox{\hyperlink{fsm_8cpp_a069a28f6c0e81686e8cb3a9ef42e540c}{stop}}, \mbox{\hyperlink{fsm_8cpp_acfa49cb38c51dc041b36385d4b1d7b1b}{acel}}, \mbox{\hyperlink{fsm_8cpp_a4d31f5a8868cdbae7ffa8b386cfe7761}{control}} \}}
+

@@ -1,0 +1,143 @@
+\doxysection{Referencia del archivo src/main.cpp}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}buzzer.\+hpp"{}}\newline
+{\ttfamily \#include "{}interrupciones.\+hpp"{}}\newline
+{\ttfamily \#include "{}config.\+hpp"{}}\newline
+{\ttfamily \#include "{}pid.\+hpp"{}}\newline
+{\ttfamily \#include "{}sensores.\+hpp"{}}\newline
+{\ttfamily \#include "{}motores.\+hpp"{}}\newline
+{\ttfamily \#include "{}fsm.\+hpp"{}}\newline
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_ab80847f836461323c4a0cc5d8f73f45e}{estado\+Stop}} ()
+\begin{DoxyCompactList}\small\item\em Acción ejecutada durante el estado de parada (S). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_aaff5fba0226931c3ad70a6d28b8fad99}{estado\+Acel}} ()
+\begin{DoxyCompactList}\small\item\em Acción ejecutada durante la fase de aceleración (A). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_a088f0fc3ef27d7538fafe1ec168354e7}{estado\+Control}} ()
+\begin{DoxyCompactList}\small\item\em Acción ejecutada durante la fase de control activo (C). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int32\+\_\+t \mbox{\hyperlink{main_8cpp_a1b7806663c5c1c52ee5701de3732eb4c}{max\+Speed}} = 90
+\begin{DoxyCompactList}\small\item\em Límite máximo de PWM (Saturación) para proteger los motores y la fuente de poder. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{main_8cpp_abfde2252f2c370ec56eb2d5a83e35684}{velocidad\+Acel}} = 50
+\item 
+uint16\+\_\+t \mbox{\hyperlink{main_8cpp_a8b6f34837979e0ebe80423697c0250f8}{setpoint}} = 3500
+\begin{DoxyCompactList}\small\item\em Valor de referencia (punto de consigna) que representa la posición central sobre la línea. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{main_8cpp_aab7a8228729d5377011a111f72bef773}{zona\+Muerta}} = 50
+\begin{DoxyCompactList}\small\item\em Rango de error dentro del cual el controlador no realiza correcciones para evitar oscilaciones innecesarias. \end{DoxyCompactList}\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8cpp_a75ca1f171787107103fec12fc9b031f8}{acciones\+\_\+estado}} \mbox{[}$\,$\mbox{]})() = \{ \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7}{estado\+Stop}}, \mbox{\hyperlink{main_8cpp_aaff5fba0226931c3ad70a6d28b8fad99}{estado\+Acel}}, \mbox{\hyperlink{main_8cpp_a088f0fc3ef27d7538fafe1ec168354e7}{estado\+Control}} \}
+\item 
+bool \mbox{\hyperlink{main_8cpp_a013e3c41e5b180e47b8225f6da98ec22}{stop\+\_\+done}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentación de funciones}
+\Hypertarget{main_8cpp_aaff5fba0226931c3ad70a6d28b8fad99}\index{main.cpp@{main.cpp}!estadoAcel@{estadoAcel}}
+\index{estadoAcel@{estadoAcel}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{estadoAcel()}{estadoAcel()}}
+{\footnotesize\ttfamily \label{main_8cpp_aaff5fba0226931c3ad70a6d28b8fad99} 
+void estado\+Acel (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Acción ejecutada durante la fase de aceleración (A). 
+
+Aplica un perfil de velocidad creciente para romper la inercia inicial. \begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a088f0fc3ef27d7538fafe1ec168354e7}\index{main.cpp@{main.cpp}!estadoControl@{estadoControl}}
+\index{estadoControl@{estadoControl}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{estadoControl()}{estadoControl()}}
+{\footnotesize\ttfamily \label{main_8cpp_a088f0fc3ef27d7538fafe1ec168354e7} 
+void estado\+Control (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Acción ejecutada durante la fase de control activo (C). 
+
+Ejecuta la lectura de sensores, cálculo de PID y ajuste de motores en tiempo real. \begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_ab80847f836461323c4a0cc5d8f73f45e}\index{main.cpp@{main.cpp}!estadoStop@{estadoStop}}
+\index{estadoStop@{estadoStop}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{estadoStop()}{estadoStop()}}
+{\footnotesize\ttfamily \label{main_8cpp_ab80847f836461323c4a0cc5d8f73f45e} 
+void \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7}{estado\+Stop}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Acción ejecutada durante el estado de parada (S). 
+
+Detiene los motores y resetea variables de control si es necesario. \begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_afe461d27b9c48d5921c00d521181f12f}\index{main.cpp@{main.cpp}!loop@{loop}}
+\index{loop@{loop}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily \label{main_8cpp_afe461d27b9c48d5921c00d521181f12f} 
+void loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\index{main.cpp@{main.cpp}!setup@{setup}}
+\index{setup@{setup}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d} 
+void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Documentación de variables}
+\Hypertarget{main_8cpp_a75ca1f171787107103fec12fc9b031f8}\index{main.cpp@{main.cpp}!acciones\_estado@{acciones\_estado}}
+\index{acciones\_estado@{acciones\_estado}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{acciones\_estado}{acciones\_estado}}
+{\footnotesize\ttfamily \label{main_8cpp_a75ca1f171787107103fec12fc9b031f8} 
+void(\texorpdfstring{$\ast$}{*} acciones\+\_\+estado\mbox{[}$\,$\mbox{]})() (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) = \{ \mbox{\hyperlink{_prueba__maquina_estados_8cpp_a0a26545d88471dde33a6d048939b41c7}{estado\+Stop}}, \mbox{\hyperlink{main_8cpp_aaff5fba0226931c3ad70a6d28b8fad99}{estado\+Acel}}, \mbox{\hyperlink{main_8cpp_a088f0fc3ef27d7538fafe1ec168354e7}{estado\+Control}} \}}
+
+\Hypertarget{main_8cpp_a1b7806663c5c1c52ee5701de3732eb4c}\index{main.cpp@{main.cpp}!maxSpeed@{maxSpeed}}
+\index{maxSpeed@{maxSpeed}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{maxSpeed}{maxSpeed}}
+{\footnotesize\ttfamily \label{main_8cpp_a1b7806663c5c1c52ee5701de3732eb4c} 
+const int32\+\_\+t max\+Speed = 90}
+
+
+
+Límite máximo de PWM (Saturación) para proteger los motores y la fuente de poder. 
+
+\Hypertarget{main_8cpp_a8b6f34837979e0ebe80423697c0250f8}\index{main.cpp@{main.cpp}!setpoint@{setpoint}}
+\index{setpoint@{setpoint}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{setpoint}{setpoint}}
+{\footnotesize\ttfamily \label{main_8cpp_a8b6f34837979e0ebe80423697c0250f8} 
+uint16\+\_\+t setpoint = 3500}
+
+
+
+Valor de referencia (punto de consigna) que representa la posición central sobre la línea. 
+
+\Hypertarget{main_8cpp_a013e3c41e5b180e47b8225f6da98ec22}\index{main.cpp@{main.cpp}!stop\_done@{stop\_done}}
+\index{stop\_done@{stop\_done}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{stop\_done}{stop\_done}}
+{\footnotesize\ttfamily \label{main_8cpp_a013e3c41e5b180e47b8225f6da98ec22} 
+bool stop\+\_\+done = false}
+
+\Hypertarget{main_8cpp_abfde2252f2c370ec56eb2d5a83e35684}\index{main.cpp@{main.cpp}!velocidadAcel@{velocidadAcel}}
+\index{velocidadAcel@{velocidadAcel}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{velocidadAcel}{velocidadAcel}}
+{\footnotesize\ttfamily \label{main_8cpp_abfde2252f2c370ec56eb2d5a83e35684} 
+int32\+\_\+t velocidad\+Acel = 50}
+
+\Hypertarget{main_8cpp_aab7a8228729d5377011a111f72bef773}\index{main.cpp@{main.cpp}!zonaMuerta@{zonaMuerta}}
+\index{zonaMuerta@{zonaMuerta}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{zonaMuerta}{zonaMuerta}}
+{\footnotesize\ttfamily \label{main_8cpp_aab7a8228729d5377011a111f72bef773} 
+uint16\+\_\+t zona\+Muerta = 50}
+
+
+
+Rango de error dentro del cual el controlador no realiza correcciones para evitar oscilaciones innecesarias. 
+

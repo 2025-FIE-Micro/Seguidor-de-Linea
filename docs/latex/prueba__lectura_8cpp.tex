@@ -1,0 +1,114 @@
+\doxysection{Referencia del archivo test/prueba\+\_\+lectura.cpp}
+\hypertarget{prueba__lectura_8cpp}{}\label{prueba__lectura_8cpp}\index{test/prueba\_lectura.cpp@{test/prueba\_lectura.cpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}QTRSensors.\+h"{}}\newline
+\doxysubsubsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{prueba__lectura_8cpp_a9ff0cc7629c4b34b68830042e89480e0}{USE\+\_\+\+RC}}
+\item 
+\#define \mbox{\hyperlink{prueba__lectura_8cpp_a450a7c16ead7b3c7b882536b08f30a00}{LED\+\_\+\+BUILTIN}}~2
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{prueba__lectura_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\item 
+void \mbox{\hyperlink{prueba__lectura_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{prueba__lectura_8cpp_a3ac4073d185617435faaca724a413fec}{Sensor\+Count}} = 8
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{prueba__lectura_8cpp_a60839c64d95207d4b55d0e6ddb9d9d1f}{sensor\+Pins}} \mbox{[}Sensor\+Count\mbox{]} = \{14, 27, 33, 32, 35, 34, 39, 36\}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{prueba__lectura_8cpp_a908407702b8a9dbb612a617c21ce31ba}{sensor\+Values}} \mbox{[}Sensor\+Count\mbox{]}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{prueba__lectura_8cpp_a6f14bde43ef12199f2d2ef07adb6c942}{position}}
+\begin{DoxyCompactList}\small\item\em Posición calculada de la línea. Es el valor de la salida del proceso (PV), usado como entrada para el controlador PID. Este valor se normaliza (ej. 0 a 4000) donde el centro es el punto de referencia ({\ttfamily setpoint}). \end{DoxyCompactList}\item 
+QTRSensors \mbox{\hyperlink{prueba__lectura_8cpp_a9e05607474a03ba0b5bd2ee27c003524}{qtr}}
+\item 
+unsigned long \mbox{\hyperlink{prueba__lectura_8cpp_a86027ad9c9159f02624d136fb63364fe}{previous\+Millis}} = 0
+\item 
+const long \mbox{\hyperlink{prueba__lectura_8cpp_afab23e0ee85e56261dace1dba900e39e}{interval}} = 10
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentación de «define»}
+\Hypertarget{prueba__lectura_8cpp_a450a7c16ead7b3c7b882536b08f30a00}\index{prueba\_lectura.cpp@{prueba\_lectura.cpp}!LED\_BUILTIN@{LED\_BUILTIN}}
+\index{LED\_BUILTIN@{LED\_BUILTIN}!prueba\_lectura.cpp@{prueba\_lectura.cpp}}
+\doxysubsubsection{\texorpdfstring{LED\_BUILTIN}{LED\_BUILTIN}}
+{\footnotesize\ttfamily \label{prueba__lectura_8cpp_a450a7c16ead7b3c7b882536b08f30a00} 
+\#define LED\+\_\+\+BUILTIN~2}
+
+\Hypertarget{prueba__lectura_8cpp_a9ff0cc7629c4b34b68830042e89480e0}\index{prueba\_lectura.cpp@{prueba\_lectura.cpp}!USE\_RC@{USE\_RC}}
+\index{USE\_RC@{USE\_RC}!prueba\_lectura.cpp@{prueba\_lectura.cpp}}
+\doxysubsubsection{\texorpdfstring{USE\_RC}{USE\_RC}}
+{\footnotesize\ttfamily \label{prueba__lectura_8cpp_a9ff0cc7629c4b34b68830042e89480e0} 
+\#define USE\+\_\+\+RC}
+
+
+
+\doxysubsection{Documentación de funciones}
+\Hypertarget{prueba__lectura_8cpp_afe461d27b9c48d5921c00d521181f12f}\index{prueba\_lectura.cpp@{prueba\_lectura.cpp}!loop@{loop}}
+\index{loop@{loop}!prueba\_lectura.cpp@{prueba\_lectura.cpp}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily \label{prueba__lectura_8cpp_afe461d27b9c48d5921c00d521181f12f} 
+void loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{prueba__lectura_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\index{prueba\_lectura.cpp@{prueba\_lectura.cpp}!setup@{setup}}
+\index{setup@{setup}!prueba\_lectura.cpp@{prueba\_lectura.cpp}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{prueba__lectura_8cpp_a4fc01d736fe50cf5b977f755b675f11d} 
+void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Documentación de variables}
+\Hypertarget{prueba__lectura_8cpp_afab23e0ee85e56261dace1dba900e39e}\index{prueba\_lectura.cpp@{prueba\_lectura.cpp}!interval@{interval}}
+\index{interval@{interval}!prueba\_lectura.cpp@{prueba\_lectura.cpp}}
+\doxysubsubsection{\texorpdfstring{interval}{interval}}
+{\footnotesize\ttfamily \label{prueba__lectura_8cpp_afab23e0ee85e56261dace1dba900e39e} 
+const long interval = 10}
+
+\Hypertarget{prueba__lectura_8cpp_a6f14bde43ef12199f2d2ef07adb6c942}\index{prueba\_lectura.cpp@{prueba\_lectura.cpp}!position@{position}}
+\index{position@{position}!prueba\_lectura.cpp@{prueba\_lectura.cpp}}
+\doxysubsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily \label{prueba__lectura_8cpp_a6f14bde43ef12199f2d2ef07adb6c942} 
+uint16\+\_\+t position}
+
+
+
+Posición calculada de la línea. Es el valor de la salida del proceso (PV), usado como entrada para el controlador PID. Este valor se normaliza (ej. 0 a 4000) donde el centro es el punto de referencia ({\ttfamily setpoint}). 
+
+\Hypertarget{prueba__lectura_8cpp_a86027ad9c9159f02624d136fb63364fe}\index{prueba\_lectura.cpp@{prueba\_lectura.cpp}!previousMillis@{previousMillis}}
+\index{previousMillis@{previousMillis}!prueba\_lectura.cpp@{prueba\_lectura.cpp}}
+\doxysubsubsection{\texorpdfstring{previousMillis}{previousMillis}}
+{\footnotesize\ttfamily \label{prueba__lectura_8cpp_a86027ad9c9159f02624d136fb63364fe} 
+unsigned long previous\+Millis = 0}
+
+\Hypertarget{prueba__lectura_8cpp_a9e05607474a03ba0b5bd2ee27c003524}\index{prueba\_lectura.cpp@{prueba\_lectura.cpp}!qtr@{qtr}}
+\index{qtr@{qtr}!prueba\_lectura.cpp@{prueba\_lectura.cpp}}
+\doxysubsubsection{\texorpdfstring{qtr}{qtr}}
+{\footnotesize\ttfamily \label{prueba__lectura_8cpp_a9e05607474a03ba0b5bd2ee27c003524} 
+QTRSensors qtr}
+
+\Hypertarget{prueba__lectura_8cpp_a3ac4073d185617435faaca724a413fec}\index{prueba\_lectura.cpp@{prueba\_lectura.cpp}!SensorCount@{SensorCount}}
+\index{SensorCount@{SensorCount}!prueba\_lectura.cpp@{prueba\_lectura.cpp}}
+\doxysubsubsection{\texorpdfstring{SensorCount}{SensorCount}}
+{\footnotesize\ttfamily \label{prueba__lectura_8cpp_a3ac4073d185617435faaca724a413fec} 
+const uint8\+\_\+t Sensor\+Count = 8}
+
+\Hypertarget{prueba__lectura_8cpp_a60839c64d95207d4b55d0e6ddb9d9d1f}\index{prueba\_lectura.cpp@{prueba\_lectura.cpp}!sensorPins@{sensorPins}}
+\index{sensorPins@{sensorPins}!prueba\_lectura.cpp@{prueba\_lectura.cpp}}
+\doxysubsubsection{\texorpdfstring{sensorPins}{sensorPins}}
+{\footnotesize\ttfamily \label{prueba__lectura_8cpp_a60839c64d95207d4b55d0e6ddb9d9d1f} 
+const uint8\+\_\+t sensor\+Pins\mbox{[}Sensor\+Count\mbox{]} = \{14, 27, 33, 32, 35, 34, 39, 36\}}
+
+\Hypertarget{prueba__lectura_8cpp_a908407702b8a9dbb612a617c21ce31ba}\index{prueba\_lectura.cpp@{prueba\_lectura.cpp}!sensorValues@{sensorValues}}
+\index{sensorValues@{sensorValues}!prueba\_lectura.cpp@{prueba\_lectura.cpp}}
+\doxysubsubsection{\texorpdfstring{sensorValues}{sensorValues}}
+{\footnotesize\ttfamily \label{prueba__lectura_8cpp_a908407702b8a9dbb612a617c21ce31ba} 
+uint16\+\_\+t sensor\+Values\mbox{[}Sensor\+Count\mbox{]}}
+

@@ -1,64 +1,116 @@
-/*
-    programa declaracion de drv8833 y motores
-    * define pines del motor - IN1, IN1 y Sleep
-    * define el canal, resolucion y frecuencia de pwm
-*/
+/**
+ @file motores.hpp
+ @brief Cabecera de la capa de control de motores de alto nivel. Contiene las declaraciones de las variables de velocidad globales, las instancias de los drivers DRV8833, y las funciones que aplican la corrección PID para mover el robot.
+ @author Legion de Ohm
+ */
 
 #pragma once
 
 #ifndef DRV8833_H
 #define DRV8833_H
-// Clase para drivers de motores Drv8833.
-// Incluye funciones que permiten configurar sus pines, ajustar el PWM y el movimiento de los motores.
+
+/**
+ @class Drv8833
+ @brief Clase para drivers de motores DRV8833. Incluye funciones que permiten configurar sus pines, ajustar el PWM y el movimiento de los motores.
+ */
 class Drv8833 {
 public:
-    // Constructor inicial. Habilitamos GPIO Sleep, activando los motores.
+    /**
+     @brief Constructor de la clase Drv8833. Inicializa el objeto y prepara la habilitación de los motores.
+     */
     Drv8833();
 
-    // Función: configurar los pines de control del motor y el PWM.
-    // pinIN1: GPIO al que se conecta el pin IN1 del driver.
-    // pinIN2: GPIO al que se conecta el pin IN2 del driver.
-    // pinSleep: GPIO al que se conecta el pin Sleep del driver 
-    // chPWM: Canal del PWM a utilizar con el driver.
-    // freqPWM: Frecuencia del PWM. (ESP32: De 10 Hz a 40 MHz)
-    // resPWM: Resolución del PWM. (ESP32: De 1 bit [0-1] a 16 bits [0-65536])
-    void setup( uint8_t pinIN1, uint8_t pinIN2, uint8_t pinSleep,
+    /**
+     @brief Configura los pines de control del motor y los parámetros del PWM.
+     @param pinIN1 GPIO conectado al pin IN1 del driver.
+     @param pinIN2 GPIO conectado al pin IN2 del driver.
+     @param pinSleep GPIO conectado al pin Sleep del driver (control de modo de bajo consumo).
+     @param chPWM Canal PWM de hardware a utilizar (ESP32).
+     @param freqPWM Frecuencia de la señal PWM en Hz.
+     @param resPWM Resolución de la señal PWM en bits.
+     @return void
+     */
+    void setup(uint8_t pinIN1, uint8_t pinIN2, uint8_t pinSleep,
                 uint8_t chPWM, uint32_t freqPWM, uint8_t resPWM);
 
-    // Función para mover el motor hacia adelante.
-    // pPWM: Porcentaje de PWM  a aplicar al motor [0, 100] %.
+    /**
+     @brief Mueve el motor hacia adelante con una potencia específica.
+     @param pPWM Porcentaje de potencia a aplicar [0 a 100] %.
+     @return void
+     */
     void forward(uint8_t pPWM);
 
-    // Función para mover el motor hacia atras.
-    // pPWM: Porcentaje de PWM  a aplicar al motor [0, 100] %.
+    /**
+     @brief Mueve el motor hacia atrás con una potencia específica.
+     @param pPWM Porcentaje de potencia a aplicar [0 a 100] %.
+     @return void
+     */
     void reverse(uint8_t pPWM);
 
-    // Función para detener el motor.
+    /**
+     @brief Detiene el motor por completo.
+     @return void
+     */
     void stop();
 
 private:
-    uint8_t _pinIN1;   // GPIO del driver pin IN1.
-    uint8_t _pinIN2;   // GPIO del driver pin IN2.
-    uint8_t _pinSleep; // GPIO del driver pin Sleep
-    uint8_t _chPWM;    // Canal del PWM a utilizar con el motor.
-    uint32_t _freqPWM; // Frecuencia del PWM. (ESP32: De 10 Hz a 40 MHz)
-    uint8_t _resPWM;   // Resolución del PWM. (ESP32: De 1 a 16 bits)
+    uint8_t _pinIN1;   ///< GPIO del pin IN1.
+    uint8_t _pinIN2;   ///< GPIO del pin IN2.
+    uint8_t _pinSleep; ///< GPIO del pin Sleep (Habilitación).
+    uint8_t _chPWM;    ///< Canal PWM configurado.
+    uint32_t _freqPWM; ///< Frecuencia PWM en Hz.
+    uint8_t _resPWM;   ///< Resolución PWM en bits.
 };
 #endif
 
-// Velocidades actuales (control PID)
+/**
+ @var motorSpeedIzq
+ @brief Velocidad final del motor izquierdo calculada tras el PID. Positivo = avance, Negativo = reversa.
+ */
 extern int32_t motorSpeedIzq;
+
+/**
+ @var motorSpeedDer
+ @brief Velocidad final del motor derecho calculada tras el PID. Positivo = avance, Negativo = reversa.
+ */
 extern int32_t motorSpeedDer;
 
+/**
+ @var maxSpeed
+ @brief Límite máximo de PWM (Saturación) para proteger los motores y la fuente de poder.
+ */
 extern const int32_t maxSpeed;
 
-// Inicialización
+/**
+ @brief Inicializa los objetos de los motores y configura sus periféricos.
+ @return void
+ */
 void setupMotores();
 
-// Movimiento
+/**
+ @brief Mueve los motores aplicando directamente los valores de velocidad. Esta función es la interfaz de bajo nivel que llama a las funciones `forward` / `reverse`.
+ @param motorSpeedIzq Velocidad (PWM) final para el motor izquierdo.
+ @param motorSpeedDer Velocidad (PWM) final para el motor derecho.
+ @return void
+ */
 void moverMotores(int32_t motorSpeedIzq, int32_t motorSpeedDer);
+
+/**
+ @brief Detiene ambos motores de forma inmediata enviando una señal de parada a los drivers.
+ @return void
+ */
 void detenerMotores();
 
-// Control
-void controlMotores(float correccion);
+/**
+ @brief Función principal de control que calcula la velocidad final de cada motor basándose en la corrección PID.
+ @param correcion Valor de salida del algoritmo PID (error corregido).
+ @return void
+ */
+void controlMotores(float correcion);
+
+/**
+ @brief Actualiza el SetPoint (punto de referencia) del sistema de control según la posición actual del robot.
+ @param pos Posición actual leída por la barra de sensores.
+ @return void
+ */
 void actualizarSP(uint16_t pos);

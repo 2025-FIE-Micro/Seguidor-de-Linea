@@ -1,0 +1,54 @@
+\doxysection{buzzer.\+hpp}
+\hypertarget{buzzer_8hpp_source}{}\label{buzzer_8hpp_source}\index{include/buzzer.hpp@{include/buzzer.hpp}}
+\mbox{\hyperlink{buzzer_8hpp}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ PITCHES\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ PITCHES\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{const}\ uint16\_t\ \mbox{\hyperlink{buzzer_8hpp_ae6194f32d0174d88cbca50b3e54b3a1f}{NOTE\_C4}}\ =\ 262;\ \ \ \ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{const}\ uint16\_t\ \mbox{\hyperlink{buzzer_8hpp_af90fcc869b1d7bb87efdb332520e6dcf}{NOTE\_D4}}\ =\ 294;\ \ \ \ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{const}\ uint16\_t\ \mbox{\hyperlink{buzzer_8hpp_a78ffa2e3ac81b60d2d8d0d5c6125a540}{NOTE\_E4}}\ =\ 330;\ \ \ \ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{const}\ uint16\_t\ \mbox{\hyperlink{buzzer_8hpp_ad0f2a8698ff23e7b42f112690aad46ce}{NOTE\_F4}}\ =\ 349;\ \ \ \ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{const}\ uint16\_t\ \mbox{\hyperlink{buzzer_8hpp_acc12a9e23407f7601b5b0bf98d889587}{NOTE\_G4}}\ =\ 392;\ \ \ \ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{const}\ uint16\_t\ \mbox{\hyperlink{buzzer_8hpp_a16f3d5afcfbb18cfd1a4f8ab8d99244e}{NOTE\_A4}}\ =\ 440;\ \ \ \ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{const}\ uint16\_t\ \mbox{\hyperlink{buzzer_8hpp_ae9bc80eff8a2d64f414311eca42e03b4}{NOTE\_B4}}\ =\ 494;\ \ \ \ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{const}\ uint16\_t\ \mbox{\hyperlink{buzzer_8hpp_aae42f4ab73063563fc0fa9d25c019cb4}{NOTE\_C5}}\ =\ 523;\ \ \ \ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{const}\ uint16\_t\ \mbox{\hyperlink{buzzer_8hpp_a79ebf43bdf5b5cfe000124bd13e2b8a6}{NOTE\_D5}}\ =\ 587;\ \ \ \ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{const}\ uint16\_t\ \mbox{\hyperlink{buzzer_8hpp_a26ea04793e05e34f20530563def8b2a4}{NOTE\_E5}}\ =\ 659;\ \ \ \ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{const}\ uint16\_t\ \mbox{\hyperlink{buzzer_8hpp_a34667a34f3668656338f65cb8e98e7e3}{NOTE\_F5}}\ =\ 698;\ \ \ \ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{const}\ uint16\_t\ \mbox{\hyperlink{buzzer_8hpp_aefbb5fda263f469214e26952cb8ee3f8}{NOTE\_G5}}\ =\ 784;\ \ \ \ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{const}\ uint16\_t\ \mbox{\hyperlink{buzzer_8hpp_a6f3df26da8f8c887136a87b1583ce525}{NOTE\_A5}}\ =\ 880;\ \ \ \ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{const}\ uint16\_t\ \mbox{\hyperlink{buzzer_8hpp_a5ff1af9c3e6615d46f1d084b2a1b2709}{NOTE\_B5}}\ =\ 988;\ \ \ \ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#ifndef\ BUZZER\_H}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ BUZZER\_H}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_buzzer_a21b00938b8ce6ed9eae580913df69996}{Buzzer}}\ \{}
+\DoxyCodeLine{00050\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00051\ \ \ \ \ uint8\_t\ pin;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ uint8\_t\ channel;\ \ \ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{class_buzzer_a21b00938b8ce6ed9eae580913df69996}{Buzzer}}(uint8\_t\ buzzerPin,\ uint8\_t\ pwmChannel);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_buzzer_a01a965482698ccd0406b0018565895d1}{begin}}(uint16\_t\ freq\ =\ 2000,\ uint8\_t\ resolution\ =\ 8);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_buzzer_a15877cd206c99d7fba9304275c27f5c3}{play}}(uint16\_t\ freq);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_buzzer_acbb32df95ae1af7d4ba9bb01dc9e3b20}{stop}}();}
+\DoxyCodeLine{00082\ \};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{class_buzzer}{Buzzer}}\ \mbox{\hyperlink{buzzer_8cpp_ac758f719659b146d523295c79fcfd771}{buzzer}};\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00095\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{buzzer_8hpp_a004d16105175229ea0e8272ed6a1c37f}{setupBuzzer}}(uint16\_t\ freq\ =\ 2000,\ uint8\_t\ resolution\ =\ 8);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

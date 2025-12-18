@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Seguidor de Línea: Archivo de código fuente include/pid.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+window.MathJax = {
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Seguidor de Línea
+   </div>
+   <div id="projectbrief">Controlador de movimiento de Seguidor de Línea usando PID para competencia de robótica.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('pid_8hpp_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">pid.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="pid_8hpp.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">extern</span> uint16_t <a class="code hl_variable" href="main_8cpp.html#a8b6f34837979e0ebe80423697c0250f8">setpoint</a>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">extern</span> uint16_t <a class="code hl_variable" href="main_8cpp.html#aab7a8228729d5377011a111f72bef773">zonaMuerta</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">extern</span> uint8_t <a class="code hl_variable" href="pid_8cpp.html#ab2b0c78a81e045d7a8f28be307b8c61b">baseSpeed</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">// ============================</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">// CONTROL PID - METODO Ziegler-Nichols</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">// ============================</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="pid_8cpp.html#ae0fd140825889f1a7ed103b66c28ce38">Ku</a>; </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="pid_8cpp.html#a38eca5301b0c8380eaea74f460237a09">Tu</a>; </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="pid_8cpp.html#a790f9df599f1d6c92855645c65a0cccc">Kp</a>; </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="pid_8cpp.html#a0534f74e5e04a4433256a6d9bb982d2e">Ki</a>; </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="pid_8cpp.html#ad76756e0056f2f5ec10057052cbed3c9">Kd</a>; </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keywordtype">float</span> <a class="code hl_function" href="pid_8hpp.html#aaa3441d50a3a4f31e76e5014882b3a95">calculo_pid</a>(uint16_t pos, <span class="keywordtype">float</span> deltaTime);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keywordtype">void</span> <a class="code hl_function" href="pid_8hpp.html#a02e48c71c98d7a877bf3f9d37b6d4c39">reiniciar_pid</a>();</div>
+<div class="ttc" id="amain_8cpp_html_a8b6f34837979e0ebe80423697c0250f8"><div class="ttname"><a href="main_8cpp.html#a8b6f34837979e0ebe80423697c0250f8">setpoint</a></div><div class="ttdeci">uint16_t setpoint</div><div class="ttdoc">Valor de referencia (punto de consigna) que representa la posición central sobre la línea.</div><div class="ttdef"><b>Definition</b> main.cpp:18</div></div>
+<div class="ttc" id="amain_8cpp_html_aab7a8228729d5377011a111f72bef773"><div class="ttname"><a href="main_8cpp.html#aab7a8228729d5377011a111f72bef773">zonaMuerta</a></div><div class="ttdeci">uint16_t zonaMuerta</div><div class="ttdoc">Rango de error dentro del cual el controlador no realiza correcciones para evitar oscilaciones innece...</div><div class="ttdef"><b>Definition</b> main.cpp:19</div></div>
+<div class="ttc" id="apid_8cpp_html_a0534f74e5e04a4433256a6d9bb982d2e"><div class="ttname"><a href="pid_8cpp.html#a0534f74e5e04a4433256a6d9bb982d2e">Ki</a></div><div class="ttdeci">const float Ki</div><div class="ttdoc">Constante Integral.</div><div class="ttdef"><b>Definition</b> pid.cpp:48</div></div>
+<div class="ttc" id="apid_8cpp_html_a38eca5301b0c8380eaea74f460237a09"><div class="ttname"><a href="pid_8cpp.html#a38eca5301b0c8380eaea74f460237a09">Tu</a></div><div class="ttdeci">const float Tu</div><div class="ttdoc">Periodo de oscilación última (Ultimate Period).</div><div class="ttdef"><b>Definition</b> pid.cpp:25</div></div>
+<div class="ttc" id="apid_8cpp_html_a790f9df599f1d6c92855645c65a0cccc"><div class="ttname"><a href="pid_8cpp.html#a790f9df599f1d6c92855645c65a0cccc">Kp</a></div><div class="ttdeci">const float Kp</div><div class="ttdoc">Constante Proporcional.</div><div class="ttdef"><b>Definition</b> pid.cpp:47</div></div>
+<div class="ttc" id="apid_8cpp_html_ab2b0c78a81e045d7a8f28be307b8c61b"><div class="ttname"><a href="pid_8cpp.html#ab2b0c78a81e045d7a8f28be307b8c61b">baseSpeed</a></div><div class="ttdeci">uint8_t baseSpeed</div><div class="ttdoc">Velocidad crucero nominal de los motores cuando el error es mayor a la zona muerta.</div><div class="ttdef"><b>Definition</b> pid.cpp:23</div></div>
+<div class="ttc" id="apid_8cpp_html_ad76756e0056f2f5ec10057052cbed3c9"><div class="ttname"><a href="pid_8cpp.html#ad76756e0056f2f5ec10057052cbed3c9">Kd</a></div><div class="ttdeci">const float Kd</div><div class="ttdoc">Constante Derivativa.</div><div class="ttdef"><b>Definition</b> pid.cpp:49</div></div>
+<div class="ttc" id="apid_8cpp_html_ae0fd140825889f1a7ed103b66c28ce38"><div class="ttname"><a href="pid_8cpp.html#ae0fd140825889f1a7ed103b66c28ce38">Ku</a></div><div class="ttdeci">const float Ku</div><div class="ttdoc">Ganancia última (Ultimate Gain).</div><div class="ttdef"><b>Definition</b> pid.cpp:24</div></div>
+<div class="ttc" id="apid_8hpp_html_a02e48c71c98d7a877bf3f9d37b6d4c39"><div class="ttname"><a href="pid_8hpp.html#a02e48c71c98d7a877bf3f9d37b6d4c39">reiniciar_pid</a></div><div class="ttdeci">void reiniciar_pid()</div><div class="ttdoc">Resetea las variables internas del controlador (error acumulado y error anterior).</div><div class="ttdef"><b>Definition</b> pid.cpp:82</div></div>
+<div class="ttc" id="apid_8hpp_html_aaa3441d50a3a4f31e76e5014882b3a95"><div class="ttname"><a href="pid_8hpp.html#aaa3441d50a3a4f31e76e5014882b3a95">calculo_pid</a></div><div class="ttdeci">float calculo_pid(uint16_t pos, float deltaTime)</div><div class="ttdoc">Calcula la corrección necesaria para el sistema usando la fórmula PID.</div><div class="ttdef"><b>Definition</b> pid.cpp:56</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="pid_8hpp.html">pid.hpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

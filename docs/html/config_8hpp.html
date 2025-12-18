@@ -1,0 +1,789 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Seguidor de Línea: Referencia del archivo include/config.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+window.MathJax = {
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Seguidor de Línea
+   </div>
+   <div id="projectbrief">Controlador de movimiento de Seguidor de Línea usando PID para competencia de robótica.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('config_8hpp.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">defines</a>  </div>
+  <div class="headertitle"><div class="title">Referencia del archivo config.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Archivo de configuración global que define las constantes, banderas de compilación y la selección de perfil de corredor para el sistema PID.  
+<a href="#details">Más...</a></p>
+<div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="sensores_8hpp_source.html">sensores.hpp</a>&quot;</code><br />
+</div>
+<p><a href="config_8hpp_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:ab1eb689f09a6ae459c0367e53f96b3c2" id="r_ab1eb689f09a6ae459c0367e53f96b3c2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1eb689f09a6ae459c0367e53f96b3c2">deb</a>(x)</td></tr>
+<tr class="separator:ab1eb689f09a6ae459c0367e53f96b3c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff272c7fac0e78cdd4bbcaa85b508606" id="r_aff272c7fac0e78cdd4bbcaa85b508606"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff272c7fac0e78cdd4bbcaa85b508606">mute</a>(bz)</td></tr>
+<tr class="memdesc:aff272c7fac0e78cdd4bbcaa85b508606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro que ejecuta la función de sonido <code>bz</code> si MUTEAR está definido.  <br /></td></tr>
+<tr class="separator:aff272c7fac0e78cdd4bbcaa85b508606"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8851a0d6ef5edc9c7ebf030cfdc8500f" id="r_a8851a0d6ef5edc9c7ebf030cfdc8500f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8851a0d6ef5edc9c7ebf030cfdc8500f">control_ir</a>(IR)</td></tr>
+<tr class="memdesc:a8851a0d6ef5edc9c7ebf030cfdc8500f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro que no ejecuta código si USAR_CONTROL_IR no está definido.  <br /></td></tr>
+<tr class="separator:a8851a0d6ef5edc9c7ebf030cfdc8500f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Perfiles de Corredor</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Identificadores numéricos para cada perfil de constantes PID y calibración. </p>
+</div></td></tr>
+<tr class="memitem:a4c812cd18f41070703e93472552cf9c4" id="r_a4c812cd18f41070703e93472552cf9c4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c812cd18f41070703e93472552cf9c4">NIGHTFALL</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a4c812cd18f41070703e93472552cf9c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perfil de constantes NIGHTFALL. Valor: 1.  <br /></td></tr>
+<tr class="separator:a4c812cd18f41070703e93472552cf9c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ba455b13796d86a8eb25decafaccae9" id="r_a2ba455b13796d86a8eb25decafaccae9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ba455b13796d86a8eb25decafaccae9">ARGENTUM</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memdesc:a2ba455b13796d86a8eb25decafaccae9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perfil de constantes ARGENTUM. Valor: 2.  <br /></td></tr>
+<tr class="separator:a2ba455b13796d86a8eb25decafaccae9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca34268fee75456ce1fed891486eb509" id="r_aca34268fee75456ce1fed891486eb509"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca34268fee75456ce1fed891486eb509">DIEGO</a>&#160;&#160;&#160;3</td></tr>
+<tr class="memdesc:aca34268fee75456ce1fed891486eb509"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perfil de constantes DIEGO. Valor: 3.  <br /></td></tr>
+<tr class="separator:aca34268fee75456ce1fed891486eb509"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Pines de Interfaz de Usuario</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Definición de pines para periféricos de salida y botones de entrada. </p>
+</div></td></tr>
+<tr class="memitem:adb846a29dd2e116cc22e62ff323aa7eb" id="r_adb846a29dd2e116cc22e62ff323aa7eb"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb846a29dd2e116cc22e62ff323aa7eb">pinBuzzer</a></td></tr>
+<tr class="memdesc:adb846a29dd2e116cc22e62ff323aa7eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin GPIO asignado al zumbador.  <br /></td></tr>
+<tr class="separator:adb846a29dd2e116cc22e62ff323aa7eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad91ea72ca9ce6b1e1bbdc49ee34aed79" id="r_ad91ea72ca9ce6b1e1bbdc49ee34aed79"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad91ea72ca9ce6b1e1bbdc49ee34aed79">ledMotores</a></td></tr>
+<tr class="memdesc:ad91ea72ca9ce6b1e1bbdc49ee34aed79"><td class="mdescLeft">&#160;</td><td class="mdescRight">LED indicador de estado de los motores.  <br /></td></tr>
+<tr class="separator:ad91ea72ca9ce6b1e1bbdc49ee34aed79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab94a044ae6bf552465ae9ccfb9b27c04" id="r_ab94a044ae6bf552465ae9ccfb9b27c04"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab94a044ae6bf552465ae9ccfb9b27c04">ledCalibracion</a></td></tr>
+<tr class="memdesc:ab94a044ae6bf552465ae9ccfb9b27c04"><td class="mdescLeft">&#160;</td><td class="mdescRight">LED indicador durante el proceso de calibración.  <br /></td></tr>
+<tr class="separator:ab94a044ae6bf552465ae9ccfb9b27c04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d757977cd48049afdb5f649ac99ecd0" id="r_a7d757977cd48049afdb5f649ac99ecd0"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d757977cd48049afdb5f649ac99ecd0">BTN_RUN</a></td></tr>
+<tr class="memdesc:a7d757977cd48049afdb5f649ac99ecd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin del botón de inicio de carrera.  <br /></td></tr>
+<tr class="separator:a7d757977cd48049afdb5f649ac99ecd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c0f1ded83ee76d2d1c5e67d8382f6bd" id="r_a8c0f1ded83ee76d2d1c5e67d8382f6bd"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c0f1ded83ee76d2d1c5e67d8382f6bd">BTN_STOP</a></td></tr>
+<tr class="memdesc:a8c0f1ded83ee76d2d1c5e67d8382f6bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin del botón de parada de emergencia.  <br /></td></tr>
+<tr class="separator:a8c0f1ded83ee76d2d1c5e67d8382f6bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Configuración de Motores (Puente H)</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Pines de control para los drivers de motor izquierdo y derecho. </p>
+</div></td></tr>
+<tr class="memitem:a4d03a1ac4cb100ed914cdd80f01bc9e0" id="r_a4d03a1ac4cb100ed914cdd80f01bc9e0"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d03a1ac4cb100ed914cdd80f01bc9e0">motorPinIN1_Izq</a></td></tr>
+<tr class="memdesc:a4d03a1ac4cb100ed914cdd80f01bc9e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entrada 1 del motor izquierdo.  <br /></td></tr>
+<tr class="separator:a4d03a1ac4cb100ed914cdd80f01bc9e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22407d1452bfe93994e837127f050014" id="r_a22407d1452bfe93994e837127f050014"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22407d1452bfe93994e837127f050014">motorPinIN2_Izq</a></td></tr>
+<tr class="memdesc:a22407d1452bfe93994e837127f050014"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entrada 2 del motor izquierdo.  <br /></td></tr>
+<tr class="separator:a22407d1452bfe93994e837127f050014"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01fb00c1c5583a04240a38b6adc3427e" id="r_a01fb00c1c5583a04240a38b6adc3427e"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01fb00c1c5583a04240a38b6adc3427e">motorPinSleep_Izq</a></td></tr>
+<tr class="memdesc:a01fb00c1c5583a04240a38b6adc3427e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin de activación/reposo del motor izquierdo.  <br /></td></tr>
+<tr class="separator:a01fb00c1c5583a04240a38b6adc3427e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b6af078ccca43a68dc57a346e8f5e5f" id="r_a3b6af078ccca43a68dc57a346e8f5e5f"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b6af078ccca43a68dc57a346e8f5e5f">motorPinIN1_Der</a></td></tr>
+<tr class="memdesc:a3b6af078ccca43a68dc57a346e8f5e5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entrada 1 del motor derecho.  <br /></td></tr>
+<tr class="separator:a3b6af078ccca43a68dc57a346e8f5e5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade51c7ee976dbe0b0da9c3947c63b4e5" id="r_ade51c7ee976dbe0b0da9c3947c63b4e5"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade51c7ee976dbe0b0da9c3947c63b4e5">motorPinIN2_Der</a></td></tr>
+<tr class="memdesc:ade51c7ee976dbe0b0da9c3947c63b4e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entrada 2 del motor derecho.  <br /></td></tr>
+<tr class="separator:ade51c7ee976dbe0b0da9c3947c63b4e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a168d8d68cf4e67da7ca572d428d48fb9" id="r_a168d8d68cf4e67da7ca572d428d48fb9"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a168d8d68cf4e67da7ca572d428d48fb9">motorPinSleep_Der</a></td></tr>
+<tr class="memdesc:a168d8d68cf4e67da7ca572d428d48fb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin de activación/reposo del motor derecho.  <br /></td></tr>
+<tr class="separator:a168d8d68cf4e67da7ca572d428d48fb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Configuración Sensore QTR-8A</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Pines analógicos asignados a la barra de sensores (S1 a S8). </p>
+</div></td></tr>
+<tr class="memitem:a7bbdb12018674ed5c695af86b5d217c4" id="r_a7bbdb12018674ed5c695af86b5d217c4"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7bbdb12018674ed5c695af86b5d217c4">S8</a></td></tr>
+<tr class="memdesc:a7bbdb12018674ed5c695af86b5d217c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin sensor 8 (Extremo).  <br /></td></tr>
+<tr class="separator:a7bbdb12018674ed5c695af86b5d217c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacecf1551eda779cc1c6e09a6eef764b" id="r_aacecf1551eda779cc1c6e09a6eef764b"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aacecf1551eda779cc1c6e09a6eef764b">S7</a></td></tr>
+<tr class="memdesc:aacecf1551eda779cc1c6e09a6eef764b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin sensor 7.  <br /></td></tr>
+<tr class="separator:aacecf1551eda779cc1c6e09a6eef764b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7983d910b22a2f02f3a4ed595b8ccc13" id="r_a7983d910b22a2f02f3a4ed595b8ccc13"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7983d910b22a2f02f3a4ed595b8ccc13">S6</a></td></tr>
+<tr class="memdesc:a7983d910b22a2f02f3a4ed595b8ccc13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin sensor 6.  <br /></td></tr>
+<tr class="separator:a7983d910b22a2f02f3a4ed595b8ccc13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f27d21e6a2077b0ec64dd2c19f73cf4" id="r_a9f27d21e6a2077b0ec64dd2c19f73cf4"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f27d21e6a2077b0ec64dd2c19f73cf4">S5</a></td></tr>
+<tr class="memdesc:a9f27d21e6a2077b0ec64dd2c19f73cf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin sensor 5 (Centro).  <br /></td></tr>
+<tr class="separator:a9f27d21e6a2077b0ec64dd2c19f73cf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acde777eb76d961291dbb04407339c2e2" id="r_acde777eb76d961291dbb04407339c2e2"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acde777eb76d961291dbb04407339c2e2">S4</a></td></tr>
+<tr class="memdesc:acde777eb76d961291dbb04407339c2e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin sensor 4 (Centro).  <br /></td></tr>
+<tr class="separator:acde777eb76d961291dbb04407339c2e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a774691cda50d8d29d88775f91df8fa90" id="r_a774691cda50d8d29d88775f91df8fa90"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a774691cda50d8d29d88775f91df8fa90">S3</a></td></tr>
+<tr class="memdesc:a774691cda50d8d29d88775f91df8fa90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin sensor 3.  <br /></td></tr>
+<tr class="separator:a774691cda50d8d29d88775f91df8fa90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a639d36256a336a55cadffeb11c014e34" id="r_a639d36256a336a55cadffeb11c014e34"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a639d36256a336a55cadffeb11c014e34">S2</a></td></tr>
+<tr class="memdesc:a639d36256a336a55cadffeb11c014e34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin sensor 2.  <br /></td></tr>
+<tr class="separator:a639d36256a336a55cadffeb11c014e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00aaec5f953e5f8be262fd49ed007d76" id="r_a00aaec5f953e5f8be262fd49ed007d76"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00aaec5f953e5f8be262fd49ed007d76">S1</a></td></tr>
+<tr class="memdesc:a00aaec5f953e5f8be262fd49ed007d76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin sensor 1 (Extremo).  <br /></td></tr>
+<tr class="separator:a00aaec5f953e5f8be262fd49ed007d76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Archivo de configuración global que define las constantes, banderas de compilación y la selección de perfil de corredor para el sistema PID. </p>
+<dl class="section author"><dt>Autor</dt><dd>Legion de Ohm </dd></dl>
+</div><h2 class="groupheader">Documentación de «define»</h2>
+<a id="a2ba455b13796d86a8eb25decafaccae9" name="a2ba455b13796d86a8eb25decafaccae9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ba455b13796d86a8eb25decafaccae9">&#9670;&#160;</a></span>ARGENTUM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ARGENTUM&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Perfil de constantes ARGENTUM. Valor: 2. </p>
+
+</div>
+</div>
+<a id="a8851a0d6ef5edc9c7ebf030cfdc8500f" name="a8851a0d6ef5edc9c7ebf030cfdc8500f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8851a0d6ef5edc9c7ebf030cfdc8500f">&#9670;&#160;</a></span>control_ir</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define control_ir</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>IR</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Macro que no ejecuta código si USAR_CONTROL_IR no está definido. </p>
+
+</div>
+</div>
+<a id="ab1eb689f09a6ae459c0367e53f96b3c2" name="ab1eb689f09a6ae459c0367e53f96b3c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1eb689f09a6ae459c0367e53f96b3c2">&#9670;&#160;</a></span>deb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define deb</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aca34268fee75456ce1fed891486eb509" name="aca34268fee75456ce1fed891486eb509"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca34268fee75456ce1fed891486eb509">&#9670;&#160;</a></span>DIEGO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DIEGO&#160;&#160;&#160;3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Perfil de constantes DIEGO. Valor: 3. </p>
+
+</div>
+</div>
+<a id="aff272c7fac0e78cdd4bbcaa85b508606" name="aff272c7fac0e78cdd4bbcaa85b508606"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff272c7fac0e78cdd4bbcaa85b508606">&#9670;&#160;</a></span>mute</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define mute</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>bz</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">bz</div>
+</div><!-- fragment -->
+<p>Macro que ejecuta la función de sonido <code>bz</code> si MUTEAR está definido. </p>
+
+</div>
+</div>
+<a id="a4c812cd18f41070703e93472552cf9c4" name="a4c812cd18f41070703e93472552cf9c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c812cd18f41070703e93472552cf9c4">&#9670;&#160;</a></span>NIGHTFALL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NIGHTFALL&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Perfil de constantes NIGHTFALL. Valor: 1. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de variables</h2>
+<a id="a7d757977cd48049afdb5f649ac99ecd0" name="a7d757977cd48049afdb5f649ac99ecd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d757977cd48049afdb5f649ac99ecd0">&#9670;&#160;</a></span>BTN_RUN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t BTN_RUN</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pin del botón de inicio de carrera. </p>
+
+</div>
+</div>
+<a id="a8c0f1ded83ee76d2d1c5e67d8382f6bd" name="a8c0f1ded83ee76d2d1c5e67d8382f6bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c0f1ded83ee76d2d1c5e67d8382f6bd">&#9670;&#160;</a></span>BTN_STOP</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t BTN_STOP</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pin del botón de parada de emergencia. </p>
+
+</div>
+</div>
+<a id="ab94a044ae6bf552465ae9ccfb9b27c04" name="ab94a044ae6bf552465ae9ccfb9b27c04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab94a044ae6bf552465ae9ccfb9b27c04">&#9670;&#160;</a></span>ledCalibracion</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t ledCalibracion</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>LED indicador durante el proceso de calibración. </p>
+
+</div>
+</div>
+<a id="ad91ea72ca9ce6b1e1bbdc49ee34aed79" name="ad91ea72ca9ce6b1e1bbdc49ee34aed79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad91ea72ca9ce6b1e1bbdc49ee34aed79">&#9670;&#160;</a></span>ledMotores</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t ledMotores</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>LED indicador de estado de los motores. </p>
+
+</div>
+</div>
+<a id="a3b6af078ccca43a68dc57a346e8f5e5f" name="a3b6af078ccca43a68dc57a346e8f5e5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b6af078ccca43a68dc57a346e8f5e5f">&#9670;&#160;</a></span>motorPinIN1_Der</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t motorPinIN1_Der</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Entrada 1 del motor derecho. </p>
+
+</div>
+</div>
+<a id="a4d03a1ac4cb100ed914cdd80f01bc9e0" name="a4d03a1ac4cb100ed914cdd80f01bc9e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d03a1ac4cb100ed914cdd80f01bc9e0">&#9670;&#160;</a></span>motorPinIN1_Izq</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t motorPinIN1_Izq</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Entrada 1 del motor izquierdo. </p>
+
+</div>
+</div>
+<a id="ade51c7ee976dbe0b0da9c3947c63b4e5" name="ade51c7ee976dbe0b0da9c3947c63b4e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade51c7ee976dbe0b0da9c3947c63b4e5">&#9670;&#160;</a></span>motorPinIN2_Der</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t motorPinIN2_Der</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Entrada 2 del motor derecho. </p>
+
+</div>
+</div>
+<a id="a22407d1452bfe93994e837127f050014" name="a22407d1452bfe93994e837127f050014"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22407d1452bfe93994e837127f050014">&#9670;&#160;</a></span>motorPinIN2_Izq</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t motorPinIN2_Izq</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Entrada 2 del motor izquierdo. </p>
+
+</div>
+</div>
+<a id="a168d8d68cf4e67da7ca572d428d48fb9" name="a168d8d68cf4e67da7ca572d428d48fb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a168d8d68cf4e67da7ca572d428d48fb9">&#9670;&#160;</a></span>motorPinSleep_Der</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t motorPinSleep_Der</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pin de activación/reposo del motor derecho. </p>
+
+</div>
+</div>
+<a id="a01fb00c1c5583a04240a38b6adc3427e" name="a01fb00c1c5583a04240a38b6adc3427e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01fb00c1c5583a04240a38b6adc3427e">&#9670;&#160;</a></span>motorPinSleep_Izq</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t motorPinSleep_Izq</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pin de activación/reposo del motor izquierdo. </p>
+
+</div>
+</div>
+<a id="adb846a29dd2e116cc22e62ff323aa7eb" name="adb846a29dd2e116cc22e62ff323aa7eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb846a29dd2e116cc22e62ff323aa7eb">&#9670;&#160;</a></span>pinBuzzer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t pinBuzzer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pin GPIO asignado al zumbador. </p>
+
+</div>
+</div>
+<a id="a00aaec5f953e5f8be262fd49ed007d76" name="a00aaec5f953e5f8be262fd49ed007d76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00aaec5f953e5f8be262fd49ed007d76">&#9670;&#160;</a></span>S1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t S1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pin sensor 1 (Extremo). </p>
+
+</div>
+</div>
+<a id="a639d36256a336a55cadffeb11c014e34" name="a639d36256a336a55cadffeb11c014e34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a639d36256a336a55cadffeb11c014e34">&#9670;&#160;</a></span>S2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t S2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pin sensor 2. </p>
+
+</div>
+</div>
+<a id="a774691cda50d8d29d88775f91df8fa90" name="a774691cda50d8d29d88775f91df8fa90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a774691cda50d8d29d88775f91df8fa90">&#9670;&#160;</a></span>S3</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t S3</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pin sensor 3. </p>
+
+</div>
+</div>
+<a id="acde777eb76d961291dbb04407339c2e2" name="acde777eb76d961291dbb04407339c2e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acde777eb76d961291dbb04407339c2e2">&#9670;&#160;</a></span>S4</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t S4</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pin sensor 4 (Centro). </p>
+
+</div>
+</div>
+<a id="a9f27d21e6a2077b0ec64dd2c19f73cf4" name="a9f27d21e6a2077b0ec64dd2c19f73cf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f27d21e6a2077b0ec64dd2c19f73cf4">&#9670;&#160;</a></span>S5</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t S5</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pin sensor 5 (Centro). </p>
+
+</div>
+</div>
+<a id="a7983d910b22a2f02f3a4ed595b8ccc13" name="a7983d910b22a2f02f3a4ed595b8ccc13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7983d910b22a2f02f3a4ed595b8ccc13">&#9670;&#160;</a></span>S6</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t S6</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pin sensor 6. </p>
+
+</div>
+</div>
+<a id="aacecf1551eda779cc1c6e09a6eef764b" name="aacecf1551eda779cc1c6e09a6eef764b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacecf1551eda779cc1c6e09a6eef764b">&#9670;&#160;</a></span>S7</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t S7</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pin sensor 7. </p>
+
+</div>
+</div>
+<a id="a7bbdb12018674ed5c695af86b5d217c4" name="a7bbdb12018674ed5c695af86b5d217c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bbdb12018674ed5c695af86b5d217c4">&#9670;&#160;</a></span>S8</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t S8</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pin sensor 8 (Extremo). </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="config_8hpp.html">config.hpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>
