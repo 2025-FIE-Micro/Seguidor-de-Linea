@@ -15,6 +15,14 @@
  El sistema está basado en un microcontrolador **ESP32**, utilizando el periférico 
  LEDC para el control PWM de los motores y timers de hardware para el tiempo de control.
 
+ @section config_sec Configuración del Proyecto (platformio.ini)
+ El comportamiento del robot se define mediante flags de compilación en el archivo de configuración:
+ 
+ - **Corredores disponibles:** Permite seleccionar entre NIGHTFALL, ARGENTUM o DIEGO.
+ - **Modos de pista:** Definición de LINEA_NEGRA o LINEA_BLANCA.
+ - **Debug:** La bandera DEBUG habilita la salida por monitor serial.
+ - **Entornos de prueba:** El proyecto incluye entornos para probar botones, lectura de sensores y control IR.
+
  @author Legion de Ohm
  @date 2025
  */

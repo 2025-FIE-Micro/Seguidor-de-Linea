@@ -11,8 +11,9 @@ var searchData=
   ['config_2ecpp_8',['config.cpp',['../config_8cpp.html',1,'']]],
   ['config_2ehpp_9',['config.hpp',['../config_8hpp.html',1,'']]],
   ['configuración_20del_20hardware_10',['Configuración del Hardware',['../index.html#setup_sec',1,'']]],
-  ['control_11',['control',['../fsm_8cpp.html#a4d31f5a8868cdbae7ffa8b386cfe7761',1,'control:&#160;fsm.cpp'],['../_prueba__maquina_estados_8cpp.html#a4d31f5a8868cdbae7ffa8b386cfe7761',1,'control:&#160;Prueba_maquinaEstados.cpp']]],
-  ['control_5fir_12',['control_ir',['../config_8hpp.html#a8851a0d6ef5edc9c7ebf030cfdc8500f',1,'control_ir:&#160;config.hpp'],['../_prueba__contro___i_r_8cpp.html#a8851a0d6ef5edc9c7ebf030cfdc8500f',1,'control_ir:&#160;Prueba_contro_IR.cpp']]],
-  ['controlmotores_13',['controlMotores',['../motores_8hpp.html#adcfe68224198cf968169275300dec7f4',1,'controlMotores(float correcion):&#160;motores.cpp'],['../motores_8cpp.html#adcfe68224198cf968169275300dec7f4',1,'controlMotores(float correcion):&#160;motores.cpp']]],
-  ['cualquiera_14',['CUALQUIERA',['../fsm_8hpp.html#a16933f9df95c0418037c4d7184797631aea15d1f110a11dbe706b2e0113108061',1,'CUALQUIERA:&#160;fsm.hpp'],['../_prueba__maquina_estados_8cpp.html#a0a26545d88471dde33a6d048939b41c7aea15d1f110a11dbe706b2e0113108061',1,'CUALQUIERA:&#160;Prueba_maquinaEstados.cpp']]]
+  ['configuración_20del_20proyecto_20platformio_20ini_11',['Configuración del Proyecto (platformio.ini)',['../index.html#config_sec',1,'']]],
+  ['control_12',['control',['../fsm_8cpp.html#a4d31f5a8868cdbae7ffa8b386cfe7761',1,'control:&#160;fsm.cpp'],['../_prueba__maquina_estados_8cpp.html#a4d31f5a8868cdbae7ffa8b386cfe7761',1,'control:&#160;Prueba_maquinaEstados.cpp']]],
+  ['control_5fir_13',['control_ir',['../config_8hpp.html#a8851a0d6ef5edc9c7ebf030cfdc8500f',1,'control_ir:&#160;config.hpp'],['../_prueba__contro___i_r_8cpp.html#a8851a0d6ef5edc9c7ebf030cfdc8500f',1,'control_ir:&#160;Prueba_contro_IR.cpp']]],
+  ['controlmotores_14',['controlMotores',['../motores_8hpp.html#adcfe68224198cf968169275300dec7f4',1,'controlMotores(float correcion):&#160;motores.cpp'],['../motores_8cpp.html#adcfe68224198cf968169275300dec7f4',1,'controlMotores(float correcion):&#160;motores.cpp']]],
+  ['cualquiera_15',['CUALQUIERA',['../fsm_8hpp.html#a16933f9df95c0418037c4d7184797631aea15d1f110a11dbe706b2e0113108061',1,'CUALQUIERA:&#160;fsm.hpp'],['../_prueba__maquina_estados_8cpp.html#a0a26545d88471dde33a6d048939b41c7aea15d1f110a11dbe706b2e0113108061',1,'CUALQUIERA:&#160;Prueba_maquinaEstados.cpp']]]
 ];

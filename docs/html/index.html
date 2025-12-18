@@ -115,6 +115,15 @@ Características Principales</h1>
 <h1 class="doxsection"><a class="anchor" id="setup_sec"></a>
 Configuración del Hardware</h1>
 <p>El sistema está basado en un microcontrolador <b>ESP32</b>, utilizando el periférico LEDC para el control PWM de los motores y timers de hardware para el tiempo de control.</p>
+<h1 class="doxsection"><a class="anchor" id="config_sec"></a>
+Configuración del Proyecto (platformio.ini)</h1>
+<p>El comportamiento del robot se define mediante flags de compilación en el archivo de configuración:</p>
+<ul>
+<li><b>Corredores disponibles:</b> Permite seleccionar entre NIGHTFALL, ARGENTUM o DIEGO.</li>
+<li><b>Modos de pista:</b> Definición de LINEA_NEGRA o LINEA_BLANCA.</li>
+<li><b>Debug:</b> La bandera DEBUG habilita la salida por monitor serial.</li>
+<li><b>Entornos de prueba:</b> El proyecto incluye entornos para probar botones, lectura de sensores y control IR.</li>
+</ul>
 <dl class="section author"><dt>Autor</dt><dd>Legion de Ohm </dd></dl>
 <dl class="section date"><dt>Fecha</dt><dd>2025 </dd></dl>
 </div></div><!-- PageDoc -->

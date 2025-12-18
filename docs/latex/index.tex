@@ -9,7 +9,16 @@ Este proyecto consiste en un controlador de movimiento para un robot {\bfseries{
 \item {\bfseries{Sensores QTR\+:}} Lectura reflectiva de alta precisión con calibración dinámica.
 \item {\bfseries{Configuración Flexible\+:}} Perfiles de corredor seleccionables (Nightfall, Argentum, Diego).
 \end{DoxyItemize}\hypertarget{index_setup_sec}{}\doxysection{\texorpdfstring{Configuración del Hardware}{Configuración del Hardware}}\label{index_setup_sec}
-El sistema está basado en un microcontrolador {\bfseries{ESP32}}, utilizando el periférico LEDC para el control PWM de los motores y timers de hardware para el tiempo de control.
+El sistema está basado en un microcontrolador {\bfseries{ESP32}}, utilizando el periférico LEDC para el control PWM de los motores y timers de hardware para el tiempo de control.\hypertarget{index_config_sec}{}\doxysection{\texorpdfstring{Configuración del Proyecto (platformio.\+ini)}{Configuración del Proyecto (platformio.\+ini)}}\label{index_config_sec}
+El comportamiento del robot se define mediante flags de compilación en el archivo de configuración\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Corredores disponibles\+:}} Permite seleccionar entre NIGHTFALL, ARGENTUM o DIEGO.
+\item {\bfseries{Modos de pista\+:}} Definición de LINEA\+\_\+\+NEGRA o LINEA\+\_\+\+BLANCA.
+\item {\bfseries{Debug\+:}} La bandera DEBUG habilita la salida por monitor serial.
+\item {\bfseries{Entornos de prueba\+:}} El proyecto incluye entornos para probar botones, lectura de sensores y control IR.
+\end{DoxyItemize}
 
 \begin{DoxyAuthor}{Autor}
 Legion de Ohm 

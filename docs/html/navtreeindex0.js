@@ -200,6 +200,7 @@ var NAVTREEINDEX0 =
 "globals_z.html":[2,1,0,19],
 "index.html":[],
 "index.html":[0],
+"index.html#config_sec":[0,3],
 "index.html#features_sec":[0,1],
 "index.html#intro_sec":[0,0],
 "index.html#setup_sec":[0,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "motores_8hpp.html#a1b7806663c5c1c52ee5701de3732eb4c":[2,0,0,4,7],
 "motores_8hpp.html#a3a34de80ed478cc6153902b826ed10b4":[2,0,0,4,2],
 "motores_8hpp.html#a50180c6c6f9d0c7ff26a63f1f0614341":[2,0,0,4,1],
-"motores_8hpp.html#a58db9358a9523f93d0f2a138dc5f832d":[2,0,0,4,4],
-"motores_8hpp.html#a6776412dc1eb9b05853ba2566af78500":[2,0,0,4,6]
+"motores_8hpp.html#a58db9358a9523f93d0f2a138dc5f832d":[2,0,0,4,4]
 };
