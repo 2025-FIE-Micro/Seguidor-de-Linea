@@ -1,0 +1,47 @@
+\doxysection{Referencia del archivo src/buzzer.cpp}
+\hypertarget{buzzer_8cpp}{}\label{buzzer_8cpp}\index{src/buzzer.cpp@{src/buzzer.cpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}buzzer.\+hpp"{}}\newline
+{\ttfamily \#include "{}config.\+hpp"{}}\newline
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{buzzer_8cpp_abf84413778a2c7141215a5066ef6d6ce}{setup\+Buzzer}} (uint16\+\_\+t freq, uint8\+\_\+t resolution)
+\begin{DoxyCompactList}\small\item\em Función de conveniencia para inicializar la instancia global del buzzer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_buzzer}{Buzzer}} \mbox{\hyperlink{buzzer_8cpp_ac758f719659b146d523295c79fcfd771}{buzzer}} (\mbox{\hyperlink{config_8cpp_adb846a29dd2e116cc22e62ff323aa7eb}{pin\+Buzzer}}, 2)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentación de funciones}
+\Hypertarget{buzzer_8cpp_abf84413778a2c7141215a5066ef6d6ce}\index{buzzer.cpp@{buzzer.cpp}!setupBuzzer@{setupBuzzer}}
+\index{setupBuzzer@{setupBuzzer}!buzzer.cpp@{buzzer.cpp}}
+\doxysubsubsection{\texorpdfstring{setupBuzzer()}{setupBuzzer()}}
+{\footnotesize\ttfamily \label{buzzer_8cpp_abf84413778a2c7141215a5066ef6d6ce} 
+void setup\+Buzzer (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{freq}{ = {\ttfamily 2000}, }\item[{uint8\+\_\+t}]{resolution}{ = {\ttfamily 8}}\end{DoxyParamCaption})}
+
+
+
+Función de conveniencia para inicializar la instancia global del buzzer. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em freq} & Frecuencia base inicial (por defecto\+: 2000 Hz). \\
+\hline
+{\em resolution} & Resolución del PWM (por defecto\+: 8 bits). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentación de variables}
+\Hypertarget{buzzer_8cpp_ac758f719659b146d523295c79fcfd771}\index{buzzer.cpp@{buzzer.cpp}!buzzer@{buzzer}}
+\index{buzzer@{buzzer}!buzzer.cpp@{buzzer.cpp}}
+\doxysubsubsection{\texorpdfstring{buzzer}{buzzer}}
+{\footnotesize\ttfamily \label{buzzer_8cpp_ac758f719659b146d523295c79fcfd771} 
+\mbox{\hyperlink{class_buzzer}{Buzzer}} buzzer(\mbox{\hyperlink{config_8cpp_adb846a29dd2e116cc22e62ff323aa7eb}{pin\+Buzzer}}, 2) (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{config_8cpp_adb846a29dd2e116cc22e62ff323aa7eb}{pin\+Buzzer}}}]{}{, }\item[{2}]{}{}\end{DoxyParamCaption})}
+

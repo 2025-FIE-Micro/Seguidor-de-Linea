@@ -1,0 +1,165 @@
+\doxysection{Referencia del archivo include/pid.hpp}
+\hypertarget{pid_8hpp}{}\label{pid_8hpp}\index{include/pid.hpp@{include/pid.hpp}}
+
+
+Cabecera para las variables y funciones del controlador Proporcional-\/\+Integral-\/\+Derivativo (PID). Contiene las declaraciones de las variables de estado (error, integral, tiempo) y la función principal para calcular la corrección necesaria para seguir la línea.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{pid_8hpp_aaa3441d50a3a4f31e76e5014882b3a95}{calculo\+\_\+pid}} (uint16\+\_\+t pos, float delta\+Time)
+\begin{DoxyCompactList}\small\item\em Calcula la corrección necesaria para el sistema usando la fórmula PID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pid_8hpp_a02e48c71c98d7a877bf3f9d37b6d4c39}{reiniciar\+\_\+pid}} ()
+\begin{DoxyCompactList}\small\item\em Resetea las variables internas del controlador (error acumulado y error anterior). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{pid_8hpp_a8b6f34837979e0ebe80423697c0250f8}{setpoint}}
+\begin{DoxyCompactList}\small\item\em Valor de referencia (punto de consigna) que representa la posición central sobre la línea. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{pid_8hpp_aab7a8228729d5377011a111f72bef773}{zona\+Muerta}}
+\begin{DoxyCompactList}\small\item\em Rango de error dentro del cual el controlador no realiza correcciones para evitar oscilaciones innecesarias. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{pid_8hpp_ab2b0c78a81e045d7a8f28be307b8c61b}{base\+Speed}}
+\begin{DoxyCompactList}\small\item\em Velocidad crucero nominal de los motores cuando el error es mayor a la zona muerta. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Parámetros de Sintonización}\par
+{\em Constantes calculadas mediante el método de Ziegler-\/\+Nichols para estabilizar el sistema. }\begin{DoxyCompactItemize}
+\item 
+const float \mbox{\hyperlink{pid_8hpp_ae0fd140825889f1a7ed103b66c28ce38}{Ku}}
+\begin{DoxyCompactList}\small\item\em Ganancia última (Ultimate Gain). \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{pid_8hpp_a38eca5301b0c8380eaea74f460237a09}{Tu}}
+\begin{DoxyCompactList}\small\item\em Periodo de oscilación última (Ultimate Period). \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{pid_8hpp_a790f9df599f1d6c92855645c65a0cccc}{Kp}}
+\begin{DoxyCompactList}\small\item\em Constante Proporcional. \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{pid_8hpp_a0534f74e5e04a4433256a6d9bb982d2e}{Ki}}
+\begin{DoxyCompactList}\small\item\em Constante Integral. \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{pid_8hpp_ad76756e0056f2f5ec10057052cbed3c9}{Kd}}
+\begin{DoxyCompactList}\small\item\em Constante Derivativa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Descripción detallada}
+Cabecera para las variables y funciones del controlador Proporcional-\/\+Integral-\/\+Derivativo (PID). Contiene las declaraciones de las variables de estado (error, integral, tiempo) y la función principal para calcular la corrección necesaria para seguir la línea. 
+
+\begin{DoxyAuthor}{Autor}
+Legion de Ohm 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Documentación de funciones}
+\Hypertarget{pid_8hpp_aaa3441d50a3a4f31e76e5014882b3a95}\index{pid.hpp@{pid.hpp}!calculo\_pid@{calculo\_pid}}
+\index{calculo\_pid@{calculo\_pid}!pid.hpp@{pid.hpp}}
+\doxysubsubsection{\texorpdfstring{calculo\_pid()}{calculo\_pid()}}
+{\footnotesize\ttfamily \label{pid_8hpp_aaa3441d50a3a4f31e76e5014882b3a95} 
+float calculo\+\_\+pid (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{pos}{, }\item[{float}]{delta\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Calcula la corrección necesaria para el sistema usando la fórmula PID. 
+
+La salida es la corrección que se suma o resta de la velocidad base de los motores. La fórmula general aplicada es\+: \[ \text{Salida} = K_p \cdot \text{Error} + K_i \cdot \int \text{Error} \, dt + K_d \cdot \frac{d\text{Error}}{dt} \] 
+\begin{DoxyParams}{Parámetros}
+{\em pos} & Posición actual leída por los sensores. \\
+\hline
+{\em delta\+Time} & Tiempo transcurrido ( $ \Delta T $) desde la última ejecución en segundos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+float Valor de corrección PID a aplicar a las velocidades de los motores. 
+\end{DoxyReturn}
+\Hypertarget{pid_8hpp_a02e48c71c98d7a877bf3f9d37b6d4c39}\index{pid.hpp@{pid.hpp}!reiniciar\_pid@{reiniciar\_pid}}
+\index{reiniciar\_pid@{reiniciar\_pid}!pid.hpp@{pid.hpp}}
+\doxysubsubsection{\texorpdfstring{reiniciar\_pid()}{reiniciar\_pid()}}
+{\footnotesize\ttfamily \label{pid_8hpp_a02e48c71c98d7a877bf3f9d37b6d4c39} 
+void reiniciar\+\_\+pid (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Resetea las variables internas del controlador (error acumulado y error anterior). 
+
+Es fundamental llamar a esta función al reiniciar la marcha o tras una parada para evitar el "{}\+Windup"{} de la parte integral. \begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentación de variables}
+\Hypertarget{pid_8hpp_ab2b0c78a81e045d7a8f28be307b8c61b}\index{pid.hpp@{pid.hpp}!baseSpeed@{baseSpeed}}
+\index{baseSpeed@{baseSpeed}!pid.hpp@{pid.hpp}}
+\doxysubsubsection{\texorpdfstring{baseSpeed}{baseSpeed}}
+{\footnotesize\ttfamily \label{pid_8hpp_ab2b0c78a81e045d7a8f28be307b8c61b} 
+uint8\+\_\+t base\+Speed\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Velocidad crucero nominal de los motores cuando el error es mayor a la zona muerta. 
+
+\Hypertarget{pid_8hpp_ad76756e0056f2f5ec10057052cbed3c9}\index{pid.hpp@{pid.hpp}!Kd@{Kd}}
+\index{Kd@{Kd}!pid.hpp@{pid.hpp}}
+\doxysubsubsection{\texorpdfstring{Kd}{Kd}}
+{\footnotesize\ttfamily \label{pid_8hpp_ad76756e0056f2f5ec10057052cbed3c9} 
+const float Kd\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Constante Derivativa. 
+
+\Hypertarget{pid_8hpp_a0534f74e5e04a4433256a6d9bb982d2e}\index{pid.hpp@{pid.hpp}!Ki@{Ki}}
+\index{Ki@{Ki}!pid.hpp@{pid.hpp}}
+\doxysubsubsection{\texorpdfstring{Ki}{Ki}}
+{\footnotesize\ttfamily \label{pid_8hpp_a0534f74e5e04a4433256a6d9bb982d2e} 
+const float Ki\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Constante Integral. 
+
+\Hypertarget{pid_8hpp_a790f9df599f1d6c92855645c65a0cccc}\index{pid.hpp@{pid.hpp}!Kp@{Kp}}
+\index{Kp@{Kp}!pid.hpp@{pid.hpp}}
+\doxysubsubsection{\texorpdfstring{Kp}{Kp}}
+{\footnotesize\ttfamily \label{pid_8hpp_a790f9df599f1d6c92855645c65a0cccc} 
+const float Kp\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Constante Proporcional. 
+
+\Hypertarget{pid_8hpp_ae0fd140825889f1a7ed103b66c28ce38}\index{pid.hpp@{pid.hpp}!Ku@{Ku}}
+\index{Ku@{Ku}!pid.hpp@{pid.hpp}}
+\doxysubsubsection{\texorpdfstring{Ku}{Ku}}
+{\footnotesize\ttfamily \label{pid_8hpp_ae0fd140825889f1a7ed103b66c28ce38} 
+const float Ku\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Ganancia última (Ultimate Gain). 
+
+\Hypertarget{pid_8hpp_a8b6f34837979e0ebe80423697c0250f8}\index{pid.hpp@{pid.hpp}!setpoint@{setpoint}}
+\index{setpoint@{setpoint}!pid.hpp@{pid.hpp}}
+\doxysubsubsection{\texorpdfstring{setpoint}{setpoint}}
+{\footnotesize\ttfamily \label{pid_8hpp_a8b6f34837979e0ebe80423697c0250f8} 
+uint16\+\_\+t setpoint\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Valor de referencia (punto de consigna) que representa la posición central sobre la línea. 
+
+\Hypertarget{pid_8hpp_a38eca5301b0c8380eaea74f460237a09}\index{pid.hpp@{pid.hpp}!Tu@{Tu}}
+\index{Tu@{Tu}!pid.hpp@{pid.hpp}}
+\doxysubsubsection{\texorpdfstring{Tu}{Tu}}
+{\footnotesize\ttfamily \label{pid_8hpp_a38eca5301b0c8380eaea74f460237a09} 
+const float Tu\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Periodo de oscilación última (Ultimate Period). 
+
+\Hypertarget{pid_8hpp_aab7a8228729d5377011a111f72bef773}\index{pid.hpp@{pid.hpp}!zonaMuerta@{zonaMuerta}}
+\index{zonaMuerta@{zonaMuerta}!pid.hpp@{pid.hpp}}
+\doxysubsubsection{\texorpdfstring{zonaMuerta}{zonaMuerta}}
+{\footnotesize\ttfamily \label{pid_8hpp_aab7a8228729d5377011a111f72bef773} 
+uint16\+\_\+t zona\+Muerta\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Rango de error dentro del cual el controlador no realiza correcciones para evitar oscilaciones innecesarias. 
+

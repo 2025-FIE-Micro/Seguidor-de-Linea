@@ -1,0 +1,136 @@
+\doxysection{Referencia del archivo src/motores.cpp}
+\hypertarget{motores_8cpp}{}\label{motores_8cpp}\index{src/motores.cpp@{src/motores.cpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}sensores.\+hpp"{}}\newline
+{\ttfamily \#include "{}config.\+hpp"{}}\newline
+{\ttfamily \#include "{}motores.\+hpp"{}}\newline
+{\ttfamily \#include "{}pid.\+hpp"{}}\newline
+{\ttfamily \#include "{}interrupciones.\+hpp"{}}\newline
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{motores_8cpp_a6776412dc1eb9b05853ba2566af78500}{setup\+Motores}} ()
+\begin{DoxyCompactList}\small\item\em Inicializa los objetos de los motores y configura sus periféricos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motores_8cpp_a9d98237426c9fb3c44711508dd0bdd3e}{mover\+Motores}} (int32\+\_\+t \mbox{\hyperlink{motores_8cpp_a6abf0890e5cb283ee239088e602420c6}{motor\+Speed\+Izq}}, int32\+\_\+t \mbox{\hyperlink{motores_8cpp_a9bafa76643a24230be378bcd0ddf03ba}{motor\+Speed\+Der}})
+\begin{DoxyCompactList}\small\item\em Mueve los motores aplicando directamente los valores de velocidad. Esta función es la interfaz de bajo nivel que llama a las funciones {\ttfamily forward} / {\ttfamily reverse}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motores_8cpp_a58db9358a9523f93d0f2a138dc5f832d}{detener\+Motores}} ()
+\begin{DoxyCompactList}\small\item\em Detiene ambos motores de forma inmediata enviando una señal de parada a los drivers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motores_8cpp_a3a34de80ed478cc6153902b826ed10b4}{actualizar\+SP}} (uint16\+\_\+t pos)
+\begin{DoxyCompactList}\small\item\em Actualiza el Set\+Point (punto de referencia) del sistema de control según la posición actual del robot. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motores_8cpp_adcfe68224198cf968169275300dec7f4}{control\+Motores}} (float correcion)
+\begin{DoxyCompactList}\small\item\em Función principal de control que calcula la velocidad final de cada motor basándose en la corrección PID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int32\+\_\+t \mbox{\hyperlink{motores_8cpp_a6abf0890e5cb283ee239088e602420c6}{motor\+Speed\+Izq}} = 0
+\begin{DoxyCompactList}\small\item\em Velocidad final del motor izquierdo calculada tras el PID. Positivo = avance, Negativo = reversa. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motores_8cpp_a9bafa76643a24230be378bcd0ddf03ba}{motor\+Speed\+Der}} = 0
+\begin{DoxyCompactList}\small\item\em Velocidad final del motor derecho calculada tras el PID. Positivo = avance, Negativo = reversa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentación de funciones}
+\Hypertarget{motores_8cpp_a3a34de80ed478cc6153902b826ed10b4}\index{motores.cpp@{motores.cpp}!actualizarSP@{actualizarSP}}
+\index{actualizarSP@{actualizarSP}!motores.cpp@{motores.cpp}}
+\doxysubsubsection{\texorpdfstring{actualizarSP()}{actualizarSP()}}
+{\footnotesize\ttfamily \label{motores_8cpp_a3a34de80ed478cc6153902b826ed10b4} 
+void actualizar\+SP (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{pos}{}\end{DoxyParamCaption})}
+
+
+
+Actualiza el Set\+Point (punto de referencia) del sistema de control según la posición actual del robot. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pos} & Posición actual leída por la barra de sensores. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{motores_8cpp_adcfe68224198cf968169275300dec7f4}\index{motores.cpp@{motores.cpp}!controlMotores@{controlMotores}}
+\index{controlMotores@{controlMotores}!motores.cpp@{motores.cpp}}
+\doxysubsubsection{\texorpdfstring{controlMotores()}{controlMotores()}}
+{\footnotesize\ttfamily \label{motores_8cpp_adcfe68224198cf968169275300dec7f4} 
+void control\+Motores (\begin{DoxyParamCaption}\item[{float}]{correcion}{}\end{DoxyParamCaption})}
+
+
+
+Función principal de control que calcula la velocidad final de cada motor basándose en la corrección PID. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em correcion} & Valor de salida del algoritmo PID (error corregido). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{motores_8cpp_a58db9358a9523f93d0f2a138dc5f832d}\index{motores.cpp@{motores.cpp}!detenerMotores@{detenerMotores}}
+\index{detenerMotores@{detenerMotores}!motores.cpp@{motores.cpp}}
+\doxysubsubsection{\texorpdfstring{detenerMotores()}{detenerMotores()}}
+{\footnotesize\ttfamily \label{motores_8cpp_a58db9358a9523f93d0f2a138dc5f832d} 
+void detener\+Motores (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Detiene ambos motores de forma inmediata enviando una señal de parada a los drivers. 
+
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{motores_8cpp_a9d98237426c9fb3c44711508dd0bdd3e}\index{motores.cpp@{motores.cpp}!moverMotores@{moverMotores}}
+\index{moverMotores@{moverMotores}!motores.cpp@{motores.cpp}}
+\doxysubsubsection{\texorpdfstring{moverMotores()}{moverMotores()}}
+{\footnotesize\ttfamily \label{motores_8cpp_a9d98237426c9fb3c44711508dd0bdd3e} 
+void mover\+Motores (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{motor\+Speed\+Izq}{, }\item[{int32\+\_\+t}]{motor\+Speed\+Der}{}\end{DoxyParamCaption})}
+
+
+
+Mueve los motores aplicando directamente los valores de velocidad. Esta función es la interfaz de bajo nivel que llama a las funciones {\ttfamily forward} / {\ttfamily reverse}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em motor\+Speed\+Izq} & Velocidad (PWM) final para el motor izquierdo. \\
+\hline
+{\em motor\+Speed\+Der} & Velocidad (PWM) final para el motor derecho. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{motores_8cpp_a6776412dc1eb9b05853ba2566af78500}\index{motores.cpp@{motores.cpp}!setupMotores@{setupMotores}}
+\index{setupMotores@{setupMotores}!motores.cpp@{motores.cpp}}
+\doxysubsubsection{\texorpdfstring{setupMotores()}{setupMotores()}}
+{\footnotesize\ttfamily \label{motores_8cpp_a6776412dc1eb9b05853ba2566af78500} 
+void setup\+Motores (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa los objetos de los motores y configura sus periféricos. 
+
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentación de variables}
+\Hypertarget{motores_8cpp_a9bafa76643a24230be378bcd0ddf03ba}\index{motores.cpp@{motores.cpp}!motorSpeedDer@{motorSpeedDer}}
+\index{motorSpeedDer@{motorSpeedDer}!motores.cpp@{motores.cpp}}
+\doxysubsubsection{\texorpdfstring{motorSpeedDer}{motorSpeedDer}}
+{\footnotesize\ttfamily \label{motores_8cpp_a9bafa76643a24230be378bcd0ddf03ba} 
+int32\+\_\+t motor\+Speed\+Der = 0}
+
+
+
+Velocidad final del motor derecho calculada tras el PID. Positivo = avance, Negativo = reversa. 
+
+\Hypertarget{motores_8cpp_a6abf0890e5cb283ee239088e602420c6}\index{motores.cpp@{motores.cpp}!motorSpeedIzq@{motorSpeedIzq}}
+\index{motorSpeedIzq@{motorSpeedIzq}!motores.cpp@{motores.cpp}}
+\doxysubsubsection{\texorpdfstring{motorSpeedIzq}{motorSpeedIzq}}
+{\footnotesize\ttfamily \label{motores_8cpp_a6abf0890e5cb283ee239088e602420c6} 
+int32\+\_\+t motor\+Speed\+Izq = 0}
+
+
+
+Velocidad final del motor izquierdo calculada tras el PID. Positivo = avance, Negativo = reversa. 
+

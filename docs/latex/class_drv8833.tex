@@ -1,0 +1,126 @@
+\doxysection{Referencia de la clase Drv8833}
+\hypertarget{class_drv8833}{}\label{class_drv8833}\index{Drv8833@{Drv8833}}
+
+
+Clase para drivers de motores DRV8833. Incluye funciones que permiten configurar sus pines, ajustar el PWM y el movimiento de los motores.  
+
+
+
+
+{\ttfamily \#include $<$motores.\+hpp$>$}
+
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_drv8833_aa56746ae518b37ed1ab33885bba82da0}{Drv8833}} ()
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_drv8833}{Drv8833}. Inicializa el objeto y prepara la habilitación de los motores. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drv8833_aaa709b8d35a36bcc162402f362c0ee96}{setup}} (uint8\+\_\+t pin\+IN1, uint8\+\_\+t pin\+IN2, uint8\+\_\+t pin\+Sleep, uint8\+\_\+t ch\+PWM, uint32\+\_\+t freq\+PWM, uint8\+\_\+t res\+PWM)
+\begin{DoxyCompactList}\small\item\em Configura los pines de control del motor y los parámetros del PWM. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drv8833_a8967dc4a73f58ba459dd2aefd1822a79}{forward}} (uint8\+\_\+t p\+PWM)
+\begin{DoxyCompactList}\small\item\em Mueve el motor hacia adelante con una potencia específica. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drv8833_a672ca702073512e3d8251fec005f3c44}{reverse}} (uint8\+\_\+t p\+PWM)
+\begin{DoxyCompactList}\small\item\em Mueve el motor hacia atrás con una potencia específica. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_drv8833_abc7d60f6a11b79fe1ff5ce59c3f11cc7}{stop}} ()
+\begin{DoxyCompactList}\small\item\em Detiene el motor por completo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Clase para drivers de motores DRV8833. Incluye funciones que permiten configurar sus pines, ajustar el PWM y el movimiento de los motores. 
+
+\doxysubsection{Documentación de constructores y destructores}
+\Hypertarget{class_drv8833_aa56746ae518b37ed1ab33885bba82da0}\index{Drv8833@{Drv8833}!Drv8833@{Drv8833}}
+\index{Drv8833@{Drv8833}!Drv8833@{Drv8833}}
+\doxysubsubsection{\texorpdfstring{Drv8833()}{Drv8833()}}
+{\footnotesize\ttfamily \label{class_drv8833_aa56746ae518b37ed1ab33885bba82da0} 
+Drv8833\+::\+Drv8833 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor de la clase \doxylink{class_drv8833}{Drv8833}. Inicializa el objeto y prepara la habilitación de los motores. 
+
+
+
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_drv8833_a8967dc4a73f58ba459dd2aefd1822a79}\index{Drv8833@{Drv8833}!forward@{forward}}
+\index{forward@{forward}!Drv8833@{Drv8833}}
+\doxysubsubsection{\texorpdfstring{forward()}{forward()}}
+{\footnotesize\ttfamily \label{class_drv8833_a8967dc4a73f58ba459dd2aefd1822a79} 
+void Drv8833\+::forward (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{p\+PWM}{}\end{DoxyParamCaption})}
+
+
+
+Mueve el motor hacia adelante con una potencia específica. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em p\+PWM} & Porcentaje de potencia a aplicar \mbox{[}0 a 100\mbox{]} \%. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_drv8833_a672ca702073512e3d8251fec005f3c44}\index{Drv8833@{Drv8833}!reverse@{reverse}}
+\index{reverse@{reverse}!Drv8833@{Drv8833}}
+\doxysubsubsection{\texorpdfstring{reverse()}{reverse()}}
+{\footnotesize\ttfamily \label{class_drv8833_a672ca702073512e3d8251fec005f3c44} 
+void Drv8833\+::reverse (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{p\+PWM}{}\end{DoxyParamCaption})}
+
+
+
+Mueve el motor hacia atrás con una potencia específica. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em p\+PWM} & Porcentaje de potencia a aplicar \mbox{[}0 a 100\mbox{]} \%. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_drv8833_aaa709b8d35a36bcc162402f362c0ee96}\index{Drv8833@{Drv8833}!setup@{setup}}
+\index{setup@{setup}!Drv8833@{Drv8833}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{class_drv8833_aaa709b8d35a36bcc162402f362c0ee96} 
+void Drv8833\+::setup (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{pin\+IN1}{, }\item[{uint8\+\_\+t}]{pin\+IN2}{, }\item[{uint8\+\_\+t}]{pin\+Sleep}{, }\item[{uint8\+\_\+t}]{ch\+PWM}{, }\item[{uint32\+\_\+t}]{freq\+PWM}{, }\item[{uint8\+\_\+t}]{res\+PWM}{}\end{DoxyParamCaption})}
+
+
+
+Configura los pines de control del motor y los parámetros del PWM. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pin\+IN1} & GPIO conectado al pin IN1 del driver. \\
+\hline
+{\em pin\+IN2} & GPIO conectado al pin IN2 del driver. \\
+\hline
+{\em pin\+Sleep} & GPIO conectado al pin Sleep del driver (control de modo de bajo consumo). \\
+\hline
+{\em ch\+PWM} & Canal PWM de hardware a utilizar (ESP32). \\
+\hline
+{\em freq\+PWM} & Frecuencia de la señal PWM en Hz. \\
+\hline
+{\em res\+PWM} & Resolución de la señal PWM en bits. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_drv8833_abc7d60f6a11b79fe1ff5ce59c3f11cc7}\index{Drv8833@{Drv8833}!stop@{stop}}
+\index{stop@{stop}!Drv8833@{Drv8833}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \label{class_drv8833_abc7d60f6a11b79fe1ff5ce59c3f11cc7} 
+void Drv8833\+::stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Detiene el motor por completo. 
+
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+
+
+La documentación de esta clase está generada de los siguientes archivos\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{motores_8hpp}{motores.\+hpp}}\item 
+src/\mbox{\hyperlink{motores_8cpp}{motores.\+cpp}}\end{DoxyCompactItemize}

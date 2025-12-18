@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Seguidor de Línea: Referencia del archivo test/prueba_contro_IR.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+window.MathJax = {
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Seguidor de Línea
+   </div>
+   <div id="projectbrief">Controlador de movimiento de Seguidor de Línea usando PID para competencia de robótica.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('prueba__contro___i_r_8cpp.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">defines</a> &#124;
+<a href="#func-members">Funciones</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Referencia del archivo prueba_contro_IR.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
+<code>#include &lt;IRremote.hpp&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:a214f742fc735c29dbf970e16611a095f" id="r_a214f742fc735c29dbf970e16611a095f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a214f742fc735c29dbf970e16611a095f">LED_EXTERNAL</a>&#160;&#160;&#160;13</td></tr>
+<tr class="separator:a214f742fc735c29dbf970e16611a095f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add532b97f503429f7bd807c5731cfe53" id="r_add532b97f503429f7bd807c5731cfe53"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add532b97f503429f7bd807c5731cfe53">BTN_ON</a>&#160;&#160;&#160;19</td></tr>
+<tr class="separator:add532b97f503429f7bd807c5731cfe53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d46f05dd7b4d7c7a73237f20842b810" id="r_a1d46f05dd7b4d7c7a73237f20842b810"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d46f05dd7b4d7c7a73237f20842b810">BTN_OFF</a>&#160;&#160;&#160;22</td></tr>
+<tr class="separator:a1d46f05dd7b4d7c7a73237f20842b810"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b0a1d1d72b10a9c0c95adeb235d19f4" id="r_a3b0a1d1d72b10a9c0c95adeb235d19f4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b0a1d1d72b10a9c0c95adeb235d19f4">IR_PIN</a>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:a3b0a1d1d72b10a9c0c95adeb235d19f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad22b3834e4e8a59a072b1b630b2a0cb7" id="r_ad22b3834e4e8a59a072b1b630b2a0cb7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad22b3834e4e8a59a072b1b630b2a0cb7">CMD_ON</a>&#160;&#160;&#160;0x18</td></tr>
+<tr class="separator:ad22b3834e4e8a59a072b1b630b2a0cb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a216d50141d4a94c1ce96eafd87cf8e1a" id="r_a216d50141d4a94c1ce96eafd87cf8e1a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a216d50141d4a94c1ce96eafd87cf8e1a">RAW_ON</a>&#160;&#160;&#160;0xE718FF00</td></tr>
+<tr class="separator:a216d50141d4a94c1ce96eafd87cf8e1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48422ade9d3e69812b682755ed27b51d" id="r_a48422ade9d3e69812b682755ed27b51d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48422ade9d3e69812b682755ed27b51d">CMD_OFF</a>&#160;&#160;&#160;0x1C</td></tr>
+<tr class="separator:a48422ade9d3e69812b682755ed27b51d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e348cdba02e89e70f98e16e283007e1" id="r_a8e348cdba02e89e70f98e16e283007e1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e348cdba02e89e70f98e16e283007e1">RAW_OFF</a>&#160;&#160;&#160;0xE31CFF00</td></tr>
+<tr class="separator:a8e348cdba02e89e70f98e16e283007e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eaf83e62ca1ec14900f44dd3b298a73" id="r_a9eaf83e62ca1ec14900f44dd3b298a73"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9eaf83e62ca1ec14900f44dd3b298a73">USAR_CONTROL_IR</a></td></tr>
+<tr class="memdesc:a9eaf83e62ca1ec14900f44dd3b298a73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bandera de compilación para habilitar la lógica de control remoto IR. Si no está definido, todo el código relacionado con la recepción IR se ignora.  <br /></td></tr>
+<tr class="separator:a9eaf83e62ca1ec14900f44dd3b298a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8851a0d6ef5edc9c7ebf030cfdc8500f" id="r_a8851a0d6ef5edc9c7ebf030cfdc8500f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8851a0d6ef5edc9c7ebf030cfdc8500f">control_ir</a>(IR)</td></tr>
+<tr class="separator:a8851a0d6ef5edc9c7ebf030cfdc8500f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:a874207ed40332f6909664827e57ea070" id="r_a874207ed40332f6909664827e57ea070"><td class="memItemLeft" align="right" valign="top">void IRAM_ATTR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a874207ed40332f6909664827e57ea070">handleOn</a> ()</td></tr>
+<tr class="separator:a874207ed40332f6909664827e57ea070"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a817f4d032bbcd8cd69c4096856d117ad" id="r_a817f4d032bbcd8cd69c4096856d117ad"><td class="memItemLeft" align="right" valign="top">void IRAM_ATTR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a817f4d032bbcd8cd69c4096856d117ad">handleOff</a> ()</td></tr>
+<tr class="separator:a817f4d032bbcd8cd69c4096856d117ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fc01d736fe50cf5b977f755b675f11d" id="r_a4fc01d736fe50cf5b977f755b675f11d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d">setup</a> ()</td></tr>
+<tr class="separator:a4fc01d736fe50cf5b977f755b675f11d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe461d27b9c48d5921c00d521181f12f" id="r_afe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe461d27b9c48d5921c00d521181f12f">loop</a> ()</td></tr>
+<tr class="separator:afe461d27b9c48d5921c00d521181f12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a721652ea8495ead65724ceff69063b9a" id="r_a721652ea8495ead65724ceff69063b9a"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a721652ea8495ead65724ceff69063b9a">ledState</a> = false</td></tr>
+<tr class="separator:a721652ea8495ead65724ceff69063b9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentación de «define»</h2>
+<a id="a1d46f05dd7b4d7c7a73237f20842b810" name="a1d46f05dd7b4d7c7a73237f20842b810"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d46f05dd7b4d7c7a73237f20842b810">&#9670;&#160;</a></span>BTN_OFF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BTN_OFF&#160;&#160;&#160;22</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="add532b97f503429f7bd807c5731cfe53" name="add532b97f503429f7bd807c5731cfe53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add532b97f503429f7bd807c5731cfe53">&#9670;&#160;</a></span>BTN_ON</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BTN_ON&#160;&#160;&#160;19</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a48422ade9d3e69812b682755ed27b51d" name="a48422ade9d3e69812b682755ed27b51d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48422ade9d3e69812b682755ed27b51d">&#9670;&#160;</a></span>CMD_OFF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_OFF&#160;&#160;&#160;0x1C</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad22b3834e4e8a59a072b1b630b2a0cb7" name="ad22b3834e4e8a59a072b1b630b2a0cb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad22b3834e4e8a59a072b1b630b2a0cb7">&#9670;&#160;</a></span>CMD_ON</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_ON&#160;&#160;&#160;0x18</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8851a0d6ef5edc9c7ebf030cfdc8500f" name="a8851a0d6ef5edc9c7ebf030cfdc8500f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8851a0d6ef5edc9c7ebf030cfdc8500f">&#9670;&#160;</a></span>control_ir</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define control_ir</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>IR</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">IR</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3b0a1d1d72b10a9c0c95adeb235d19f4" name="a3b0a1d1d72b10a9c0c95adeb235d19f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b0a1d1d72b10a9c0c95adeb235d19f4">&#9670;&#160;</a></span>IR_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define IR_PIN&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a214f742fc735c29dbf970e16611a095f" name="a214f742fc735c29dbf970e16611a095f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a214f742fc735c29dbf970e16611a095f">&#9670;&#160;</a></span>LED_EXTERNAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LED_EXTERNAL&#160;&#160;&#160;13</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8e348cdba02e89e70f98e16e283007e1" name="a8e348cdba02e89e70f98e16e283007e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e348cdba02e89e70f98e16e283007e1">&#9670;&#160;</a></span>RAW_OFF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RAW_OFF&#160;&#160;&#160;0xE31CFF00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a216d50141d4a94c1ce96eafd87cf8e1a" name="a216d50141d4a94c1ce96eafd87cf8e1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a216d50141d4a94c1ce96eafd87cf8e1a">&#9670;&#160;</a></span>RAW_ON</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RAW_ON&#160;&#160;&#160;0xE718FF00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9eaf83e62ca1ec14900f44dd3b298a73" name="a9eaf83e62ca1ec14900f44dd3b298a73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9eaf83e62ca1ec14900f44dd3b298a73">&#9670;&#160;</a></span>USAR_CONTROL_IR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define USAR_CONTROL_IR</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bandera de compilación para habilitar la lógica de control remoto IR. Si no está definido, todo el código relacionado con la recepción IR se ignora. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de funciones</h2>
+<a id="a817f4d032bbcd8cd69c4096856d117ad" name="a817f4d032bbcd8cd69c4096856d117ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a817f4d032bbcd8cd69c4096856d117ad">&#9670;&#160;</a></span>handleOff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IRAM_ATTR handleOff </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a874207ed40332f6909664827e57ea070" name="a874207ed40332f6909664827e57ea070"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a874207ed40332f6909664827e57ea070">&#9670;&#160;</a></span>handleOn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IRAM_ATTR handleOn </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afe461d27b9c48d5921c00d521181f12f" name="afe461d27b9c48d5921c00d521181f12f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe461d27b9c48d5921c00d521181f12f">&#9670;&#160;</a></span>loop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void loop </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4fc01d736fe50cf5b977f755b675f11d" name="a4fc01d736fe50cf5b977f755b675f11d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fc01d736fe50cf5b977f755b675f11d">&#9670;&#160;</a></span>setup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setup </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de variables</h2>
+<a id="a721652ea8495ead65724ceff69063b9a" name="a721652ea8495ead65724ceff69063b9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a721652ea8495ead65724ceff69063b9a">&#9670;&#160;</a></span>ledState</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile bool ledState = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_13e138d54eb8818da29c3992edef070a.html">test</a></li><li class="navelem"><a class="el" href="prueba__contro___i_r_8cpp.html">prueba_contro_IR.cpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

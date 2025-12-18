@@ -1,0 +1,51 @@
+\doxysection{motores.\+hpp}
+\hypertarget{motores_8hpp_source}{}\label{motores_8hpp_source}\index{include/motores.hpp@{include/motores.hpp}}
+\mbox{\hyperlink{motores_8hpp}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ DRV8833\_H}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ DRV8833\_H}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_drv8833_aa56746ae518b37ed1ab33885bba82da0}{Drv8833}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_drv8833_aa56746ae518b37ed1ab33885bba82da0}{Drv8833}}();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}}(uint8\_t\ pinIN1,\ uint8\_t\ pinIN2,\ uint8\_t\ pinSleep,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ chPWM,\ uint32\_t\ freqPWM,\ uint8\_t\ resPWM);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_drv8833_a8967dc4a73f58ba459dd2aefd1822a79}{forward}}(uint8\_t\ pPWM);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_drv8833_a672ca702073512e3d8251fec005f3c44}{reverse}}(uint8\_t\ pPWM);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_drv8833_abc7d60f6a11b79fe1ff5ce59c3f11cc7}{stop}}();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00057\ \ \ \ \ uint8\_t\ \_pinIN1;\ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ uint8\_t\ \_pinIN2;\ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ uint8\_t\ \_pinSleep;\ }
+\DoxyCodeLine{00060\ \ \ \ \ uint8\_t\ \_chPWM;\ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ uint32\_t\ \_freqPWM;\ }
+\DoxyCodeLine{00062\ \ \ \ \ uint8\_t\ \_resPWM;\ \ \ }
+\DoxyCodeLine{00063\ \};}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{extern}\ int32\_t\ \mbox{\hyperlink{motores_8cpp_a6abf0890e5cb283ee239088e602420c6}{motorSpeedIzq}};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{extern}\ int32\_t\ \mbox{\hyperlink{motores_8cpp_a9bafa76643a24230be378bcd0ddf03ba}{motorSpeedDer}};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ int32\_t\ \mbox{\hyperlink{main_8cpp_a1b7806663c5c1c52ee5701de3732eb4c}{maxSpeed}};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00088\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{motores_8hpp_a6776412dc1eb9b05853ba2566af78500}{setupMotores}}();}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00096\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{motores_8hpp_a9d98237426c9fb3c44711508dd0bdd3e}{moverMotores}}(int32\_t\ \mbox{\hyperlink{motores_8cpp_a6abf0890e5cb283ee239088e602420c6}{motorSpeedIzq}},\ int32\_t\ \mbox{\hyperlink{motores_8cpp_a9bafa76643a24230be378bcd0ddf03ba}{motorSpeedDer}});}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00102\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{motores_8hpp_a58db9358a9523f93d0f2a138dc5f832d}{detenerMotores}}();}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00109\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{motores_8hpp_adcfe68224198cf968169275300dec7f4}{controlMotores}}(\textcolor{keywordtype}{float}\ correcion);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00116\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{motores_8hpp_a3a34de80ed478cc6153902b826ed10b4}{actualizarSP}}(uint16\_t\ pos);}
+
+\end{DoxyCode}

@@ -1,0 +1,150 @@
+\doxysection{Referencia del archivo src/pid.cpp}
+\hypertarget{pid_8cpp}{}\label{pid_8cpp}\index{src/pid.cpp@{src/pid.cpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}config.\+hpp"{}}\newline
+{\ttfamily \#include "{}pid.\+hpp"{}}\newline
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{pid_8cpp_aaa3441d50a3a4f31e76e5014882b3a95}{calculo\+\_\+pid}} (uint16\+\_\+t pos, float delta\+Time)
+\begin{DoxyCompactList}\small\item\em Calcula la corrección necesaria para el sistema usando la fórmula PID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pid_8cpp_a02e48c71c98d7a877bf3f9d37b6d4c39}{reiniciar\+\_\+pid}} ()
+\begin{DoxyCompactList}\small\item\em Resetea las variables internas del controlador (error acumulado y error anterior). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{pid_8cpp_aa816869ccf685e5813827a4dae362891}{last\+Error}} = 0
+\item 
+float \mbox{\hyperlink{pid_8cpp_a1174af01b8a329a6d465ea6e0951b3e5}{integral}} = 0
+\item 
+uint32\+\_\+t \mbox{\hyperlink{pid_8cpp_ae6951301aef881b2aafcbe3538a45148}{last\+Time}} = 0
+\item 
+uint8\+\_\+t \mbox{\hyperlink{pid_8cpp_ab2b0c78a81e045d7a8f28be307b8c61b}{base\+Speed}} = 70
+\begin{DoxyCompactList}\small\item\em Velocidad crucero nominal de los motores cuando el error es mayor a la zona muerta. \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{pid_8cpp_ae0fd140825889f1a7ed103b66c28ce38}{Ku}} = 0.\+065
+\begin{DoxyCompactList}\small\item\em Ganancia última (Ultimate Gain). \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{pid_8cpp_a38eca5301b0c8380eaea74f460237a09}{Tu}} = 0.\+350
+\begin{DoxyCompactList}\small\item\em Periodo de oscilación última (Ultimate Period). \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{pid_8cpp_a790f9df599f1d6c92855645c65a0cccc}{Kp}} = 0.\+6 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pid_8cpp_ae0fd140825889f1a7ed103b66c28ce38}{Ku}}
+\begin{DoxyCompactList}\small\item\em Constante Proporcional. \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{pid_8cpp_a0534f74e5e04a4433256a6d9bb982d2e}{Ki}} = 2 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pid_8cpp_a790f9df599f1d6c92855645c65a0cccc}{Kp}} / \mbox{\hyperlink{pid_8cpp_a38eca5301b0c8380eaea74f460237a09}{Tu}}
+\begin{DoxyCompactList}\small\item\em Constante Integral. \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{pid_8cpp_ad76756e0056f2f5ec10057052cbed3c9}{Kd}} = \mbox{\hyperlink{pid_8cpp_a790f9df599f1d6c92855645c65a0cccc}{Kp}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pid_8cpp_a38eca5301b0c8380eaea74f460237a09}{Tu}} / 8
+\begin{DoxyCompactList}\small\item\em Constante Derivativa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentación de funciones}
+\Hypertarget{pid_8cpp_aaa3441d50a3a4f31e76e5014882b3a95}\index{pid.cpp@{pid.cpp}!calculo\_pid@{calculo\_pid}}
+\index{calculo\_pid@{calculo\_pid}!pid.cpp@{pid.cpp}}
+\doxysubsubsection{\texorpdfstring{calculo\_pid()}{calculo\_pid()}}
+{\footnotesize\ttfamily \label{pid_8cpp_aaa3441d50a3a4f31e76e5014882b3a95} 
+float calculo\+\_\+pid (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{pos}{, }\item[{float}]{delta\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Calcula la corrección necesaria para el sistema usando la fórmula PID. 
+
+La salida es la corrección que se suma o resta de la velocidad base de los motores. La fórmula general aplicada es\+: \[ \text{Salida} = K_p \cdot \text{Error} + K_i \cdot \int \text{Error} \, dt + K_d \cdot \frac{d\text{Error}}{dt} \] 
+\begin{DoxyParams}{Parámetros}
+{\em pos} & Posición actual leída por los sensores. \\
+\hline
+{\em delta\+Time} & Tiempo transcurrido ( $ \Delta T $) desde la última ejecución en segundos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+float Valor de corrección PID a aplicar a las velocidades de los motores. 
+\end{DoxyReturn}
+\Hypertarget{pid_8cpp_a02e48c71c98d7a877bf3f9d37b6d4c39}\index{pid.cpp@{pid.cpp}!reiniciar\_pid@{reiniciar\_pid}}
+\index{reiniciar\_pid@{reiniciar\_pid}!pid.cpp@{pid.cpp}}
+\doxysubsubsection{\texorpdfstring{reiniciar\_pid()}{reiniciar\_pid()}}
+{\footnotesize\ttfamily \label{pid_8cpp_a02e48c71c98d7a877bf3f9d37b6d4c39} 
+void reiniciar\+\_\+pid (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Resetea las variables internas del controlador (error acumulado y error anterior). 
+
+Es fundamental llamar a esta función al reiniciar la marcha o tras una parada para evitar el "{}\+Windup"{} de la parte integral. \begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentación de variables}
+\Hypertarget{pid_8cpp_ab2b0c78a81e045d7a8f28be307b8c61b}\index{pid.cpp@{pid.cpp}!baseSpeed@{baseSpeed}}
+\index{baseSpeed@{baseSpeed}!pid.cpp@{pid.cpp}}
+\doxysubsubsection{\texorpdfstring{baseSpeed}{baseSpeed}}
+{\footnotesize\ttfamily \label{pid_8cpp_ab2b0c78a81e045d7a8f28be307b8c61b} 
+uint8\+\_\+t base\+Speed = 70}
+
+
+
+Velocidad crucero nominal de los motores cuando el error es mayor a la zona muerta. 
+
+\Hypertarget{pid_8cpp_a1174af01b8a329a6d465ea6e0951b3e5}\index{pid.cpp@{pid.cpp}!integral@{integral}}
+\index{integral@{integral}!pid.cpp@{pid.cpp}}
+\doxysubsubsection{\texorpdfstring{integral}{integral}}
+{\footnotesize\ttfamily \label{pid_8cpp_a1174af01b8a329a6d465ea6e0951b3e5} 
+float integral = 0}
+
+\Hypertarget{pid_8cpp_ad76756e0056f2f5ec10057052cbed3c9}\index{pid.cpp@{pid.cpp}!Kd@{Kd}}
+\index{Kd@{Kd}!pid.cpp@{pid.cpp}}
+\doxysubsubsection{\texorpdfstring{Kd}{Kd}}
+{\footnotesize\ttfamily \label{pid_8cpp_ad76756e0056f2f5ec10057052cbed3c9} 
+const float Kd = \mbox{\hyperlink{pid_8cpp_a790f9df599f1d6c92855645c65a0cccc}{Kp}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pid_8cpp_a38eca5301b0c8380eaea74f460237a09}{Tu}} / 8}
+
+
+
+Constante Derivativa. 
+
+\Hypertarget{pid_8cpp_a0534f74e5e04a4433256a6d9bb982d2e}\index{pid.cpp@{pid.cpp}!Ki@{Ki}}
+\index{Ki@{Ki}!pid.cpp@{pid.cpp}}
+\doxysubsubsection{\texorpdfstring{Ki}{Ki}}
+{\footnotesize\ttfamily \label{pid_8cpp_a0534f74e5e04a4433256a6d9bb982d2e} 
+const float Ki = 2 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pid_8cpp_a790f9df599f1d6c92855645c65a0cccc}{Kp}} / \mbox{\hyperlink{pid_8cpp_a38eca5301b0c8380eaea74f460237a09}{Tu}}}
+
+
+
+Constante Integral. 
+
+\Hypertarget{pid_8cpp_a790f9df599f1d6c92855645c65a0cccc}\index{pid.cpp@{pid.cpp}!Kp@{Kp}}
+\index{Kp@{Kp}!pid.cpp@{pid.cpp}}
+\doxysubsubsection{\texorpdfstring{Kp}{Kp}}
+{\footnotesize\ttfamily \label{pid_8cpp_a790f9df599f1d6c92855645c65a0cccc} 
+const float Kp = 0.\+6 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pid_8cpp_ae0fd140825889f1a7ed103b66c28ce38}{Ku}}}
+
+
+
+Constante Proporcional. 
+
+\Hypertarget{pid_8cpp_ae0fd140825889f1a7ed103b66c28ce38}\index{pid.cpp@{pid.cpp}!Ku@{Ku}}
+\index{Ku@{Ku}!pid.cpp@{pid.cpp}}
+\doxysubsubsection{\texorpdfstring{Ku}{Ku}}
+{\footnotesize\ttfamily \label{pid_8cpp_ae0fd140825889f1a7ed103b66c28ce38} 
+const float Ku = 0.\+065}
+
+
+
+Ganancia última (Ultimate Gain). 
+
+\Hypertarget{pid_8cpp_aa816869ccf685e5813827a4dae362891}\index{pid.cpp@{pid.cpp}!lastError@{lastError}}
+\index{lastError@{lastError}!pid.cpp@{pid.cpp}}
+\doxysubsubsection{\texorpdfstring{lastError}{lastError}}
+{\footnotesize\ttfamily \label{pid_8cpp_aa816869ccf685e5813827a4dae362891} 
+float last\+Error = 0}
+
+\Hypertarget{pid_8cpp_ae6951301aef881b2aafcbe3538a45148}\index{pid.cpp@{pid.cpp}!lastTime@{lastTime}}
+\index{lastTime@{lastTime}!pid.cpp@{pid.cpp}}
+\doxysubsubsection{\texorpdfstring{lastTime}{lastTime}}
+{\footnotesize\ttfamily \label{pid_8cpp_ae6951301aef881b2aafcbe3538a45148} 
+uint32\+\_\+t last\+Time = 0}
+
+\Hypertarget{pid_8cpp_a38eca5301b0c8380eaea74f460237a09}\index{pid.cpp@{pid.cpp}!Tu@{Tu}}
+\index{Tu@{Tu}!pid.cpp@{pid.cpp}}
+\doxysubsubsection{\texorpdfstring{Tu}{Tu}}
+{\footnotesize\ttfamily \label{pid_8cpp_a38eca5301b0c8380eaea74f460237a09} 
+const float Tu = 0.\+350}
+
+
+
+Periodo de oscilación última (Ultimate Period). 
+

@@ -1,0 +1,31 @@
+\doxysection{pid.\+hpp}
+\hypertarget{pid_8hpp_source}{}\label{pid_8hpp_source}\index{include/pid.hpp@{include/pid.hpp}}
+\mbox{\hyperlink{pid_8hpp}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{extern}\ uint16\_t\ \mbox{\hyperlink{main_8cpp_a8b6f34837979e0ebe80423697c0250f8}{setpoint}};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{extern}\ uint16\_t\ \mbox{\hyperlink{main_8cpp_aab7a8228729d5377011a111f72bef773}{zonaMuerta}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{pid_8cpp_ab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ ============================}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ CONTROL\ PID\ -\/\ METODO\ Ziegler-\/Nichols}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ ============================}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{pid_8cpp_ae0fd140825889f1a7ed103b66c28ce38}{Ku}};\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{pid_8cpp_a38eca5301b0c8380eaea74f460237a09}{Tu}};\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{pid_8cpp_a790f9df599f1d6c92855645c65a0cccc}{Kp}};\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{pid_8cpp_a0534f74e5e04a4433256a6d9bb982d2e}{Ki}};\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{pid_8cpp_ad76756e0056f2f5ec10057052cbed3c9}{Kd}};\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00054\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{pid_8hpp_aaa3441d50a3a4f31e76e5014882b3a95}{calculo\_pid}}(uint16\_t\ pos,\ \textcolor{keywordtype}{float}\ deltaTime);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00061\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pid_8hpp_a02e48c71c98d7a877bf3f9d37b6d4c39}{reiniciar\_pid}}();}
+
+\end{DoxyCode}

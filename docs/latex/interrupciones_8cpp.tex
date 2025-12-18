@@ -1,0 +1,120 @@
+\doxysection{Referencia del archivo src/interrupciones.cpp}
+\hypertarget{interrupciones_8cpp}{}\label{interrupciones_8cpp}\index{src/interrupciones.cpp@{src/interrupciones.cpp}}
+{\ttfamily \#include "{}interrupciones.\+hpp"{}}\newline
+{\ttfamily \#include "{}config.\+hpp"{}}\newline
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void IRAM\+\_\+\+ATTR \mbox{\hyperlink{interrupciones_8cpp_acf66a057f87b336c4cf02522f7ceffe6}{timer\+Interrupcion}} ()
+\begin{DoxyCompactList}\small\item\em ISR del temporizador de hardware. \end{DoxyCompactList}\item 
+void IRAM\+\_\+\+ATTR \mbox{\hyperlink{interrupciones_8cpp_ac43d7f08eeb67b32fc99e80cbe45b48f}{handle\+Run}} ()
+\begin{DoxyCompactList}\small\item\em Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo {\ttfamily IRAM\+\_\+\+ATTR} se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece {\ttfamily RUN = true;}. \end{DoxyCompactList}\item 
+void IRAM\+\_\+\+ATTR \mbox{\hyperlink{interrupciones_8cpp_ad381aa5df28fccb991bc49fcb5856b43}{handle\+Stop}} ()
+\begin{DoxyCompactList}\small\item\em Función de servicio de interrupción (ISR) para detener la rutina principal. Se ejecuta cuando se detecta el evento de detención en el pin de interrupción. Esta función probablemente establece {\ttfamily RUN = false;}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interrupciones_8cpp_ac53dd4166bbabe4a14d5b971c70a1782}{setup\+Interrupciones}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile bool \mbox{\hyperlink{interrupciones_8cpp_a081d22c8c0bb30d050a1a7c4505f00b9}{RUN}} = false
+\begin{DoxyCompactList}\small\item\em Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador {\ttfamily volatile} es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal ({\ttfamily loop}). \end{DoxyCompactList}\item 
+volatile bool \mbox{\hyperlink{interrupciones_8cpp_a7f58a663d672fc7724b47068352249df}{SETPOINT}} = true
+\begin{DoxyCompactList}\small\item\em Bandera volátil que indica si el robot ha alcanzado o debe buscar el punto de consigna (setpoint). \end{DoxyCompactList}\item 
+volatile bool \mbox{\hyperlink{interrupciones_8cpp_a19e9ff7a81b67d662134bed2ba41a3b3}{has\+\_\+expired}} = false
+\begin{DoxyCompactList}\small\item\em Bandera de sincronización utilizada por el temporizador para indicar que un periodo de tiempo ha finalizado. \end{DoxyCompactList}\item 
+const int32\+\_\+t \mbox{\hyperlink{interrupciones_8cpp_a10d4f5ea5fffb797d3564654ccefedf8}{TIEMPO\+\_\+\+TIMER}} = 6000
+\begin{DoxyCompactList}\small\item\em Periodo del temporizador de control expresado en microsegundos (us). \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{interrupciones_8cpp_a60293d5cdd547df044662b56d8d91508}{FIXED\+\_\+\+DT\+\_\+S}} = \mbox{\hyperlink{interrupciones_8cpp_a10d4f5ea5fffb797d3564654ccefedf8}{TIEMPO\+\_\+\+TIMER}} \texorpdfstring{$\ast$}{*} 1e-\/6f
+\begin{DoxyCompactList}\small\item\em Tiempo diferencial fijo (Delta T) expresado en segundos (s) para los cálculos del PID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentación de funciones}
+\Hypertarget{interrupciones_8cpp_ac43d7f08eeb67b32fc99e80cbe45b48f}\index{interrupciones.cpp@{interrupciones.cpp}!handleRun@{handleRun}}
+\index{handleRun@{handleRun}!interrupciones.cpp@{interrupciones.cpp}}
+\doxysubsubsection{\texorpdfstring{handleRun()}{handleRun()}}
+{\footnotesize\ttfamily \label{interrupciones_8cpp_ac43d7f08eeb67b32fc99e80cbe45b48f} 
+void IRAM\+\_\+\+ATTR handle\+Run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función de servicio de interrupción (ISR) para iniciar la rutina principal. El atributo {\ttfamily IRAM\+\_\+\+ATTR} se utiliza en el ESP32 para colocar la función en la RAM interna, asegurando que se pueda ejecutar rápidamente sin problemas de caché o latencia, lo cual es vital para las interrupciones. Esta función probablemente establece {\ttfamily RUN = true;}. 
+
+\Hypertarget{interrupciones_8cpp_ad381aa5df28fccb991bc49fcb5856b43}\index{interrupciones.cpp@{interrupciones.cpp}!handleStop@{handleStop}}
+\index{handleStop@{handleStop}!interrupciones.cpp@{interrupciones.cpp}}
+\doxysubsubsection{\texorpdfstring{handleStop()}{handleStop()}}
+{\footnotesize\ttfamily \label{interrupciones_8cpp_ad381aa5df28fccb991bc49fcb5856b43} 
+void IRAM\+\_\+\+ATTR handle\+Stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función de servicio de interrupción (ISR) para detener la rutina principal. Se ejecuta cuando se detecta el evento de detención en el pin de interrupción. Esta función probablemente establece {\ttfamily RUN = false;}. 
+
+\Hypertarget{interrupciones_8cpp_ac53dd4166bbabe4a14d5b971c70a1782}\index{interrupciones.cpp@{interrupciones.cpp}!setupInterrupciones@{setupInterrupciones}}
+\index{setupInterrupciones@{setupInterrupciones}!interrupciones.cpp@{interrupciones.cpp}}
+\doxysubsubsection{\texorpdfstring{setupInterrupciones()}{setupInterrupciones()}}
+{\footnotesize\ttfamily \label{interrupciones_8cpp_ac53dd4166bbabe4a14d5b971c70a1782} 
+void setup\+Interrupciones (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{interrupciones_8cpp_acf66a057f87b336c4cf02522f7ceffe6}\index{interrupciones.cpp@{interrupciones.cpp}!timerInterrupcion@{timerInterrupcion}}
+\index{timerInterrupcion@{timerInterrupcion}!interrupciones.cpp@{interrupciones.cpp}}
+\doxysubsubsection{\texorpdfstring{timerInterrupcion()}{timerInterrupcion()}}
+{\footnotesize\ttfamily \label{interrupciones_8cpp_acf66a057f87b336c4cf02522f7ceffe6} 
+void IRAM\+\_\+\+ATTR timer\+Interrupcion (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+ISR del temporizador de hardware. 
+
+Se ejecuta periódicamente para gestionar tareas de tiempo real, como el refresco del cálculo PID. Utiliza {\ttfamily IRAM\+\_\+\+ATTR} para máxima velocidad de respuesta. 
+
+\doxysubsection{Documentación de variables}
+\Hypertarget{interrupciones_8cpp_a60293d5cdd547df044662b56d8d91508}\index{interrupciones.cpp@{interrupciones.cpp}!FIXED\_DT\_S@{FIXED\_DT\_S}}
+\index{FIXED\_DT\_S@{FIXED\_DT\_S}!interrupciones.cpp@{interrupciones.cpp}}
+\doxysubsubsection{\texorpdfstring{FIXED\_DT\_S}{FIXED\_DT\_S}}
+{\footnotesize\ttfamily \label{interrupciones_8cpp_a60293d5cdd547df044662b56d8d91508} 
+const float FIXED\+\_\+\+DT\+\_\+S = \mbox{\hyperlink{interrupciones_8cpp_a10d4f5ea5fffb797d3564654ccefedf8}{TIEMPO\+\_\+\+TIMER}} \texorpdfstring{$\ast$}{*} 1e-\/6f}
+
+
+
+Tiempo diferencial fijo (Delta T) expresado en segundos (s) para los cálculos del PID. 
+
+\Hypertarget{interrupciones_8cpp_a19e9ff7a81b67d662134bed2ba41a3b3}\index{interrupciones.cpp@{interrupciones.cpp}!has\_expired@{has\_expired}}
+\index{has\_expired@{has\_expired}!interrupciones.cpp@{interrupciones.cpp}}
+\doxysubsubsection{\texorpdfstring{has\_expired}{has\_expired}}
+{\footnotesize\ttfamily \label{interrupciones_8cpp_a19e9ff7a81b67d662134bed2ba41a3b3} 
+volatile bool has\+\_\+expired = false}
+
+
+
+Bandera de sincronización utilizada por el temporizador para indicar que un periodo de tiempo ha finalizado. 
+
+\Hypertarget{interrupciones_8cpp_a081d22c8c0bb30d050a1a7c4505f00b9}\index{interrupciones.cpp@{interrupciones.cpp}!RUN@{RUN}}
+\index{RUN@{RUN}!interrupciones.cpp@{interrupciones.cpp}}
+\doxysubsubsection{\texorpdfstring{RUN}{RUN}}
+{\footnotesize\ttfamily \label{interrupciones_8cpp_a081d22c8c0bb30d050a1a7c4505f00b9} 
+volatile bool RUN = false}
+
+
+
+Bandera de estado que controla si el ciclo principal del robot debe ejecutarse. El calificador {\ttfamily volatile} es crucial para indicar que esta variable puede ser modificada por una función de interrupción (ISR) en cualquier momento y debe ser leída directamente de la memoria en el ciclo principal ({\ttfamily loop}). 
+
+\Hypertarget{interrupciones_8cpp_a7f58a663d672fc7724b47068352249df}\index{interrupciones.cpp@{interrupciones.cpp}!SETPOINT@{SETPOINT}}
+\index{SETPOINT@{SETPOINT}!interrupciones.cpp@{interrupciones.cpp}}
+\doxysubsubsection{\texorpdfstring{SETPOINT}{SETPOINT}}
+{\footnotesize\ttfamily \label{interrupciones_8cpp_a7f58a663d672fc7724b47068352249df} 
+volatile bool SETPOINT = true}
+
+
+
+Bandera volátil que indica si el robot ha alcanzado o debe buscar el punto de consigna (setpoint). 
+
+\Hypertarget{interrupciones_8cpp_a10d4f5ea5fffb797d3564654ccefedf8}\index{interrupciones.cpp@{interrupciones.cpp}!TIEMPO\_TIMER@{TIEMPO\_TIMER}}
+\index{TIEMPO\_TIMER@{TIEMPO\_TIMER}!interrupciones.cpp@{interrupciones.cpp}}
+\doxysubsubsection{\texorpdfstring{TIEMPO\_TIMER}{TIEMPO\_TIMER}}
+{\footnotesize\ttfamily \label{interrupciones_8cpp_a10d4f5ea5fffb797d3564654ccefedf8} 
+const int32\+\_\+t TIEMPO\+\_\+\+TIMER = 6000}
+
+
+
+Periodo del temporizador de control expresado en microsegundos (us). 
+

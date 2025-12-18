@@ -33,6 +33,10 @@ uint16_t position;
 // ===================================
 // LINEA NEGRA o BLANCA - CAMBIAR EN PLATFORMIO.INI
 // ===================================
+/**
+ @var linea_competencia
+ @brief Almacena el modo de lectura actual (BLANCA o NEGRA) para el procesamiento de las señales.
+ */
 #ifdef LINEA_NEGRA
     Linea linea_competencia = NEGRA;
 #else

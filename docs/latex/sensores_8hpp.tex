@@ -1,0 +1,134 @@
+\doxysection{Referencia del archivo include/sensores.hpp}
+\hypertarget{sensores_8hpp}{}\label{sensores_8hpp}\index{include/sensores.hpp@{include/sensores.hpp}}
+
+
+Cabecera para la configuración, calibración y lectura del array de sensores QTR. Contiene la definición del tipo de línea a seguir, la instancia del objeto QTR y las funciones para obtener la posición central de la línea.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+\doxysubsubsection*{Enumeraciones}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66d}{Linea}} \{ \mbox{\hyperlink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66da637182e28b9d39bb102f3309c827c1e7}{BLANCA}}
+, \mbox{\hyperlink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66dac4f59a0066d6178a05185e2041f74571}{NEGRA}}
+ \}
+\begin{DoxyCompactList}\small\item\em Define el modo de operación del seguidor de línea\+: Indica si el robot debe buscar la línea oscura (NEGRA) o la línea clara (BLANCA). Este valor se configura globalmente en {\ttfamily \doxylink{config_8cpp}{config.\+cpp}} mediante la bandera {\ttfamily LINEA\+\_\+\+NEGRA}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{sensores_8hpp_a2f219266814710460b32105d03655688}{setup\+Sensores}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}sensor\+Pins, uint8\+\_\+t Sensor\+Count)
+\begin{DoxyCompactList}\small\item\em Inicializa el objeto QTRSensors con los pines de entrada/salida. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sensores_8hpp_a087f5f49fa452708bb142e6af46d4b94}{calibrar\+Sensores}} ()
+\begin{DoxyCompactList}\small\item\em Rutina de calibración de los sensores para adaptarse a las condiciones de la pista. Ejecuta un ciclo de calibración (ej. 2.\+5 segundos) para determinar los valores mínimo y máximo de blanco y negro, crucial para la lectura precisa de la línea. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{sensores_8hpp_a739ecba438965ecfcd4cea298b08d2ca}{leer\+Linea}} ()
+\begin{DoxyCompactList}\small\item\em Lee los sensores y calcula la posición ponderada de la línea. Utiliza la función {\ttfamily read\+Line()} de la librería QTR para devolver un valor normalizado que indica el desplazamiento lateral respecto al centro del array. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66d}{Linea}} \mbox{\hyperlink{sensores_8hpp_ad41c7e6046107ea067785fa523ddab36}{linea\+\_\+competencia}}
+\begin{DoxyCompactList}\small\item\em Almacena el modo de lectura actual (BLANCA o NEGRA) para el procesamiento de las señales. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{sensores_8hpp_a6f14bde43ef12199f2d2ef07adb6c942}{position}}
+\begin{DoxyCompactList}\small\item\em Posición calculada de la línea. Es el valor de la salida del proceso (PV), usado como entrada para el controlador PID. Este valor se normaliza (ej. 0 a 4000) donde el centro es el punto de referencia ({\ttfamily setpoint}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Cabecera para la configuración, calibración y lectura del array de sensores QTR. Contiene la definición del tipo de línea a seguir, la instancia del objeto QTR y las funciones para obtener la posición central de la línea. 
+
+\begin{DoxyAuthor}{Autor}
+Legion de Ohm 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Documentación de enumeraciones}
+\Hypertarget{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66d}\index{sensores.hpp@{sensores.hpp}!Linea@{Linea}}
+\index{Linea@{Linea}!sensores.hpp@{sensores.hpp}}
+\doxysubsubsection{\texorpdfstring{Linea}{Linea}}
+{\footnotesize\ttfamily \label{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66d} 
+enum \mbox{\hyperlink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66d}{Linea}}}
+
+
+
+Define el modo de operación del seguidor de línea\+: Indica si el robot debe buscar la línea oscura (NEGRA) o la línea clara (BLANCA). Este valor se configura globalmente en {\ttfamily \doxylink{config_8cpp}{config.\+cpp}} mediante la bandera {\ttfamily LINEA\+\_\+\+NEGRA}. 
+
+\begin{DoxyEnumFields}[2]{Valores de enumeraciones}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BLANCA@{BLANCA}!sensores.hpp@{sensores.hpp}}\index{sensores.hpp@{sensores.hpp}!BLANCA@{BLANCA}}}\Hypertarget{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66da637182e28b9d39bb102f3309c827c1e7}\label{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66da637182e28b9d39bb102f3309c827c1e7} 
+BLANCA&El robot sigue la línea blanca sobre fondo negro (valores altos = sobre línea). \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NEGRA@{NEGRA}!sensores.hpp@{sensores.hpp}}\index{sensores.hpp@{sensores.hpp}!NEGRA@{NEGRA}}}\Hypertarget{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66dac4f59a0066d6178a05185e2041f74571}\label{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66dac4f59a0066d6178a05185e2041f74571} 
+NEGRA&El robot sigue la línea negra sobre fondo blanco (valores bajos = sobre línea). \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Documentación de funciones}
+\Hypertarget{sensores_8hpp_a087f5f49fa452708bb142e6af46d4b94}\index{sensores.hpp@{sensores.hpp}!calibrarSensores@{calibrarSensores}}
+\index{calibrarSensores@{calibrarSensores}!sensores.hpp@{sensores.hpp}}
+\doxysubsubsection{\texorpdfstring{calibrarSensores()}{calibrarSensores()}}
+{\footnotesize\ttfamily \label{sensores_8hpp_a087f5f49fa452708bb142e6af46d4b94} 
+void calibrar\+Sensores (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Rutina de calibración de los sensores para adaptarse a las condiciones de la pista. Ejecuta un ciclo de calibración (ej. 2.\+5 segundos) para determinar los valores mínimo y máximo de blanco y negro, crucial para la lectura precisa de la línea. 
+
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+\Hypertarget{sensores_8hpp_a739ecba438965ecfcd4cea298b08d2ca}\index{sensores.hpp@{sensores.hpp}!leerLinea@{leerLinea}}
+\index{leerLinea@{leerLinea}!sensores.hpp@{sensores.hpp}}
+\doxysubsubsection{\texorpdfstring{leerLinea()}{leerLinea()}}
+{\footnotesize\ttfamily \label{sensores_8hpp_a739ecba438965ecfcd4cea298b08d2ca} 
+uint16\+\_\+t leer\+Linea (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Lee los sensores y calcula la posición ponderada de la línea. Utiliza la función {\ttfamily read\+Line()} de la librería QTR para devolver un valor normalizado que indica el desplazamiento lateral respecto al centro del array. 
+
+\begin{DoxyReturn}{Devuelve}
+uint16\+\_\+t Posición calculada de la línea (ej. 0 a 4000). 
+\end{DoxyReturn}
+\Hypertarget{sensores_8hpp_a2f219266814710460b32105d03655688}\index{sensores.hpp@{sensores.hpp}!setupSensores@{setupSensores}}
+\index{setupSensores@{setupSensores}!sensores.hpp@{sensores.hpp}}
+\doxysubsubsection{\texorpdfstring{setupSensores()}{setupSensores()}}
+{\footnotesize\ttfamily \label{sensores_8hpp_a2f219266814710460b32105d03655688} 
+void setup\+Sensores (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{sensor\+Pins}{, }\item[{uint8\+\_\+t}]{Sensor\+Count}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa el objeto QTRSensors con los pines de entrada/salida. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em sensor\+Pins} & Array que contiene los pines GPIO a los que están conectados los sensores. \\
+\hline
+{\em Sensor\+Count} & Número total de sensores a inicializar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+void 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentación de variables}
+\Hypertarget{sensores_8hpp_ad41c7e6046107ea067785fa523ddab36}\index{sensores.hpp@{sensores.hpp}!linea\_competencia@{linea\_competencia}}
+\index{linea\_competencia@{linea\_competencia}!sensores.hpp@{sensores.hpp}}
+\doxysubsubsection{\texorpdfstring{linea\_competencia}{linea\_competencia}}
+{\footnotesize\ttfamily \label{sensores_8hpp_ad41c7e6046107ea067785fa523ddab36} 
+\mbox{\hyperlink{sensores_8hpp_aa9b6c9070c996b54591a9d0fdf86e66d}{Linea}} linea\+\_\+competencia\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Almacena el modo de lectura actual (BLANCA o NEGRA) para el procesamiento de las señales. 
+
+\Hypertarget{sensores_8hpp_a6f14bde43ef12199f2d2ef07adb6c942}\index{sensores.hpp@{sensores.hpp}!position@{position}}
+\index{position@{position}!sensores.hpp@{sensores.hpp}}
+\doxysubsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily \label{sensores_8hpp_a6f14bde43ef12199f2d2ef07adb6c942} 
+uint16\+\_\+t position\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Posición calculada de la línea. Es el valor de la salida del proceso (PV), usado como entrada para el controlador PID. Este valor se normaliza (ej. 0 a 4000) donde el centro es el punto de referencia ({\ttfamily setpoint}). 
+
